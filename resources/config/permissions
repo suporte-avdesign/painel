@@ -1,0 +1,55 @@
+/*
+   FAZER BACKUP
+ - Inclusão nas Seeds
+*/
+
+ConfigModulesTableSeeder.php
+ConfigPermissionsTableSeeder.php
+
+/*
+ - Remover do banco de dados.
+*/
+admin_permissions
+config_permission_config_profile
+config_permissions
+config_modules
+
+/* 
+ - Remover da Tabela Migrations
+*/
+
+create_config_modules_table
+create_config_permissions_table
+create_admin_permissions_table
+
+/*
+ - Alterar arquivo
+ - app/Providers/Admin/AuthServiceProvider.php
+
+$permissions = []; //AdminPermissions::all();
+
+*/
+
+php artisan migrate
+
+php artisan db:seed --class=ConfigModulesTableSeeder
+php artisan db:seed --class=ConfigPermissionsTableSeeder
+
+/*
+ - Alterar arquivo
+ - app/Providers/Admin/AuthServiceProvider.php
+
+$permissions = AdminPermissions::all();
+
+*/
+
+git add .
+
+git commit -m "Modulo Accounts - Permission"
+
+git push painelpezzi master:refs/heads/master
+
+
+
+
+
