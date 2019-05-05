@@ -18,7 +18,7 @@ class ConfigBrandTableSeeder extends Seeder
             'grids' => 1,
             'description' => 1,
             'img_default' => 'D',
-            'path' => 'assets/imagens/marcas/',
+            'path' => 'imagens/marcas/',
             'img_logo' => 1,
             'width_logo' => 173,
             'height_logo' => 91,

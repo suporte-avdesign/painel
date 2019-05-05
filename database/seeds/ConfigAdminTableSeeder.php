@@ -15,7 +15,7 @@ class ConfigAdminTableSeeder extends Seeder
     {
         $date = date('Y-m-d H:i:s');
         ConfigAdmin::create([
-            'path' => 'assets/imagens/vendedores/',
+            'path' => 'imagens/users/',
             'width_photo' => 300,
             'height_photo' => 300,
             'created_at' => $date

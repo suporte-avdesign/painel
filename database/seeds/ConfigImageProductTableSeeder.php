@@ -15,7 +15,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'C',
-            'path' => 'assets/imagens/produtos/100x100/',
+            'path' => 'imagens/produtos/100x100/',
             'width' => '100',
             'height' => '100',
             'default' => 'T'
@@ -23,7 +23,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'C',
-            'path' => 'assets/imagens/produtos/370x370/',
+            'path' => 'imagens/produtos/370x370/',
             'width' => '370',
             'height' => '370',
             'default' => 'N'
@@ -32,7 +32,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'C',
-            'path' => 'assets/imagens/produtos/800x800/',
+            'path' => 'imagens/produtos/800x800/',
             'width' => '800',
             'height' => '800',
             'default' => 'G'
@@ -41,7 +41,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'C',
-            'path' => 'assets/imagens/produtos/1000x1000/',
+            'path' => 'imagens/produtos/1000x1000/',
             'width' => '1000',
             'height' => '1000',
             'default' => 'Z'
@@ -49,7 +49,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'P',
-            'path' => 'assets/imagens/produtos/100x100/',
+            'path' => 'imagens/produtos/100x100/',
             'width' => '100',
             'height' => '100',
             'default' => 'T'
@@ -57,7 +57,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'P',
-            'path' => 'assets/imagens/produtos/370x370/',
+            'path' => 'imagens/produtos/370x370/',
             'width' => '370',
             'height' => '370',
             'default' => 'N'
@@ -66,7 +66,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'P',
-            'path' => 'assets/imagens/produtos/800x800/',
+            'path' => 'imagens/produtos/800x800/',
             'width' => '800',
             'height' => '800',
             'default' => 'G'
@@ -75,7 +75,7 @@ class ConfigImageProductTableSeeder extends Seeder
 
         ConfigImageProduct::create([
             'type' => 'P',
-            'path' => 'assets/imagens/produtos/1000x1000/',
+            'path' => 'imagens/produtos/1000x1000/',
             'width' => '1000',
             'height' => '1000',
             'default' => 'Z'

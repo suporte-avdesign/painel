@@ -18,7 +18,7 @@ class ConfigCategoryTableSeeder extends Seeder
             'grids' => 1,
             'description' => 1,
             'img_default' => 'D',
-            'path' => 'assets/imagens/categorias/',
+            'path' => 'imagens/categorias/',
             'img_featured' => 1,
             'width_featured' => 234,
             'height_featured' => 319,
