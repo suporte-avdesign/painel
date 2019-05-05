@@ -56,8 +56,8 @@ class ConfigAdminRepository implements ConfigAdminInterface
         $path = $input['path'];
 
         $path_photo = $path.$input['width_photo'].'x'.$input['height_photo'];
-        if ( !file_exists(public_path().'/'.$path_photo) ) {
-            File::makeDirectory(public_path().'/'.$path_photo, 0777, true);
+        if ( !file_exists(storage_path().'/'.$path_photo) ) {
+            File::makeDirectory(storage_path().'/'.$path_photo, 0777, true);
         }
 
 

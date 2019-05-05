@@ -90,12 +90,22 @@ class Admin extends Authenticatable
 
 
     /**
-    * Usuários vinculados ao perfil
-    * @return array
-    **/
+     * Usuários vinculados ao perfil
+     * @return array
+     **/
     public function profiles()
     {
         return $this->belongsToMany(ConfigProfile::class);
     }
+
+    /**
+     * Foto do perfil do usuário
+     * @return array
+     **/
+    public function photo()
+    {
+        return $this->hasMany(ImageAdmin::class, 'admin_id');
+    }
+
 
 }

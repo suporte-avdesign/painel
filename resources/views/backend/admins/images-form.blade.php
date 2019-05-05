@@ -35,7 +35,7 @@
 	    	<div class="align-center">
 				<p id="image_preview_{{$id}}">
 					@if(isset($data))
-						<img src="{{url($upload['path'].$data->image)}}" width="50%">
+						<img src="{{url($upload['photo_url'].$data->image)}}" width="50%">
 					@endif
 				</p>
 			</div>

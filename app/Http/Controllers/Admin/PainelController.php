@@ -2,7 +2,6 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
 use AVDPainel\Http\Controllers\Controller;
 
 use AVDPainel\Models\Admin\Brand;
@@ -13,7 +12,9 @@ use AVDPainel\Models\Admin\ImageColor;
 use AVDPainel\Models\Admin\Contact;
 
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
+use AVDPainel\Interfaces\Admin\ConfigAdminInterface as InterConfigAvatar;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as InterConfigSystem;
+
 
 class PainelController extends Controller
 {
@@ -28,12 +29,15 @@ class PainelController extends Controller
      */
     public function __construct(
         InterAccess $access,
+        InterConfigAvatar $interConfigAvatar,
         InterConfigSystem $interConfigSystem)
     {
         $this->middleware('auth:admin');
 
         $this->access            = $access;
         $this->interConfigSystem = $interConfigSystem;
+        $this->interConfigAvatar = $interConfigAvatar->setId(1);
+
     }
 
     /**
@@ -49,7 +53,24 @@ class PainelController extends Controller
         Category $category,
         ImageColor $colors)
     {
+
         $this->last_url   = array("last_url" => "admin");
+
+
+        $photos = auth()->user()->photo;
+
+        $width    = $this->interConfigAvatar->width_photo;
+        $height   = $this->interConfigAvatar->height_photo;
+        $path     = 'storage/'.$this->interConfigAvatar->path.$width.'x'.$height.'/';
+
+        $photos = auth()->user()->photo;
+
+        $avatar = 'https://www.gravatar.com/avatar';
+        foreach ($photos as $photo) {
+            if ($photo->status == 'Ativo' && $photo->image != '') {
+                $avatar = $path. $photo->image;
+            }
+        }
 
         $sidebar  = array(
             'total_brands' => $brand->count(),
@@ -62,7 +83,9 @@ class PainelController extends Controller
 
         $this->access->update($this->last_url);
 
-        return view('backend.home.index', compact('confUser', 'sidebar'));
+        return view('backend.home.index', compact(
+            'confUser', 'sidebar', 'avatar'
+        ));
     }
 
     /**

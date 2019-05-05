@@ -383,6 +383,7 @@
                             '</span>' +
                             '</div>');
                     }
+                    $("#avatar").attr('src', data.path);
                     fechaModal();
                     msgNotifica(true, data.message, true, false);
                 } else {

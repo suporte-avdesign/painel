@@ -53,16 +53,22 @@ class ConfigSectionRepository implements ConfigSectionInterface
 
     public function update($input, $id)
     {
-        $path = $input['path'];
 
-        $path_featured = $path.$input['width_featured'].'x'.$input['height_featured'];
-        if ( !file_exists(public_path().'/'.$path_featured) ) {
-            File::makeDirectory(public_path().'/'.$path_featured, 0777, true);
+        $width_featured  = $input['width_featured'];
+        $height_featured = $input['height_featured'];
+        $width_banner    = $input['width_banner'];
+        $height_banner   = $input['height_banner'];
+        $path            = storage_path().'/app/public/'.$input['path'];
+
+
+        $path_featured = $path .$width_featured.'x'.$height_featured;
+        if ( !file_exists($path_featured) ) {
+            File::makeDirectory($path_featured, 0777, true);
         }
 
-        $path_banner = $path.$input['width_banner'].'x'.$input['height_banner'];
-        if ( !file_exists(public_path().'/'.$path_banner) ) {
-            File::makeDirectory(public_path().'/'.$path_banner, 0777, true);
+        $path_banner = $path.$width_banner.'x'.$height_banner;
+        if ( !file_exists($path_banner) ) {
+            File::makeDirectory($path_banner, 0777, true);
         }
 
         $data = $this->model->find($id);
@@ -72,7 +78,7 @@ class ConfigSectionRepository implements ConfigSectionInterface
 
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                ' Alterou a configuração das seções Descrição:'.($data->description == 1 ? 'Ativo' : 'Inativo').
+                ' Alterou a configuração das seções! Descrição:'.($data->description == 1 ? 'Ativo' : 'Inativo').
                 ', Grades:'.($data->grids == 1 ? 'Ativo' : 'Inativo').
                 ', Imagem Padrão:'.($data->img_default == 'B' ? 'Banner' : 'Inativo').
                 ', Pasta:'.$data->path.

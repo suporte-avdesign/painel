@@ -12,7 +12,7 @@
 		<ul id="gallery-{{$id}}" class="gallery">
 		    @foreach($data as $file)
 				<li id="img-{{$file->id}}">
-					<img src="{{url($upload['path'].$file->image)}}" class="framed">
+					<img src="{{asset($upload['photo_url'].$file->image)}}" class="framed">
 					<div class="controls">
 						<span id="btns-{{$file->id}}" class="button-group compact children-tooltip">
 							@if($file->status == 'Ativo')

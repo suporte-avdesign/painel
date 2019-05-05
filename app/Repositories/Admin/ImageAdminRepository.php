@@ -7,12 +7,17 @@ use AVDPainel\Models\Admin\ImageAdmin as Model;
 use AVDPainel\Interfaces\Admin\AdminInterface as InterAdmin;
 use AVDPainel\Interfaces\Admin\ImageAdminInterface;
 use Intervention\Image\Facades\Image;
+use Illuminate\Support\Str;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class ImageAdminRepository implements ImageAdminInterface
 {
+
+
     use ValidatesRequests;
+
+
 
     public $model;
     public $interAdmin;
@@ -66,6 +71,8 @@ class ImageAdminRepository implements ImageAdminInterface
         return $this->model->find($id);
     }
 
+
+
     /**
      * Create
      *
@@ -75,13 +82,15 @@ class ImageAdminRepository implements ImageAdminInterface
      */
     public function create($input, $id)
     {
+
         $mode = $this->interAdmin->setId(numLetter($id));
         $conf = $input['config'];
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
-        $name = str_slug($mode->name).'-'.time().'.'.$ext;
-        $path = $conf['path'].$name;
-        $file->move($conf['path'], $name);
+        $name = Str::slug($mode->name).'-'.time().'.'.$ext;
+        $path = $conf['disk'] . $conf['path'].$name;
+        $file->move($conf['disk'] . $conf['path'], $name);
+
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
 
@@ -99,13 +108,14 @@ class ImageAdminRepository implements ImageAdminInterface
                 $route_delete = route('foto-admin.destroy', ['id' => $id, 'file' => $data->id]);
                 $route_edit   = route('foto-admin.edit', ['id' => $id, 'file' => $data->id]);
 
+
                 $out = array(
                     "success"    => true,
                     "message"    => "A foto foi salva.",
                     'ac'         => 'create',
                     "id"         => $data->id,
                     'idm'        => $id,
-                    "path"       => url($path),
+                    "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -140,16 +150,16 @@ class ImageAdminRepository implements ImageAdminInterface
         $mode = $this->interAdmin->setId(numLetter($id));
         $conf = $input['config'];
         // Remove image current
-        $current = $conf['path'].$data->image;
+        $current = $conf['disk'] . $conf['path'] .$data->image;
         if (file_exists($current)) {
             unlink($current);
         }
 
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
-        $name = str_slug($mode->name).'-'.time().'.'.$ext;
-        $path = $conf['path'].$name;
-        $file->move($conf['path'], $name);
+        $name = Str::slug($mode->name).'-'.time().'.'.$ext;
+        $path = $conf['disk'] . $conf['path'].$name;
+        $file->move($conf['disk'] . $conf['path'], $name);
         $status = $data->status;
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
 
@@ -176,7 +186,7 @@ class ImageAdminRepository implements ImageAdminInterface
                     'ac'         => 'update',
                     "id"         => $data->id,
                     'idm'        => $id,
-                    "path"       => url($path),
+                    "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -201,13 +211,13 @@ class ImageAdminRepository implements ImageAdminInterface
      * @param  int $id
      * @return boolean true or false
      */
-    public function delete($id, $config='')
+    public function delete($id, $conf='')
     {
 
         $data   = $this->model->find($id);
         $admin  = $data->admin;
 
-        $image = $config['path'].$data->image;
+        $image = $conf['disk'] .$conf['path'] .$data->image;
         if (file_exists($image)) {
             unlink($image);
         }

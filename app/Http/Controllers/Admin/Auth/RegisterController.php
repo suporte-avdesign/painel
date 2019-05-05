@@ -225,7 +225,7 @@ class RegisterController extends Controller
         $code    = numLetter($data->id, 'letter');       
         $options = $this->profile->pluck(); 
 
-        return view("{$this->view}.form", compact('data', 'code', 'options'));
+        return view("{$this->view}.form-edit", compact('data', 'code', 'options'));
     }
 
     /**

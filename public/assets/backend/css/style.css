@@ -2702,7 +2702,11 @@ li.message-menu {
 		#profile .user-icon {
 			float: left;
 			margin: 0 10px 0 -2px;
+			border-radius: 50%;
 		}
+
+
+
 		#profile .name {
 			display: block;
 			font-size: 20px;

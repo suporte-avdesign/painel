@@ -248,13 +248,15 @@ class AdminController extends Controller
         $title = 'Foto do Usuário';
         $data  = $this->interModel->setId(numLetter($id));
 
+        dd($data);
+
 
         $upload = array(
             'name' => 'image',
             'type' => 'banner',
             'width' => 300,
             'height' => 300,
-            'path' => url('assets/imagens/vendedores/'),
+            'path' => url('storage/imagens/users/'),
             "btn" => array(
                 "create" => "Adicionar",
                 "edit" => "Editar",

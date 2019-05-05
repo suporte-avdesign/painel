@@ -4,8 +4,10 @@ namespace AVDPainel\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Str;
 
 
 class AdminAjaxTablesController extends BaseController
@@ -32,6 +34,7 @@ class AdminAjaxTablesController extends BaseController
             return view("backend.erros.message-401");
         }
 
+
         $this->access->update($this->last_url);
 
         $data         = $this->interModel->get();
@@ -55,7 +58,7 @@ class AdminAjaxTablesController extends BaseController
     {
         if( Gate::denies("{$this->ability}-create") ) {
             return view("backend.erros.message-401");
-        }        
+        }
 
         if ($this->select['create'] == true) {
             if ($this->select['type'] == 'pluck') {
@@ -69,7 +72,8 @@ class AdminAjaxTablesController extends BaseController
             $configModel = $this->configModel;
         }
 
-        return view("{$this->view}.form", compact('title', 'configModel', 'options'));
+
+        return view("{$this->view}.form-create", compact('title', 'configModel', 'options'));
 
     }
 
@@ -91,7 +95,7 @@ class AdminAjaxTablesController extends BaseController
 
         if ($this->slug) {
             foreach ($this->slug as $slug => $label) {
-                $dataForm[$slug]  = str_slug($dataForm[$label], $this->sl_ug);
+                $dataForm[$slug]  = Str::slug($dataForm[$label], $this->slug);
             }            
         }
         
@@ -183,7 +187,7 @@ class AdminAjaxTablesController extends BaseController
             $configModel = $this->configModel;
         }
 
-        return view("{$this->view}.form", compact('data', 'configModel', 'title', 'options'));
+        return view("{$this->view}.form-edit", compact('data', 'configModel', 'title', 'options'));
 
     }
 

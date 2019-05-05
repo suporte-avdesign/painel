@@ -10,7 +10,7 @@ class ConfigCategory extends Model
         'grids', 
         'description', 
         'img_default',
-        'path'.
+        'path',
         'img_featured', 
         'width_featured', 
         'height_featured', 

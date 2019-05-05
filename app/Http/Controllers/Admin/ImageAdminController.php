@@ -8,6 +8,7 @@ use AVDPainel\Http\Controllers\AdminAjaxDataParamController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Storage;
 
 class ImageAdminController extends AdminAjaxDataParamController
 {
@@ -23,14 +24,21 @@ class ImageAdminController extends AdminAjaxDataParamController
 
         $this->interConfig = $interConfig->setId(1);
         $this->interModel = $interModel;
+
+        $width    = $this->interConfig->width_photo;
+        $height   = $this->interConfig->height_photo;
+        $path     = $this->interConfig->path.$width.'x'.$height.'/';
+        $disk     = storage_path('app/public/');
+        $photoUrl = 'storage/'.$path;
+
         $this->upload = array(
             'name' => 'image',
             'type' => 'photo',
-            'width' => $this->interConfig->width_photo,
-            'height' => $this->interConfig->height_photo,
-            'path' => $this->interConfig->path .
-                $this->interConfig->width_photo . 'x' .
-                $this->interConfig->height_photo . '/',
+            'disk' => $disk,
+            'width' => $width,
+            'height' => $height,
+            'path' => $path,
+            'photo_url' => $photoUrl,
             "btn" => array(
                 "create" => "Adicionar",
                 "edit" => "Editar",
@@ -104,9 +112,6 @@ class ImageAdminController extends AdminAjaxDataParamController
         $this->interModel->rules($request, $this->messages);
 
         $dataForm = $request->all();
-
-
-
 
         $dataForm['admin_id'] = numLetter($id);
         $dataForm['config']   = $this->upload;

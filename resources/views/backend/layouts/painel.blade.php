@@ -104,7 +104,7 @@
 
 	<!-- Title bar -->
 	<header role="banner" id="title-bar">
-		<h2>Developr</h2>
+		<h2>Admin</h2>
 	</header>
 
 	<!-- Button to open/hide menu -->
@@ -278,7 +278,7 @@
 			{
 				$('#intro').message('Uma nova versão do modelo está disponível! Clique aqui para ir para a sua página de download &raquo;', {
 					node:		'a',
-					link:		'http://themeforest.net/',
+					link:		'https://www.avdesign.com.br/',
 					classes:	['align-center', 'blue-gradient'],
 					position:	'bottom',
 					append:		false

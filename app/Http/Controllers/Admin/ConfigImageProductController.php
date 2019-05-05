@@ -49,6 +49,8 @@ class ConfigImageProductController extends AdminAjaxTablesController
             'delete_true'      => 'A imagem padrão foi excluida.',
             'delete_false'     => 'Não foi possível excluir a imagem padrão.'
         );
+
+
     }
 
     public function data(Request $request)

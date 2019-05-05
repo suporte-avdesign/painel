@@ -23,7 +23,7 @@
 				</p>
 
 				<p class="button-height inline-label">
-					<label for="height_photo" class="label">Largura <span class="red">*</span></label>
+					<label for="height_photo" class="label">Altura <span class="red">*</span></label>
 					<input type="number" name="height_photo" class="input" value="{{$data->height_photo}}" placeholder="Altura" maxlength="3" style="width: 80px;">
 				</p>
 				@can('config-brand-update')

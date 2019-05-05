@@ -10,7 +10,7 @@
 
 
 		<div id="profile">
-			<img src="{{url('assets/backend/img/user.png')}}" width="64" height="64" alt="User name" class="user-icon">
+			<img id="avatar" src="{{$avatar}}" width="64" height="64" alt="{{ Auth::user()->login }}" class="user-icon">
 			Olá
 			<span class="name"><b>{{ Auth::user()->login }}</b></span>
 		</div>

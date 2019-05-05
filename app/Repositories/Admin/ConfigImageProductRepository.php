@@ -176,8 +176,13 @@ class ConfigImageProductRepository implements ConfigImageProductInterface
      */
     public function create($input)
     {
-        if ( !file_exists(public_path().'/'.$input['path']) ) {
-            File::makeDirectory(public_path().'/'.$input['path'], 0777, true);
+        $width  = $input['width'];
+        $height = $input['height'];
+        $path   = storage_path().'/app/public/'.$input['path'];
+
+
+        if ( !file_exists($path.'/'.$width.'x'.$height) ) {
+            File::makeDirectory($path.'/'.$width.'x'.$height, 0777, true);
         }
 
         $data = $this->model->create($input);
@@ -206,10 +211,13 @@ class ConfigImageProductRepository implements ConfigImageProductInterface
      * @return boolean true or false
      */
     public function update($input, $id)
-    {      
+    {
+        $width  = $input['width'];
+        $height = $input['height'];
+        $path   = storage_path().'/app/public/'.$input['path'];
 
-        if ( !file_exists(public_path().'/'.$input['path']) ) {
-            File::makeDirectory(public_path().'/'.$input['path'], 0777, true);
+        if ( !file_exists($path.'/'.$width.'x'.$height) ) {
+            File::makeDirectory($path.'/'.$width.'x'.$height, 0777, true);
         }
 
         $data = $this->model->find($id);

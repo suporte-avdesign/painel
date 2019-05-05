@@ -97,6 +97,8 @@
         */
         deleteConfigImage = function(url, name)
         {
+
+            alert('aqui');
             $.modal.confirm(avdTable.txtConfirm+' '+name+'?', function(){
                 $.ajax({
                     type: 'post',

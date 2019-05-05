@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImageAdmin extends Model
 {
+
     protected $fillable = [
         'admin_id',
         'image',
