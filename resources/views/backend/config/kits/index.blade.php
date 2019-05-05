@@ -4,7 +4,7 @@
         <strong> {{$title}} </strong>
         </span>
     </h3>
-    @can('config-kit-ceate')
+    @can('config-kit-create')
         <span class="button-group absolute-right with-tooltip">
             <button 
                 onclick="abreModal('{{$title_create}}', '{{route('kits.create')}}', 'kits', 2, true, 400, 220)" 

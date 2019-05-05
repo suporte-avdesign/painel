@@ -6,7 +6,7 @@
         <strong> {{$title}} </strong>
         </span>
     </h3>
-    @can('config-keyword-ceate')
+    @can('config-keyword-create')
         <span class="button-group absolute-right with-tooltip">
             <button 
                 onclick="abreModal('{{$title_create}}', '{{route('keywords.create')}}', 'name', 2, true, 450, 450)" 

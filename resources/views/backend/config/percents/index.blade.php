@@ -4,7 +4,7 @@
         <strong> {{$title}} </strong>
         </span>
     </h3>
-    @can('config-percent-ceate')
+    @can('config-percent-create')
         <span class="button-group absolute-right with-tooltip">
             <button 
                 onclick="abreModal('{{$title_create}}', '{{route('porcentagens.create')}}', 'percents', 2, true, 380, 200)" 

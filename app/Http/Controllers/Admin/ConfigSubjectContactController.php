@@ -64,7 +64,7 @@ class ConfigSubjectContactController extends Controller
             return view("backend.erros.message-401");
         }
 
-        return view("{$this->view}.form");
+        return view("{$this->view}.form-create");
     }
 
     /**
@@ -114,7 +114,7 @@ class ConfigSubjectContactController extends Controller
 
         $data = $this->interModel->setId($id);
 
-        return view("{$this->view}.form", compact('data'));
+        return view("{$this->view}.form-edit", compact('data'));
 
     }
 

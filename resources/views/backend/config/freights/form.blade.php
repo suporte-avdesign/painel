@@ -16,20 +16,18 @@
 						<p class="button-height inline-label">
 							<label for="default" class="label">Padrão <span class="red">*</span></label>
 							<select name="default" id="default" class="select">
-								<option value="1" {{{ $data->default == 1 ? 'selected' : '' }}}> Ativo </option>
-								<option value="0" {{{ $data->default == 0 ? 'selected' : '' }}}> Inativo </option>
+								<option value="1" @if($data->default == 1) selected @endif> Ativo </option>
+								<option value="0" @if($data->default == 0) selected @endif> Inativo </option>
 							</select>
 						</p>
 						<p class="button-height inline-label">
 							<label for="weight" class="label">Peso <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-0" class="button green-active">
-									<input type="radio" name="weight" id="radio-0" value="1" {{{ $data->weight == 1 ? 'checked' : '' }}}>
-									Sim
+									<input type="radio" name="weight" id="radio-0" value="1" @if($data->weight == 1) checked @endif>									Sim
 								</label>
 								<label for="radio-1" class="button red-active" >
-									<input type="radio" name="weight" id="radio-1" value="0" {{{ $data->weight == 0 ? 'checked' : '' }}}>
-									Não
+									<input type="radio" name="weight" id="radio-1" value="0" @if($data->weight == 0) checked @endif>									Não
 								</label>
 							</span>
 						</p>
@@ -37,12 +35,10 @@
 							<label for="width" class="label">Largura <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-2" class="button green-active">
-									<input type="radio" name="width" id="radio-2" value="1" {{{ $data->width == 1 ? 'checked' : '' }}}>
-									Sim
+									<input type="radio" name="width" id="radio-2" value="1" @if($data->width == 1) checked @endif>									Sim
 								</label>
 								<label for="radio-3" class="button red-active" >
-									<input type="radio" name="width" id="radio-3" value="0" {{{ $data->width == 0 ? 'checked' : '' }}}>
-									Não
+									<input type="radio" name="width" id="radio-3" value="0" @if($data->width == 0) checked @endif>									Não
 								</label>
 							</span>
 						</p>
@@ -50,11 +46,10 @@
 							<label for="altura" class="label">Altura <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-4" class="button green-active">
-									<input type="radio" name="height" id="radio-4" value="1" {{{ $data->height == 1 ? 'checked' : '' }}}>
-									Sim
+									<input type="radio" name="height" id="radio-4" value="1" @if($data->height == 1) checked @endif>									Sim
 								</label>
 								<label for="radio-5" class="button red-active" >
-									<input type="radio" name="height" id="radio-5" value="0" {{{ $data->height == 0 ? 'checked' : '' }}}>
+									<input type="radio" name="height" id="radio-5" value="0" @if($data->height == 0) checked @endif>
 									Não
 								</label>
 							</span>
@@ -63,11 +58,11 @@
 							<label for="length" class="label">Comprimento <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-6" class="button green-active">
-									<input  type="radio" name="length" id="radio-6" value="1" {{{ $data->length == 1 ? 'checked' : '' }}}>
+									<input  type="radio" name="length" id="radio-6" value="1" @if($data->length == 1) checked @endif>
 									Sim
 								</label>
 								<label for="radio-7" class="button red-active" >
-									<input type="radio" name="length" id="radio-7" value="0" {{{ $data->length == 0 ? 'checked' : '' }}}>
+									<input type="radio" name="length" id="radio-7" value="0" @if($data->length == 0) checked @endif>
 									Não
 								</label>
 							</span>
