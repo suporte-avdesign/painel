@@ -4,7 +4,7 @@
         <strong> {{$title}} </strong>
         </span>
     </h3>
-    @can('config-keyword-create')
+    @can('config-unit-measure-create')
         <span class="button-group absolute-right with-tooltip">
             <button 
                 onclick="abreModal('{{$title_create}}', '{{route('unidades.create')}}', 'unit-measures', 2, true, 400, 220)" 

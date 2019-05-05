@@ -80,7 +80,7 @@ class ConfigStatusPaymentController extends Controller
             return view("backend.erros.message-401");
         }
 
-        return view("{$this->view}.form");
+        return view("{$this->view}.form-create");
     }
 
     /**
@@ -149,7 +149,7 @@ class ConfigStatusPaymentController extends Controller
         $data  = $this->interModel->setId($id);
         $title = $this->messages['title_edit'];
 
-        return view("{$this->view}.form", compact('data', 'title'));
+        return view("{$this->view}.form-edit", compact('data', 'title'));
     }
 
     /**
