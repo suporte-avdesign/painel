@@ -265,7 +265,8 @@ class BrandRepository implements BrandInterface
      */
     public function delete($id, $config, $configImages)
     {
-       
+
+
         $total_products = 0;
         $colors         = 0;
         $data           = $this->model->find($id);
@@ -281,14 +282,19 @@ class BrandRepository implements BrandInterface
                     $colors += $i;
                     foreach ($color->positions as $position) {
                         foreach ($configImages as $value) {
+
+                            $width  = $value->width;
+                            $height = $value->height;
+                            $path   = storage_path().'/app/public/'.$value->path.$width.'x'.$height.'/';
+
                             if ($value->type == 'P') {
-                                $image_position = $value->path.$position->image;
+                                $image_position = $path.$position->image;
                                 if (file_exists($image_position)) {
                                     $remove = unlink($image_position);
                                 }
                             }
                             if ($value->type == 'C') {
-                                $image_color = $value->path.$color->image;
+                                $image_color = $path.$color->image;
                                 if (file_exists($image_color)) {
                                     $remove = unlink($image_color);
                                 }

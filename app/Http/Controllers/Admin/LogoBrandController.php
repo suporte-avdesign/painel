@@ -24,14 +24,21 @@ class LogoBrandController extends AdminAjaxDataParamController
 
         $this->interConfig   = $interConfig->setId(1);
         $this->interModel    = $interModel;
+
+        $width    = $this->interConfig->width_logo;
+        $height   = $this->interConfig->height_logo;
+        $path     = $this->interConfig->path.$width.'x'.$height.'/';
+        $disk     = storage_path('app/public/');
+        $photoUrl = 'storage/'.$path;
+
         $this->upload  = array(
             'name'   => 'image',
             'type'   => 'logo',
-            'width'  => $this->interConfig->width_logo,
-            'height' => $this->interConfig->height_logo,
-            'path'   => $this->interConfig->path.
-                        $this->interConfig->width_logo.'x'.
-                        $this->interConfig->height_logo.'/',
+            'width'  => $width,
+            'height' => $height,
+            'path'   => $path,
+            'disk' => $disk,
+            'photo_url' => $photoUrl,
             "btn"   => array(
                 "create" => "Adicionar",
                 "edit"   => "Editar",
@@ -39,6 +46,7 @@ class LogoBrandController extends AdminAjaxDataParamController
                 "delete" => "Excluir Imagem"
             )
         );
+
 
         $this->messages = array(
             'brand_id.required' => 'A marca é obrigatória',

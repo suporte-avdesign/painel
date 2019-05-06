@@ -81,8 +81,9 @@ class ImageBrandRepository implements ImageBrandInterface
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
         $name = $input['type'].'-'.$mode->slug.'-'.Str::slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
-        $path = $conf['path'].$name;
-        $file->move($conf['path'], $name);
+        $path = $conf['disk'] . $conf['path'].$name;
+        $file->move($conf['disk'] . $conf['path'], $name);
+
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
 
@@ -108,7 +109,7 @@ class ImageBrandRepository implements ImageBrandInterface
                     "id"         => $data->id,
                     'idm'        => $id,
                     "type"       => $input['type'],
-                    "path"       => url($path),                    
+                    "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -142,7 +143,7 @@ class ImageBrandRepository implements ImageBrandInterface
         $mode = $this->interModel->setId($id);
         $conf = $input['config'];
         // Remove image current
-        $current = $conf['path'].$data->image;
+        $current = $conf['disk'] . $conf['path'] .$data->image;
         if (file_exists($current)) {
             unlink($current);
         }
@@ -150,11 +151,11 @@ class ImageBrandRepository implements ImageBrandInterface
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
         $name = $input['type'].'-'.$mode->slug.'-'.Str::slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
-        $path = $conf['path'].$name;
-        $file->move($conf['path'], $name);
+        $path = $conf['disk'] . $conf['path'].$name;
+        $file->move($conf['disk'] . $conf['path'], $name);
         $status = $data->status;
-        $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
 
+        $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
 
             $input['image'] = $name;
@@ -181,7 +182,7 @@ class ImageBrandRepository implements ImageBrandInterface
                     "id"         => $data->id,
                     'idm'        => $id,
                     "type"       => $input['type'],
-                    "path"       => url($path),                    
+                    "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -208,13 +209,13 @@ class ImageBrandRepository implements ImageBrandInterface
      * @param  int $id
      * @return boolean true or false
      */
-    public function delete($id, $config='')
+    public function delete($id, $conf='')
     {
 
         $data   = $this->model->find($id);
         $ship   = $data->brand;
 
-        $image = $config['path'].$data->image;
+        $image = $conf['disk'] .$conf['path'] .$data->image;
         if (file_exists($image)) {
             unlink($image);
         }
