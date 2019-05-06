@@ -24,14 +24,21 @@ class BannerCategoryController extends AdminAjaxDataParamController
 
         $this->interConfig   = $interConfig->setId(1);
         $this->interModel    = $interModel;
+
+        $width    = $this->interConfig->width_banner;
+        $height   = $this->interConfig->height_banner;
+        $path     = $this->interConfig->path.$width.'x'.$height.'/';
+        $disk     = storage_path('app/public/');
+        $photoUrl = 'storage/'.$path;
+
         $this->upload  = array(
             'name'   => 'image',
             'type'   => 'banner',
-            'width'  => $this->interConfig->width_banner,
-            'height' => $this->interConfig->height_banner,
-            'path'   => $this->interConfig->path.
-                        $this->interConfig->width_banner.'x'.
-                        $this->interConfig->height_banner.'/',
+            'width'  => $width,
+            'height' => $height,
+            'path'   => $path,
+            'disk' => $disk,
+            'photo_url' => $photoUrl,
             "btn"   => array(
                 "create" => "Adicionar",
                 "edit"   => "Editar",

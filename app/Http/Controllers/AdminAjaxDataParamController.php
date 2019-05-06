@@ -19,9 +19,6 @@ class AdminAjaxDataParamController extends BaseController
     protected $access  = false;
     protected $slug    = false;
 
-
-
-
     /**
      * Index
      * @param  int  $id  model
@@ -91,7 +88,7 @@ class AdminAjaxDataParamController extends BaseController
 
         if ($this->slug) {
             foreach ($this->slug as $slug => $label) {
-                $dataForm[$slug]  = Str::slug($dataForm[$label], $this->sl_ug);
+                $dataForm[$slug]  = Str::slug($dataForm[$label], $this->slug);
             }            
         }
 

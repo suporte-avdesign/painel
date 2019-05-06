@@ -89,8 +89,9 @@ class ImageCategoryRepository implements ImageCategoryInterface
         $file  = $input['image'];
         $ext   = $file->getClientOriginalExtension();
         $name  = Str::slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
-        $path  = $conf['path'].$name;
-        $file->move($conf['path'], $name);
+        $path = $conf['disk'] . $conf['path'].$name;
+        $file->move($conf['disk'] . $conf['path'], $name);
+
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
 
@@ -119,7 +120,7 @@ class ImageCategoryRepository implements ImageCategoryInterface
                     "id"         => $data->id,
                     'idm'        => $id,
                     "type"       => $input['type'],
-                    "path"       => url($path),                    
+                    "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -155,19 +156,20 @@ class ImageCategoryRepository implements ImageCategoryInterface
         $mode = $this->interModel->setId($id);
         $conf = $input['config'];
         // Remove image current
-        $current = $conf['path'].$data->image;
+        $current = $conf['disk'] . $conf['path'] .$data->image;
         if (file_exists($current)) {
             unlink($current);
         }
+
         $words = $this->keywords->rand();
         $file  = $input['image'];
         $ext   = $file->getClientOriginalExtension();
         $name  = Str::slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
-        $path  = $conf['path'].$name;
-        $file->move($conf['path'], $name);
+        $path = $conf['disk'] . $conf['path'].$name;
+        $file->move($conf['disk'] . $conf['path'], $name);
         $status = $data->status;
-        $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
 
+        $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
 
             $input['image'] = $name;
@@ -193,7 +195,7 @@ class ImageCategoryRepository implements ImageCategoryInterface
                     "id"         => $data->id,
                     'idm'        => $id,
                     "type"       => $input['type'],
-                    "path"       => url($path),                    
+                    "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -218,12 +220,11 @@ class ImageCategoryRepository implements ImageCategoryInterface
      * @param  int $id
      * @return boolean true or false
      */
-    public function delete($id, $config='')
+    public function delete($id, $conf='')
     {
-
         $data   = $this->model->find($id);
 
-        $image = $config['path'].$data->image;
+        $image = $conf['disk'] .$conf['path'] .$data->image;
         if (file_exists($image)) {
             unlink($image);
         }

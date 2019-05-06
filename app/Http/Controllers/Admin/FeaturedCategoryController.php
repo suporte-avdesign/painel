@@ -24,14 +24,21 @@ class FeaturedCategoryController extends AdminAjaxDataParamController
 
         $this->interConfig   = $interConfig->setId(1);
         $this->interModel    = $interModel;
+
+        $width    = $this->interConfig->width_featured;
+        $height   = $this->interConfig->height_featured;
+        $path     = $this->interConfig->path.$width.'x'.$height.'/';
+        $disk     = storage_path('app/public/');
+        $photoUrl = 'storage/'.$path;
+
         $this->upload  = array(
             'name'   => 'image',
             'type'   => 'featured',
-            'width'  => $this->interConfig->width_featured,
-            'height' => $this->interConfig->height_featured,
-            'path'   => $this->interConfig->path.
-                        $this->interConfig->width_featured.'x'.
-                        $this->interConfig->height_featured.'/',
+            'width'  => $width,
+            'height' => $height,
+            'path'   => $path,
+            'disk' => $disk,
+            'photo_url' => $photoUrl,
             "btn"   => array(
                 "create" => "Adicionar",
                 "edit"   => "Editar",
