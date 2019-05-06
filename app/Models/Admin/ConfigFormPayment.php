@@ -29,7 +29,7 @@ class ConfigFormPayment extends Model
     public function rules($id = '')
     {
         return [
-            "label"       => "required|unique:config_status_orders,label,{$id},id",
+            "label"       => "required|unique:config_form_payments,label,{$id},id",
             "description" => "required",
             "order"       => "required",
             "active"      => "required"

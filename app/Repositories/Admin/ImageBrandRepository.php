@@ -6,6 +6,7 @@ namespace AVDPainel\Repositories\Admin;
 use AVDPainel\Models\Admin\ImageBrand as Model;
 use AVDPainel\Interfaces\Admin\BrandInterface as InterModel;
 use AVDPainel\Interfaces\Admin\ImageBrandInterface;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -79,7 +80,7 @@ class ImageBrandRepository implements ImageBrandInterface
         $conf = $input['config'];
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
-        $name = $input['type'].'-'.$mode->slug.'-'.str_slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
+        $name = $input['type'].'-'.$mode->slug.'-'.Str::slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
         $path = $conf['path'].$name;
         $file->move($conf['path'], $name);
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
@@ -148,7 +149,7 @@ class ImageBrandRepository implements ImageBrandInterface
 
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
-        $name = $input['type'].'-'.$mode->slug.'-'.str_slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
+        $name = $input['type'].'-'.$mode->slug.'-'.Str::slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
         $path = $conf['path'].$name;
         $file->move($conf['path'], $name);
         $status = $data->status;

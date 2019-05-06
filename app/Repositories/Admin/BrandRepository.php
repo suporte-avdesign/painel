@@ -7,8 +7,8 @@ use AVDPainel\Models\Admin\Brand as Model;
 use AVDPainel\Interfaces\Admin\BrandInterface;
 use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
 
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Str;
 
 class BrandRepository implements BrandInterface
 {
@@ -78,7 +78,7 @@ class BrandRepository implements BrandInterface
             6  => 'email',
             7  => 'phone',
             8  => 'address',
-            9 => 'number',
+            9  => 'number',
             10 => 'district',
             11 => 'city',
             12 => 'state',
@@ -201,7 +201,8 @@ class BrandRepository implements BrandInterface
         if ($input['description'] == '') {
             $input['description']  = $keywords['description'].' '.$input['name'];
         }
-        $input['slug']   = str_slug($input['name'], "-");
+
+        $input['slug']   = Str::slug($input['name'], "-");
         $input['visits'] = 0;
 
         $data = $this->model->create($input);

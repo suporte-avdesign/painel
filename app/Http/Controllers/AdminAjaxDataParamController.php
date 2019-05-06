@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Str;
 
 
 class AdminAjaxDataParamController extends BaseController
@@ -67,7 +68,7 @@ class AdminAjaxDataParamController extends BaseController
         }
 
 
-        return view("{$this->view}-form", compact('id', 'options', 'upload'));
+        return view("{$this->view}-form-create", compact('id', 'options', 'upload'));
 
     }
 
@@ -90,7 +91,7 @@ class AdminAjaxDataParamController extends BaseController
 
         if ($this->slug) {
             foreach ($this->slug as $slug => $label) {
-                $dataForm[$slug]  = str_slug($dataForm[$label], $this->sl_ug);
+                $dataForm[$slug]  = Str::slug($dataForm[$label], $this->sl_ug);
             }            
         }
 
@@ -153,7 +154,7 @@ class AdminAjaxDataParamController extends BaseController
             }
         }
 
-        return view("{$this->view}-form", compact('id', 'data', 'options', 'upload'));
+        return view("{$this->view}-form-edit", compact('id', 'data', 'options', 'upload'));
     }
 
     /**

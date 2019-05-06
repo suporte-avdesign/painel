@@ -3,6 +3,7 @@
 namespace AVDPainel\Repositories\Admin;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 use AVDPainel\Models\Admin\ImageColor as Model;
@@ -359,8 +360,10 @@ class ImageColorRepository implements ImageColorInterface
         $product  = $input['product_name'];
         $category = $input['category'];
 
+        Str::
+
         $ext  = $file->getClientOriginalExtension();
-        $name = str_slug($words['description'].
+        $name = Str::slug($words['description'].
             '-'.$product.
             '-'.$category.
             '-'.$section.
@@ -384,7 +387,7 @@ class ImageColorRepository implements ImageColorInterface
             $data = $this->model->create($input);
             if ($data) {
                 $slug = [
-                    'slug' => str_slug($product.
+                    'slug' => Str::slug($product.
                         '-'.$category.
                         '-'.$section.
                         '-'.str_replace("/", "-", $data->color).
@@ -398,7 +401,7 @@ class ImageColorRepository implements ImageColorInterface
                     ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
                     ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
                     generateAccessesTxt(date('H:i:s').utf8_decode(
-                        ' Adicionou a imagem do Produto:'.str_slug($product.
+                        ' Adicionou a imagem do Produto:'.Str::slug($product.
                         '-'.$category.
                         '-'.$section.
                         '-'.$brand).
@@ -492,7 +495,7 @@ class ImageColorRepository implements ImageColorInterface
 
             $words    = $this->keywords->rand();
             $ext  = $file->getClientOriginalExtension();
-            $name = str_slug($words['description'].
+            $name = Str::slug($words['description'].
                 '-'.$product.
                 '-'.$category.
                 '-'.$section.
@@ -512,7 +515,7 @@ class ImageColorRepository implements ImageColorInterface
 
             if ($upload) {
                 $input['image'] = $name;
-                $input['slug'] = str_slug($product.
+                $input['slug'] = Str::slug($product.
                     '-'.$category.
                     '-'.$section.
                     '-'.str_replace("/", "-", $color).
@@ -529,7 +532,7 @@ class ImageColorRepository implements ImageColorInterface
             ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
             ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
             generateAccessesTxt(date('H:i:s').utf8_decode($text.
-                ' do Produto:'.str_slug($input['product_name'].
+                ' do Produto:'.Str::slug($input['product_name'].
                 '-'.$category.
                 '-'.$section.
                 '-'.$brand).
@@ -614,7 +617,7 @@ class ImageColorRepository implements ImageColorInterface
             ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
 
             generateAccessesTxt(
-                date('H:i:s').utf8_decode(' Excluiu a imagem do Produto:'.str_slug($product->name.
+                date('H:i:s').utf8_decode(' Excluiu a imagem do Produto:'.Str::slug($product->name.
                 '-'.$product->category.'-'.$product->section.'-'.$product->brand).  
                 ', Código:'.$data->code.
                 ', Cor:'.$data->color.
@@ -666,7 +669,7 @@ class ImageColorRepository implements ImageColorInterface
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 " Alterou o status da cor do Produto:".
-                str_slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
+                Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
                 ', para Status:'.$status)
             );
 
@@ -722,7 +725,7 @@ class ImageColorRepository implements ImageColorInterface
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 " Alterou o status da cor do Produto:".
-                str_slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
+                Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
                 ', para Status:'.$status)
             );
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
+use Illuminate\Support\Str;
 
 
 class AdminAjaxDataController extends BaseController
@@ -80,7 +81,7 @@ class AdminAjaxDataController extends BaseController
 
         if ($this->slug) {
             foreach ($this->slug as $slug => $label) {
-                $dataForm[$slug]  = str_slug($dataForm[$label], $this->sl_ug);
+                $dataForm[$slug]  = Str::slug($dataForm[$label], $this->sl_ug);
             }            
         }
         

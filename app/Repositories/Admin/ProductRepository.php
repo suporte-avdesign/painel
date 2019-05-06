@@ -13,6 +13,7 @@ use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImage;
 use DB;
 
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Str;
 
 class ProductRepository implements ProductInterface
 {
@@ -358,7 +359,7 @@ class ProductRepository implements ProductInterface
             $input['description']  = $keywords['description'].", {$product},  {$section}, {$category}, {$brand}";
         }
 
-        $input['slug']    = str_slug("{$product}-{$category}-{$section}-{$brand}");
+        $input['slug']    = Str::slug("{$product}-{$category}-{$section}-{$brand}");
         $input['visits']  = 0;
 
         if ($input['offer'] == 1) {
@@ -443,13 +444,13 @@ class ProductRepository implements ProductInterface
             $keywords = $this->keywords->rand();
 
             if ($input['tags'] == '') {
-                $input['tags']  = "{$product}, {$section}, {$category}, {$brand}, ".str_slug($keywords['title']);
+                $input['tags']  = "{$product}, {$section}, {$category}, {$brand}, ".Str::slug($keywords['title']);
             }
             if ($input['description'] == '') {
                 $input['description']  = $keywords['description'].", {$product}, {$section}, {$category}, {$brand}";
             }
 
-            $input['slug'] = str_slug("{$product}-{$category}-{$section}-{$brand}");
+            $input['slug'] = Str::slug("{$product}-{$category}-{$section}-{$brand}");
         }
 
         $current_brand       = $data->brand;
@@ -595,7 +596,7 @@ class ProductRepository implements ProductInterface
         if ($delete) {
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                ' Excluiu o Produto:'.str_slug($data->name.
+                ' Excluiu o Produto:'.Str::slug($data->name.
                 '-'.$data->category.'-'.$data->section.'-'.$data->brand).
                 ', Total Cores:'.$total_colors)
             );
@@ -653,7 +654,7 @@ class ProductRepository implements ProductInterface
             
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                ' Alterou o Status:'.$txt_status.' do Produto:'.str_slug($data->name.
+                ' Alterou o Status:'.$txt_status.' do Produto:'.Str::slug($data->name.
                 '-'.$data->category.'-'.$data->section.'-'.$data->brand))
             );
 

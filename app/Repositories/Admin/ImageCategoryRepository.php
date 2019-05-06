@@ -7,6 +7,7 @@ use AVDPainel\Models\Admin\ImageCategory as Model;
 use AVDPainel\Interfaces\Admin\CategoryInterface as InterModel;
 use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
 use AVDPainel\Interfaces\Admin\ImageCategoryInterface;
+use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -87,7 +88,7 @@ class ImageCategoryRepository implements ImageCategoryInterface
         $conf  = $input['config'];
         $file  = $input['image'];
         $ext   = $file->getClientOriginalExtension();
-        $name  = str_slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
+        $name  = Str::slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
         $path  = $conf['path'].$name;
         $file->move($conf['path'], $name);
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
@@ -161,7 +162,7 @@ class ImageCategoryRepository implements ImageCategoryInterface
         $words = $this->keywords->rand();
         $file  = $input['image'];
         $ext   = $file->getClientOriginalExtension();
-        $name  = str_slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
+        $name  = Str::slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
         $path  = $conf['path'].$name;
         $file->move($conf['path'], $name);
         $status = $data->status;

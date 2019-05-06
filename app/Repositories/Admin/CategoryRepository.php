@@ -8,8 +8,9 @@ use AVDPainel\Interfaces\Admin\CategoryInterface;
 use AVDPainel\Interfaces\Admin\SectionInterface as InterSection;
 use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
 
-use Illuminate\Support\Facades\Gate;
+
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Str;
 
 class CategoryRepository implements CategoryInterface
 {
@@ -186,7 +187,7 @@ class CategoryRepository implements CategoryInterface
         if ($input['description'] == '') {
             $input['description']  = $keywords['description'].' '.$section->name.' '.$input['name'];
         }
-        $input['slug']    = str_slug($input['name'].'-'.$section->name, "-");
+        $input['slug']    = Str::slug($input['name'].'-'.$section->name, "-");
         $input['section'] = $section->name;
         $input['visits']  = 0;
 
@@ -235,7 +236,7 @@ class CategoryRepository implements CategoryInterface
             $input['description']  = $keywords['description'].' '.$section->name.' '.$input['name'];
         }
 
-        $input['slug']    = str_slug($input['name'].'-'.$section->name, "-");
+        $input['slug']    = Str::slug($input['name'].'-'.$section->name, "-");
         $input['section'] = $section->name;
 
         $data        = $this->model->find($id);

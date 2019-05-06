@@ -9,6 +9,7 @@ use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
 use AVDPainel\Interfaces\Admin\ConfigCategoryInterface as InterConfigCategory;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Str;
 
 class SectionRepository implements SectionInterface
 {
@@ -178,7 +179,8 @@ class SectionRepository implements SectionInterface
         if ($input['description'] == '') {
             $input['description']  = $keywords['description'].' '.$input['name'];
         }
-        $input['slug']   = str_slug($input['name'], "-");
+
+        $input['slug']   = Str::slug($input['name'], "-");
         $input['visits'] = 0;
 
         $data = $this->model->create($input);

@@ -28,7 +28,7 @@ class ConfigFormPaymentController extends Controller
         $this->interModel = $interModel;
         $this->last_url   = array("last_url" => "config/forms-pagamentos");
         $this->messages   = array(
-            "label.required"       => "O nome é obrigatório",
+            "label.required"       => "O nome é obrigatório 2",
             "label.unique"         => "Esta status já se encontra utilizado.",
             "description.required" => "A descrição é obrigatória.",
             "order.required"       => "A ordem é obrigatória.",
@@ -80,7 +80,7 @@ class ConfigFormPaymentController extends Controller
             return view("backend.erros.message-401");
         }
 
-        return view("{$this->view}.form");
+        return view("{$this->view}.form-create");
     }
 
     /**
@@ -149,7 +149,7 @@ class ConfigFormPaymentController extends Controller
         $data  = $this->interModel->setId($id);
         $title = $this->messages['title_edit'];
 
-        return view("{$this->view}.form", compact('data', 'title'));
+        return view("{$this->view}.form-edit", compact('data', 'title'));
     }
 
     /**

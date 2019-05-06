@@ -9,7 +9,11 @@
 		<div class="panel-load-target scrollable" >
 			<div class="navigable">
 				<ul class="files-list mini open-on-panel-content">
-					@can('config-menu-permissions')
+					@can('config-module-view')
+					<!--
+						can('config-menu-permissions')
+						Liberar esse can após resolver problemas de vesões
+					-->
 						<li class="with-right-arrow grey-arrow">
 							<span class="icon folder-docs"></span>
 							<b>Segurança e Permisões</b>

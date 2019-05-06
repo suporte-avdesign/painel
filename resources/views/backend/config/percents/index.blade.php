@@ -22,9 +22,9 @@
 	<thead>
 		<tr>
             <th scope="col" width="10%" class="align-center">Ordem</th>
-			<th scope="col" width="25%" class="align-center">Porcentagem</th>
+			<th scope="col" width="20%" class="align-center">Porcentagem</th>
             <th scope="col" class="align-center">Status</th>
-			<th scope="col" width="10%" class="align-center">Ações</th>
+			<th scope="col" width="20%" class="align-center">Ações</th>
 		</tr>
 	</thead>
 

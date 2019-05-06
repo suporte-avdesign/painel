@@ -30,9 +30,6 @@ class Order extends Model
     ];
 
 
-
-
-
     /**
      *  Data de exclusão do registro
      */
