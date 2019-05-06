@@ -51,7 +51,7 @@ class ImageColorController extends Controller
 
 
     /**
-     * Display a listing of the resource.
+     * Mostar as imagens referentes as cores do produto
      *
      * @return \Illuminate\Http\Response
      */
@@ -63,7 +63,7 @@ class ImageColorController extends Controller
 
         $configImage  = $this->configImage->setName('default', 'N');
         $colors       = $this->interModel->get($idpro);
-        $path         = $configImage->path;
+        $path         = 'storage/'.$configImage->path;
 
         (count($colors) >= 1 ? $title_count = 'Clique na imagem para editar' :
                                $title_count = 'Não existe imagem para este produto');
@@ -72,7 +72,7 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Criar cores
      *
      * @return \Illuminate\Http\Response
      */
@@ -93,7 +93,7 @@ class ImageColorController extends Controller
 
         if ($configProduct->mini_colors == 'hexa') {
             ($configProduct->group_colors == 1 ? $hexa = $this->interHexa->getAll() : $hexa = array());
-            return view("{$this->view}.modal.modules.hexa", compact(
+            return view("{$this->view}.modal.modules.create.hexa", compact(
                 'configProduct',
                 'product',
                 'pixel',
@@ -203,7 +203,7 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Edit.
+     * Editar as cores do produto
      *
      * @param  int  $idpro
      * @param  int  $id
@@ -224,7 +224,7 @@ class ImageColorController extends Controller
 
         $data           = $this->interModel->setId($id);
         $conf           = $this->configImage->setName('default','N');
-        $path           = $conf->path;
+        $path           = 'storage/'.$conf->path;
         $grids          = $data->grids;
         $stock          = $data->stock;
         $kit            = $data->kit;
@@ -235,7 +235,7 @@ class ImageColorController extends Controller
         if ($configProduct->mini_colors == 'hexa') {
             $hexa = $this->interHexa->getAll();
 
-            return view("{$this->view}.modal.modules.hexa", compact(
+            return view("{$this->view}.modal.modules.edit.hexa", compact(
                 'configProduct',
                 'pixel',
                 'idpro',

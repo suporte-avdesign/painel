@@ -16,6 +16,8 @@ class ImageColorRepository implements ImageColorInterface
 
     public $model;
     public $keywords;
+    private $photoUrl;
+    private $disk;
 
     /**
      * Create construct.
@@ -30,6 +32,8 @@ class ImageColorRepository implements ImageColorInterface
         $this->model         = $model;
         $this->keywords      = $keywords;
         $this->configImage   = $configImage;
+        $this->photoUrl      = 'storage/';
+        $this->disk          = storage_path('app/public/');
     }
 
     /**
@@ -360,7 +364,7 @@ class ImageColorRepository implements ImageColorInterface
         $product  = $input['product_name'];
         $category = $input['category'];
 
-        Str::
+
 
         $ext  = $file->getClientOriginalExtension();
         $name = Str::slug($words['description'].
@@ -373,10 +377,11 @@ class ImageColorRepository implements ImageColorInterface
             '-'.numLetter(date('Ymdhs'),'letter')).'.'.$ext;        
 
         foreach ($config as $value) {
+
             if ($value->type == 'C') {
-                $path   = $value->path;
-                $width  = $value->width;
-                $height = $value->height;
+                $width    = $value->width;
+                $height   = $value->height;
+                $path     = $this->disk . $value->path;
                 $upload = Image::make($file)->resize($width, $height)->save($path.$name);
             }
         }
@@ -413,7 +418,7 @@ class ImageColorRepository implements ImageColorInterface
 
                     foreach ($config as $value) {
                         if ($value->default == 'N') {
-                            $src = $value->path;
+                            $src = $this->photoUrl . $value->path;
                         }
                     }
 
@@ -487,7 +492,7 @@ class ImageColorRepository implements ImageColorInterface
         if (!empty($file)) {
 
             foreach ($config as $value) {
-                $image = $value->path.$data->image;
+                $image = $this->disk.$value->path.$data->image;
                 if (file_exists($image)) {
                     $delete = unlink($image);
                 }
@@ -506,9 +511,9 @@ class ImageColorRepository implements ImageColorInterface
 
             foreach ($config as $value) {
                 if ($value->type == 'C') {
-                    $path   = $value->path;
-                    $width  = $value->width;
-                    $height = $value->height;
+                    $width    = $value->width;
+                    $height   = $value->height;
+                    $path     = $this->disk . $value->path;
                     $upload = Image::make($file)->resize($width, $height)->save($path.$name);
                 }
             }
@@ -544,7 +549,7 @@ class ImageColorRepository implements ImageColorInterface
 
             foreach ($config as $value) {
                 if ($value->default == 'N') {
-                    $src = $value->path;
+                    $src = $this->photoUrl.$value->path;
                 }
             }
 

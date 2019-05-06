@@ -4,9 +4,7 @@
     <input id="section_id" name="prod[section_id]" type="hidden" value="{{$category->section_id}}">
     <input name="prod[category]" type="hidden" value="{{$category->name}}">
     <input name="prod[section]" type="hidden" value="{{$category->section}}">
-
-    {{csrf_field()}}
-
+    @csrf
     <div class="columns">
         <div class="twelve-columns">
             <fieldset class="fieldset">
@@ -133,7 +131,7 @@
                 @endif
 
                 @if($configProduct->freight == 1)
-                    @include('backend.products.modal.forms.freight')
+                    @include('backend.products.modal.forms.create.freight')
                 @endif
 
             </fieldset>
@@ -245,8 +243,4 @@
 
         </div>
     </div>
-
 </form>
-
-
-

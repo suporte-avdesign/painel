@@ -65,15 +65,18 @@ class ImagePositionRepository implements ImagePositionInterface
             $input['order'] = '0'.$input['order'];
         }
 
-        $ext  = $file->getClientOriginalExtension();
-        $name = $input['name'].'-'.numLetter(date('Ymdhs'), 'letter').'.'.$ext;       
+        $disk     = storage_path('app/public/');
+        $photoUrl = 'storage/';
+        $ext      = $file->getClientOriginalExtension();
+        $name     = $input['name'].'-'.numLetter(date('Ymdhs'), 'letter').'.'.$ext;
 
         foreach ($config as $value) {
             if ($value->type == 'P') {
-                $path   = $value->path;
-                $width  = $value->width;
-                $height = $value->height;
+                $width    = $value->width;
+                $height   = $value->height;
+                $path     = $disk . $value->path;
                 $upload = Image::make($file)->resize($width, $height)->save($path.$name);
+
             }
         }          
            
@@ -95,7 +98,7 @@ class ImagePositionRepository implements ImagePositionInterface
 
                 foreach ($config as $value) {
                     if ($value->default == 'N') {
-                        $src = $value->path;
+                        $src = $photoUrl . $value->path;
                     }
                 }
 

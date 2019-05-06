@@ -10,19 +10,19 @@
 
 		<div id="tab-product" class="with-padding">
             <!-- Form: product create -->
-            @include('backend.products.modal.forms.product-create')
+            @include('backend.products.modal.forms.create.product')
 		</div>
 
 		<div id="tab-colors" class="with-padding">
 			@if($configProduct->mini_colors == 'hexa')
-				@include('backend.products.modal.modules.hexa')
+				@include('backend.products.modal.modules.create.hexa')
 			@endif
 		</div>
 		
 		@if($configProduct->positions == 1)
 			<div id="tab-positions" class="with-padding">
 	            <!-- Form: posições -->
-	            @include('backend.products.modal.forms.positions')
+	            @include('backend.products.modal.forms.create.positions')
 			</div>
 		@endif
 

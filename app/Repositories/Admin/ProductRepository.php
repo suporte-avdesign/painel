@@ -158,7 +158,7 @@ class ProductRepository implements ProductInterface
         $freight = '';
         $prices  = '';
         $cost    = $configProduct->cost;
-        $path    = $configImage->path;
+        $path    = 'storage/'. $configImage->path;
         $kit     = $configProduct->kit;        
         $data    = array();        
         if(!empty($query))
