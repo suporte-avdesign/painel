@@ -13,7 +13,7 @@
 		    @foreach($data as $file)
 		    	@if($upload['type'] == $file->type)
 					<li id="img-{{$file->id}}">
-						<img src="{{url($upload['path'].$file->image)}}" class="framed">
+						<img src="{{url($upload['photo_url'].$file->image)}}" class="framed">
 						<div class="controls">
 							<span id="btns-{{$file->id}}" class="button-group compact children-tooltip">
 								@if($file->status == 'Ativo')

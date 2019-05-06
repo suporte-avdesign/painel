@@ -13,7 +13,7 @@
 				</select>
 			</p>
 			<p class="button-height inline-label">
-				<label for="name" class="label"> Categoria <span class="red">*</span></label>
+				<label for="name" class="label"> Nome <span class="red">*</span></label>
 				<input type="text" name="name" class="input full-width" value="{{$data->name}}">
 			</p>
 			<p class="button-height inline-label">

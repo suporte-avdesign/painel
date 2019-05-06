@@ -1,6 +1,6 @@
-<div id="modal-category-grids">
-	<form id="form-category-grids" method="POST" action="{{route('grids-category.store', $id)}}" onsubmit="return false">
-	@csrf
+<div id="modal-section-grids">
+	<form id="form-section-grids" method="POST" action="{{route('grids-section.store', $id)}}" onsubmit="return false">
+		@csrf
 		<fieldset class="fieldset">
 			<legend class="legend">Grade: und(32,33,34) caixa(1/32,2/33,3/34)</legend>
 			<p class="button-height inline-label">
@@ -21,14 +21,13 @@
 			</p>
 			<p class="button-height align-right">
 				<span class="button-group">
-					@can('category-grids-create')
-						<button id="btn-modal" onclick="formGridCategory('create', 'category-grids', 'aguarde', 'Salvar')" class="button blue-gradient">
+					@can('section-grids-create')
+						<button id="btn-modal" onclick="formGridSection('create', 'section-grids', 'aguarde', 'Salvar')" class="button blue-gradient">
 							<span class="icon-publish"></span> Salvar 
 						</button>
 					@endcan
 				</span>
 			</p>			
-
 		</fieldset>
 	</form>
 </div>
