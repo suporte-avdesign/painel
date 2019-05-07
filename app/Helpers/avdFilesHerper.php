@@ -6,12 +6,7 @@ use PDF;
 if (! function_exists('printerOrderPdf')) {
     function printerOrderPdf($order) {
 
-
-
-
         $pdf_url  = 'storage/pdf/pedidos';
-
-
         $factory = app(fileFactory::class);
         $diskAccesses = $factory->disk('local');
 
@@ -38,7 +33,13 @@ if (! function_exists('printerOrderPdf')) {
 
         if ($diskAccesses->exists($path)) {
           $out['taget'] =  "_blank";
+
+            generateAccessesTxt(
+                date('H:i:s').utf8_decode(
+                    ' Imprimiu o pedido:'.$order->id)
+            );
         }
+
 
         return response()->json($out);
 
