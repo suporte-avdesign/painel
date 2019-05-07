@@ -124,8 +124,8 @@ Route::get('order/{id}/products', 'Admin\OrderItemController@products')->name('o
 Route::post('order/{id}/search', 'Admin\OrderItemController@search')->name('order-items.search');
 Route::post('order/{id}/add/{order_id}', 'Admin\OrderItemController@add')->name('order-items.add');
 Route::get('order/{id}/reload', 'Admin\OrderItemController@reload')->name('order-items.reload');
-// Gerar PDF
-Route::get('order/{id}/printer', 'Admin\OrderItemController@printerPdf')->name('order-items.printer');
+// Imprimir PDF
+Route::get('order/{id}/printer', 'Admin\OrderController@printerPdf')->name('order-items.printer');
 // Observações
 Route::resource('order/{id}/order-notes', 'Admin\OrderNoteController');
 // Pedido/Rastreamento/Metodo de Envio/Obs.

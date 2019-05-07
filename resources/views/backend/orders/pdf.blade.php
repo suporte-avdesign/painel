@@ -12,7 +12,7 @@
 <div class="wrapped margin-bottom">
     <h4 class="no-margin-bottom">
         <span class="float-right">Pedido: {{$order->id}} </span>
-        <img src="{{asset('assets/backend/img/logo/logo-pdf.png')}}" width="50px">
+        <img src="{{asset('assets/backend/img/logo/logo-pdf.png')}}" width="100px">
     </h4>
     {{env('DT_ADDRESS')}} - {{env('DT_DISTRICT')}} - {{env('DT_CITY')}}-{{env('DT_STATE')}}
     <span class="float-right">
@@ -85,7 +85,7 @@
          $total_card += $item->price_card * ($item->quantity * $item->unit);
         @endphp
         <tr>
-            <td><img src="{{url($image->path.$item->image)}}"></td>
+            <td><img src="{{url($photo_url.$image->path.$item->image)}}"></td>
             <td>
                 {{$item->name}}<br>
                 Código: {{$item->code}}<br>

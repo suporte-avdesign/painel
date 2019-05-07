@@ -201,7 +201,7 @@
 
     deleteOrderItem = function(div, url)
     {
-        $.modal.confirm(tableOrderProduct.txtConfirm+'?', function(){
+        $.modal.confirm(tableOrderProduct.txtRemove+'?', function(){
             $.ajax({
                 type: 'DELETE',
                 dataType: "json",

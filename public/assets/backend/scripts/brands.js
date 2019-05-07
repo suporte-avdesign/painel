@@ -230,7 +230,7 @@
         */
         deleteGrid = function(id, name, url, token)
         {
-            $.modal.confirm(tableBrand.txtConfirm+' '+name+'?', function(){
+            $.modal.confirm(tableBrand.txtRemove+' '+name+'?', function(){
                 $.ajax({
                     type: 'DELETE',
                     dataType: "json",

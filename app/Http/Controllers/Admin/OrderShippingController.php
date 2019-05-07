@@ -18,6 +18,9 @@ class OrderShippingController extends Controller
     protected $ability  = 'orders';
     protected $view     = 'backend.orders-shippings';
     protected $view_pdf = 'backend.orders';
+    protected $disk_pdf;
+    protected $url_pdf;
+    protected $photo_url;
     protected $messages;
 
     public function __construct(
@@ -32,6 +35,9 @@ class OrderShippingController extends Controller
         $this->interModel     = $interModel;
         $this->configImages   = $configImages;
         $this->configShipping = $configShipping;
+        $this->photo_url       = 'storage/';
+        $this->url_pdf       = 'storage/pdf/pedidos';
+        $this->disk_pdf      = storage_path('app/public/pdf/pedidos');
         $this->messages = array(
             'config_shipping_id.required' => 'O método é obrigatório.',
             'status.required'             => 'O status é obrigatório.',
@@ -90,7 +96,7 @@ class OrderShippingController extends Controller
         $options = $this->configShipping->pluck('name','id');
 
 
-        return view("{$this->view}.form", compact('order_id', 'options'));
+        return view("{$this->view}.form-create", compact('order_id', 'options'));
     }
 
     /**
@@ -177,7 +183,7 @@ class OrderShippingController extends Controller
         $data    = $this->interModel->setId($id);
         $options = $this->configShipping->pluck('name','id');
 
-        return view("{$this->view}.form", compact('order_id', 'data', 'options'));
+        return view("{$this->view}.form-edit", compact('order_id', 'data', 'options'));
     }
     /**
      * Update the specified resource in storage.
@@ -243,15 +249,20 @@ class OrderShippingController extends Controller
 
 
         $name = md5($order->id) . md5($order->user_id) . '.pdf';
-        $path = public_path("assets/pedidos/{$year}/{$name}");
-        $route = url("assets/pedidos/{$year}/{$name}");
+        $path = "{$this->disk_pdf}/{$year}/{$order->user_id}";
+        $file = "{$path}/{$name}";
+        $photo_url = $this->photo_url;
 
-        if (file_exists($path)) {
-            $delete = unlink($path);
+        $route = url("{$this->url_pdf}/{$year}/{$order->user_id}/{$name}");
+
+        if (file_exists($file)) {
+            $delete = unlink($file);
         }
 
-        $pdf = PDF::loadView("{$this->view_pdf}.pdf",compact('order','items','notes','shippings','image'));
-        $pdf->save($path);
+        $pdf = PDF::loadView("{$this->view_pdf}.pdf",compact(
+            'order','items','notes','shippings','image','photo_url'
+        ));
+        $pdf->save($file);
 
         return $route;
     }

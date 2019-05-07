@@ -36,6 +36,7 @@
         "id" => 'sections',
         "url" => route('sections.data'),
         "txtConfirm" => '<small class="tag red-bg">Os produtos desta marca serão excluidos</small><br>Você confirma a exclusão',
+        "txtRemove" => '<small class="tag red-bg">A grade será excluida</small><br>Você confirma a exclusão',
         "txtCancel" => "A Exclusão foi Cancelada!",
         "txtError" => "Houve um erro no servidor!",
         "txtSave" => "Salvar",

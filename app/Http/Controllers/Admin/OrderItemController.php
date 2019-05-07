@@ -26,9 +26,12 @@ class OrderItemController extends Controller
     protected $ability  = 'orders';
     protected $view     = 'backend.orders-items';
     protected $view_pdf = 'backend.orders';
+    protected $disk_pdf;
+    protected $url_pdf;
     protected $select;
     protected $upload;
     protected $last_url;
+    protected $photo_url;
     protected $messages;
 
     public function __construct(
@@ -57,6 +60,9 @@ class OrderItemController extends Controller
         $this->configProduct = $configProduct;
         $this->statusPayment = $statusPayment;
         $this->configImages  = $configImages;
+        $this->photo_url     = 'storage/';
+        $this->url_pdf       = 'storage/pdf/pedidos';
+        $this->disk_pdf      = storage_path('app/public/pdf/pedidos');
         $this->messages = array(
             'quantity.required'                 => 'A quantidade é obrigatória.',
             'title_index'                       => 'Produtos do Pedido',
@@ -86,9 +92,10 @@ class OrderItemController extends Controller
 
         $items = $order->items;
         $image =  $this->configImages->setName('default','T');
+        $photo_url = $this->photo_url;
         $title =  $this->messages['title_index'];
 
-        return view("{$this->view}.index", compact('order','title','items', 'image'));
+        return view("{$this->view}.index", compact('order','title','items', 'image', 'photo_url'));
     }
 
     /**
@@ -440,46 +447,6 @@ class OrderItemController extends Controller
         return view("{$this->view}.reload", compact('order','items','image'));
     }
 
-    /**
-     * @param $order_id
-     * @return Json
-     */
-    public function printerPdf($order_id)
-    {
-        if( Gate::denies("{$this->ability}-view") ) {
-            return view("backend.erros.message-401");
-        }
-
-        $order   = $this->interOrder->setId($order_id);
-        if (count($order) == 0) {
-            return redirect()->back();
-        } else {
-            $name = md5($order->id) . md5($order->user_id) . '.pdf';
-            $year = date('Y', strtotime($order->created_at));
-            $route = url("assets/pedidos/{$year}/{$name}");
-            $message = $this->messages['success_false'];
-
-
-            $pdf = $this->generatePdf($order_id);
-
-            if ($pdf) {
-                $success = true;
-                $message = '';
-            } else {
-                $success = false;
-            }
-
-
-            $out = array(
-                "success" => $success,
-                "message" => $message,
-                "pdf" => $route,
-                "target" => "_blank"
-
-            );
-            return response()->json($out);
-        }
-    }
 
     /**
      * @param $order_id
@@ -496,15 +463,24 @@ class OrderItemController extends Controller
 
 
         $name = md5($order->id) . md5($order->user_id) . '.pdf';
-        $path = public_path("assets/pedidos/{$year}/{$name}");
-        $route = url("assets/pedidos/{$year}/{$name}");
+        $path = "{$this->disk_pdf}/{$year}/{$order->user_id}";
+        $file = "{$path}/{$name}";
+        $photo_url = $this->photo_url;
 
-        if (file_exists($path)) {
-            $delete = unlink($path);
+        $route = url("{$this->url_pdf}/{$year}/{$order->user_id}/{$name}");
+
+        if ( !file_exists($path) ) {
+            \File::makeDirectory($path, 0777, true);
         }
 
-        $pdf = PDF::loadView("{$this->view_pdf}.pdf",compact('order','items','notes','shippings','image'));
-        $pdf->save($path);
+        if (file_exists($file)) {
+            $delete = unlink($file);
+        }
+
+        $pdf = PDF::loadView("{$this->view_pdf}.pdf",compact(
+            'order','items','notes','shippings','image','photo_url'
+        ));
+        $pdf->save($file);
 
         return $route;
     }

@@ -232,7 +232,7 @@ class ImageColorRepository implements ImageColorInterface
                 }
 
                 if ($val->image != '') {
-                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($path.$val->image).'" width="80" /></a>';
+                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->photoUrl.$path.$val->image).'" width="80" /></a>';
                 } else {
                     $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'"  src="'.url('assets/imagens/padrao/product-no-image.png').'" /></a>';
                 }

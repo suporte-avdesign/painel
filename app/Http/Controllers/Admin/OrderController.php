@@ -14,7 +14,6 @@ use AVDPainel\Interfaces\Admin\UserInterface as InterUser;
 use AVDPainel\Interfaces\Admin\ConfigStatusPaymentInterface as StatusPayment;
 use AVDPainel\Interfaces\Admin\ConfigFormPaymentInterface as FormPayment;
 
-use PDF;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Crypt;
@@ -24,7 +23,6 @@ class OrderController extends Controller
 {
     protected $ability  = 'orders';
     protected $view     = 'backend.orders';
-    protected $view_pdf = 'backend.orders';
     protected $select;
     protected $last_url;
     protected $messages;
@@ -149,15 +147,15 @@ class OrderController extends Controller
 
         } else {
 
-            $form           = $this->formPayment->setId($dataForm['config_form_payment_id']);
-            $status         = $this->statusPayment->setId('config_status_payment_id');
-            $dataForm['ip'] = $request->ip();
+            $form              = $this->formPayment->setId($dataForm['config_form_payment_id']);
+            $status            = $this->statusPayment->setId('config_status_payment_id');
+            $dataForm['ip']    = $request->ip();
             $dataForm['token'] = Crypt::encryptString(auth()->user()->name.time());
 
             $insert = $this->interModel->create($dataForm,$status,$form);
 
             if ($insert) {
-                $this->generatePdf($insert->id);
+                $this->generatePdf($insert->id, 'store');
                 $success = true;
                 $message = $this->messages['store_true'];
             }
@@ -211,14 +209,12 @@ class OrderController extends Controller
 
         $this->interModel->rules($request, $this->messages, $id);
 
-
         $dataForm = $request->all();
 
         $update = $this->interModel->update($dataForm, $id);
         if( $update ) {
 
             $this->generatePdf($id);
-
             $success = true;
             $message = $this->messages['update_true'];
         } else {
@@ -344,36 +340,34 @@ class OrderController extends Controller
 
     /**
      * @param $order_id
-     * @return string
+     * @return Json
      */
-    public function generatePdf($order_id)
+    public function printerPdf($order_id)
     {
-        $order     = $this->interModel->setId($order_id);
-        $items     = $order->items;
-        $notes     = $order->notes;
-        $year      = date('Y', strtotime($order->created_at));
-        $shippings = $order->shippings;
-        $image = $this->configImages->setName('default','T');
-
-
-        $name = md5($order->id).md5($order->user_id).'.pdf';
-        $path  = public_path("assets/pedidos/{$year}/{$name}");
-        $route = url("assets/pedidos/{$year}/{$name}");
-
-        if (file_exists($path)) {
-            $delete = unlink($path);
+        if( Gate::denies("{$this->ability}-view") ) {
+            return view("backend.erros.message-401");
         }
 
-        $pdf = PDF::loadView("{$this->view_pdf}.pdf",compact('order','items','notes','shippings','image'));
-        $pdf->save($path);
+        $order   = $this->interModel->setId($order_id);
+        if (count($order) == 0) {
+            return redirect()->back();
+        } else {
 
-        return $route;
+            return printerOrderPdf($order);
+
+        }
     }
 
 
-
-
-
-
-
+    /**
+     * Gerar e atualizar  arquivo pdf
+     * @param $order_id
+     * @param null $method
+     */
+    public function generatePdf($order_id, $method=null)
+    {
+        $order  = $this->interModel->setId($order_id);
+        $image  = $this->configImages->setName('default','T');
+        generateOrderPdf($order, $image, $method);
+    }
 }

@@ -2,7 +2,7 @@
     <div class="columns" id="order-item-{{$item->id}}">
         <p class="underline"></p>
         <div class="two-columns">
-            <img src="{{url($image->path.$item->image)}}">
+            <img src="{{url($photo_url.$image->path.$item->image)}}">
         </div>
 
         <div class="seven-columns margin-right">

@@ -62,7 +62,7 @@
         "tableStyled" => false
     ]) !!};
     var tableOrderProduct = {!! json_encode([
-        "txtConfirm" => '<small class="tag red-bg"> O pedido será excluido </small><br>Você confirma a exclusão',
+        "txtRemove" => '<small class="tag red-bg"> O produto será excluido </small><br>Você confirma a exclusão',
         "txtCancel" => "A Exclusão foi Cancelada!",
         "txtError" => "Houve um erro no servidor!",
         "txtSave" => "Salvar",

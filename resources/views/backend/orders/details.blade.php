@@ -26,7 +26,7 @@
                 <p>Cidade: <strong> {{$address->city}}</strong></p>
                 <p>Estado: <strong> {{$address->state}}</strong></p>
                 <p>CEP: <strong> {{$address->zip_code}}</strong></p>
-                <p>IP: <strong> {{$ip}}</strong></p>
+                <p>IP: <strong> {{$data->ip}}</strong></p>
             @else
                 <h4 class="red underline">Não há endereço de entrega </h4>
             @endif
