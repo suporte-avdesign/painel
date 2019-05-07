@@ -123,7 +123,7 @@ class OrderItemController extends Controller
 
         $data = $this->interModel->setId($id);
 
-        return view("{$this->view}.form", compact('data'));
+        return view("{$this->view}.form-edit", compact('data'));
     }
 
     /**
@@ -443,8 +443,11 @@ class OrderItemController extends Controller
         $order = $this->interOrder->setId($id);
         $items = $order->items;
         $image =  $this->configImages->setName('default','T');
+        $photo_url = $this->photo_url;
 
-        return view("{$this->view}.reload", compact('order','items','image'));
+        return view("{$this->view}.reload", compact(
+            'order','items','image', 'photo_url'
+        ));
     }
 
 

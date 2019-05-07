@@ -1941,6 +1941,10 @@ class ConfigPermissionsTableSeeder extends Seeder
         ]);
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id+110,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id+110,
             'config_profile_id' => 4
         ]);
         /************* Delete ************/
@@ -1954,6 +1958,10 @@ class ConfigPermissionsTableSeeder extends Seeder
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id+111,
             'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id+111,
+            'config_profile_id' => 3
         ]);
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id+111,
@@ -2030,6 +2038,10 @@ class ConfigPermissionsTableSeeder extends Seeder
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id+115,
             'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id+115,
+            'config_profile_id' => 3
         ]);
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id+115,
@@ -2416,7 +2428,7 @@ class ConfigPermissionsTableSeeder extends Seeder
 
         /*
        ----------------------------------------
-        28 - Pedidos
+        28 - Orders e ItensOrder
        ----------------------------------------
        */
         /************* View ************/
@@ -2430,6 +2442,10 @@ class ConfigPermissionsTableSeeder extends Seeder
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id + 136,
             'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 136,
+            'config_profile_id' => 3
         ]);
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id + 136,
@@ -2449,6 +2465,10 @@ class ConfigPermissionsTableSeeder extends Seeder
         ]);
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id + 137,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 137,
             'config_profile_id' => 4
         ]);
         /************* update ************/
@@ -2465,6 +2485,10 @@ class ConfigPermissionsTableSeeder extends Seeder
         ]);
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id + 138,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 138,
             'config_profile_id' => 4
         ]);
         /************* delete ************/
@@ -2478,6 +2502,10 @@ class ConfigPermissionsTableSeeder extends Seeder
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id + 139,
             'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 139,
+            'config_profile_id' => 3
         ]);
         DB::table('config_permission_config_profile')->insert([
             'config_permission_id' => $id + 139,

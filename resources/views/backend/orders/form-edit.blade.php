@@ -82,7 +82,7 @@
 		<p class="button-height align-center">
 			<span class="button-group">
 				<button onclick="fechaModal()" class="button"> Cancelar </button>
-				@can('order-update')
+				@can('orders-update')
 					<button id="btn-modal" onclick="formOrders('update', 'orders')" class="button icon-publish blue-gradient"> Alterar </button>
 				@endcan
 			</span>

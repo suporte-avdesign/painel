@@ -1,6 +1,6 @@
 <?php
 use Illuminate\Contracts\Filesystem\Factory as fileFactory;
-use PDF;
+use Barryvdh\DomPDF\PDF;
 
 
 if (! function_exists('printerOrderPdf')) {

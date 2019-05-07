@@ -22,13 +22,14 @@
             </p>
 
         @endif
-        <p class="button-height align-center">
-            <span class="button-group">
-                <button onclick="fechaModal()" class="button"> Cancelar </button>
-                <button id="btn-modal-{{$data->id}}" onclick="updateOrderItem('form-order-items-{{$data->id}}', '{{$data->id}}', '{{$data->order_id}}','{{route('order-items.reload', $data->order_id)}}')" class="button icon-publish blue-gradient"> Salvar </button>
-            </span>
-        </p>
-
+        @can('orders-update')
+            <p class="button-height align-center">
+                <span class="button-group">
+                    <button onclick="fechaModal()" class="button"> Cancelar </button>
+                    <button id="btn-modal-{{$data->id}}" onclick="updateOrderItem('form-order-items-{{$data->id}}', '{{$data->id}}', '{{$data->order_id}}','{{route('order-items.reload', $data->order_id)}}')" class="button icon-publish blue-gradient"> Salvar </button>
+                </span>
+            </p>
+        @endcan
     </form>
 </div>
 
