@@ -21,9 +21,7 @@ Route::get('note/{id}/refresh', 'Admin\UserNoteController@refresh')->name('accou
 Route::get('clientes/excluidos', 'Admin\UserController@show')->name('accounts.excluded');
 Route::post('accounts/excluded/data', 'Admin\UserController@dataExcluded')->name('accounts.excluded.data');
 Route::post('account/{id}/reactivate', 'Admin\UserController@reactivate');
-
-
-
+// Reativar
 Route::post('cliente/reativar', 'Admin\UserController@reactivateExcluded')->name('accounts.reactivate');
 Route::get('clientes/excluidos', 'Admin\UserController@excluded');
 

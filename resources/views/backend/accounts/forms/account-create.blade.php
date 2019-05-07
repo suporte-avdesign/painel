@@ -1,6 +1,6 @@
 <div id="modal-accounts">
 	<form id="form-accounts" method="POST" action="{{route('clientes.store')}}" onsubmit="return false">
-		{{csrf_field()}}
+		@csrf
 		<fieldset class="fieldset">
 			<legend class="legend">Perfil do Cliente</legend>
 			<p class="button-height inline-label">
@@ -161,9 +161,6 @@ $( document ).ready(function() {
             }
         });
     }
-
     loadProfile(2);
-
-
 });
 </script>

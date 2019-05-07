@@ -78,7 +78,7 @@ class UserNoteController extends Controller
 
         $user = $this->interUser->setId($id);
 
-        return view("{$this->view}.form",compact('user'));
+        return view("{$this->view}.form-create",compact('user'));
 
     }
 
@@ -142,7 +142,7 @@ class UserNoteController extends Controller
 
         $data   = $this->interModel->setId($id);
 
-        return view("{$this->view}.form",compact('data'));
+        return view("{$this->view}.form-edit",compact('data'));
     }
 
     /**

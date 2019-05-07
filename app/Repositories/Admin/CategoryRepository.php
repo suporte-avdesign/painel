@@ -17,6 +17,8 @@ class CategoryRepository implements CategoryInterface
     use ValidatesRequests;
 
     public $model;
+    private $disk;
+
 
     /**
      * Create construct.
@@ -31,6 +33,8 @@ class CategoryRepository implements CategoryInterface
         $this->model         = $model;
         $this->keywords      = $keywords;
         $this->interSection  = $interSection;
+        $this->disk          = storage_path('app/public/');
+
     }
 
     /**
@@ -286,13 +290,13 @@ class CategoryRepository implements CategoryInterface
                     foreach ($color->positions as $position) {
                         foreach ($configImages as $value) {
                             if ($value->type == 'P') {
-                                $image_position = $value->path.$position->image;
+                                $image_position = $this->disk.$value->path.$position->image;
                                 if (file_exists($image_position)) {
                                     $remove = unlink($image_position);
                                 }
                             }
                             if ($value->type == 'C') {
-                                $image_color = $value->path.$color->image;
+                                $image_color = $this->disk.$value->path.$color->image;
                                 if (file_exists($image_color)) {
                                     $remove = unlink($image_color);
                                 }
@@ -304,8 +308,8 @@ class CategoryRepository implements CategoryInterface
         }
 
         if (count($images) >= 1) {
-            $path_featured   = $config->path.$config->width_featured.'x'.$config->height_featured.'/';
-            $path_banner = $config->path.$config->width_banner.'x'.$config->height_banner.'/';
+            $path_featured   = $this->disk.$config->path.$config->width_featured.'x'.$config->height_featured.'/';
+            $path_banner = $this->disk.$config->path.$config->width_banner.'x'.$config->height_banner.'/';
             foreach ($images as $name) {
 
                 if (file_exists($path_featured.$name->image)) {

@@ -19,6 +19,8 @@ class ProductRepository implements ProductInterface
 {
 
     public $model;
+    private $disk;
+
 
     /**
      * Create construct.
@@ -37,6 +39,7 @@ class ProductRepository implements ProductInterface
         $this->configImage   = $configImage;
         $this->configProduct = $configProduct;
         $this->configFreight = $configFreight;
+        $this->disk          = storage_path('app/public/');
     }
 
 
@@ -575,14 +578,14 @@ class ProductRepository implements ProductInterface
 
             foreach ($colors as $color) {
                 if ($value->type == 'C') {
-                    $image = $value->path.$color->image;
+                    $image = $this->disk.$value->path.$color->image;
                     if (file_exists($image)) {
                         $remove = unlink($image);
                     }
                 }
                 if ($value->type == 'P') {
                     foreach ($color->positions as $position) {
-                        $image = $value->path.$position->image;
+                        $image = $this->disk.$value->path.$position->image;
                         if (file_exists($image)) {
                             $remove = unlink($image);
                         }

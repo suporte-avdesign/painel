@@ -14,6 +14,9 @@ class ImagePositionRepository implements ImagePositionInterface
 
     public $model;
     public $keywords;
+    private $photoUrl;
+    private $disk;
+
 
     /**
      * Create construct.
@@ -24,6 +27,9 @@ class ImagePositionRepository implements ImagePositionInterface
     {
         $this->model    = $model;
         $this->keywords = $keywords;
+        $this->photoUrl = 'storage/';
+        $this->disk     = storage_path('app/public/');
+
     }
 
     /**
@@ -65,8 +71,6 @@ class ImagePositionRepository implements ImagePositionInterface
             $input['order'] = '0'.$input['order'];
         }
 
-        $disk     = storage_path('app/public/');
-        $photoUrl = 'storage/';
         $ext      = $file->getClientOriginalExtension();
         $name     = $input['name'].'-'.numLetter(date('Ymdhs'), 'letter').'.'.$ext;
 
@@ -74,7 +78,7 @@ class ImagePositionRepository implements ImagePositionInterface
             if ($value->type == 'P') {
                 $width    = $value->width;
                 $height   = $value->height;
-                $path     = $disk . $value->path;
+                $path     = $this->disk . $value->path;
                 $upload = Image::make($file)->resize($width, $height)->save($path.$name);
 
             }
@@ -98,7 +102,7 @@ class ImagePositionRepository implements ImagePositionInterface
 
                 foreach ($config as $value) {
                     if ($value->default == 'N') {
-                        $src = $photoUrl . $value->path;
+                        $src = $this->photoUrl . $value->path;
                     }
                 }
 
@@ -160,7 +164,7 @@ class ImagePositionRepository implements ImagePositionInterface
         if (!empty($file)) {
 
             foreach ($config as $value) {
-                $image = $value->path.$data->image;
+                $image = $this->disk.$value->path.$data->image;
                 if (file_exists($image)) {
                     $delete = unlink($image);
                 }
@@ -170,9 +174,9 @@ class ImagePositionRepository implements ImagePositionInterface
             $name = $corrent_name.numLetter(date('Ymdhs'),'letter').'.'.$ext;        
             foreach ($config as $value) {
                 if ($value->type == 'P') {
-                    $path   = $value->path;
-                    $width  = $value->width;
-                    $height = $value->height;
+                    $width    = $value->width;
+                    $height   = $value->height;
+                    $path     = $this->disk . $value->path;
                     $upload = Image::make($file)->resize($width, $height)->save($path.$name);
                 }
             }
@@ -196,7 +200,7 @@ class ImagePositionRepository implements ImagePositionInterface
 
             foreach ($config as $value) {
                 if ($value->default == 'N') {
-                    $src = $value->path;
+                    $src = $this->photoUrl.$value->path;
                 }
             }
 
@@ -242,7 +246,7 @@ class ImagePositionRepository implements ImagePositionInterface
 
         foreach ($config as $value) {
             if ($value->type == 'P') {
-                $image = $value->path.$data->image;
+                $image = $this->disk.$value->path.$data->image;
 
                 if (file_exists($image)) {
                     $remove = unlink($image);

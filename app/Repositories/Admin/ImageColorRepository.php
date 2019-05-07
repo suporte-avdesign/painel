@@ -597,7 +597,7 @@ class ImageColorRepository implements ImageColorInterface
         foreach ($config as $value) {
             if ($value->type == 'P') {
                 foreach ($positions as $position) {
-                    $image = $value->path.$position->image;
+                    $image = $this->disk.$value->path.$position->image;
                     if (file_exists($image)) {
                         $remove = unlink($image);
                     }
@@ -605,7 +605,7 @@ class ImageColorRepository implements ImageColorInterface
             }
 
             if ($value->type == 'C') {
-                $color = $value->path.$data->image;
+                $color = $this->disk.$value->path.$data->image;
                 if (file_exists($color)) {
                     $remove = unlink($color);
                 }

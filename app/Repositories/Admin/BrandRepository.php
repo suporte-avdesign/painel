@@ -15,6 +15,7 @@ class BrandRepository implements BrandInterface
     use ValidatesRequests;
 
     public $model;
+    private $disk;
 
     /**
      * Create construct.
@@ -25,6 +26,7 @@ class BrandRepository implements BrandInterface
     {
         $this->model    = $model;
         $this->keywords = $keywords;
+        $this->disk     = storage_path('app/public/');
     }
 
     /**
@@ -285,7 +287,7 @@ class BrandRepository implements BrandInterface
 
                             $width  = $value->width;
                             $height = $value->height;
-                            $path   = storage_path().'/app/public/'.$value->path.$width.'x'.$height.'/';
+                            $path   = $this->disk.$value->path.$width.'x'.$height.'/';
 
                             if ($value->type == 'P') {
                                 $image_position = $path.$position->image;
@@ -306,8 +308,8 @@ class BrandRepository implements BrandInterface
         }
 
         if (count($images) >= 1) {
-            $path_logo   = $config->path.$config->width_logo.'x'.$config->height_logo.'/';
-            $path_banner = $config->path.$config->width_banner.'x'.$config->height_banner.'/';
+            $path_logo   = $this->disk.$config->path.$config->width_logo.'x'.$config->height_logo.'/';
+            $path_banner = $this->disk.$config->path.$config->width_banner.'x'.$config->height_banner.'/';
             foreach ($images as $name) {
 
                 if (file_exists($path_logo.$name->image)) {

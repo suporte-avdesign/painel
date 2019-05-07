@@ -17,8 +17,10 @@ use Illuminate\Support\Facades\Gate;
 class ImagePositionController extends Controller
 {
 
-    protected $ability = 'product-images';
-    protected $view    = 'backend.products';
+    protected $ability   = 'product-images';
+    protected $view      = 'backend.products';
+    protected $photoUrl  = 'storage/';
+
 
     public function __construct(
         InterModel  $interModel,
@@ -45,7 +47,7 @@ class ImagePositionController extends Controller
         $configImage  = $this->configImage->setName('default', 'N');
         $product      = $interProduct->setId($idpro);
         $colors       = $product->images;
-        $path         = $configImage->path;
+        $path         = $this->photoUrl.$configImage->path;
 
         (count($colors) >= 1 ? $title_count = 'Clique na imagem para editar' :
                                $title_count = 'Não existe imagem para este produto');
@@ -117,10 +119,7 @@ class ImagePositionController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * view modal.forms.edit.positions
      */
     public function edit($idimg, $id)
     {
@@ -129,11 +128,11 @@ class ImagePositionController extends Controller
         }
 
         $configImage = $this->configImage->setName('default', 'N');
-        $path        = $configImage->path;
+        $path        = $this->photoUrl.$configImage->path;
         $data        = $this->interModel->setId($id);
 
 
-        return view("{$this->view}.modal.forms.positions", compact('data', 'idimg', 'path'));
+        return view("{$this->view}.modal.forms.edit.positions", compact('data', 'idimg', 'path'));
     }
 
     /**
@@ -183,10 +182,9 @@ class ImagePositionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remover imagem posição.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function destroy($idimg, $id)
     {
@@ -214,10 +212,10 @@ class ImagePositionController extends Controller
     }
 
     /**
-     * Add
+     * Adiciona fotos posição das cores do produto
+     * view modal.forms.create.positions
      *
      * @param  int  $idimg
-     * @return \Illuminate\Http\Response
      */
     public function addPosition(InterColor $interColor, $idimg)
     {
@@ -229,21 +227,12 @@ class ImagePositionController extends Controller
         $product = $color->product;
         $idpro   = $product->category_id;
 
-        return view("{$this->view}.modal.forms.positions", compact('color', 'idpro'));
+        return view("{$this->view}.modal.forms.create.positions", compact('color', 'idpro'));
     }
 
 
-
-
-
-
     /**
-     * Status Image
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $idimg
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * Alterar status da imagem
      */
     public function status(Request $request, $id)
     {

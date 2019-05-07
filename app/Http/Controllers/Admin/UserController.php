@@ -125,13 +125,14 @@ class UserController extends Controller
         $admins   = $this->interAdmin->pluck('name', 'id');
         $states   = $this->interState->pluck('name', 'uf');
 
-        return view("{$this->view}.form-create", compact(
+        return view("{$this->view}.forms.account-create", compact(
             'title', 'profiles','admins','states'
         ));
 
     }
 
     /**
+     * Carregar formulário para criação do cliente
      * @param $id
      * @return View
      */
@@ -141,7 +142,7 @@ class UserController extends Controller
             return view("backend.erros.message-401");
         }
 
-        return view("{$this->view}.profile-{$opc}");
+        return view("{$this->view}.forms.profile-{$opc}-create");
     }
 
     /**
@@ -157,7 +158,7 @@ class UserController extends Controller
 
         $data = $this->interModel->setId($id);
 
-        return view("{$this->view}.profile-{$opc}",compact('data'));
+        return view("{$this->view}.forms.profile-{$opc}-edit",compact('data'));
     }
 
     /**
@@ -169,7 +170,6 @@ class UserController extends Controller
         if( Gate::denies("{$this->ability}-create") ) {
             return view("backend.erros.message-401");
         }
-
 
         $dataForm         = $request->all();
         $address          = $dataForm['address'];
@@ -221,7 +221,7 @@ class UserController extends Controller
 
         $title = $this->messages['title_edit'];
 
-        return view("{$this->view}.form-profile", compact('data', 'profiles', 'admins', 'title'));
+        return view("{$this->view}.forms.profile-edit", compact('data', 'profiles', 'admins', 'title'));
 
     }
 

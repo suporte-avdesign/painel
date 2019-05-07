@@ -1,7 +1,7 @@
 <div id="modal-orders">
 	<form id="form-orders" method="POST" action="{{route('pedidos.update', $data->id)}}" onsubmit="return false">
-		<input name="_method" type="hidden" value="PUT">
-		{{csrf_field()}}
+		@method("PUT")
+		@csrf
 		<fieldset class="fieldset">
 			<legend class="legend blue-bg">Vendedor: {{$data->user->admin}}</legend>
 			<p class="button-height inline-label">

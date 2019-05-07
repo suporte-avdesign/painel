@@ -85,7 +85,7 @@ class UserAddressController extends Controller
         $states = $this->interState->pluck('name', 'uf');
 
 
-        return view("{$this->view}.form",compact('user', 'states'));
+        return view("{$this->view}.form-create",compact('user', 'states'));
     }
 
     /**
@@ -150,7 +150,7 @@ class UserAddressController extends Controller
         $states = $this->interState->pluck('name', 'uf');
 
 
-        return view("{$this->view}.form",compact('data', 'states'));
+        return view("{$this->view}.form-edit",compact('data', 'states'));
     }
 
     /**
