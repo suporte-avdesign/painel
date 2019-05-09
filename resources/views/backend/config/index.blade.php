@@ -47,6 +47,32 @@
 					@endcan
 
 					<li class="with-right-arrow grey-arrow">
+						<span class="icon folder-net"></span>
+						<b>Páginas do Site</b>
+
+
+
+						<ul class="files-list mini">
+							<!--can('config-module-view') -->
+							<li class="with-right-arrow grey-arrow">
+								<span class="icon folder-program"></span>
+								<b>Página Home</b>
+								<ul class="files-list mini">
+									<li>
+										<a href="config/imagens/slider" class="file-link">
+											<span class="icon file-dll"></span> Slider
+										</a>
+									</li>
+
+								</ul>
+							</li>
+							<!--endcan -->
+						</ul>
+					</li>
+
+
+
+					<li class="with-right-arrow grey-arrow">
 						<span class="icon folder-docs"></span>
 						<b>Padrões</b>
 						<ul class="files-list mini">
@@ -163,6 +189,14 @@
 									</a>
 								</li>
 							@endcan
+							@can('config-slider-view')
+								<li>
+									<a href="config/imagens/slider" class="file-link">
+										<span class="icon folder-image"></span>
+										Silder Home
+									</a>
+								</li>
+							@endcan
 							@can('config-color-group-view')
 								<li>
 									<a href="config/grupo-cores" class="file-link">
@@ -181,7 +215,7 @@
 							</a>
 						</li>
 					@endcan
-					@can('config-price-view')
+					@can('config-profile-client-view')
 						<li>
 							<a href="config/perfil-cliente" class="file-link">
 								<span class="icon folder-program"></span>

@@ -170,7 +170,7 @@
 
                 <p class="button-height">
                     <span class="input">
-                        <label for="price_card_percent_1" class="button blue-gradient">Normal %</label>
+                        <label for="price_card_percent_1" class="button blue-gradient">{{$configProduct->price_default}} %</label>
                         <select id="price_card_percent_1" name="price[1][price_cash_percent]" class="select compact" style="width:50px">
                             @foreach($percentage as $key => $val)
                                 <option value="{{$val}}">{{$val}}</option>
@@ -206,7 +206,7 @@
                 <span id="normal_offer" class="display-none">
                     <p class="button-height">
                         <span class="input">
-                            <label for="profile-1" class="button green-gradient">Normal</label>
+                            <label for="profile-1" class="button green-gradient">{{$configProduct->price_default}}</label>
                             <span class="number input margin-right">
                                 <button type="button" class="button number-down">-</button>
                                 <input type="text" id="offer_percent_1" name="price[1][offer_percent]"  value="" size="4" class="input-unstyled" data-number-options='{"min":1,"max":50,"increment":0.5,"shiftIncrement":5,"precision":0.25}'>

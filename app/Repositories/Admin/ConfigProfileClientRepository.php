@@ -255,27 +255,30 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
     }
 
     /**
-     * Remover
+     * Não permitir remover o id 1 ( Necessário ter um como referencia)
      *
      * @param  int  $id
      * @return boolean true or false
      */
     public function delete($id)
     {
-        $data   = $this->model->find($id);
-        $delete = $data->delete();
-        if ($delete) {
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                ' Removeu o perfil do Cliente:'.$data->name.
-                ' Parcelado:'.$data->percent_card.
-                '% À Vísta:'.$data->percent_cash.
-                '%, Ordem:'.$data->order.
-                ', Calculo para:'.$data->sum.
-                ', Status:'.$data->status)
-            );
-            return true;
+        if ($id != 1) {
+            $data   = $this->model->find($id);
+            $delete = $data->delete();
+            if ($delete) {
+                generateAccessesTxt(
+                    date('H:i:s').utf8_decode(
+                        ' Removeu o perfil do Cliente:'.$data->name.
+                        ' Parcelado:'.$data->percent_card.
+                        '% À Vísta:'.$data->percent_cash.
+                        '%, Ordem:'.$data->order.
+                        ', Calculo para:'.$data->sum.
+                        ', Status:'.$data->status)
+                );
+                return true;
+            }
         }
+
 
         return false;
     }

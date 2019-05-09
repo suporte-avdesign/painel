@@ -2590,6 +2590,55 @@ class ConfigPermissionsTableSeeder extends Seeder
             'config_profile_id' => 2
         ]);
 
+       /*
+       ----------------------------------------
+        30 - Imagens formulário do slider
+       ----------------------------------------
+       */
+        /************* View ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 30,
+            'name' => 'config-slider-view',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 144,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 144,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 144,
+            'config_profile_id' => 4
+        ]);
+
+        /************* Updade ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 30,
+            'name' => 'config-slider-update',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 145,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 145,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 145,
+            'config_profile_id' => 4
+        ]);
+
+
+
 
 
 
@@ -2782,10 +2831,9 @@ class ConfigPermissionsTableSeeder extends Seeder
     |     - account-create
     |     - account-update
     |     - account-delete
-
-    |
-    |
-    |
+    | 30- Imagens formulário do slider
+    |     - config-slider-view
+    |     - config-slider-update
     |
     |
     |

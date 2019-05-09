@@ -247,9 +247,7 @@
 				<div class="six-columns twelve-columns-tablet">
 					<h4 class="green underline">Observações</h4>
 					<ol>
-						<li><b>Preço do Perfil:</b> Preço relacionado ao perfil do cliente.<br>
-							- O Preço normal é obrigatório.
-						</li>
+						<li><b>Preço do Perfil:</b> Preço relacionado ao perfil do cliente.</li>
 						<li><b>Valores:</b> Os valores serão digitados manualmente ou pelo perfil do cliente.</li>
 						<li><b>Custo:</b> Habilita  o campo para informar o custo do produto.</li>
 						<li><b>Estoque:</b> Habilita  o modulo de controle de estoque.</li>

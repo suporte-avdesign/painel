@@ -22,7 +22,6 @@ $(document).ready(function()
      */
     $('#form-login').submit(function(event){
 
-        alert($("input:checkbox:checked").val());
         // Values
         var login = $.trim($('#login').val()),
             pass = $.trim($('#pass').val()),
@@ -50,7 +49,6 @@ $(document).ready(function()
             // Pare o comportamento normal
             event.preventDefault();
 
-            /*
 
             $.ajax(url, {
                 data: dataForm,
@@ -71,7 +69,6 @@ $(document).ready(function()
                 }
             });
 
-            */
         }
     });
 

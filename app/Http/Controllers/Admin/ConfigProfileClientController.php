@@ -37,7 +37,7 @@ class ConfigProfileClientController extends AdminAjaxTablesController
         $this->last_url      = array('last_url' => 'config/precos');
         $this->messages      = array(
             'order.required'        => 'A ordem é obrigatória.',
-            'name.required'      => 'O perfil é obrigatório.',
+            'name.required'         => 'O perfil é obrigatório.',
             'profile.unique'        => 'Este perfil já se encontra utilizado.',
             'percent_cash.required' => 'O perfil à vísta é obrigatória.',
             'percent_card.required' => 'O perfil parcelado é obrigatória.',

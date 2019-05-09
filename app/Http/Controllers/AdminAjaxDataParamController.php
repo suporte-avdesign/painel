@@ -30,11 +30,8 @@ class AdminAjaxDataParamController extends BaseController
             return view("backend.erros.message-401");
         }
 
-        if ( $this->upload ) {
-            $upload = $this->upload;
 
-        }
-
+        $upload = $this->upload;
         $title  = $this->messages['title_index'];
         $data   = $this->interModel->getAll($id);
 
@@ -51,19 +48,17 @@ class AdminAjaxDataParamController extends BaseController
         if( Gate::denies("{$this->ability}-create") ) {
             return view("backend.erros.message-401");
         }
-
-        if ( $this->upload ) {
-            $upload = $this->upload;
-        }
+        $upload  = $this->upload;
+        $options = $this->options;
 
         if ($this->select['create'] == true) {
             if ($this->select['type'] == 'pluck') {
                 $options = $this->select['table']
-                           ->pluck($this->select['name'], 
+                           ->pluck($this->select['name'],
                            $this->select['id']);
             }
-        }
 
+        }
 
         return view("{$this->view}-form-create", compact('id', 'options', 'upload'));
 
@@ -137,11 +132,9 @@ class AdminAjaxDataParamController extends BaseController
             return view("backend.erros.message-401");
         }
 
-        $data   = $this->interModel->setId($mod);
-
-        if ( $this->upload ) {
-            $upload  = $this->upload;
-        }
+        $data    = $this->interModel->setId($mod);
+        $upload  = $this->upload;
+        $options = $this->options;
 
         if ($this->select['edit'] == true) {
             if ($this->select['type'] == 'pluck') {

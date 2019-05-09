@@ -158,8 +158,6 @@ class ProductController extends Controller
         $unit_measure  = $this->configUnitMeasure->pluck();
         $configProduct = $this->configProduct->setId(1);
 
-
-
         ($configProduct->kit == 1 ? $kits = $this->configKit->pluck() : $kits = false);
         // Carregar Modulos
         ($configProduct->freight == 1 ? $freight = $this->configFreight->setId(1) : $freight = 0);

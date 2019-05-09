@@ -1,0 +1,5 @@
+11:03:45 Fez login no sistema. IP:127.0.0.1
+11:18:43 Saiu do sistema.
+16:41:18 Fez login no sistema. IP:127.0.0.1
+16:41:53 Habilitou o Usuário:Admin - Visualizar:Imagens do Slider
+16:41:54 Habilitou o Usuário:Admin - Editar:Imagens do Slider

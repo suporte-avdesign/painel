@@ -35,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
             'ConfigBrand',
             'ConfigModule',
             'ConfigSystem',
+            'ConfigSlider',
             'ConfigProfile',
             'ConfigProduct',
             'ConfigFreight',

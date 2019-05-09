@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigSubjectContactTableSeeder::class);
         $this->call(ConfigFormPaymentTableSeeder::class);
         $this->call(ConfigStatusPaymentTableSeeder::class);
+        $this->call(ConfigSliderTableSeeder::class);
         $this->call(StateTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(ContactTableSeeder::class);
