@@ -8,7 +8,7 @@ use AVDPainel\Interfaces\Admin\ConfigImageProductInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Facades\Gate;
-use File;
+use Illuminate\Support\Facades\Storage;
 
 
 class ConfigImageProductRepository implements ConfigImageProductInterface
@@ -214,10 +214,10 @@ class ConfigImageProductRepository implements ConfigImageProductInterface
     {
         $width  = $input['width'];
         $height = $input['height'];
-        $path   = storage_path().'/app/public/'.$input['path'];
+        $path   = 'public/'.$input['path'];
 
         if ( !file_exists($path.'/'.$width.'x'.$height) ) {
-            File::makeDirectory($path.'/'.$width.'x'.$height, 0777, true);
+            Storage::makeDirectory($path.'/'.$width.'x'.$height, 0777, true);
         }
 
         $data = $this->model->find($id);

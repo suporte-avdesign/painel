@@ -1,0 +1,328 @@
+<hgroup id="main-title" class="thin">
+    <h1>Canvas Hexadecimal</h1>
+</hgroup>
+
+<div class="with-padding">
+    <div class="wrapped margin-bottom big-left-icon icon-gear">
+        <h4 class="no-margin-bottom">Canvas Hexadecimal</h4>        
+        Este recurso requer o arquivo de plugin <b>js/avd.canvas.js</b>
+    </div>
+    
+    <form action="#" method="POST" onsubmit="return false">
+        <fieldset class="fieldset">
+            <legend class="legend">Image Canvas</legend>
+            <div class="columns">
+                <!-- form -->
+                <div class="five-columns twelve-columns-tablet">
+                    <h4 class="green underline">Form:</h4>
+                    <p class="button-height inline-small-label">
+                        <label for="input-2" class="label">Small</label>
+                        <input type="text" name="input-2" id="input-2" class="input" value="">
+                    </p>
+
+                    <p class="button-height inline-label">
+                        <label for="input-3" class="label">Normal label</label>
+                        <input type="text" name="input-3" id="input-3" class="input" value="">
+                    </p>
+                    <p class="button-height inline-medium-label">
+                        <label for="input-4" class="label">Medium label</label>
+                        <input type="text" name="input-4" id="input-4" class="input" value="">
+                    </p>
+                    <p class="button-height inline-medium-label">
+                        <label for="radio-1" class="label">Radio</label>
+                        <span class="button-group">
+                            <label for="button-radio-1" class="button green-active">
+                                <input type="radio" name="button-radio" id="button-radio-1" value="1" checked>
+                                um
+                            </label>
+                            <label for="button-radio-2" class="button green-active">
+                                <input type="radio" name="button-radio" id="button-radio-2" value="2">
+                                dois
+                            </label>
+                            <label for="button-radio-3" class="button green-active">
+                                <input type="radio" name="button-radio" id="button-radio-3" value="3">
+                                tres
+                            </label>
+                        </span>
+                    </p>                    
+                    <p class="button-height inline-medium-label">
+                        <label for="checkbox-1" class="label">Checkbox</label>
+                        <span class="button-group">
+                            <label for="button-checkbox-1" class="button green-active">
+                                <input type="checkbox" name="button-checkbox-1" id="button-checkbox-1" value="1">
+                                First
+                            </label>
+                            <label for="button-checkbox-2" class="button green-active">
+                                <input type="checkbox" name="button-checkbox-2" id="button-checkbox-2" value="2" checked>
+                                Second
+                            </label>
+                            <label for="button-checkbox-3" class="button green-active">
+                                <input type="checkbox" name="button-checkbox-3" id="button-checkbox-3" value="3">
+                                Third
+                            </label>
+                        </span>
+                    </p>                    
+                    <p class="button-height inline-small-label">
+                        <label for="input-2" class="label">Input</label>
+                        <span class="input">
+                            <label for="pseudo-input-2" class="button orange-gradient">
+                                <span class="icon-phone small-margin-right"></span>
+                            </label>
+                            <select name="pseudo-input-select" class="select compact expandable-list" style="width: 100px">
+                                <option value="USA">USA</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                ...
+                            </select>
+                            <input type="text" name="pseudo-input-2" id="pseudo-input-2" class="input-unstyled input-sep" placeholder="Area" value="" maxlength="3" style="width: 30px;">
+                            <input type="text" name="pseudo-input-3" id="pseudo-input-3" class="input-unstyled" placeholder="Number" value="" style="width: 80px;">
+                        </span>                    
+                    </p>                    
+                    <p class="button-height inline-small-label">
+                        <label for="count-1" class="label">Count 1</label>
+                        <span class="number input margin-right">
+                            <button type="button" class="button number-down">-</button>
+                            <input type="text" value="20" size="4" class="input-unstyled" data-number-options='{"min":15,"max":30,"increment":0.5,"shiftIncrement":5,"precision":0.25}'>
+                            <button type="button" class="button number-up">+</button>
+                        </span>                    
+                    </p>
+                    <p class="button-height inline-small-label">
+                        <label for="count-2" class="label">Count 2</label>
+                        <span class="number input margin-right">
+                            <button type="button" class="button number-down">-</button>
+                            <input type="text" value="320" size="3" class="input-unstyled">
+                            <button type="button" class="button number-up">+</button>
+                        </span>
+                    </p>                    
+                </div>
+                <!-- canvas -->
+                <div class="five-columns eight-columns-tablet">
+                    <h4 class="green underline">Upload tamanho minimo 1200x1200</h4>
+                    <div class="wrapped margin-bottom">
+                        <p class="button-height">
+                            <input type="file" name="file" id="uploadCanvas" value="" class="file" onmouseover="createCanvas(350,350)" onchange="loadCanvasFile();" />
+                            <img id="slika" style="display:none" src="imagens/produtos/1200x1200/distribuidor-de-calcados-categoria-1-verde-secao-1-fabricante-1-nvlnonnasn-12345.jpg">
+                            <canvas onmouseover="createCanvas(350,350)" id="myCanvas" width="350" height="350" style="margin-top:10px;">
+                                O seu navegador não suporta a etiqueta HTML5 para canvas.
+                            </canvas>
+                        </p>
+                    </div>
+                </div>
+                <!-- miniaturas -->
+                <div class="two-columns two-columns-tablet">
+                    <h4 class="green underline">Miniatura</h4>
+                    <div class="wrapped margin-bottom">
+                        <div align="center">
+                            <a href="javascript:createCanvas(350,350)" class="button icon-camera">Cortar</a>
+                        </div>
+                        <div  align="center">
+                            <canvas  id="pixCanvas" width="100%" height="100%" style="margin-top:10px; z-index: 0;">
+                                O seu navegador não suporta a etiqueta HTML5 para canvas.
+                            </canvas>
+                        </div>
+                        <div class="button-height" align="center">
+                            <input type="text" name="pixcolor" id="pixcolor" class="input" maxlength="7" style="width:82px">
+                            <p id="barvadiv" style="margin-top:2px;width:100px;height:100px"></p>
+                        </div>
+                        <div align="center">
+                            <br>
+                            <label for="title" class="label strong">Grupo de cores</label>
+                            <span id="grupo" class="d-none"></span>
+                            <select id="piker-cores" name="piker[]" multiple="multiple">
+                                <option value="#000000">Selecione</option>
+                                <option value="#a9a9a9">Selecione</option>
+                                <option value="#ffffff">Selecione</option>
+                                <option value="#0000cd">Selecione</option>
+                                <option value="#8000ff">Selecione</option>
+                                <option value="#4682b4">Selecione</option>
+                                <option value="#6495ed">Selecione</option>
+                                <option value="#00bfff">Selecione</option>
+                                <option value="#afeeee">Selecione</option>
+                                <option value="#006400">Selecione</option>
+                                <option value="#2e8b57">Selecione</option>
+                                <option value="#32cd32">Selecione</option>
+                                <option value="#6b8e23">Selecione</option>
+                                <option value="#9acd32">Selecione</option>
+                                <option value="#90ee90">Selecione</option>
+                                <option value="#00ff00">Selecione</option>
+                                <option value="#20b2aa">Selecione</option>
+                                <option value="#7fffd4">Selecione</option>
+                                <option value="#008b8b">Selecione</option>
+                                <option value="#dc143c">Selecione</option>
+                                <option value="#ff6347">Selecione</option>
+                                <option value="#800000">Selecione</option>
+                                <option value="#a52a2a">Selecione</option>
+                                <option value="#cd5c5c">Selecione</option>
+                                <option value="#cd853f">Selecione</option>
+                            </select>
+                            <span id="grupo-cores" class="d-none"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div align="center">
+                <button type="submit" class="button icon-star">Create</button>
+            </div>
+        </fieldset>
+    </form>
+
+
+</div>
+
+
+
+<script>
+
+;(function(window, document)
+{
+    var ev = 0;
+    var cnvHeight;
+    var cnvWidth;
+    var mousePos;
+    var c;
+    var d;
+    var ctx;
+    var cPix;
+    var ctxPix;
+    var img;
+    var imgHeight;
+    var imgWidth;
+    var imageData;
+    var istat = true;
+    var doc = document;
+
+    var oFReader = new FileReader();
+    oFReader.onload = function(e) {
+        doc.getElementById("slika").src = e.target.result;
+    };
+
+
+
+
+    loadCanvasFile = function () {
+
+
+        var rFilter = /^(?:image\/bmp|image\/cis\-cod|image\/gif|image\/ief|image\/jpeg|image\/jpeg|image\/jpeg|image\/pipeg|image\/png|image\/svg\+xml|image\/tiff|image\/x\-cmu\-raster|image\/x\-cmx|image\/x\-icon|image\/x\-portable\-anymap|image\/x\-portable\-bitmap|image\/x\-portable\-graymap|image\/x\-portable\-pixmap|image\/x\-rgb|image\/x\-xbitmap|image\/x\-xpixmap|image\/x\-xwindowdump)$/i;
+        if (doc.getElementById("uploadCanvas").files.length === 0) {
+            return;
+        }
+        var oFile = doc.getElementById("uploadCanvas").files[0];
+        if (!rFilter.test(oFile.type)) {
+            msgNotifica(false, 'Você deve selecionar um arquivo de imagem válido!', true, false);
+            return;
+        }
+        oFReader.readAsDataURL(oFile);
+
+    }
+
+
+    createCanvas = function(cnvWidth,cnvHeight) {
+
+        c = doc.getElementById("myCanvas");
+        ctx = c.getContext("2d");
+
+        cPix = doc.getElementById("pixCanvas");
+        
+        ctxPix = cPix.getContext("2d");
+
+        ctxPix.mozImageSmoothingEnabled = false;
+        ctxPix.webkitImageSmoothingEnabled = false;
+
+        img = doc.getElementById("slika");
+        imgHeight = img.height;
+        imgWidth = img.width;
+
+
+        if (imgHeight < cnvHeight && imgWidth < cnvWidth) {
+            ctx.mozImageSmoothingEnabled = false;
+            ctx.webkitImageSmoothingEnabled = false;
+        }
+
+        if ((imgWidth / imgHeight) < 1.56667) {
+            cnvWidth = imgWidth / imgHeight * cnvHeight;
+        } else {
+            cnvHeight = cnvWidth / (imgWidth / imgHeight);
+        }
+        ctx.clearRect(0, 0, c.width, c.height);
+        ctx.drawImage(img, 0, 0, cnvWidth, cnvHeight);
+        
+        var onclickListener = function(evt) {
+            imageData = ctxPix.getImageData(0, 0, 150, 150);
+            var barva = '#' + d2h(imageData.data[45300 + 0]) + d2h(imageData.data[45300 + 1]) + d2h(imageData.data[45300 + 2]);
+            doc.getElementById("pixcolor").value = barva;
+            doc.getElementById("barvadiv").style.backgroundColor = barva;
+           
+        };
+
+        var onmoveListener = function(evt) {
+            this.style.cursor="crosshair";
+            ev = 1;
+            if (istat) {
+                mousePos = getMousePos(c, evt);
+                drawPix(imgWidth, imgHeight, cPix, ctxPix, img, Math.round(mousePos.x * (imgWidth / cnvWidth)), Math.round(mousePos.y * (imgHeight / cnvHeight)));
+            }
+        };
+
+        c.addEventListener('mousemove', onmoveListener, false);
+        c.addEventListener('mousedown', onclickListener, false);
+
+        var onMiniclickListener = function(evt) {
+            mousePos = getMousePos(cPix, evt);
+            imageData = ctxPix.getImageData(0, 0, 150, 150);            
+            var loc = Math.round(mousePos.y) * 600 + Math.round(mousePos.x) * 4;
+            var barva = '#' + d2h(imageData.data[loc + 0]) + d2h(imageData.data[loc + 1]) + d2h(imageData.data[loc + 2]);
+            doc.getElementById("pixcolor").value = barva;
+            doc.getElementById("pixcolor").select();
+            doc.getElementById("barvadiv").style.backgroundColor = barva;
+        };
+
+        cPix.addEventListener('mousedown', onMiniclickListener, false);
+
+    }
+
+    drawPix = function(imgWidth, imgHeight, cPix, ctxPix, img, x, y) {
+        ctxPix.clearRect(0, 0, cPix.width, cPix.height);
+        if (x < 5) x = 5;
+        if (y < 5) y = 5;
+        if (x > imgWidth - 4) x = imgWidth - 4;
+        if (y > imgHeight - 4) y = imgHeight - 4;
+        ctxPix.drawImage(img, x - 5, y - 5, 9, 9, 0, 0, cPix.width, cPix.height);
+    }
+
+    getMousePos = function(canvas, evt) {
+        var rect = canvas.getBoundingClientRect();
+        return {
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top
+        };
+    }
+
+    d2h = function(d) {
+        return ("0" + d.toString(16)).slice(-2).toUpperCase();
+    }
+
+})(window, document);  
+  
+</script>
+
+<script>
+    // Grupo Cores
+    var checks = "";
+    $( "#piker-cores option:selected" ).each(function() {
+        var color = $( this ).val(),
+        idc = color.replace("#","");
+        checks += '<input id="'+idc+'" type="checkbox" name="grupo['+color+']"  value="1" checked>';
+    });
+    $( "#grupo-cores" ).html( checks );
+    $('#grupo').on('click', function() {
+        $('select[name="piker[]"]').simplecolorpicker({
+            multiple: true,
+            element: 'grupo-cores',
+            theme: 'fontawesome'
+        });
+    });
+    $('#grupo').trigger('click');
+</script>
+
+<script>    
+createCanvas(350,350);
+</script>

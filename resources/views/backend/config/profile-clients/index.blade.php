@@ -23,11 +23,11 @@
 		<tr>
             <th scope="col" width="10%" class="align-center">Ordem</th>
             <th scope="col" width="20%" class="align-center">Perfil</th>
-			<th scope="col" width="20%" class="align-center">% Parcelado</th>
-            <th scope="col" width="20%" class="align-center">% À Vísta</th>
+			<th scope="col" width="10%" class="align-center">% Parcelado</th>
+            <th scope="col" width="10%" class="align-center">% À Vísta</th>
             <th scope="col" width="10%" class="align-center">Para</th>
             <th scope="col" class="align-center">Status</th>
-			<th scope="col" width="10%" class="align-center">Ações</th>
+			<th scope="col" width="30%" class="align-center">Ações</th>
 		</tr>
 	</thead>
 

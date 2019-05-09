@@ -163,7 +163,7 @@
 									</a>
 								</li>
 							@endcan
-							@can('config-image-color-group-view')
+							@can('config-color-group-view')
 								<li>
 									<a href="config/grupo-cores" class="file-link">
 										<span class="icon folder-piker"></span>

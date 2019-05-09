@@ -197,8 +197,8 @@
             var card = $("input[name='price[1][price_card]']").val();
             var descont = percent*card;
             var cash = card-descont;
-            var value      = new Number(cash);
-            var total      = value.toFixed(2);
+            var value = new Number(cash);
+            var total = value.toFixed(2);
             $("input[name='price[1][price_cash]']").val(total);
             if (profiles == 1) {                
                 $.ajax({

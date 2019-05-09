@@ -20,6 +20,8 @@ class PainelController extends Controller
 {
     protected $last_url;
     protected $sidbar;
+    protected $phat_url;
+    protected $avatar_url;
 
 
     /**
@@ -37,6 +39,8 @@ class PainelController extends Controller
         $this->access            = $access;
         $this->interConfigSystem = $interConfigSystem;
         $this->interConfigAvatar = $interConfigAvatar->setId(1);
+        $this->avatar_url        = 'https://www.gravatar.com/avatar';
+        $this->phat_url          = 'storage/';
 
     }
 
@@ -61,11 +65,11 @@ class PainelController extends Controller
 
         $width    = $this->interConfigAvatar->width_photo;
         $height   = $this->interConfigAvatar->height_photo;
-        $path     = 'storage/'.$this->interConfigAvatar->path.$width.'x'.$height.'/';
+        $path     = $this->phat_url.$this->interConfigAvatar->path.$width.'x'.$height.'/';
 
         $photos = auth()->user()->photo;
 
-        $avatar = 'https://www.gravatar.com/avatar';
+        $avatar = $this->avatar_url;
         foreach ($photos as $photo) {
             if ($photo->status == 'Ativo' && $photo->image != '') {
                 $avatar = $path. $photo->image;
@@ -83,9 +87,7 @@ class PainelController extends Controller
 
         $this->access->update($this->last_url);
 
-        return view('backend.home.index', compact(
-            'confUser', 'sidebar', 'avatar'
-        ));
+        return view('backend.home.index', compact('sidebar', 'avatar'));
     }
 
     /**

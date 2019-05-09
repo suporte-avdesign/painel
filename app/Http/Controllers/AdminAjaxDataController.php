@@ -37,7 +37,7 @@ class AdminAjaxDataController extends BaseController
         $title        = $this->messages['title_index'];
         $title_create = $this->messages['title_create'];
 
-        return view("{$this->view}.index", compact('data', 'title', 'title_create', 'confUser'));    
+        return view("{$this->view}.index", compact('data', 'title', 'title_create'));
     }
 
     /**
@@ -49,7 +49,11 @@ class AdminAjaxDataController extends BaseController
     {
         if( Gate::denies("{$this->ability}-create") ) {
             return view("backend.erros.message-401");
-        }        
+        }
+
+        $title = $this->messages['title_create'];
+        $options = $this->options;
+
 
         if ($this->select['create'] == true) {
             if ($this->select['type'] == 'pluck') {
@@ -59,7 +63,7 @@ class AdminAjaxDataController extends BaseController
             }
         }
 
-        return view("{$this->view}.form", compact('title', 'options'));
+        return view("{$this->view}.form-create", compact('title', 'options'));
 
     }
 
@@ -161,9 +165,9 @@ class AdminAjaxDataController extends BaseController
             return view("backend.erros.message-401");
         }
 
-        $data  = $this->interModel->setId($id); 
-
-        $title = $this->messages['title_edit'];
+        $data    = $this->interModel->setId($id);
+        $title   = $this->messages['title_edit'];
+        $options = $this->options;
         
         if ($this->select['edit'] == true) {
             if ($this->select['type'] == 'pluck') {
@@ -173,7 +177,7 @@ class AdminAjaxDataController extends BaseController
             }
         }
 
-        return view("{$this->view}.form", compact('data', 'title', 'options'));
+        return view("{$this->view}.form-edit", compact('data', 'title', 'options'));
 
     }
 

@@ -159,6 +159,7 @@ class ProductController extends Controller
         $configProduct = $this->configProduct->setId(1);
 
 
+
         ($configProduct->kit == 1 ? $kits = $this->configKit->pluck() : $kits = false);
         // Carregar Modulos
         ($configProduct->freight == 1 ? $freight = $this->configFreight->setId(1) : $freight = 0);
@@ -175,7 +176,6 @@ class ProductController extends Controller
             'freight',
             'category',
             'percentage',
-            'configPrice',
             'unit_measure',
             'configProduct')
         );
@@ -285,7 +285,7 @@ class ProductController extends Controller
         // Carregar Modulos
         ($configProduct->freight == 1 ? $freight = $this->configFreight->setId(1) : $freight = 0);
 
-        return  view('backend.products.modal.forms.product-edit', compact(
+        return  view('backend.products.modal.forms.edit.product-edit', compact(
             'data',
             'kits',
             'prices',

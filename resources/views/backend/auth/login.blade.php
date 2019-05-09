@@ -62,7 +62,7 @@
     <link rel="apple-touch-startup-image" href="{{url('assets/backend/img/splash/iphone.png')}}" media="(device-width: 320px)">
     <!-- iPhone (Retina) SPLASHSCREEN (640x960) -->
     <link rel="apple-touch-startup-image" href="{{url('assets/backend/img/splash/iphone-retina.png')}}" media="(device-width: 320px) and (-webkit-device-pixel-ratio: 2)">
-    <!-- iPhone 5 SPLASHSCREEN (640×1096) -->
+    <!-- iPhone 5 SPLASHSCREEN (640ï¿½1096) -->
     <link rel="apple-touch-startup-image" href="{{url('assets/backend/img/splash/iphone5.png')}}" media="(device-height: 568px) and (-webkit-device-pixel-ratio: 2)">
     <!-- iPad (portrait) SPLASHSCREEN (748x1024) -->
     <link rel="apple-touch-startup-image" href="{{url('assets/backend/img/splash/ipad-portrait.png')}}" media="(device-width: 768px) and (orientation: portrait)">
@@ -98,7 +98,8 @@
 
             <p class="button-height">
                 <button type="submit" class="button glossy float-right" id="login">Login</button>
-                <input type="checkbox" name="remember" id="remind" value="1" class="switch tiny mid-margin-right with-tooltip" title="Habilitar login automático">
+                <input type="checkbox" name="remember" id="remember" class="switch tiny mid-margin-right with-tooltip" title="Habilitar login
+automÃ¡tico">
                 <label for="remind">Lembre-me</label>
             </p>
         </form>

@@ -18,7 +18,6 @@
 
                     <label for="label-cash-{{$price->id}}" class="button green-gradient">{{$percent_cash}}%</label>
 
-
                     <input type="text" name="price[{{$price->id}}][price_cash]" id="price_card_{{$price->id}}" class="input-unstyled input-sep" placeholder="À Vísta" value="{{number_format($total_cash, 2, '.', '')}}" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 50px;">
 
                 </span>
@@ -29,5 +28,4 @@
             </p>
         @endif
     @endforeach
-    
 @endif

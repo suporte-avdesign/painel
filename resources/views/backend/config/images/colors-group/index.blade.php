@@ -1,7 +1,8 @@
 <div class="block">
     <div class="block-title">
         <h3>{{$title}}</h3>
-        @can('config-color-grup-create')
+
+        @can('config-color-group-create')
             <div class="button-group absolute-right">
                 <a href="javascript:abreModal('Adicionar Cor', '{{route('grupo-cores.create')}}', 'color-grup', 2, 'true', 400, 250)" class="button blue-gradient icon-plus-round">Adicionar</a>
             </div>
@@ -14,10 +15,10 @@
                     <button id="color_{{$hexa->id}}" class="color with-tooltip" title="{{$hexa->order}}: {{$hexa->name}}" data-tooltip-options='{"classes":["anthracite-gradient"],"position":"bottom"}'  style="background-color:{{$hexa->code}}; width:40px;height:40px" ></button>
                     <span class="controls">
                         <span class="button-group compact">
-                            @can('config-color-grup-update')
+                            @can('config-color-group-update')
                                 <a href="javascript:abreModal('Editar {{$hexa->name}}', '{{route('grupo-cores.edit', $hexa->id)}}', 'color-grup', 2, 'true', 400, 250)" class="button icon-pencil" title="Editar"></a>
                             @endcan
-                            @can('config-color-grup-delete')
+                            @can('config-color-group-delete')
                                 <a href="javascript:deleteColorGrup('{{$hexa->id}}', '{{route('grupo-cores.destroy', $hexa->id)}}', '{{csrf_token()}}')" class="button icon-trash red-gradient confirm" title="Excluir"></a>
                             @endcan
                         </span>

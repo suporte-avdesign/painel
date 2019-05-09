@@ -1,0 +1,549 @@
+<style type="text/css">
+
+.preview-container {
+    border: 1px rgba(0,0,0,.4) solid;
+    background-color: white;
+
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);  
+    width: 130px;
+    height: 130px;
+    overflow: hidden;
+}
+
+</style>
+<hgroup id="main-title" class="thin">
+    <h1>Form Crop</h1>
+</hgroup>
+
+<div class="with-padding">
+    <div class="wrapped margin-bottom big-left-icon icon-gear">
+        <h4 class="no-margin-bottom">Crop</h4>        
+        Este recurso requer o plugin <b>js/lib/CropperMater/dist/cropper.js e cropper.css</b>
+    </div>
+
+    <form action="#" method="POST" onsubmit="return false">
+        <!-- hidden crop params -->
+        <input type="hidden" id="x1" name="x1" />
+        <input type="hidden" id="y1" name="y1" />
+        <input type="hidden" id="x2" name="x2" />
+        <input type="hidden" id="y2" name="y2" />
+
+        <fieldset class="fieldset">
+            <legend class="legend">Image Crop</legend>
+            <div class="columns">
+                <!-- form -->
+                <div class="five-columns twelve-columns-tablet">
+                    <h4 class="green underline">Form:</h4>
+                    <p class="button-height inline-small-label">
+                        <label for="input-2" class="label">Small</label>
+                        <input type="text" name="input-2" id="input-2" class="input" value="">
+                    </p>
+
+                    <p class="button-height inline-label">
+                        <label for="input-3" class="label">Normal label</label>
+                        <input type="text" name="input-3" id="input-3" class="input" value="">
+                    </p>
+                    <p class="button-height inline-medium-label">
+                        <label for="input-4" class="label">Medium label</label>
+                        <input type="text" name="input-4" id="input-4" class="input" value="">
+                    </p>
+                    <p class="button-height inline-medium-label">
+                        <label for="radio-1" class="label">Radio</label>
+                        <span class="button-group">
+                            <label for="button-radio-1" class="button green-active">
+                                <input type="radio" name="button-radio" id="button-radio-1" value="1" checked>
+                                um
+                            </label>
+                            <label for="button-radio-2" class="button green-active">
+                                <input type="radio" name="button-radio" id="button-radio-2" value="2">
+                                dois
+                            </label>
+                            <label for="button-radio-3" class="button green-active">
+                                <input type="radio" name="button-radio" id="button-radio-3" value="3">
+                                tres
+                            </label>
+                        </span>
+                    </p>                    
+                    <p class="button-height inline-medium-label">
+                        <label for="checkbox-1" class="label">Checkbox</label>
+                        <span class="button-group">
+                            <label for="button-checkbox-1" class="button green-active">
+                                <input type="checkbox" name="button-checkbox-1" id="button-checkbox-1" value="1">
+                                First
+                            </label>
+                            <label for="button-checkbox-2" class="button green-active">
+                                <input type="checkbox" name="button-checkbox-2" id="button-checkbox-2" value="2" checked>
+                                Second
+                            </label>
+                            <label for="button-checkbox-3" class="button green-active">
+                                <input type="checkbox" name="button-checkbox-3" id="button-checkbox-3" value="3">
+                                Third
+                            </label>
+                        </span>
+                    </p>                    
+                    <p class="button-height inline-small-label">
+                        <label for="input-2" class="label">Input</label>
+                        <span class="input">
+                            <label for="pseudo-input-2" class="button orange-gradient">
+                                <span class="icon-phone small-margin-right"></span>
+                            </label>
+                            <select name="pseudo-input-select" class="select compact expandable-list" style="width: 100px">
+                                <option value="USA">USA</option>
+                                <option value="United Kingdom">United Kingdom</option>
+                                ...
+                            </select>
+                            <input type="text" name="pseudo-input-2" id="pseudo-input-2" class="input-unstyled input-sep" placeholder="Area" value="" maxlength="3" style="width: 30px;">
+                            <input type="text" name="pseudo-input-3" id="pseudo-input-3" class="input-unstyled" placeholder="Number" value="" style="width: 80px;">
+                        </span>                    
+                    </p>                    
+                    <p class="button-height inline-small-label">
+                        <label for="count-1" class="label">Count 1</label>
+                        <span class="number input margin-right">
+                            <button type="button" class="button number-down">-</button>
+                            <input type="text" value="20" size="4" class="input-unstyled" data-number-options='{"min":15,"max":30,"increment":0.5,"shiftIncrement":5,"precision":0.25}'>
+                            <button type="button" class="button number-up">+</button>
+                        </span>                    
+                    </p>
+                    <p class="button-height inline-small-label">
+                        <label for="count-2" class="label">Count 2</label>
+                        <span class="number input margin-right">
+                            <button type="button" class="button number-down">-</button>
+                            <input type="text" value="320" size="3" class="input-unstyled">
+                            <button type="button" class="button number-up">+</button>
+                        </span>
+                    </p>                    
+                </div>
+                <!-- imagem -->
+                <div class="five-columns eight-columns-tablet">
+                    <h4 class="green underline">Upload tamanho minimo 1200x1200</h4>
+                    <div class="wrapped margin-bottom">                    
+                        <p class="button-height">
+                        <input type="file" class="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif">
+                            <div id="step2">
+                                <img  id="image" src="http://painel.dev/imagens/padrao/crop.jpg" width="350" />
+                            </div>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- miniaturas -->
+                <div class="two-columns two-columns-tablet">
+                    <h4 class="green underline">Miniatura</h4>
+                        <div class="preview-container">
+                            <div class="img-preview"></div>
+                        </div>                   
+                        <div align="center" style="margin-top:10px">
+                            <br>
+                            <label for="title" class="label strong">Grupo de cores</label>
+                            <span id="grupo" class="d-none"></span>
+                            <select id="piker-cores" name="piker[]" multiple="multiple">
+                                <option value="#000000">Selecione</option>
+                                <option value="#a9a9a9">Selecione</option>
+                                <option value="#ffffff">Selecione</option>
+                                <option value="#0000cd">Selecione</option>
+                                <option value="#8000ff">Selecione</option>
+                                <option value="#4682b4">Selecione</option>
+                                <option value="#6495ed">Selecione</option>
+                                <option value="#00bfff">Selecione</option>
+                                <option value="#afeeee">Selecione</option>
+                                <option value="#006400">Selecione</option>
+                                <option value="#2e8b57">Selecione</option>
+                                <option value="#32cd32">Selecione</option>
+                                <option value="#6b8e23">Selecione</option>
+                                <option value="#9acd32">Selecione</option>
+                                <option value="#90ee90">Selecione</option>
+                                <option value="#00ff00">Selecione</option>
+                                <option value="#20b2aa">Selecione</option>
+                                <option value="#7fffd4">Selecione</option>
+                                <option value="#008b8b">Selecione</option>
+                                <option value="#dc143c">Selecione</option>
+                                <option value="#ff6347">Selecione</option>
+                                <option value="#800000">Selecione</option>
+                                <option value="#a52a2a">Selecione</option>
+                                <option value="#cd5c5c">Selecione</option>
+                                <option value="#cd853f">Selecione</option>
+                            </select>
+                            <span id="grupo-cores" class="d-none"></span>
+                        </div>
+                        <div align="center">
+                            <span class="input">
+                                <label for="input-a" class="button blue-gradient"> W </label>
+                                <input type="text" name="w" id="dataWidth" class="input-unstyled" style="width:37px;">
+                                <label for="input-hpx" class="button blue-gradient">Px</label>
+                            </span>
+
+                            <span class="input">
+                                <label for="input-a" class="button blue-gradient"> H </label>
+                                <input type="text" name="h" id="dataHeight" class="input-unstyled" style="width:40px;">
+                                <label for="input-hpx" class="button blue-gradient">Px</label>
+                            </span>
+                            <span class="input">
+                                <label for="input-x" class="button blue-gradient"> X </label>
+                                <input type="text"  name="x" id="dataX" class="input-unstyled" style="width:40px">
+                                <label for="input-xpx" class="button blue-gradient">Px</label>
+                            </span>
+
+                            <span class="input">
+                                <label for="input-y" class="button blue-gradient"> Y </label>
+                                <input type="text"  name="y" id="dataY" class="input-unstyled" style="width:40px;">
+                                <label for="input-ypx" class="button blue-gradient">Px</label>
+                            </span>
+
+                            <span class="input">
+                                <label for="input-y" class="button blue-gradient"> R </label>
+                                <input type="text"  name="y" id="dataRotate" class="input-unstyled" style="width:40px;">
+                                <label for="input-ypx" class="button blue-gradient">Rp</label>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="docs-buttons" align="center">
+                    <span class="button-group">
+                        <button type="button" class="button" data-method="setDragMode" data-option="move"><i class="fa fa-arrows" aria-hidden="true"></i></button>
+                        <button type="button" class="button" data-method="setDragMode" data-option="crop"><i class="fa fa-crop" aria-hidden="true"></i></button>
+                    </span>
+
+                    <span class="button-group">
+                        <button type="button" class="button" data-method="zoom" data-option="0.1"><i class="fa fa-search-plus" aria-hidden="true"></i></button>
+                        <button type="button" class="button" data-method="zoom" data-option="-0.1"><i class="fa fa-search-minus" aria-hidden="true"></i></button>
+                    </span>
+
+                    <span class="button-group">
+                        <button type="button" class="button icon-left-fat" data-method="move" data-option="-10" data-second-option="0"></button>
+                        <button type="button" class="button icon-right-fat" data-method="move" data-option="10" data-second-option="0"></button>
+                        <button type="button" class="button icon-up-fat" data-method="move" data-option="0" data-second-option="-10"></button>
+                        <button type="button" class="button icon-down-fat" data-method="move" data-option="0" data-second-option="10"></button>                        
+                    </span>
+
+                    <span class="button-group">
+                        <button type="button" class="button icon-undo" data-method="rotate" data-option="-45"></button>
+                        <button type="button" class="button icon-redo" data-method="rotate" data-option="45"></button>
+                    </span>
+
+                    <span class="button-group">
+                        <button type="button" class="button" data-method="scaleX" data-option="-1"><span class="fa fa-arrows-h"></span></button>
+                        <button type="button" class="button" data-method="scaleY" data-option="-1"><span class="fa fa-arrows-v"></span></button>
+                    </span>
+
+                    <span class="button-group">
+                        <button type="button" class="button icon-tick" data-method="crop"></button>
+                        <button type="button" class="button icon-cross-round" data-method="clear"></button>
+                    </span>
+
+                    <span class="button-group">
+                        <button type="button" class="button icon-lock" data-method="disable"></button>
+                        <button type="button" class="button icon-unlock" data-method="enable"></button>
+                    </span>
+
+                    <span class="button-group">
+                        <button type="button" class="button" data-method="reset"><span class="fa fa-refresh"></span></button>
+                        <button type="button" class="button" data-method="destroy"><span class="fa fa-power-off"></span></button>
+                    </span>
+
+                    <button type="button" class="button" data-method="getCroppedCanvas">Crop</button>
+
+
+                    <a class="button icon-plus-round" id="download" href="javascript:void(0);" download="cropped.jpg">Download</a>
+
+                </div>
+            </div>
+
+    
+
+
+
+
+            <div align="center">
+                <button type="submit" class="button icon-star">Create</button>
+            </div>
+
+        </fieldset>
+    </form>
+
+    <br><br>
+
+</div>
+<script>
+$(function () {
+
+    'use strict';
+
+    var console = window.console || { log: function () {} };
+    var URL = window.URL || window.webkitURL;
+    var $previews = $('.img-preview');
+    var $image = $('#image');
+    var $download = $('#download');
+    var $dataX = $('#dataX');
+    var $dataY = $('#dataY');
+    var $dataHeight = $('#dataHeight');
+    var $dataWidth = $('#dataWidth');
+    var $dataRotate = $('#dataRotate');
+    var $dataScaleX = $('#dataScaleX');
+    var $dataScaleY = $('#dataScaleY');
+
+    var options = {
+        build: function (e) {
+        var $clone = $(this).clone();
+
+            $clone.css({
+                display: 'block',
+                width: '100%',
+                minWidth: 0,
+                minHeight: 0,
+                maxWidth: 'none',
+                maxHeight: 'none'
+            });
+
+            $previews.css({
+                width: '100%',
+                overflow: 'hidden'
+            }).html($clone);
+
+        },
+        crop: function (e) {
+            $dataX.val(Math.round(e.x));
+            $dataY.val(Math.round(e.y));
+            $dataHeight.val(Math.round(e.height));
+            $dataWidth.val(Math.round(e.width));
+            $dataRotate.val(e.rotate);
+            $dataScaleX.val(e.scaleX);
+            $dataScaleY.val(e.scaleY);
+        },
+        aspectRatio: 1,
+        preview: $previews
+
+    };
+
+    var originalImageURL = $image.attr('src');
+    var uploadedImageURL;
+
+    // Cropper
+    $image.cropper(options);
+
+
+  
+     // Buttons
+      if (!$.isFunction(document.createElement('canvas').getContext)) {
+        $('button[data-method="getCroppedCanvas"]').prop('disabled', true);
+      }
+
+      if (typeof document.createElement('cropper').style.transition === 'undefined') {
+        $('button[data-method="rotate"]').prop('disabled', true);
+        $('button[data-method="scale"]').prop('disabled', true);
+      }
+
+
+      // Download
+      if (typeof $download[0].download === 'undefined') {
+        $download.addClass('disabled');
+      }
+
+    $('.docs-toggles').on('change', 'input', function () {
+        var $this = $(this);
+        var name = $this.attr('name');
+        var type = $this.prop('type');
+        var cropBoxData;
+        var canvasData;
+
+        if (!$image.data('cropper')) {
+            return;
+        }
+        if (type === 'checkbox') {
+            options[name] = $this.prop('checked');
+            cropBoxData = $image.cropper('getCropBoxData');
+            canvasData = $image.cropper('getCanvasData');
+
+            options.built = function () {
+                $image.cropper('setCropBoxData', cropBoxData);
+                $image.cropper('setCanvasData', canvasData);
+            };
+        } else if (type === 'radio') {
+            options[name] = $this.val();
+        }
+
+        $image.cropper('destroy').cropper(options);
+    });
+
+    // Methods
+    $('.docs-buttons').on('click', '[data-method]', function () {
+        var $this = $(this);
+        var data = $this.data();
+        var $target;
+        var result;
+
+        if ($this.prop('disabled') || $this.hasClass('disabled')) {
+            return;
+        }
+
+        if ($image.data('cropper') && data.method) {
+            data = $.extend({}, data); // Clone a new one
+
+            if (typeof data.target !== 'undefined') {
+                $target = $(data.target);
+
+                if (typeof data.option === 'undefined') {
+                    try {
+                        data.option = JSON.parse($target.val());
+                    } catch (e) {
+                        console.log(e.message);
+                    }
+                }
+            }
+
+            if (data.method === 'rotate') {
+                $image.cropper('clear');
+            }
+
+            result = $image.cropper(data.method, data.option, data.secondOption);
+
+            if (data.method === 'rotate') {
+                $image.cropper('crop');
+            }
+
+            switch (data.method) {
+                case 'scaleX':
+
+                case 'scaleY':
+                    $(this).data('option', -data.option);
+                break;
+
+                case 'getCroppedCanvas':
+                    if (result) {
+                        $.modal({
+                            title: 'Download da imagem cortada',
+                            content: '<div class="modal-body">'+
+                                '<img src="'+result.toDataURL('image/jpeg')+'"'+
+                                'width="350px"/>'+
+                                '<a class="button icon-plus-round" id="download"'+
+                                'href="javascript:void(0);" download="cropped.jpg">Download</a>'+
+                                '</div>'
+                        });
+
+                        if (!$download.hasClass('disabled')) {
+                            $download.attr('href', result.toDataURL('image/jpeg'));
+                        }
+                    }
+                break;
+
+                case 'destroy':
+                    if (uploadedImageURL) {
+                        URL.revokeObjectURL(uploadedImageURL);
+                        uploadedImageURL = '';
+                        $image.attr('src', originalImageURL);
+                    }
+                break;
+            }
+
+            if ($.isPlainObject(result) && $target) {
+                try {
+                    $target.val(JSON.stringify(result));
+                } catch (e) {
+                    console.log(e.message);
+                }
+            }
+
+        }
+    });
+
+
+
+    // Keyboard
+    $(document.body).on('keydown', function (e) {
+
+        if (!$image.data('cropper') || this.scrollTop > 100) {
+            return;
+        }
+
+        switch (e.which) {
+            case 37:
+                e.preventDefault();
+                $image.cropper('move', -1, 0);
+            break;
+
+            case 38:
+                e.preventDefault();
+                $image.cropper('move', 0, -1);
+            break;
+
+            case 39:
+                e.preventDefault();
+                $image.cropper('move', 1, 0);
+            break;
+
+            case 40:
+                e.preventDefault();
+                $image.cropper('move', 0, 1);
+            break;
+        }
+
+    });
+
+    // Import image
+    var $inputImage = $('#inputImage');
+
+    if (URL) {
+        $inputImage.change(function () {
+            var files = this.files;
+            var file;
+
+            if (!$image.data('cropper')) {
+                return;
+            }
+
+            if (files && files.length) {
+                file = files[0];
+
+                if (/^image\/\w+$/.test(file.type)) {
+                    if (uploadedImageURL) {
+                        URL.revokeObjectURL(uploadedImageURL);
+                    }
+
+                    uploadedImageURL = URL.createObjectURL(file);
+                    $image.cropper('destroy').attr('src', uploadedImageURL).cropper(options);
+                    $inputImage.val('');
+                } else {
+                  window.alert('Please choose an image file.');
+                }
+            }
+        });
+    } else {
+        $inputImage.prop('disabled', true).parent().addClass('disabled');
+    }
+
+
+
+});
+
+
+
+</script>
+
+<script>
+    // Grupo Cores
+    var checks = "";
+    $( "#piker-cores option:selected" ).each(function() {
+        var color = $( this ).val(),
+        idc = color.replace("#","");
+        checks += '<input id="'+idc+'" type="checkbox" name="grupo['+color+']"  value="1" checked>';
+    });
+    $( "#grupo-cores" ).html( checks );
+    $('#grupo').on('click', function() {
+        $('select[name="piker[]"]').simplecolorpicker({
+            multiple: true,
+            element: 'grupo-cores',
+            theme: 'fontawesome'
+        });
+    });
+    $('#grupo').trigger('click');
+</script>
+
+
+
+

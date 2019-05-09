@@ -7,7 +7,7 @@ use AVDPainel\Models\Admin\ConfigAdmin as Model;
 use AVDPainel\Interfaces\Admin\ConfigAdminInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use File;
+use Illuminate\Support\Facades\Storage;
 
 class ConfigAdminRepository implements ConfigAdminInterface
 {
@@ -53,13 +53,12 @@ class ConfigAdminRepository implements ConfigAdminInterface
 
     public function update($input, $id)
     {
-        $path = $input['path'];
 
+        $path = 'public/'.$input['path'];
         $path_photo = $path.$input['width_photo'].'x'.$input['height_photo'];
-        if ( !file_exists(storage_path().'/'.$path_photo) ) {
-            File::makeDirectory(storage_path().'/'.$path_photo, 0777, true);
+        if ( !file_exists($path_photo) ) {
+            Storage::makeDirectory($path_photo, 0777, true);
         }
-
 
         $data = $this->model->find($id);
 

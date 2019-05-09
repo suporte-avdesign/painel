@@ -157,7 +157,7 @@
                 @endif
 
                 @if($configProduct->freight == 1)
-                    @include('backend.products.modal.forms.freight')
+                    @include('backend.products.modal.forms.edit.freight')
                 @endif
 
             </fieldset>

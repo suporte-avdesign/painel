@@ -3,6 +3,11 @@ use Illuminate\Contracts\Filesystem\Factory as fileFactory;
 use Barryvdh\DomPDF\PDF;
 
 
+/**
+ * Abrir PDF no browser
+ * @var $order array
+ * @return  json
+ */
 if (! function_exists('printerOrderPdf')) {
     function printerOrderPdf($order) {
 

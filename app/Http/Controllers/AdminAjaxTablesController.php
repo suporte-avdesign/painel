@@ -41,10 +41,7 @@ class AdminAjaxTablesController extends BaseController
         $title        = $this->messages['title_index'];
         $confUser     = $this->confUser->get();
         $title_create = $this->messages['title_create'];
-
-        if ($this->configModel) {
-            $configModel = $this->configModel;
-        }
+        $configModel  = $this->configModel;
 
         return view("{$this->view}.index", compact('data', 'configModel', 'title', 'title_create', 'confUser'));    
     }
@@ -60,6 +57,10 @@ class AdminAjaxTablesController extends BaseController
             return view("backend.erros.message-401");
         }
 
+        $configModel = $this->configModel;
+        $options     = $this->options;
+        $title       = $this->messages['title_index'];
+
         if ($this->select['create'] == true) {
             if ($this->select['type'] == 'pluck') {
                 $options = $this->select['table']
@@ -68,12 +69,10 @@ class AdminAjaxTablesController extends BaseController
             }
         }
 
-        if ($this->configModel) {
-            $configModel = $this->configModel;
-        }
 
-
-        return view("{$this->view}.form-create", compact('title', 'configModel', 'options'));
+        return view("{$this->view}.form-create", compact(
+            'title', 'configModel', 'options'
+        ));
 
     }
 
@@ -151,7 +150,7 @@ class AdminAjaxTablesController extends BaseController
         }
 
         $data         = $this->interModel->setId($id);
-        $title        = $this->messages['title_index'];
+        $title        = $this->messages['title'];
         $title_create = $this->messages['title_index'];
 
 
@@ -171,10 +170,11 @@ class AdminAjaxTablesController extends BaseController
             return view("backend.erros.message-401");
         }
 
-        $data  = $this->interModel->setId($id); 
+        $configModel = $this->configModel;
+        $options     = $this->options;
+        $title       = $this->messages['title_edit'];
+        $data        = $this->interModel->setId($id);
 
-        $title = $this->messages['title_edit'];
-        
         if ($this->select['edit'] == true) {
             if ($this->select['type'] == 'pluck') {
                 $options = $this->select['table']
@@ -183,9 +183,6 @@ class AdminAjaxTablesController extends BaseController
             }
         }
 
-        if ($this->configModel) {
-            $configModel = $this->configModel;
-        }
 
         return view("{$this->view}.form-edit", compact('data', 'configModel', 'title', 'options'));
 

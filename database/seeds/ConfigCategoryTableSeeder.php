@@ -20,13 +20,13 @@ class ConfigCategoryTableSeeder extends Seeder
             'img_default' => 'D',
             'path' => 'imagens/categorias/',
             'img_featured' => 1,
-            'width_featured' => 234,
-            'height_featured' => 319,
+            'width_featured' => 220,
+            'height_featured' => 300,
             'img_banner' => 1,
-            'width_banner' => 870,
-            'height_banner' => 229,
+            'width_banner' => 1600,
+            'height_banner' => 400,
             'width_modal' => 400,
-            'height_modal' => 500,
+            'height_modal' => 400,
             'created_at' => $date
         ]);
     }

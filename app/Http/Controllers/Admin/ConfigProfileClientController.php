@@ -71,10 +71,11 @@ class ConfigProfileClientController extends AdminAjaxTablesController
         $configProduct = $this->configProduct->setId(1);
         $profiles      = $this->interModel->get();
         $dataForm      = $request->all();
+        $price_card    = $dataForm['card'];
 
-        $price_card = $dataForm['card'];
-
-        return view("{$this->view}.prices", compact('configProduct','profiles', 'price_card'));
+        return view("{$this->view}.prices", compact(
+            'configProduct','profiles', 'price_card'
+        ));
     }
 
     public function offers(Request $request)
@@ -82,7 +83,6 @@ class ConfigProfileClientController extends AdminAjaxTablesController
         if ($request['opc'] == 1) {
             $profiles      = $this->interModel->get();
             $configProduct = $this->configProduct->setId(1);
-
 
             return view("{$this->view}.offers", compact('configProduct','profiles'));
         }

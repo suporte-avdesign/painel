@@ -4,7 +4,7 @@ $(document).ready(function()
 {
     /*
      * JS login effect
-     * Este script permitirá efeitos para a página de login
+     * Este script permitirï¿½ efeitos para a pï¿½gina de login
 */
     // Elements
     var doc = $('html').addClass('js-login'),
@@ -14,13 +14,15 @@ $(document).ready(function()
     // If layout is centered
         centered;
 
-    /******* EDITAR ESTA SECÇÃO *******/
+    /******* EDITAR ESTA SEÃ‡ÃƒO *******/
 
     /*
      * AJAX login
-     * Essas funções irão processar o processo de login através do AJAX
+     * Essas funÃ§Ãµes irÃ£o processar o processo de login atravs do AJAX
      */
     $('#form-login').submit(function(event){
+
+        alert($("input:checkbox:checked").val());
         // Values
         var login = $.trim($('#login').val()),
             pass = $.trim($('#pass').val()),
@@ -48,6 +50,8 @@ $(document).ready(function()
             // Pare o comportamento normal
             event.preventDefault();
 
+            /*
+
             $.ajax(url, {
                 data: dataForm,
                 method: 'POST',
@@ -66,16 +70,18 @@ $(document).ready(function()
                     displayError('Erro ao contactar ao servidor!');
                 }
             });
+
+            */
         }
     });
 
-    /*******  FINAL DA SEÇÃO DE EDITAR *******/
+    /*******  FINAL DA SEï¿½ï¿½O DE EDITAR *******/
 
-    // Handle resizing (principalmente para depuração)
+    // Handle resizing (principalmente para depuraï¿½ï¿½o)
     function handleLoginResize(){
-        // Modo de detecção
+        // Modo de detecï¿½ï¿½o
         centered = (container.css('position') === 'absolute');
-        // Defina altura mínima para layout móvel
+        // Defina altura mï¿½nima para layout mï¿½vel
         if (!centered){
             container.css('margin-top', '');
         } else {
@@ -86,13 +92,13 @@ $(document).ready(function()
         }
     };
 
-    // Registro e primeira ligação
+    // Registro e primeira ligaï¿½ï¿½o
     $(window).on('normalized-resize', handleLoginResize);
     handleLoginResize();
 
     /*
-     * Função central
-     * @param boolean animate se deseja ou não animar a mudança de posição
+     * Funï¿½ï¿½o central
+     * @param boolean animate se deseja ou nï¿½o animar a mudanï¿½a de posiï¿½ï¿½o
      * @param string|element|array any jQuery selector, DOM element Ou conjunto de elementos DOM que devem ser ignorados
      * @return void
      */
@@ -118,7 +124,7 @@ $(document).ready(function()
     centerForm(false);
 
     /**
-     * Função para exibir mensagens de erro
+     * Funï¿½ï¿½o para exibir mensagens de erro
      * @param string message erro para exibir
      */
     function displayError(message){
@@ -127,23 +133,23 @@ $(document).ready(function()
             append: false,
             arrow: 'bottom',
             classes: ['red-gradient'],
-            animate: false	// Nós faremos animação mais tarde, precisamos conhecer primeiro a altura da mensagem
+            animate: false	// Nï¿½s faremos animaï¿½ï¿½o mais tarde, precisamos conhecer primeiro a altura da mensagem
         });
 
-        // Centralização vertical (onde precisamos da altura da mensagem)
+        // Centralizaï¿½ï¿½o vertical (onde precisamos da altura da mensagem)
         centerForm(true, 'fast');
 
         // Observe o encerramento e mostre com efeito
         message.on('endfade', function(event)
         {
-            // Isso será chamado uma vez que a mensagem desapareceu e seja removida
+            // Isso serï¿½ chamado uma vez que a mensagem desapareceu e seja removida
             centerForm(true, message.get(0));
 
         }).hide().slideDown('fast');
     }
 
     /**
-     * Função para exibir as mensagens de carregamento
+     * Funï¿½ï¿½o para exibir as mensagens de carregamento
      * @param string message A mensagem a ser exibida
      */
     function displayLoading(message){
@@ -155,13 +161,13 @@ $(document).ready(function()
             stripes: true,
             darkStripes: false,
             closable: false,
-            animate: false	// Nós faremos animação mais tarde, precisamos conhecer primeiro a altura da mensagem
+            animate: false	// Nï¿½s faremos animaï¿½ï¿½o mais tarde, precisamos conhecer primeiro a altura da mensagem
         });
-        // Centralização vertical (onde precisamos da altura da mensagem)
+        // Centralizaï¿½ï¿½o vertical (onde precisamos da altura da mensagem)
         centerForm(true, 'fast');
         // Observe o encerramento e mostre com efeito
         message.on('endfade', function(event){
-            // Isso será chamado uma vez que a mensagem desapareceu e seja removida
+            // Isso serï¿½ chamado uma vez que a mensagem desapareceu e seja removida
             centerForm(true, message.get(0));
 
         }).hide().slideDown('fast');

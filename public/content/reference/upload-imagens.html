@@ -1,0 +1,109 @@
+  <form id="form-cores" action="painel/ajaxImageUpload" enctype="multipart/form-data" method="POST">
+
+    <div class="alert alert-danger print-error-msg" style="display:none">
+        <ul></ul>
+    </div>
+
+    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+    <div class="form-group">
+      <label>Alt Title:</label>
+      <input type="text" name="title" class="form-control" placeholder="Add Title">
+    </div>
+
+  <div class="form-group">
+      <label>Image:</label>
+      <input type="file" name="image" class="form-control">
+    </div>
+
+    <div class="form-group">
+      <button id="upload-image" class="btn btn-success" type="submit">Upload Image</button>
+    </div>
+
+  </form>
+
+</div>
+
+<script type="text/javascript">
+  $("form").on("click","#upload-image",function(e){
+    $(this).parents("#form-cores").ajaxForm(options);
+  });
+
+  var options = { 
+    complete: function(response) 
+    {
+      if($.isEmptyObject(response.responseJSON.error)){
+        $("input[name='title']").val('');
+        alert('Image Upload Successfully.');
+      }else{
+        printErrorMsg(response.responseJSON.error);
+      }
+    },
+    error: function(response){
+      alert(response.status);
+    }
+  };
+
+  function printErrorMsg (msg) {
+  $(".print-error-msg").find("ul").html('');
+  $(".print-error-msg").css('display','block');
+  $.each( msg, function( key, value ) {
+    $(".print-error-msg").find("ul").append('<li>'+value+'</li>');
+  });
+  }
+</script>
+
+
+<script>
+/*
+$( "#upload-image" ).click(function() {
+
+
+  var options = { 
+    complete: function(response) 
+    {
+      if($.isEmptyObject(response.responseJSON.error)){
+        $("input[name='title']").val('');
+        alert('Image Upload Successfully.');
+      }else{
+        alert(response.responseJSON.error);
+      }
+    }
+  };
+
+    alert($(this).parents("#form-cores"));
+
+
+
+  //$(this).parents("#form-cores").ajaxForm(options);
+});
+
+*/
+</script> 
+
+<script type="text/javascript">
+// prepare the form when the DOM is ready 
+$(document).ready(function() { 
+    // bind form using ajaxForm 
+    $('#form-cores').ajaxForm({ 
+        // dataType identifies the expected content type of the server response 
+        dataType:  'json', 
+ 
+        // success identifies the function to invoke when the server response 
+        // has been received 
+        success:   processJson 
+    }); 
+});
+
+
+function processJson(data) { 
+    // 'data' is the json object returned from the server 
+    alert(data.message); 
+}  
+</script> 
+
+
+
+
+
+

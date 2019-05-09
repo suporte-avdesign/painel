@@ -74,7 +74,7 @@ class ConfigModuleController extends AdminAjaxTablesController
         $data    = $this->interModel->setId($id);
         $ativos  = $data->permissions()->distinct('module_id')->get();
 
-        return view('backend.config.modules.permissions', compact('title', 'data', 'ativos','options'));     
+        return view('backend.config.modules.permissions', compact('title', 'data', 'ativos'));
     }
 
     

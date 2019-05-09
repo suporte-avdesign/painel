@@ -42,7 +42,7 @@
                 <label for="order" class="label">Ordem / Status <span class="red">*</span></label>
                 <span class="number input margin-right">
                     <button type="button" class="button number-down">-</button>
-                    <input type="text" name="order" value="{{$data->order or old('order')}}" class="input-unstyled order" size="2">
+                    <input type="text" name="order" value="{{$data->order}}" class="input-unstyled order" size="2">
                     <button type="button" class="button number-up">+</button>
                 </span>
                 <span class="button-group">

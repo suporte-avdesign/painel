@@ -6,10 +6,12 @@
 |--------------------------------------------------------------------------
 */
 
+Route::get('/login', 'Admin\Auth\LoginController@showLoginForm')->name('login');
 Route::get('/', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login');
 Route::post('/', 'Admin\Auth\LoginController@login')->name('admin.login');
 Route::get('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
+
 
 // Recuperar senha
 Route::post('password/email', 'Admin\Auth\RegisterController@sendResetLinkEmail')->name('admin.password.email');

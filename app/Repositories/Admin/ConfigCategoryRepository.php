@@ -7,7 +7,7 @@ use AVDPainel\Models\Admin\ConfigCategory as Model;
 use AVDPainel\Interfaces\Admin\ConfigCategoryInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use File;
+use Illuminate\Support\Facades\Storage;
 
 class ConfigCategoryRepository implements ConfigCategoryInterface
 {
@@ -58,17 +58,17 @@ class ConfigCategoryRepository implements ConfigCategoryInterface
         $height_featured = $input['height_featured'];
         $width_banner    = $input['width_banner'];
         $height_banner   = $input['height_banner'];
-        $path            = storage_path().'/app/public/'.$input['path'];
+        $path            = 'public/'.$input['path'];
 
 
         $path_featured = $path .$width_featured.'x'.$height_featured;
         if ( !file_exists($path_featured) ) {
-            File::makeDirectory($path_featured, 0777, true);
+            Storage::makeDirectory($path_featured, 0777, true);
         }
 
         $path_banner = $path.$width_banner.'x'.$height_banner;
         if ( !file_exists($path_banner) ) {
-            File::makeDirectory($path_banner, 0777, true);
+            Storage::makeDirectory($path_banner, 0777, true);
         }
 
         $data = $this->model->find($id);

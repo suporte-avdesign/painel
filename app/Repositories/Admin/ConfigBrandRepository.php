@@ -7,7 +7,7 @@ use AVDPainel\Models\Admin\ConfigBrand as Model;
 use AVDPainel\Interfaces\Admin\ConfigBrandInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
-use File;
+use Illuminate\Support\Facades\Storage;
 
 class ConfigBrandRepository implements ConfigBrandInterface
 {
@@ -53,16 +53,20 @@ class ConfigBrandRepository implements ConfigBrandInterface
 
     public function update($input, $id)
     {
-        $path = $input['path'];
+        $width_logo    = $input['width_logo'];
+        $height_logo   = $input['height_logo'];
+        $width_banner  = $input['width_banner'];
+        $height_banner = $input['height_banner'];
+        $path          = 'public/'.$input['path'];
 
-        $path_logo = $path.$input['width_logo'].'x'.$input['height_logo'];
-        if ( !file_exists(public_path().'/'.$path_logo) ) {
-            File::makeDirectory(public_path().'/'.$path_logo, 0777, true);
+        $path_logo = $path .$width_logo.'x'.$height_logo;
+        if ( !file_exists($path_logo) ) {
+            Storage::makeDirectory($path_logo, 0777, true);
         }
 
-        $path_banner = $path.$input['width_banner'].'x'.$input['height_banner'];
-        if ( !file_exists(public_path().'/'.$path_banner) ) {
-            File::makeDirectory(public_path().'/'.$path_banner, 0777, true);
+        $path_banner = $path.$width_banner.'x'.$height_banner;
+        if ( !file_exists($path_banner) ) {
+            Storage::makeDirectory($path_banner, 0777, true);
         }
 
         $data = $this->model->find($id);

@@ -172,7 +172,7 @@
                     <span class="input">
                         <label for="price_card_percent_1" class="button blue-gradient">Normal %</label>
                         <select id="price_card_percent_1" name="price[1][price_cash_percent]" class="select compact" style="width:50px">
-                        @foreach($percentage as $key => $val)
+                            @foreach($percentage as $key => $val)
                                 <option value="{{$val}}">{{$val}}</option>
                             @endforeach
                         </select>
@@ -186,6 +186,7 @@
                 </p>
 
                 <div id="load_prices" class="button-height"></div><br>
+
                 <p class="button-height">
                     <span class="input">
                         <label for="label-offer" class="button blue-gradient">Oferta / Dias</label>

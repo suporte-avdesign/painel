@@ -41,11 +41,14 @@ class ConfigAdminController extends Controller
      */
     public function edit()
     {
+        /*
         if (Gate::denies("{$this->ability}-view")) {
             return view("backend.erros.message-401");
         }
 
-        $this->last_url = array("last_url" => "config/imagens/vendedores");
+        */
+
+        $this->last_url = array("last_url" => "config/imagens/usuarios");
         $this->access->update($this->last_url);
 
         $data = $this->interModel->setId(1);
