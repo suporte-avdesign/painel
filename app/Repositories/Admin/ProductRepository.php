@@ -349,7 +349,7 @@ class ProductRepository implements ProductInterface
         $input['unit']    = $exp[0];
         $input['measure'] = $exp[1];
 
-        $brand   = $input['brand'];
+        $brand    = $input['brand'];
         $product  = $input['name'];
         $section  = $input['section'];
         $category = $input['category'];
@@ -675,7 +675,5 @@ class ProductRepository implements ProductInterface
 
         return $out;
     }
-
-
 
 }

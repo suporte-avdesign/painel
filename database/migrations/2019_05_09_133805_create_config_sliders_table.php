@@ -16,6 +16,7 @@ class CreateConfigSlidersTable extends Migration
 
         Schema::create('config_sliders', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('type',30);
             $table->enum('status', ['Ativo', 'Inativo']);
             $table->smallInteger('delay')->nullable();
             $table->string('path');
@@ -27,21 +28,6 @@ class CreateConfigSlidersTable extends Migration
             $table->smallInteger('height_modal');
             $table->timestamps();
         });
-        /*
-        Schema::create('config_slider', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('title', 30)->nullable();
-            $table->string('text', 30)->nullable();
-            $table->text('description')->nullable();
-            $table->text('link')->nullable();
-            $table->string('image');
-            $table->enum('status', ['Ativo', 'Inativo']);
-            $table->char('order', 2);
-            $table->smallInteger('delay')->nullable();
-            $table->timestamps();
-        });
-
-        */
     }
 
     /**

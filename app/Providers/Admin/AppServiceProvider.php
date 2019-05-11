@@ -72,6 +72,7 @@ class AppServiceProvider extends ServiceProvider
             'ImageCategory',
             'ImageColor',
             'ImagePosition',
+            'ImageSlider',
             'User',
             'UserNote',
             'UserAddress',

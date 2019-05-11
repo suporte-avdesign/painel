@@ -15,6 +15,7 @@ class ConfigSliderTableSeeder extends Seeder
     {
         $date = date('Y-m-d H:i:s');
         ConfigSlider::create([
+            'type' => 'banner',
             'status' => 'Ativo',
             'delay' => 3000,
             'path' => 'imagens/slider/',

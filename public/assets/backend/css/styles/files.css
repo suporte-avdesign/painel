@@ -638,3 +638,33 @@
 .gallery:after { clear: both; }
 .files-icons,
 .gallery { zoom: 1; }
+
+
+
+/* Galery square */
+
+.gallery .square {
+	width: 17em;
+	height: 17em;
+	line-height: 17em;
+}
+.gallery .square > a {
+	width: 17em;
+	height: 17em;
+	line-height: 17em;
+}
+.gallery .square > img {
+	margin: 0;
+	vertical-align: middle;
+	max-width: 15em;
+	max-height: 15em;
+}
+.gallery .square > .controls {
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 17em;
+	height: 17em;
+	line-height: 17em;
+}

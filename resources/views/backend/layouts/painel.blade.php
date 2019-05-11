@@ -51,6 +51,10 @@
 	<!-- Color Picker group_colors-->
 	<link rel="stylesheet" href="{{url('assets/backend/css/styles/avd.colorpicker.css')}}">
 
+
+
+
+
 	<!-- JavaScript at bottom except for Modernizr -->
 	</script><script src="{{url('assets/backend/js/libs/modernizr.custom.js')}}"></script>
 
@@ -155,6 +159,7 @@
 	<script src="{{url('assets/backend/js/libs/jquery.ba-hashchange.js')}}"></script>
 	<!-- Handlebars template-script -->
 	<script src="{{url('assets/backend/js/libs/Handlebars/handlebars.js')}}"></script>
+
 
 	<!-- DataTables -->
 	<script src="{{url('assets/backend/js/libs/DataTables/jquery.dataTables.js')}}"></script>

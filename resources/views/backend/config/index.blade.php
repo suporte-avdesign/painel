@@ -59,7 +59,7 @@
 								<b>Página Home</b>
 								<ul class="files-list mini">
 									<li>
-										<a href="config/imagens/slider" class="file-link">
+										<a href="/imagens/banner/banner-slider" class="file-link">
 											<span class="icon file-dll"></span> Slider
 										</a>
 									</li>

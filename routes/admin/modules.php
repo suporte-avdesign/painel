@@ -135,4 +135,11 @@ Route::resource('order/{id}/order-shippings', 'Admin\OrderShippingController');
 Route::get('conteudos', 'Admin\ContentController@index');
 
 
+Route::resource('imagens/{id}/banner-slider', 'Admin\ImageSliderController');
+Route::put('imagens/{id}/slider/status', 'Admin\ImageSliderController@status')->name('banner-slider.status');
+Route::get('imagens/{id}/slider/order', 'Admin\ImageSliderController@order')->name('banner-slider.order');
+Route::put('imagens/slider/order', 'Admin\ImageSliderController@updateOrder')->name('banner-slider.order');
+
+
+
 

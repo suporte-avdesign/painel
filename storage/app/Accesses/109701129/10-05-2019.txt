@@ -1,0 +1,3 @@
+10:00:04 Fez login no sistema. IP:127.0.0.1
+12:42:24 Adicionou a foto do usuário:Admin
+22:19:10 Fez login no sistema. IP:127.0.0.1
