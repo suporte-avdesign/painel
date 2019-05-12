@@ -197,7 +197,7 @@
                                 '</div>');
 
                         } else {
-                            $("#grids").prepend('<li id="grid_'+json.id+'">'+
+                            $("#grids").prepend('<li class="rectangle" id="grid_'+json.id+'">'+
                                 '<h3 class="thin underline">'+icon+' '+json.name+'</h3>'+
                                 '<a href="javascript:void(0)" class="list-link">'+
                                 '<strong> '+json.label+' </strong>'+

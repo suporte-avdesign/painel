@@ -19,7 +19,7 @@ class ConfigSliderTableSeeder extends Seeder
             'status' => 'Ativo',
             'delay' => 3000,
             'path' => 'imagens/slider/',
-            'width' => '1259',
+            'width' => '1260',
             'height' => '1200',
             'width_thumb' => '100',
             'height_thumb' => '95',

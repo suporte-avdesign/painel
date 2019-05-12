@@ -1,0 +1,141 @@
+02:06:37 Fez login no sistema. IP:127.0.0.1
+02:07:57 Alterou a configuração dos banners:Inativo, Pasta:imagens/banners/
+02:19:00 Alterou a configuração dos banners:Inativo, Pasta:imagens/banners/
+02:20:17 Alterou a configuração dos banners:Inativo, Pasta:imagens/banners/
+02:20:47 Alterou a configuração dos banners:Inativo, Pasta:imagens/banners/
+11:48:35 Fez login no sistema. IP:127.0.0.1
+12:04:32 Adicionou um banner
+12:11:31 Adicionou um banner
+13:31:25 Adicionou um banner
+13:42:24 Adicionou um banner
+13:43:57 Adicionou um banner
+13:44:24 Adicionou um banner
+14:02:24 Excluiu o banner da home
+14:02:32 Excluiu o banner da home
+14:02:34 Excluiu o banner da home
+14:02:35 Excluiu o banner da home
+14:02:36 Excluiu o banner da home
+14:02:43 Excluiu o banner da home
+14:03:50 Adicionou um banner
+14:04:09 Adicionou um banner
+14:04:15 Adicionou um banner
+14:04:58 Adicionou um banner
+14:05:06 Adicionou um banner
+14:05:19 Adicionou um banner
+14:15:41 Excluiu o banner da home
+14:15:43 Excluiu o banner da home
+14:15:47 Excluiu o banner da home
+14:17:02 Adicionou um banner
+14:35:12 Excluiu o banner da home
+14:47:47 Excluiu o banner da home
+14:47:57 Excluiu o banner da home
+14:48:27 Adicionou um banner
+14:48:33 Adicionou um banner
+14:48:45 Adicionou um banner
+14:48:53 Adicionou um banner
+14:49:00 Excluiu o banner da home
+15:05:16 Adicionou um banner
+15:05:18 Excluiu o banner da home
+15:06:20 Adicionou um banner
+15:06:27 Adicionou um banner
+15:15:08 Adicionou um banner
+15:18:29 Excluiu o banner da home
+15:18:32 Excluiu o banner da home
+15:18:33 Excluiu o banner da home
+15:19:05 Adicionou um banner
+15:28:52 Adicionou um banner
+15:37:57 Alterou o status da imagen do slider
+15:38:01 Alterou o status da imagen do slider
+15:38:13 Alterou o status da imagen do slider
+15:38:26 Alterou o status da imagen do slider
+15:38:28 Alterou o status da imagen do slider
+15:38:34 Alterou o status da imagen do slider
+15:39:49 Alterou o status da imagen do slider
+15:39:55 Alterou o status da imagen do slider
+15:43:39 Alterou o status da imagen do banner para Inativo
+15:43:43 Alterou o status da imagen do banner para Ativo
+15:58:36Alterou a ordem da imagem do banner para 03
+15:58:43Alterou a ordem da imagem do banner para 08
+15:58:51Alterou a ordem da imagem do banner para 12
+15:59:00Alterou a ordem da imagem do banner para 04
+15:59:28 Alterou o status da imagen do banner para Inativo
+15:59:30 Alterou o status da imagen do banner para Ativo
+16:12:00 Excluiu o banner da home
+16:12:12 Excluiu o banner da home
+16:14:43 Adicionou um banner
+16:15:19 Adicionou um banner
+16:49:35 Adicionou um banner
+16:50:36 Adicionou o Produto: Produto/Categoria 1/Seção 1/Marca 1, Status:Ativo, Und Medida:1 Par, Tags: Fabricante,Produto,Seção 1,Categoria 1,Marca 1, Descrição: Fabricante de calçados preço de atacado, Produto,  Seção 1, Categoria 1, Marca 1, Novo:Ativo, Oferta:Ativo, Dias:30
+Perfil:Normal, Parcelado:% R$ 100,00, À Vista:5% R$ 95,00 - Oferta Parcelado:R$ 0,90, Á vista:5% R$ 0,85
+16:51:41 Adicionou a imagem do Produto:produto-categoria-1-secao-1-marca-1, Código:3333, Cor:Azul, Status:Ativo, Capa:Sim
+- Grade:33
+- Grade:34
+- Grade:35
+- Grade:36
+- Grade:37
+- Grade:38
+- Grupo:Azul Escuro
+- Grupo:Branco
+17:06:25 Alterou o four, Status:Ativo para Status:Ativo
+17:08:22 Alterou o four, Status:Ativo para Status:Ativo
+17:08:33 Alterou o four, Status:Ativo para Status:Ativo
+17:08:38 Alterou o status da imagen do banner para Inativo
+17:09:58 Excluiu o banner da home
+17:10:02 Excluiu o banner da home
+17:10:06 Excluiu o banner da home
+17:10:54 Adicionou um banner
+17:11:45 Excluiu o banner da home
+17:18:19 Alterou o four, Status:Ativo para Status:Ativo
+17:18:44 Alterou o four, Status:Ativo para Status:Ativo
+17:18:49 Alterou o status da imagen do banner para Inativo
+17:19:01 Alterou o four, Status:Inativo para Status:Inativo
+17:19:38 Alterou o four, Status:Inativo para Status:Inativo
+17:19:51 Adicionou um banner
+17:24:38 Alterou o four, Status:Ativo para Status:Ativo
+17:24:47Alterou a ordem da imagem do banner para 01
+17:24:59 Alterou o four, Status:Inativo para Status:Inativo
+17:31:08 Adicionou uma imagem no slider da home
+17:31:16 Adicionou uma imagem no slider da home
+17:31:28 Alterou o banner, Status:Ativo para Status:Ativo
+17:31:37 Alterou o banner, Status:Ativo para Status:Ativo
+17:31:44Alterou a ordem da imagem do slider
+17:32:00 Excluiu a imagem do slider
+17:33:10 Excluiu o banner da home
+17:33:26 Alterou o four, Status:Ativo para Status:Ativo
+17:33:53 Alterou o four, Status:Ativo para Status:Ativo
+17:40:32 Adicionou um banner
+17:41:25 Excluiu o banner da home
+17:41:36 Adicionou um banner
+17:41:38 Excluiu o banner da home
+17:41:48 Adicionou um banner
+17:42:59 Adicionou um banner
+17:49:37 Adicionou um banner
+17:50:13 Adicionou um banner
+17:51:37 Adicionou um banner
+17:51:51Alterou a ordem da imagem do banner para 03
+17:51:53 Excluiu o banner da home
+17:52:04 Excluiu o banner da home
+17:52:15 Adicionou um banner
+17:52:21Alterou a ordem da imagem do banner para 05
+17:52:57 Alterou o four, Status:Ativo para Status:Ativo
+17:53:03Alterou a ordem da imagem do banner para 08
+17:53:22 Excluiu o banner da home
+17:53:39 Alterou o four, Status:Ativo para Status:Ativo
+17:53:44Alterou a ordem da imagem do banner para 04
+17:53:47 Alterou o status da imagen do banner para Inativo
+17:53:49 Alterou o status da imagen do banner para Ativo
+17:54:07 Alterou o four, Status:Ativo para Status:Ativo
+17:54:13Alterou a ordem da imagem do banner para 01
+17:54:23 Alterou o four, Status:Ativo para Status:Ativo
+17:54:27 Excluiu o banner da home
+17:54:35 Excluiu o banner da home
+17:54:36 Excluiu o banner da home
+18:10:10 Adicionou um banner
+18:10:18 Alterou o four, Status:Ativo para Status:Ativo
+18:10:31Alterou a ordem da imagem do banner para 04
+18:10:45 Excluiu o banner da home
+18:20:34 Alterou o four, Status:Ativo para Status:Ativo
+18:22:00 Adicionou um banner
+18:22:11 Alterou o four, Status:Ativo para Status:Ativo
+18:22:16 Excluiu o banner da home
+18:22:28 Alterou o four, Status:Ativo para Status:Ativo

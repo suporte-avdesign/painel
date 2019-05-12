@@ -200,8 +200,8 @@ class AdminAjaxDataParamController extends BaseController
             $success = true;
             $message = $this->messages['delete_success'];
         } else {
-            $success = false;
             $message = $this->messages['delete_error'];
+            $success = false;
         }
 
         $out = array(

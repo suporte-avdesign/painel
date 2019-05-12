@@ -654,17 +654,38 @@
 	line-height: 17em;
 }
 .gallery .square > img {
-	margin: 0;
 	vertical-align: middle;
 	max-width: 15em;
 	max-height: 15em;
 }
 .gallery .square > .controls {
-	display: block;
-	position: absolute;
-	left: 0;
-	top: 0;
 	width: 17em;
 	height: 17em;
 	line-height: 17em;
 }
+
+
+/* Galery rectangle */
+.gallery .rectangle {
+	width: 17em;
+	height: 12em;
+	line-height: 12em;
+}
+.gallery .rectangle > a {
+	width: 17em;
+	height: 12em;
+	line-height: 12em;
+}
+.gallery .rectangle > img {
+	vertical-align: middle;
+	max-width: 15em;
+	max-height: 10em;
+}
+.gallery .rectangle > .controls {
+	width: 17em;
+	height: 12em;
+	line-height: 12em;
+}
+
+
+

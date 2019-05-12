@@ -3,15 +3,15 @@
 namespace AVDPainel\Repositories\Admin;
 
 
-use AVDPainel\Models\Admin\ImageSlider as Model;
-use AVDPainel\Interfaces\Admin\ImageSliderInterface;
+use AVDPainel\Models\Admin\ImageBanner as Model;
+use AVDPainel\Interfaces\Admin\ImageBannerInterface;
 
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class ImageSliderRepository implements ImageSliderInterface
+class ImageBannerRepository implements ImageBannerInterface
 {
     use ValidatesRequests;
 
@@ -41,16 +41,15 @@ class ImageSliderRepository implements ImageSliderInterface
     }
 
 
-
-
     /**
-     * Create
+     * Salvar as fotos em suas respectivas pastas $input['config']
      *
-     * @param  int $id module
-     * @param  array $input
-     * @return boolean true or false
+     * @param $input
+     * @param $type
+     * @param $message
+     * @return array
      */
-    public function create($input, $id)
+    public function create($input, $type, $message)
     {
         if (strlen($input['order']) == 1) {
             $input['order'] = '0'.$input['order'];
@@ -61,34 +60,31 @@ class ImageSliderRepository implements ImageSliderInterface
         $ext   = $file->getClientOriginalExtension();
         $name  = 'banner-'. Str::slug(config('app.name')).'-'.date('Ymdhs').'.'.$ext;
         $path  = $conf['disk'] . $conf['path'].$name;
-        $path_thumb = $conf['disk'] . $conf['path_thumb'].$name;
 
-        $thumb  = Image::make($file)->resize($conf['width_thumb'], $conf['height_thumb'])->save($path_thumb);
         $upload = Image::make($file)->resize($conf['width'], $conf['height'])->save($path);
 
         if ($upload) {
 
             $input['image'] = $name;
             $data = $this->model->create($input);
-            if ($data) { 
-         
+            if ($data) {
                 generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ' Adicionou uma imagem no slider da home')
+                    ' Adicionou um banner')
                 );
 
                 ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
-                $route_order  = route($data->type.'-slider.order');
-                $route_status = route($data->type.'-slider.status', $data->id);
-                $route_delete = route($data->type.'-slider.destroy', ['id' => $id, 'file' => $data->id]);
-                $route_edit   = route($data->type.'-slider.edit', ['id' => $id, 'file' => $data->id]);
+                $route_order  = route('banner.order', $data->type);
+                $route_status = route('banner.status', $data->id);
+                $route_delete = route('banner.destroy', ['type' => $data->type, 'id' => $data->id]);
+                $route_edit   = route('banner.edit', ['type' => $data->type, 'id' => $data->id]);
 
                 $out = array(
                     "success"    => true,
-                    "message"    => "A imagem {$input['type']} foi salva.",
+                    "message"    => $message['photo_create_true'],
                     'ac'         => 'create',
                     "id"         => $data->id,
-                    'idm'        => $id,
+                    'idm'        => $type,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
@@ -100,16 +96,18 @@ class ImageSliderRepository implements ImageSliderInterface
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
                     "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)",
-                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
+                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/banner/order/'.$data->id.'",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
                 );
 
-                return $out;
+            } else {
+                $out = array(
+                    'success' => false,
+                    'message' => $message['photo_create_false']
+                );
             }
         }
 
-        return array(
-            'success' => false,
-            'message' => "Não foi possível altera o {$input['type']}.");
+        return $out;
     }
 
 
@@ -121,24 +119,19 @@ class ImageSliderRepository implements ImageSliderInterface
      * @param  array $input
      * @return boolean true or false
      */
-    public function update($input, $id, $idfile)
+    public function update($input, $id, $message)
     {
         if (strlen($input['order']) == 1) {
             $input['order'] = '0'.$input['order'];
         }
 
-        $data = $this->model->find($idfile);
+        $data = $this->model->find($id);
         $conf = $input['config'];
         // Remove image current
         $current = $conf['disk'] . $conf['path'] .$data->image;
         if (file_exists($current)) {
             unlink($current);
         }
-        $thumb = $conf['disk'] . $conf['path_thumb'] .$data->image;
-        if (file_exists($thumb)) {
-            unlink($thumb);
-        }
-
 
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
@@ -162,14 +155,16 @@ class ImageSliderRepository implements ImageSliderInterface
                 );
 
                 ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
-                $route_status = route($data->type.'-slider.status', $data->id);
-                $route_order  = route($data->type.'-slider.order');
-                $route_delete = route($data->type.'-slider.destroy', ['id' => $id, 'file' => $data->id]);
-                $route_edit   = route($data->type.'-slider.edit', ['id' => $id, 'file' => $data->id]);
+
+                $route_order  = route('banner.order', $data->type);
+                $route_status = route('banner.status', $data->id);
+                $route_delete = route('banner.destroy', ['type' => $data->type, 'id' => $data->id]);
+                $route_edit   = route('banner.edit', ['type' => $data->type, 'id' => $data->id]);
+
 
                 $out = array(
                     "success"    => true,
-                    "message"    => "A imagem {$input['type']} foi alterada.",
+                    "message"    => $message['photo_upload_true'],
                     'ac'         => 'update',
                     "id"         => $data->id,
                     'idm'        => $id,
@@ -184,56 +179,63 @@ class ImageSliderRepository implements ImageSliderInterface
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
                     "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)",
-                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
+                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/banner/order/'.$data->id.'",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
                 );
-
-                return $out;
+            } else {
+                $out = array(
+                    'success' => false,
+                    'message' => $message['photo_upload_false']
+                );
             }
         }
 
-        return array(
-            'success' => false,
-            'message' => "Não foi possível alterar o {$input['type']}");
+        return $out;
     }
 
     /**
-     * Remove
+     * Remove apenas se for mmaio que 4 imagens
      *
-     * @param  int $id
-     * @return boolean true or false
+     * @param $id
+     * @param $type
+     * @param $message
+     * @param $config
+     * @return array
      */
-    public function delete($id, $conf='')
+    public function delete($id, $type, $message, $config)
     {
-        $count = count($this->getAll($conf['type']));
-        if ($count >= 2) {
+        $count = count($this->getAll($type));
+        if ($count == 4) {
+
+            $success = false;
+            $message = "{$message['photo_delete_min']} {$count}";
+
+        } else {
+
             $data   = $this->setId($id);
-
-            $image = $conf['disk'] .$conf['path'] .$data->image;
-            $image_thumb = $conf['disk'] .$conf['path_thumb'] .$data->image;
-
+            $image = $config['disk'] .$config['path'] .$data->image;
             if (file_exists($image)) {
                 unlink($image);
-            }
-
-            if (file_exists($image_thumb)) {
-                unlink($image_thumb);
             }
 
             $delete = $data->delete();
             if ($delete) {
                 generateAccessesTxt(
-                    date('H:i:s').utf8_decode(
-                        ' Excluiu a imagem do slider')
+                    date('H:i:s').utf8_decode(' Excluiu o banner da home')
                 );
-                return true;
+                $success = true;
+                $message = $message['photo_delete_true'];
+            } else {
+                $success = false;
+                $message = $message['photo_delete_false'];
             }
-        } else {
-            return array(
-                "error" => 'delete_min',
-                "count" => $count
-            );
         }
-        return false;
+
+        $out = array(
+            "success" => $success,
+            "message" => $message
+        );
+
+        return $out;
     }
 
 
@@ -243,7 +245,7 @@ class ImageSliderRepository implements ImageSliderInterface
      * @param  int $id 
      * @return json
      */
-    public function status($id)
+    public function status($id, $message)
     {
         $data = $this->model->find($id);
         ($data->status == 'Ativo' ? $change = ['status' => 'Inativo'] : $change = ['status' => 'Ativo']);
@@ -252,28 +254,30 @@ class ImageSliderRepository implements ImageSliderInterface
         if ($update) {
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                " Alterou o status da imagen do slider")
+                " Alterou o status da imagen do banner para ".$data->status)
             );
 
             ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
             $out = array(
                 "success"    => true,
-                "message"    => "Alterou o status da imagem do slider.",
+                "message"    => "{$message['status_true']} para {$data->status}",
                 "class"      => $class
             );               
 
-            return $out;
+        } else {
+            $out = array(
+                "success"    => false,
+                "message"    => "{$message['status_false']} para {$change['status']}"
+            );
         }
 
-        return array(
-            'success' => false,
-            'message' => "Não foi possível alterar o status.");
-
+        return $out;
     }
 
     /**
-     * Retorna a ordem do banner
+     * Retorna o input ordem referente ao banner
+     *
      * @param $id
      * @return mixed
      */
@@ -285,6 +289,7 @@ class ImageSliderRepository implements ImageSliderInterface
 
     /**
      * Alterar ordem do banner
+     *
      * @param $input
      * @param $messages
      * @return array
@@ -301,11 +306,13 @@ class ImageSliderRepository implements ImageSliderInterface
         $update = $data->update($change);
         if ($update) {
             $success = true;
-            $message = $messages['success_update'];
-            generateAccessesTxt(date('H:i:s').utf8_decode('Alterou a ordem da imagem do slider'));
+            $message = "{$messages['order_true']} para {$data->order}";
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                'Alterou a ordem da imagem do banner para '.$data->order)
+            );
         } else {
             $success = false;
-            $message = $messages['error'];
+            $message = $messages['order_false'];
         }
 
         $out = array(

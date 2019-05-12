@@ -64,6 +64,11 @@
 										</a>
 									</li>
 
+									<li>
+										<a href="/imagens/four/banner" class="file-link">
+											<span class="icon file-dll"></span> Banner Home
+										</a>
+									</li>
 								</ul>
 							</li>
 							<!--endcan -->
@@ -197,6 +202,14 @@
 									</a>
 								</li>
 							@endcan
+								@can('config-banners-view')
+									<li>
+										<a href="config/imagens/banners" class="file-link">
+											<span class="icon folder-image"></span>
+											Banners do site
+										</a>
+									</li>
+								@endcan
 							@can('config-color-group-view')
 								<li>
 									<a href="config/grupo-cores" class="file-link">

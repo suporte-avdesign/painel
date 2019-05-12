@@ -67,7 +67,7 @@ class ImageSliderController extends AdminAjaxDataParamController
             'delete_success'    => 'A imagem do slider foi excluida.',
             'delete_error'      => 'Não foi possível excluir a imagem.',
             'upload_false'      => 'Não foi possível fazer upload da imagem.',
-            'success_update'    => 'Alteração deita com sucesso.',
+            'success_update'    => 'Alteração feita com sucesso.',
             'error'             => 'Houve um erro no servidor.'
         );
 

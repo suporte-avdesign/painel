@@ -134,12 +134,14 @@ Route::resource('order/{id}/order-shippings', 'Admin\OrderShippingController');
 // Conteúdos.
 Route::get('conteudos', 'Admin\ContentController@index');
 
-
+// Slider Home
 Route::resource('imagens/{id}/banner-slider', 'Admin\ImageSliderController');
 Route::put('imagens/{id}/slider/status', 'Admin\ImageSliderController@status')->name('banner-slider.status');
 Route::get('imagens/{id}/slider/order', 'Admin\ImageSliderController@order')->name('banner-slider.order');
 Route::put('imagens/slider/order', 'Admin\ImageSliderController@updateOrder')->name('banner-slider.order');
 
-
-
-
+// Banner Home
+Route::resource('imagens/{id}/banner', 'Admin\ImageBannerController', ['except' => ['show']]);
+Route::put('imagens/banner/status/{id}', 'Admin\ImageBannerController@status')->name('banner.status');
+Route::get('imagens/banner/order/{id}', 'Admin\ImageBannerController@order')->name('banner.order');
+Route::put('imagens/banner/order', 'Admin\ImageBannerController@updateOrder')->name('banner.order');

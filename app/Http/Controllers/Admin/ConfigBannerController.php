@@ -3,16 +3,16 @@
 namespace AVDPainel\Http\Controllers\Admin;
 
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
-use AVDPainel\Interfaces\Admin\ConfigSliderInterface as InterModel;
+use AVDPainel\Interfaces\Admin\ConfigBannerInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 
-class ConfigSliderController extends Controller
+class ConfigBannerController extends Controller
 {
-    protected $ability  = 'config-slider';
-    protected $view     = 'backend.config.images.sliders';
+    protected $ability  = 'config-banners';
+    protected $view     = 'backend.config.images.banners';
     protected $last_url;
     protected $messages;
 
@@ -26,22 +26,17 @@ class ConfigSliderController extends Controller
         $this->access     = $access;
         $this->interModel = $interModel;
         $this->messages   = array(
-            "deley.numeric"         => "O valor do deley tem que ser numérico.",
             "path.required"         => "A pasta das imagens é obrigatória.",
             "width.required"        => "A largura da imagem é obrigatória.",
             "width.numeric"         => "Digite apenas números na largura da imagem.",
             "height.required"       => "A altura da imagem é obrigatória.",
             "height.numeric"        => "Digite apenas números na altura da imagem.",
-            "width_thumb.required"  => "A largura da miniatura é obrigatória.",
-            "widtht_thumb.numeric"  => "Digite apenas números na largura miniatura do imagem.",
-            "height_thumb.required" => "A altura do miniatura é obrigatória.",
-            "height_thumb.numeric"  => "Digite apenas números na altura miniatura do imagem.",
         );
     }
 
 
     /**
-     * Form configurações dos sliders.
+     * Form configurações dos fabricantes.
      *
      * @return \Illuminate\Http\Response
      */
@@ -51,16 +46,16 @@ class ConfigSliderController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $this->last_url = array("last_url" => "config/imagens/slider");
+        $this->last_url = array("last_url" => "config/imagens/banners");
         $this->access->update($this->last_url);
 
         $data  = $this->interModel->setId(1);
-        $title = 'Slider da página home';
+        $title = 'Banners do site';
         return view("{$this->view}.form", compact('data', 'title'));
     }
 
     /**
-     * Alterar as configurações dos pfabricantes.
+     * Alterar as configurações dos banners.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -92,5 +87,4 @@ class ConfigSliderController extends Controller
 
         return response()->json($out);
     }
-
 }

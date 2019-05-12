@@ -47,6 +47,10 @@ Route::put('config/imagens/{id}/fabricantes', 'Admin\ConfigBrandController@updat
 Route::get('config/imagens/slider', 'Admin\ConfigSliderController@edit');
 Route::put('config/imagens/{id}/slider', 'Admin\ConfigSliderController@update')->name('config.slider.update');
 
+// Config imagens  banners
+Route::get('config/imagens/banners', 'Admin\ConfigBannerController@edit');
+Route::put('config/imagens/{id}/banners', 'Admin\ConfigBannerController@update')->name('config.banners.update');
+
 
 // Config images admins.
 Route::get('config/imagens/usuarios', 'Admin\ConfigAdminController@edit');

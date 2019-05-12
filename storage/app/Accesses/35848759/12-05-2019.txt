@@ -1,0 +1,22 @@
+00:10:17 Adicionou uma imagem no slider da home
+00:10:20 Excluiu a imagem do slider
+00:16:59 Adicionou uma imagem no slider da home
+00:17:05 Excluiu a imagem do slider
+00:19:19 Adicionou uma imagem no slider da home
+00:19:22 Excluiu a imagem do slider
+00:20:50 Adicionou o usuário: Admin, Perfil: Administrador, Email: admin@demo.com
+00:21:23 Adicionou a foto do usuário:Admin
+00:21:28 Excluiu a foto do usuário: Admin
+00:21:34 Adicionou a foto do usuário:Admin
+00:22:07 Adicionou a imagem:destaque, Status:Ativo, Seção:Seção 1
+00:22:23 Adicionou a imagem:banner, Status:Ativo, Seção:Seção 1
+00:29:15 Adicionou a imagem:logo, Marca:Marca 1
+00:29:34 Adicionou a imagem:banner, Marca:Marca 1
+00:30:48 Alterou o logo, Status:Ativo, Fabricante:Marca 1 para Status:Ativo
+00:31:02 Adicionou a imagem:logo, Marca:Marca 1
+00:31:09 Excluiu o logo, do Fabricante:Marca 1
+00:35:42 Excluiu o logo, do Fabricante:Marca 1
+00:38:16 Adicionou a imagem:logo, Marca:Marca 1
+00:43:11 Alterou o logo, Status:Ativo, Fabricante:Marca 1 para Status:Ativo
+00:43:51 Alterou o logo, Status:Ativo, Fabricante:Marca 1 para Status:Ativo
+00:44:03 Alterou o banner, Status:Ativo, Fabricante:Marca 1 para Status:Ativo

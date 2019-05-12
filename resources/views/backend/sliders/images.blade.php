@@ -21,7 +21,7 @@
 								<button id="status-{{$file->id}}" onclick="statusImage('{{$file->id}}', '{{route($file->type.'-slider.status', $file->id)}}', '{{csrf_token()}}')" class="button icon-tick red-gradient" title="{{$upload['btn']['status']}}"></button>
 							@endif
 							<button id="order-{{$file->id}}" class="button" title="{{$upload['btn']['order']}}">{{$upload['btn']['order']}} ({{$file->order}})</button>
-							<button id="edit-{{$file->id}}" onclick="abreModal('Editar: {{$file->type}}', '{{route($file->type.'-slider.edit', ['$id' => $id, 'file' => $file->id])}}', 'form-image', 2, 'true', 500, 400);" class="button" title="{{$upload['btn']['edit']}}">{{$upload['btn']['edit']}}</button>
+							<button id="edit-{{$file->id}}" onclick="abreModal('Editar: {{$file->type}}', '{{route($file->type.'-slider.edit', ['id' => $id, 'file' => $file->id])}}', 'form-image', 2, 'true', 500, 400);" class="button" title="{{$upload['btn']['edit']}}">{{$upload['btn']['edit']}}</button>
 							<button id="delete-{{$file->id}}" onclick="deleteImage('{{$file->id}}', '{{route($file->type.'-slider.destroy', ['id' => $id, 'file' => $file->id])}}', '{{csrf_token()}}')" class="button icon-trash red-gradient" title="{{$upload['btn']['delete']}}"></button>
 						</span>
 					</div>
