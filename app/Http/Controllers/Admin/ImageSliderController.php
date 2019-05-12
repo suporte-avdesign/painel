@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Gate;
 
 class ImageSliderController extends AdminAjaxDataParamController
 {
-    protected $ability = 'slider-images';
+    protected $ability = 'images-site';
     protected $view    = 'backend.sliders.images';
     protected $upload;
 
@@ -100,6 +100,9 @@ class ImageSliderController extends AdminAjaxDataParamController
 
     public function updateOrder(Request $request)
     {
+        if( Gate::denies("{$this->ability}-update") ) {
+            return view("backend.erros.message-401");
+        }
         $dataForm = $request->all();
         return $this->interModel->updateOrder($dataForm, $this->messages);
     }

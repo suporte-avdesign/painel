@@ -67,6 +67,10 @@ class ImageSliderRepository implements ImageSliderInterface
      */
     public function create($input, $id)
     {
+        if (strlen($input['order']) == 1) {
+            $input['order'] = '0'.$input['order'];
+        }
+
         $conf  = $input['config'];
         $file  = $input['image'];
         $ext   = $file->getClientOriginalExtension();
@@ -89,6 +93,7 @@ class ImageSliderRepository implements ImageSliderInterface
 
                 ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
+                $route_order  = route($data->type.'-slider.order');
                 $route_status = route($data->type.'-slider.status', $data->id);
                 $route_delete = route($data->type.'-slider.destroy', ['id' => $id, 'file' => $data->id]);
                 $route_edit   = route($data->type.'-slider.edit', ['id' => $id, 'file' => $data->id]);
@@ -102,12 +107,15 @@ class ImageSliderRepository implements ImageSliderInterface
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
+                    "order"      => $data->order,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
+                    "url_order"  => "updateBannerOrder('{$data->id}', '".$route_order."', '".csrf_token()."')",
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
-                    "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)"
+                    "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)",
+                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
                 );
 
                 return $out;
@@ -130,6 +138,10 @@ class ImageSliderRepository implements ImageSliderInterface
      */
     public function update($input, $id, $idfile)
     {
+        if (strlen($input['order']) == 1) {
+            $input['order'] = '0'.$input['order'];
+        }
+
         $data = $this->model->find($idfile);
         $conf = $input['config'];
         // Remove image current
@@ -137,6 +149,11 @@ class ImageSliderRepository implements ImageSliderInterface
         if (file_exists($current)) {
             unlink($current);
         }
+        $thumb = $conf['disk'] . $conf['path_thumb'] .$data->image;
+        if (file_exists($thumb)) {
+            unlink($thumb);
+        }
+
 
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
@@ -160,9 +177,10 @@ class ImageSliderRepository implements ImageSliderInterface
                 );
 
                 ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
-                $route_status = route($data->type.'-brand.status', $data->id);
-                $route_delete = route($data->type.'-brand.destroy', ['id' => $id, 'file' => $data->id]);
-                $route_edit   = route($data->type.'-brand.edit', ['id' => $id, 'file' => $data->id]);
+                $route_status = route($data->type.'-slider.status', $data->id);
+                $route_order  = route($data->type.'-slider.order');
+                $route_delete = route($data->type.'-slider.destroy', ['id' => $id, 'file' => $data->id]);
+                $route_edit   = route($data->type.'-slider.edit', ['id' => $id, 'file' => $data->id]);
 
                 $out = array(
                     "success"    => true,
@@ -173,15 +191,16 @@ class ImageSliderRepository implements ImageSliderInterface
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
                     "status"     => $data->status,
+                    "order"      => $data->order,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
+                    "url_order"  => "updateBannerOrder('{$data->id}', '".$route_order."', '".csrf_token()."')",
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
-                    "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)"
+                    "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)",
+                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
                 );
-
-                
 
                 return $out;
             }
@@ -201,10 +220,19 @@ class ImageSliderRepository implements ImageSliderInterface
     public function delete($id, $conf='')
     {
         $data   = $this->model->find($id);
+
         $image = $conf['disk'] .$conf['path'] .$data->image;
+        $image_thumb = $conf['disk'] .$conf['path_thumb'] .$data->image;
+
         if (file_exists($image)) {
             unlink($image);
         }
+
+        if (file_exists($image_thumb)) {
+            unlink($image_thumb);
+        }
+
+
 
         $delete = $data->delete();
         if ($delete) {
@@ -219,7 +247,7 @@ class ImageSliderRepository implements ImageSliderInterface
 
 
     /**
-     * Status
+     * Alterar Status
      *
      * @param  int $id 
      * @return json
@@ -264,7 +292,12 @@ class ImageSliderRepository implements ImageSliderInterface
         return $data->order;
     }
 
-
+    /**
+     * Alterar ordem do banner
+     * @param $input
+     * @param $messages
+     * @return array
+     */
     public function updateOrder($input, $messages)
     {
         $change['order'] = $input['order'];

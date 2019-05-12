@@ -102,8 +102,6 @@
             if (order.length == 1) {
                 order = '0'+order;
             }
-
-            alert(order);
             $.ajax({
                 type: 'POST',
                 dataType: "json",
@@ -148,11 +146,13 @@
                                 '<div class="controls">'+
                                     '<span id="btns-'+data.id+'" class="button-group compact children-tooltip">'+
                                         "<button id=\"status-"+data.id+"\" onclick=\""+data.url_status+"\" class=\""+data.class+"\" title=\""+data.btn.status+"\"></button>"+
+                                        "<button id=\"order-"+data.id+"\" onclick=\""+data.url_order+"\" class=\"button\" title=\""+data.btn.order+"\">"+data.btn.order+ "("+data.order+")</button>"+
                                         "<button id=\"edit-"+data.id+"\" onclick=\""+data.url_edit+"\" class=\"button\" title=\""+data.btn.edit+"\">"+data.btn.edit+"</button>"+
                                         "<button id=\"delete-"+data.id+"\" onclick=\""+data.url_delete+"\" class=\"button icon-trash red-gradient\" title=\""+data.btn.delete+"\"></button>"+
                                     '</span>'+
                                 '</div>'+
-                            '</li>');
+                            '</li>'+ data.script);
+
                     }
                     if (data.ac == 'update') {
                         $("#img-"+data.id).html(
@@ -160,11 +160,13 @@
                                 '<div class="controls">'+
                                     '<span id="btns-'+data.id+'" class="button-group compact children-tooltip">'+
                                         "<button id=\"status-"+data.id+"\" onclick=\""+data.url_status+"\" class=\""+data.class+"\" title=\""+data.btn.status+"\"></button>"+
+                                        "<button id=\"order-"+data.id+"\" onclick=\""+data.url_order+"\" class=\"button\" title=\""+data.btn.order+"\">"+data.btn.order+ "("+data.order+")</button>"+
                                         "<button id=\"edit-"+data.id+"\" onclick=\""+data.url_edit+"\" class=\"button\" title=\""+data.btn.edit+"\">"+data.btn.edit+"</button>"+
                                         "<button id=\"delete-"+data.id+"\" onclick=\""+data.url_delete+"\" class=\"button icon-trash red-gradient\" title=\""+data.btn.delete+"\"></button>"+
                                     '</span>'+
-                                '</div>');
+                                '</div>'+ data.script);
                     }
+
                     fechaModal();
                     msgNotifica(true, data.message, true, false);
                 } else {

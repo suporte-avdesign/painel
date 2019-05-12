@@ -2592,7 +2592,7 @@ class ConfigPermissionsTableSeeder extends Seeder
 
        /*
        ----------------------------------------
-        30 - Imagens formulário do slider
+        30- Configuração do slide da home
        ----------------------------------------
        */
         /************* View ************/
@@ -2637,6 +2637,94 @@ class ConfigPermissionsTableSeeder extends Seeder
             'config_profile_id' => 4
         ]);
 
+        /*
+        ----------------------------------------
+         31- Manipulação das imagens do site
+        ----------------------------------------
+        */
+        /************* View ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 31,
+            'name' => 'images-site-view',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 146,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 146,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 146,
+            'config_profile_id' => 4
+        ]);
+
+        /************* Create ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 31,
+            'name' => 'images-site-create',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 147,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 147,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 147,
+            'config_profile_id' => 4
+        ]);
+
+        /************* Update ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 31,
+            'name' => 'images-site-update',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 148,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 148,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 148,
+            'config_profile_id' => 4
+        ]);
+
+        /************* Delete ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 31,
+            'name' => 'images-site-delete',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 149,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 149,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 149,
+            'config_profile_id' => 4
+        ]);
 
 
 
@@ -2831,14 +2919,14 @@ class ConfigPermissionsTableSeeder extends Seeder
     |     - account-create
     |     - account-update
     |     - account-delete
-    | 30- Imagens formulário do slider
+    | 30- Configuração do slide da home
     |     - config-slider-view
     |     - config-slider-update
-    |
-    |
-    |
-    |
-    |
+    | 31- Manipulação das imagens do site
+    |     - images-site-view
+    |     - images-site-create
+    |     - images-site-update
+    |     - images-site-delete
     |
     |
     |

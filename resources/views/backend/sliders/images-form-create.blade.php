@@ -27,7 +27,7 @@
 	    	<div class="align-center">
 				<p id="image_preview_{{$id}}"></p>
 			</div>
-			@can('brand-images-create')
+			@can('images-site-create')
 		        <div id="btn-upload-submit" class="align-center display-none">
 					<p class="button-height align-center">
 						<span class="input">
@@ -38,7 +38,6 @@
 								<button type="button" class="button number-up">+</button>
 							</span>
 							<button type="submit" id="btn-upload" class="button icon-cloud-upload blue-gradient display-none"> Upload </button>
-
 						</span>
 					</p>
 		        </div>

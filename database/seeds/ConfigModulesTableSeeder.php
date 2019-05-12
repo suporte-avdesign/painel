@@ -249,11 +249,20 @@ class ConfigModulesTableSeeder extends Seeder
 
         ConfigModule::create([
             'type' => 'C',
-            'name' => 'Imagens do slider',
+            'name' => 'Configuração do Slider',
             'label' => 'Padrão das imagens do slider da home',
             'order' => '21',
             'created_at' => $date
         ]);
+
+        ConfigModule::create([
+            'type' => 'A',
+            'name' => 'Manipulação das Imagens',
+            'label' => 'Manipulação das imagens do site',
+            'order' => '10',
+            'created_at' => $date
+        ]);
+
 
 
 
@@ -296,7 +305,8 @@ class ConfigModulesTableSeeder extends Seeder
     | 27- Formas de Pagamentos
     | 28- Pedidos
     | 29- Cadastro de Clientes
-    | 30- Imagens formulário do slider
+    | 30- Configuração do slide da home
+    | 31- Manipulação das imagens do site
 
     */    
 }
