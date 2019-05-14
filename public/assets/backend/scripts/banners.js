@@ -91,12 +91,12 @@
         }
 
     /**
-     *  Alterar ordem dos banners
+     *  Alterar ordem
      * @param id
      * @param url
      * @param token
      */
-        updateBannerOrder = function(id, url, token)
+        updateOrder = function(id, url, token)
         {
             var order = $("#input-order-"+id).val();
             if (order.length == 1) {

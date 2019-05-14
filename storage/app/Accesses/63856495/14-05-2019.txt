@@ -1,0 +1,74 @@
+04:44:26 Fez login no sistema. IP:127.0.0.1
+04:45:01 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:
+04:55:17 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:&lt;p&gt;rrrr&lt;/p&gt;
+04:57:29 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:&amp;lt;p&amp;gt;rrrr&amp;lt;/p&amp;gt;
+05:01:29 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:&amp;amp;lt;p&amp;amp;gt;rrrr&amp;amp;lt;/p&amp;amp;gt;
+05:01:29 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:&lt;p&gt;mnjahha&lt;/p&gt;
+05:02:04 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:&amp;lt;p&amp;gt;mnjahha&amp;lt;/p&amp;gt;
+05:14:48 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:&amp;lt;p&amp;gt;mnjahha&amp;lt;/p&amp;gt;
+05:14:48 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>mai ploi9ai9ia</p>
+05:15:00 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>mai ploi9ai9ia</p>
+05:15:23 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>mai ploi9ai9ia</p>
+05:21:13 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>mai ploi9ai9ia</p>
+05:25:09 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>mai ploi9ai9ia</p>
+05:35:53 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:&lt;p&gt;mai ploi9ai9ia&lt;/p&gt;
+05:36:28 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:&amp;lt;p&amp;gt;mai ploi9ai9ia&amp;lt;/p&amp;gt;
+05:37:56 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:&amp;amp;lt;p&amp;amp;gt;mai ploi9ai9ia&amp;amp;lt;/p&amp;amp;gt;
+05:38:27 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:&amp;amp;amp;lt;p&amp;amp;amp;gt;mai ploi9ai9ia&amp;amp;amp;lt;/p&amp;amp;amp;gt;
+05:41:14 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:&amp;amp;amp;lt;p&amp;amp;amp;gt;mai ploi9ai9ia&amp;amp;amp;lt;/p&amp;amp;amp;gt;
+05:43:20 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:Teste
+05:47:57 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:Teste
+05:49:34 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:Teste
+06:03:02 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>Mais um</p>, Ordem:02, Status:Ativo
+06:04:15 Adicionou na política de privacidade TituloMÍDIA TESTE 3, Descrição:<p>Primeira Linha</p><p>Segunda Linha</p><p>Terceira Linha</p>, Ordem:02, Status:Ativo
+06:07:22 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>Primeira Linha</p><p>Segunda Linha</p><p>Terceira Linha</p>
+06:07:59 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>Primeira Linha</p><p>Segunda Linha</p><p>Terceira Linha</p>
+06:09:03 Adicionou na política de privacidade TituloTeste, Descrição:<p>Primeira linha</p>
+
+<p>Segunda Linha&nbsp;</p>
+
+<p>Terceira Linha</p>, Ordem:02, Status:Ativo
+06:11:36 Alterou a conteúdo da política de privacidade Titulo:COMENTÁRIOS 3, Descrição:<p>Mais um</p>
+06:12:25 Alterou a conteúdo da política de privacidade Titulo:COMENTÁRIOS 3, Descrição:<p>Mais um</p>
+06:12:41 Alterou a conteúdo da política de privacidade Titulo:COMENTÁRIOS 3, Descrição:<p>Mais um</p>
+06:13:12 Excluiu o contéudo da política de privacidade, Titulo: Teste, Conteudo: Primeira linha
+
+Segunda Linha&nbsp;
+
+Terceira Linha
+06:13:15 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: Mais um
+06:13:26 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>Primeira Linha</p><p>Segunda Linha</p><p>Terceira Linha</p>
+06:13:58 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE 3, Descrição:<p>Primeira Linha</p><p>Segunda Linha</p><p>Terceira Linha</p>
+06:14:43 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>Mais 4 qerrre</p>
+
+<p>tesetsts</p>, Ordem:02, Status:Ativo
+06:18:08 Adicionou na política de privacidade TituloMÍDIA TESTE, Descrição:<p>Maiseee</p>
+
+<p>Mais</p>
+
+<p>tres</p>, Ordem:02, Status:Ativo
+06:21:17 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>hgfytftyfyf</p>
+
+<p>uyt9t7stss</p>
+
+<p>mjihh8uy8us</p>, Ordem:02, Status:Ativo
+06:23:41 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>majaijia</p><p>lkjaijiajia</p><p>,nauhuhauhua</p>, Ordem:02, Status:Ativo
+06:23:49 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: majaijialkjaijiajia,nauhuhauhua
+06:23:50 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: hgfytftyfyf
+
+uyt9t7stss
+
+mjihh8uy8us
+06:23:51 Excluiu o contéudo da política de privacidade, Titulo: MÍDIA TESTE, Conteudo: Maiseee
+
+Mais
+
+tres
+06:23:52 Excluiu o contéudo da política de privacidade, Titulo: MÍDIA TESTE 3, Conteudo: Primeira LinhaSegunda LinhaTerceira Linha
+06:23:53 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: Mais 4 qerrretesetsts
+06:24:27 Adicionou na política de privacidade TituloMÍDIA TESTE, Descrição:<p>Primeira linha</p><p>Segunda Linha&nbsp;</p><p>Terceira Linha</p>, Ordem:02, Status:Ativo
+06:25:09 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p><strong>Primeira linha</strong></p><ol><li>Segunda Linha&nbsp;</li><li>Terceira Linha</li></ol>, Ordem:02, Status:Ativo
+06:26:48 Alterou a conteúdo da política de privacidade Titulo:COMENTÁRIOS 3, Descrição:<p><strong>Primeira linha</strong></p><ol><li>Segunda Linha&nbsp;</li><li>Terceira Linha</li></ol>
+06:26:55 Alterou a conteúdo da política de privacidade Titulo:COMENTÁRIOS 3, Descrição:<p><strong>Primeira linha</strong></p><ol><li>Segunda Linha&nbsp;</li><li>Terceira Linha</li></ol>
+06:28:33 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:<p>Primeira linha</p><p>Segunda Linha&nbsp;</p><p>Terceira Linha</p>
+06:28:52 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:<p>Primeira linha</p><p>Segunda Linha&nbsp;</p><p>Terceira Linha</p>

@@ -67,8 +67,6 @@ class ImageBannerController extends Controller
             'status_false'          => 'Não foi possível alterar o status',
             'order_true'            => 'A ordem foi alterada',
             'order_false'           => 'Não foi possível alterar a ordem'
-
-
         );
 
     }
@@ -149,7 +147,7 @@ class ImageBannerController extends Controller
         $upload  = $this->upload;
 
         return view("{$this->view}-form-edit", compact(
-            'type','id', 'data', 'upload')
+                'type','id', 'data', 'upload')
         );
     }
 

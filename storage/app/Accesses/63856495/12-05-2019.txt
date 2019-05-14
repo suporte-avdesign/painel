@@ -139,3 +139,4 @@ Perfil:Normal, Parcelado:% R$ 100,00, À Vista:5% R$ 95,00 - Oferta Parcelado:R$ 
 18:22:11 Alterou o four, Status:Ativo para Status:Ativo
 18:22:16 Excluiu o banner da home
 18:22:28 Alterou o four, Status:Ativo para Status:Ativo
+22:43:50 Alterou no formulário de contato AssuntoSobre compras, Mensagem:Mensagem Sobre compras,Enviar para Visitante:Ativo, Cliente:Inativo, Ordem:1, Status:1

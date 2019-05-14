@@ -9,71 +9,89 @@
 		<div class="panel-load-target scrollable" >
 			<div class="navigable">
 				<ul class="files-list mini open-on-panel-content">
-					@can('config-module-view')
-					<!--
-						can('config-menu-permissions')
-						Liberar esse can após resolver problemas de vesões
-					-->
+					@can('contents-site-view')
 						<li class="with-right-arrow grey-arrow">
-							<span class="icon folder-docs"></span>
-							<b>Segurança e Permisões</b>
+							<span class="icon folder-net"></span>
+							<b>Conteúdos do Site</b>
+
 							<ul class="files-list mini">
-								@can('config-module-view')
-									<li>
-										<a href="config/modulos" class="file-link">
-											<span class="icon folder-program"></span>
-											Modulos do sistema
-										</a>
-									</li>
-								@endcan
-								@can('config-profile-view')
-									<li>
-										<a href="config/perfis" class="file-link">
-											<span class="icon folder-program"></span>
-											Perfis dos Usuários
-										</a>
-									</li>
-								@endcan
-								@can('config-permission-view')
-									<li>
-										<a href="config/permissoes" class="file-link">
-											<span class="icon folder-program"></span>
-											Permissões Padrão
-										</a>
-									</li>
-								@endcan
+								<!--can('config-module-view') -->
+								<li class="with-right-arrow grey-arrow">
+									<span class="icon folder-image"></span>
+									<b>Images</b>
+									<ul class="files-list mini">
+										<li>
+											<a href="/imagens/banner/banner-slider" class="file-link">
+												<span class="icon folder-image"></span> Slider da home
+											</a>
+										</li>
+
+										<li>
+											<a href="/imagens/four/banner" class="file-link">
+												<span class="icon folder-image"></span> Banner da home
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--endcan -->
+
+								<!--can('config-module-view') -->
+								<li class="with-right-arrow grey-arrow">
+									<span class="icon folder-docs"></span>
+									<b>Informações ao Cliente</b>
+									<ul class="files-list mini">
+										<li>
+											<a href="/content/privacy-policy" class="file-link">
+												<span class="icon file-ttf"></span> Política de Privacidade
+											</a>
+										</li>
+
+										<li>
+											<a href="/content/faq" class="file-link">
+												<span class="icon file-ttf"></span> Perguntas Frequentes
+											</a>
+										</li>
+									</ul>
+								</li>
+								<!--endcan -->
+
 							</ul>
 						</li>
 					@endcan
-
-					<li class="with-right-arrow grey-arrow">
-						<span class="icon folder-net"></span>
-						<b>Páginas do Site</b>
-
-
-
-						<ul class="files-list mini">
-							<!--can('config-module-view') -->
+					@can('config-module-view')
+						@can('config-menu-permissions')
 							<li class="with-right-arrow grey-arrow">
-								<span class="icon folder-program"></span>
-								<b>Página Home</b>
+								<span class="icon folder-docs"></span>
+								<b>Segurança e Permisões</b>
 								<ul class="files-list mini">
-									<li>
-										<a href="/imagens/banner/banner-slider" class="file-link">
-											<span class="icon file-dll"></span> Slider
-										</a>
-									</li>
-
-									<li>
-										<a href="/imagens/four/banner" class="file-link">
-											<span class="icon file-dll"></span> Banner Home
-										</a>
-									</li>
+									@can('config-module-view')
+										<li>
+											<a href="config/modulos" class="file-link">
+												<span class="icon folder-program"></span>
+												Modulos do sistema
+											</a>
+										</li>
+									@endcan
+									@can('config-profile-view')
+										<li>
+											<a href="config/perfis" class="file-link">
+												<span class="icon folder-program"></span>
+												Perfis dos Usuários
+											</a>
+										</li>
+									@endcan
+									@can('config-permission-view')
+										<li>
+											<a href="config/permissoes" class="file-link">
+												<span class="icon folder-program"></span>
+												Permissões Padrão
+											</a>
+										</li>
+									@endcan
 								</ul>
 							</li>
-							<!--endcan -->
-						</ul>
-					</li>
+						@endcan
+					@endcan
 
 
 

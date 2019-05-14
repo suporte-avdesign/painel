@@ -4,5 +4,5 @@
         <input type="text" id="input-order-{{$id}}" value="{{$order}}" size="2" name="order" class="input-unstyled" style="width:40px">
         <button type="button" class="button number-up">+</button>
     </span>
-    <button type="button" onclick="updateBannerOrder('{{$id}}','{{route('banner.order')}}', '{{csrf_token()}}')" class="button blue-gradient display-none">Alterar</button>
+    <button type="button" onclick="updateOrder('{{$id}}','{{route('banner.order')}}', '{{csrf_token()}}')" class="button blue-gradient display-none">Alterar</button>
 </p>

@@ -145,3 +145,10 @@ Route::resource('imagens/{id}/banner', 'Admin\ImageBannerController', ['except' 
 Route::put('imagens/banner/status/{id}', 'Admin\ImageBannerController@status')->name('banner.status');
 Route::get('imagens/banner/order/{id}', 'Admin\ImageBannerController@order')->name('banner.order');
 Route::put('imagens/banner/order', 'Admin\ImageBannerController@updateOrder')->name('banner.order');
+
+// Conteudo do site
+Route::resource('content/privacy-policy', 'Admin\ContentPrivacyPolicyController', ['except' => ['edit']]);
+Route::get('content/privacy-policy-load', 'Admin\ContentPrivacyPolicyController@loadContent')->name('privacy-policy.load');
+Route::get('content/privacy-policy-order/{id}', 'Admin\ContentPrivacyPolicyController@order')->name('privacy-policy.order');
+Route::put('content/privacy-policy-order/{id}', 'Admin\ContentPrivacyPolicyController@updateOrder')->name('privacy-policy.order');
+Route::put('content/privacy-policy-status/{id}', 'Admin\ContentPrivacyPolicyController@status')->name('privacy-policy.status');

@@ -53,6 +53,7 @@ class AppServiceProvider extends ServiceProvider
             'ConfigImageProduct',
             'ConfigProfileClient',
             'ConfigSubjectContact',
+            'ContentPrivacyPolicy',
             'AdminPermission',
             'AdminAccess',
             'Admin',
