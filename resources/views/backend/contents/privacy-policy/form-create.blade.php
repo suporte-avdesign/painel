@@ -47,8 +47,8 @@
     </form>
 </div>
 <!-- CKEditor -->
-<script src="{{url('assets/backend/js/libs/ckeditor4/ckeditor.js')}}"></script>
-<script src="{{url('assets/backend/js/libs/ckeditor4/config.js')}}"></script>
+<script src="{{url('assets/backend/js/libs/ckeditor/ckeditor.js')}}"></script>
+<script src="{{url('assets/backend/js/libs/ckeditor/config.js')}}"></script>
 <script>
     CKEDITOR.replace( 'editor1', {
         height: 150,

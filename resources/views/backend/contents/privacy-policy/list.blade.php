@@ -19,7 +19,6 @@
             <script>$("#order-{{$value->id}}").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"{{route('privacy-policy.order', $value->id)}}",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>
         </div>
         <div id="description-{{$value->id}}">
-            Lista aqui <br>
             {!! $value->description !!}
         </div>
     </li>
