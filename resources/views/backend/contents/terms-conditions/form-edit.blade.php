@@ -1,5 +1,5 @@
 <div id="modal-contents">
-    <form id="form-contents" method="POST" action="{{route('privacy-policy.update', $data->id)}}" onsubmit="return false">
+    <form id="form-contents" method="POST" action="{{route('terms-conditions.update', $data->id)}}" onsubmit="return false">
         <input type="hidden" name="type" value="{{$data->type}}">
         <input type="hidden" name="order" value="{{$data->order}}">
         <input type="hidden" name="status" value="{{$data->status}}">
@@ -21,7 +21,7 @@
                 <span class="button-group">
                     <button onclick="fechaModal()" class="button"> Cancelar </button>
                     @can('contents-site-create')
-                        <button id="btn-modal" onclick="formContents('update', 'contents', '{{route('privacy-policy.load')}}')" class="button blue-gradient">
+                        <button id="btn-modal" onclick="formContents('update', 'contents', '{{route('terms-conditions.load')}}')" class="button blue-gradient">
                         <span class="icon-publish"></span> Alterar
                     </button>
                     @endcan

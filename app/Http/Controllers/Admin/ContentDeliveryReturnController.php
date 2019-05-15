@@ -2,16 +2,16 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Interfaces\Admin\ContentPrivacyPolicyInterface as InterModel;
+use AVDPainel\Interfaces\Admin\ContentDeliveryReturnInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Gate;
 
-class ContentPrivacyPolicyController extends Controller
+class ContentDeliveryReturnController extends Controller
 {
-    protected $content = 'Conteúdo: Política de Privacidade';
+    protected $content = 'Conteúdo: Entrega e Devoluções';
     protected $ability = 'contents-site';
-    protected $view    = 'backend.contents.privacy-policy';
+    protected $view    = 'backend.contents.delivery-return';
     protected $model;
 
 

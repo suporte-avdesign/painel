@@ -3,12 +3,12 @@
 namespace AVDPainel\Repositories\Admin;
 
 
-use AVDPainel\Models\Admin\ContentPrivacyPolicy as Model;
-use AVDPainel\Interfaces\Admin\ContentPrivacyPolicyInterface;
+use AVDPainel\Models\Admin\ContentFormPayment as Model;
+use AVDPainel\Interfaces\Admin\ContentFormPaymentInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
+class ContentFormPaymentRepository implements ContentFormPaymentInterface
 {
     use ValidatesRequests;
 

@@ -3,12 +3,12 @@
 namespace AVDPainel\Repositories\Admin;
 
 
-use AVDPainel\Models\Admin\ContentPrivacyPolicy as Model;
-use AVDPainel\Interfaces\Admin\ContentPrivacyPolicyInterface;
+use AVDPainel\Models\Admin\ContentDeliveryReturn as Model;
+use AVDPainel\Interfaces\Admin\ContentDeliveryReturnInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
+class ContentDeliveryReturnRepository implements ContentDeliveryReturnInterface
 {
     use ValidatesRequests;
 
@@ -73,11 +73,11 @@ class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
             $fid = $message['fields'];
 
             generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ', '.$acc['create'].
-                    ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
-                    ', '.$fid['title'].':'.$data->title.
-                    ', '.$fid['description'].':'.strip_tags($data->description))
+                ', '.$acc['create'].
+                ', '.$fid['order'].':'.$data->order.
+                ', '.$fid['status'].':'.$data->status.
+                ', '.$fid['title'].':'.$data->title.
+                ', '.$fid['description'].':'.strip_tags($data->description))
             );
 
             $success = true;
@@ -114,11 +114,11 @@ class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
             $fid = $message['fields'];
 
             generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ', '.$acc['update'].
-                    ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
-                    ', '.$fid['title'].':'.$data->title.
-                    ', '.$fid['description'].':'.strip_tags($data->description))
+                ', '.$acc['update'].
+                ', '.$fid['order'].':'.$data->order.
+                ', '.$fid['status'].':'.$data->status.
+                ', '.$fid['title'].':'.$data->title.
+                ', '.$fid['description'].':'.strip_tags($data->description))
             );
 
             $success = true;
@@ -152,11 +152,11 @@ class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
             $fid = $message['fields'];
 
             generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ', '.$acc['update'].
-                    ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
-                    ', '.$fid['title'].':'.$data->title.
-                    ', '.$fid['description'].':'.strip_tags($data->description))
+                ', '.$acc['update'].
+                ', '.$fid['order'].':'.$data->order.
+                ', '.$fid['status'].':'.$data->status.
+                ', '.$fid['title'].':'.$data->title.
+                ', '.$fid['description'].':'.strip_tags($data->description))
             );
             $success = true;
             $message = $message['delete_true'];
@@ -194,11 +194,11 @@ class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
             $fid = $message['fields'];
 
             generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ', '.$acc['update'].
-                    ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
-                    ', '.$fid['title'].':'.$data->title.
-                    ', '.$fid['description'].':'.strip_tags($data->description))
+                ', '.$acc['update'].
+                ', '.$fid['order'].':'.$data->order.
+                ', '.$fid['status'].':'.$data->status.
+                ', '.$fid['title'].':'.$data->title.
+                ', '.$fid['description'].':'.strip_tags($data->description))
             );
 
             ($data->status == 'Ativo' ? $class = 'button icon-tick with-tooltip' : $class = 'button icon-tick with-tooltip red');
@@ -257,11 +257,11 @@ class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
             $fid = $message['fields'];
 
             generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ', '.$acc['update'].
-                    ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
-                    ', '.$fid['title'].':'.$data->title.
-                    ', '.$fid['description'].':'.strip_tags($data->description))
+                ', '.$acc['update'].
+                ', '.$fid['order'].':'.$data->order.
+                ', '.$fid['status'].':'.$data->status.
+                ', '.$fid['title'].':'.$data->title.
+                ', '.$fid['description'].':'.strip_tags($data->description))
             );
 
             $success = true;

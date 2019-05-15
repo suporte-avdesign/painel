@@ -2,16 +2,16 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Interfaces\Admin\ContentPrivacyPolicyInterface as InterModel;
+use AVDPainel\Interfaces\Admin\ContentFormPaymentInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Gate;
 
-class ContentPrivacyPolicyController extends Controller
+class ContentFormPaymentController extends Controller
 {
-    protected $content = 'Conteúdo: Política de Privacidade';
+    protected $content = 'Conteúdo: Forma de Pagamento';
     protected $ability = 'contents-site';
-    protected $view    = 'backend.contents.privacy-policy';
+    protected $view    = 'backend.contents.form-payment';
     protected $model;
 
 

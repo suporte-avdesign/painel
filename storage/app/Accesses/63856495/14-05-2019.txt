@@ -72,3 +72,60 @@ tres
 06:26:55 Alterou a conteúdo da política de privacidade Titulo:COMENTÁRIOS 3, Descrição:<p><strong>Primeira linha</strong></p><ol><li>Segunda Linha&nbsp;</li><li>Terceira Linha</li></ol>
 06:28:33 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:<p>Primeira linha</p><p>Segunda Linha&nbsp;</p><p>Terceira Linha</p>
 06:28:52 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:<p>Primeira linha</p><p>Segunda Linha&nbsp;</p><p>Terceira Linha</p>
+06:48:50 Alterou a conteúdo da política de privacidade Titulo:MÍDIA TESTE, Descrição:<p>Primeira linha</p><p>Segunda Linha&nbsp;</p><p>Terceira Linha</p>
+08:14:14 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>Teste 1</p><p>Teste r mnjnjcnjnjcncjc</p><p>vgdgvghvhgvhs</p>, Ordem:02, Status:Ativo
+08:15:49 Adicionou na política de privacidade TituloMÍDIA TESTE 1, Descrição:<p>Aacsc</p>, Ordem:03, Status:Ativo
+08:16:35 Adicionou na política de privacidade TituloAtacadista 3, Descrição:<p>\ZZ,MNVGbv</p><p>jxbjbhjbss</p><p>&ccedil;suhushuhus</p>, Ordem:03, Status:Ativo
+08:40:42 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>SSDSSSD</p>, Ordem:01, Status:Ativo
+08:42:09 Adicionou na política de privacidade TituloMÍDIA TESTE 1, Descrição:<p>aqsa</p><p>aaASS</p>, Ordem:03, Status:Ativo
+08:42:30 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>AZAXAA</p>, Ordem:03, Status:Ativo
+08:42:41 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: Teste 1Teste r mnjnjcnjnjcncjcvgdgvghvhgvhs
+08:42:42 Excluiu o contéudo da política de privacidade, Titulo: MÍDIA TESTE 1, Conteudo: Aacsc
+08:42:43 Excluiu o contéudo da política de privacidade, Titulo: Atacadista 3, Conteudo: \ZZ,MNVGbvjxbjbhjbss&ccedil;suhushuhus
+08:42:45 Excluiu o contéudo da política de privacidade, Titulo: MÍDIA TESTE 1, Conteudo: aqsaaaASS
+08:42:46 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: AZAXAA
+08:42:47 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: SSDSSSD
+12:56:48 Fez login no sistema. IP:127.0.0.1
+14:22:15 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<ul><li><strong>Paijihjinijh5hytyt</strong></li></ul><ol><li>&ccedil;lki9u9h9</li></ol>, Ordem:01, Status:Ativo
+14:23:01 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: Primeira linhaSegunda Linha&nbsp;Terceira Linha
+14:23:03 Excluiu o contéudo da política de privacidade, Titulo: MÍDIA TESTE, Conteudo: Primeira linhaSegunda Linha&nbsp;Terceira Linha
+14:23:09 Excluiu o contéudo da política de privacidade, Titulo: COMENTÁRIOS 3, Conteudo: Paijihjinijh5hytyt&ccedil;lki9u9h9
+14:23:50 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>mm</p>, Ordem:-2, Status:Ativo
+14:24:18 Adicionou na política de privacidade TituloCOMENTÁRIOS 3, Descrição:<p>aSAA</p>, Ordem:02, Status:Ativo
+16:18:05 Adicionou no conteúdo forma de pagamento TituloCOMENTÁRIOS 3, Descrição:<p>eeeeeeeee</p>, Ordem:02, Status:Ativo
+16:18:24 Adicionou na entrega e retorno Tituloeeee, Descrição:<p>eeeee</p>, Ordem:02, Status:Ativo
+16:18:47 Adicionou na termos e condições Tituloeeee, Descrição:<p>eeeeee</p>, Ordem:03, Status:Ativo
+16:19:06 Alterou a conteúdo da política de privacidade Titulo:COMENTÁRIOS 3, Descrição:<p>mm</p>
+16:19:17Alterou a ordem da política de privacidade
+16:19:24Alterou a ordem da política de privacidade
+16:19:37Alterou a ordem da política de privacidade
+16:19:55Alterou a ordem da termos e condições
+16:20:07 Adicionou na termos e condições Titulo\\\, Descrição:<p>\\\\\\</p>, Ordem:01, Status:Ativo
+16:20:17Alterou a ordem da termos e condições
+16:20:19 Alterou o status da termos e condições Inativo
+16:20:40 Alterou a conteúdo da termos e condições Titulo:eeee, Descrição:<p>eeeeee</p>
+16:20:48 Alterou a conteúdo da termos e condições Titulo:eeee, Descrição:<p>eeeeee</p>
+16:21:13 Alterou o status da forma de pagamento Inativo
+16:21:14 Alterou o status da forma de pagamento Ativo
+16:21:15 Excluiu o contéudo da forma de pagamento, Titulo: COMENTÁRIOS 3, Conteudo: eeeeeeeee
+16:21:19 Excluiu o contéudo da termos e condições, Titulo: \\\, Conteudo: \\\\\\
+16:21:20 Excluiu o contéudo da termos e condições, Titulo: eeee, Conteudo: eeeeee
+16:21:31 Alterou a conteúdo da entrega e retorno Titulo:eeee, Descrição:<p>eeeee</p>
+16:34:47 Adicionou no conteúdo forma de pagamento TituloCOMENTÁRIOS 3, Descrição:<p>testte</p>, Ordem:02, Status:Ativo
+16:35:51 Adicionou no conteúdo forma de pagamento TituloAtacadista 3, Descrição:<p>teste</p>, Ordem:01, Status:Ativo
+17:55:06 Adicionou o modulo: Conteúdos do Site, Tipo: C, Ordem: 34, Desc: Conteúdos para informações sobre a venda no site
+17:56:12 Adicionou a Permissão: contents-site-view, Desc: Visualizar
+17:56:51 Adicionou a Permissão: contents-site-create, Desc: Adicionar
+17:57:23 Adicionou a Permissão: contents-site-update, Desc: Editar
+17:57:49 Adicionou a Permissão: contents-site-delete, Desc: Excluir
+17:58:27 Adicionou os perfis: "Administrador","Vendedor","Editor" - na permissão: "contents-site-create"
+17:58:35 Adicionou os perfis: "Administrador","Vendedor","Editor" - na permissão: "contents-site-update"
+17:58:46 Adicionou os perfis: "Administrador","Vendedor","Editor" - na permissão: "contents-site-delete"
+17:58:58 Adicionou os perfis: "Administrador","Vendedor","Editor" - na permissão: "contents-site-view"
+17:59:09 Excluiu o perfil Vendedor, da permissão contents-site-delete
+17:59:17 Excluiu o perfil Vendedor, da permissão contents-site-update
+17:59:23 Excluiu o perfil Vendedor, da permissão contents-site-create
+17:59:35 Saiu do sistema.
+18:00:10 Fez login no sistema. IP:127.0.0.1
+18:01:16 Adicionou o usuário: admin, Perfil: Administrador, Email: admin@demo.com
+18:01:30 Saiu do sistema.

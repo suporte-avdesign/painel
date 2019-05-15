@@ -1,5 +1,5 @@
 <div id="modal-contents">
-    <form id="form-contents" method="POST" action="{{route('privacy-policy.update', $data->id)}}" onsubmit="return false">
+    <form id="form-contents" method="POST" action="{{route('delivery-return.update', $data->id)}}" onsubmit="return false">
         <input type="hidden" name="type" value="{{$data->type}}">
         <input type="hidden" name="order" value="{{$data->order}}">
         <input type="hidden" name="status" value="{{$data->status}}">
@@ -14,14 +14,14 @@
             </p>
             <p class="button-height block-label">
                 <label for="description" class="label"> Descrição <span class="red">*</span></label>
-                <textarea id="editor1" name="description" class="input full-width">{{$data->description}}</textarea>
+                <textarea id="editor2" name="description" class="input full-width">{!! $data->description !!}</textarea>
             </p>
 
             <p class="button-height align-center">
                 <span class="button-group">
                     <button onclick="fechaModal()" class="button"> Cancelar </button>
                     @can('contents-site-create')
-                        <button id="btn-modal" onclick="formContents('update', 'contents', '{{route('privacy-policy.load')}}')" class="button blue-gradient">
+                        <button id="btn-modal" onclick="formContents('update', 'contents', '{{route('delivery-return.load')}}')" class="button blue-gradient">
                         <span class="icon-publish"></span> Alterar
                     </button>
                     @endcan
@@ -34,7 +34,7 @@
 <script src="{{url('assets/backend/js/libs/ckeditor/ckeditor.js')}}"></script>
 <script src="{{url('assets/backend/js/libs/ckeditor/config.js?')}}{{time()}}"></script>
 <script>
-    CKEDITOR.replace( 'editor1', {
+    CKEDITOR.replace( 'editor2', {
         height: 150,
     });
 </script>

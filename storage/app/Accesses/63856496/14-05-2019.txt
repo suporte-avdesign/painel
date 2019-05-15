@@ -1,0 +1,39 @@
+19:47:42 Excluiu o arquivo de acesso: 14-05-2019.txt de admin
+19:48:11, Alterou Conteúdo: Entrega e Devoluções , Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3&nbsp;&nbsp;, Ordem:05, Status:Ativo
+19:51:38, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Ativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3&nbsp;&nbsp;
+19:53:18, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3&nbsp;&nbsp;
+19:59:51, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3&nbsp;&nbsp;
+20:02:06, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:03:00, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:04:53, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:11:58, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:12:06, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:12:35, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:12:37, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Ativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:12:45, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Ativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:15:06, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Ativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+20:46:39, Alterou Conteúdo: Entrega e Devoluções , Ordem:04, Status:Ativo, Titulo:eeee, Descrição:eeeee
+20:46:49, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Ativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+21:20:32, Alterou Conteúdo: Entrega e Devoluções , Ordem:04, Status:Ativo, Titulo:eeee, Descrição:eeeee
+21:21:36, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Ativo, Titulo:TITULO 1, Descrição:Linha 1Linha 2Linha 3  
+21:39:28, Alterou Conteúdo: Entrega e Devoluções , Ordem:04, Status:Ativo, Titulo:eeee, Descrição:eeeee
+22:04:18Alterou a ordem da forma de pagamento
+22:06:25, Alterou Conteúdo: Forma de Pagamento , Ordem:03, Status:Ativo, Titulo:Atacadista 3, Descrição:teste
+22:06:49, Adicionou Conteúdo: Forma de Pagamento , Ordem:01, Status:Ativo, Titulo:COMENTÁRIOS 3, Descrição:Testecfcfs&nbsp; 23vre5qq65qljqu8t6tq&nbsp;
+22:07:05, Alterou Conteúdo: Forma de Pagamento , Ordem:03, Status:Ativo, Titulo:COMENTÁRIOS 3, Descrição:Testecfcfs&nbsp; 23vre5qq65qljqu8t6tq&nbsp;
+22:07:26, Alterou Conteúdo: Forma de Pagamento , Ordem:03, Status:Ativo, Titulo:COMENTÁRIOS 3, Descrição:Testecfcfs&nbsp; 23vre5qq65qljqu8t6tq&nbsp;
+22:07:30, Alterou Conteúdo: Forma de Pagamento , Ordem:03, Status:Ativo, Titulo:Atacadista 3, Descrição:teste
+22:07:32, Alterou Conteúdo: Forma de Pagamento , Ordem:03, Status:Ativo, Titulo:COMENTÁRIOS 3, Descrição:Testecfcfs&nbsp; 23vre5qq65qljqu8t6tq&nbsp;
+22:09:11, Adicionou Conteúdo: Forma de Pagamento , Ordem:01, Status:Ativo, Titulo:COMENTÁRIOS 3, Descrição:&ccedil;a,a
+22:09:42, Adicionou Conteúdo: Forma de Pagamento , Ordem:02, Status:Ativo, Titulo:Forma pagamento, Descrição:nrtfghujqkq
+22:09:54, Alterou Conteúdo: Forma de Pagamento , Ordem:03, Status:Ativo, Titulo:Forma pagamento, Descrição:nrtfghujqkq
+22:13:17, Adicionou Conteúdo: Política de Privacidade , Ordem:01, Status:Ativo, Titulo:MÍDIA TESTE 3, Descrição:wdwwdwdwdw
+22:13:27, Alterou Conteúdo: Política de Privacidade , Ordem:10, Status:Ativo, Titulo:COMENTÁRIOS 3, Descrição:aSAA
+22:13:29, Alterou Conteúdo: Política de Privacidade , Ordem:09, Status:Inativo, Titulo:COMENTÁRIOS 3, Descrição:mm
+22:13:38, Alterou Conteúdo: Política de Privacidade , Ordem:09, Status:Inativo, Titulo:COMENTÁRIOS 5, Descrição:mm
+22:13:53, Alterou Conteúdo: Política de Privacidade , Ordem:01, Status:Ativo, Titulo:MÍDIA TESTE 3, Descrição:wdwwdwdwdw
+22:13:57, Alterou Conteúdo: Política de Privacidade , Ordem:08, Status:Inativo, Titulo:COMENTÁRIOS 5, Descrição:mm
+22:15:16, Adicionou Conteúdo: Entrega e Devoluções , Ordem:01, Status:Ativo, Titulo:COMENTÁRIOS 3, Descrição:kjhygg8qgq
+22:15:34, Adicionou Conteúdo: Entrega e Devoluções , Ordem:03, Status:Inativo, Titulo:MÍDIA TESTE, Descrição:1q1ww1111
+22:15:39, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:MÍDIA TESTE, Descrição:1q1ww1111
+22:15:45, Alterou Conteúdo: Entrega e Devoluções , Ordem:05, Status:Inativo, Titulo:MÍDIA TESTE, Descrição:1q1ww1111

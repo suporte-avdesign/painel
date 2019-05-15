@@ -2726,6 +2726,94 @@ class ConfigPermissionsTableSeeder extends Seeder
             'config_profile_id' => 4
         ]);
 
+        /*
+        ----------------------------------------
+         32- Conteúdos do site
+        ----------------------------------------
+        */
+        /************* View ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 32,
+            'name' => 'contents-site-view',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 150,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 150,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 150,
+            'config_profile_id' => 4
+        ]);
+
+        /************* Create ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 32,
+            'name' => 'contents-site-create',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 151,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 151,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 151,
+            'config_profile_id' => 4
+        ]);
+
+        /************* Update ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 32,
+            'name' => 'contents-site-update',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 152,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 152,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 152,
+            'config_profile_id' => 4
+        ]);
+
+        /************* Delete ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 32,
+            'name' => 'contents-site-delete',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 153,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 153,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 153,
+            'config_profile_id' => 4
+        ]);
 
 
 
@@ -2927,8 +3015,11 @@ class ConfigPermissionsTableSeeder extends Seeder
     |     - images-site-create
     |     - images-site-update
     |     - images-site-delete
-    |
-    |
+    | 32- Conteúdos do site
+    |     - contents-site-view
+    |     - contents-site-create
+    |     - contents-site-update
+    |     - contents-site-delete
     |
     |
     |

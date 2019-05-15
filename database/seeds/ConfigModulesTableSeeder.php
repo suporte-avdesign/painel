@@ -263,6 +263,14 @@ class ConfigModulesTableSeeder extends Seeder
             'created_at' => $date
         ]);
 
+        ConfigModule::create([
+            'type' => 'A',
+            'name' => 'Conteúdos do site',
+            'label' => 'Conteúdos de informações sobre o site ',
+            'order' => '11',
+            'created_at' => $date
+        ]);
+
 
 
 
@@ -307,6 +315,7 @@ class ConfigModulesTableSeeder extends Seeder
     | 29- Cadastro de Clientes
     | 30- Configuração do slide da home
     | 31- Manipulação das imagens do site
+    | 32- Conteúdos do site
 
     */    
 }

@@ -1,5 +1,5 @@
 <div id="modal-contents">
-    <form id="form-contents" method="POST" action="{{route('privacy-policy.store')}}" onsubmit="return false">
+    <form id="form-contents" method="POST" action="{{route('delivery-return.store')}}" onsubmit="return false">
         <input type="hidden" name="type" value="content">
         @csrf
         <fieldset class="fieldset">
@@ -37,7 +37,7 @@
                 <span class="button-group">
                     <button onclick="fechaModal()" class="button"> Cancelar </button>
                     @can('contents-site-create')
-                        <button id="btn-modal" onclick="formContents('create', 'contents', '{{route('privacy-policy.load')}}')" class="button blue-gradient">
+                        <button id="btn-modal" onclick="formContents('create', 'contents', '{{route('delivery-return.load')}}')" class="button blue-gradient">
                         <span class="icon-publish"></span> Salvar
                     </button>
                     @endcan

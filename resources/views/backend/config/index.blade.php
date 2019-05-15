@@ -15,6 +15,8 @@
 							<b>Conteúdos do Site</b>
 
 							<ul class="files-list mini">
+
+
 								<!--can('config-module-view') -->
 								<li class="with-right-arrow grey-arrow">
 									<span class="icon folder-image"></span>
@@ -35,6 +37,22 @@
 								</li>
 								<!--endcan -->
 
+								<li class="with-right-arrow grey-arrow">
+									<span class="icon folder-docs"></span>
+									<b>Mensagens</b>
+									<ul class="files-list mini">
+										@can('config-subject-view')
+											<li>
+												<a href="config/contact-subjects" class="file-link">
+													<span class="icon folder-program"></span>
+													Contato do Site
+												</a>
+											</li>
+										@endcan
+									</ul>
+								</li>
+
+
 								<!--can('config-module-view') -->
 								<li class="with-right-arrow grey-arrow">
 									<span class="icon folder-docs"></span>
@@ -47,8 +65,18 @@
 										</li>
 
 										<li>
-											<a href="/content/faq" class="file-link">
-												<span class="icon file-ttf"></span> Perguntas Frequentes
+											<a href="/content/terms-conditions" class="file-link">
+												<span class="icon file-ttf"></span> Termos e Condições
+											</a>
+										</li>
+										<li>
+											<a href="/content/form-payment" class="file-link">
+												<span class="icon file-ttf"></span> Forma de Pagamento
+											</a>
+										</li>
+										<li>
+											<a href="/content/delivery-return" class="file-link">
+												<span class="icon file-ttf"></span> Entrega e Devoluções
 											</a>
 										</li>
 									</ul>
@@ -149,24 +177,6 @@
 
 						</ul>
 					</li>
-
-
-					<li class="with-right-arrow grey-arrow">
-						<span class="icon folder-docs"></span>
-						<b>Mensagens</b>
-						<ul class="files-list mini">
-							@can('config-subject-view')
-								<li>
-									<a href="config/contact-subjects" class="file-link">
-										<span class="icon folder-program"></span>
-										Contato do Site
-									</a>
-								</li>
-							@endcan
-						</ul>
-					</li>
-
-
 					
 					<li class="with-right-arrow grey-arrow">
 						<span class="icon folder-image"></span>

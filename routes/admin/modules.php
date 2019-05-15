@@ -147,8 +147,27 @@ Route::get('imagens/banner/order/{id}', 'Admin\ImageBannerController@order')->na
 Route::put('imagens/banner/order', 'Admin\ImageBannerController@updateOrder')->name('banner.order');
 
 // Conteudo do site
+// Política e Privacidade
 Route::resource('content/privacy-policy', 'Admin\ContentPrivacyPolicyController', ['except' => ['edit']]);
 Route::get('content/privacy-policy-load', 'Admin\ContentPrivacyPolicyController@loadContent')->name('privacy-policy.load');
 Route::get('content/privacy-policy-order/{id}', 'Admin\ContentPrivacyPolicyController@order')->name('privacy-policy.order');
 Route::put('content/privacy-policy-order/{id}', 'Admin\ContentPrivacyPolicyController@updateOrder')->name('privacy-policy.order');
 Route::put('content/privacy-policy-status/{id}', 'Admin\ContentPrivacyPolicyController@status')->name('privacy-policy.status');
+// Termos e Condições
+Route::resource('content/terms-conditions', 'Admin\ContentTermsConditionsController', ['except' => ['edit']]);
+Route::get('content/terms-conditions-load', 'Admin\ContentTermsConditionsController@loadContent')->name('terms-conditions.load');
+Route::get('content/terms-conditions-order/{id}', 'Admin\ContentTermsConditionsController@order')->name('terms-conditions.order');
+Route::put('content/terms-conditions-order/{id}', 'Admin\ContentTermsConditionsController@updateOrder')->name('terms-conditions.order');
+Route::put('content/terms-conditions-status/{id}', 'Admin\ContentTermsConditionsController@status')->name('terms-conditions.status');
+//Forma de Pagamento
+Route::resource('content/form-payment', 'Admin\ContentFormPaymentController', ['except' => ['edit']]);
+Route::get('content/form-payment-load', 'Admin\ContentFormPaymentController@loadContent')->name('form-payment.load');
+Route::get('content/form-payment-order/{id}', 'Admin\ContentFormPaymentController@order')->name('form-payment.order');
+Route::put('content/form-payment-order/{id}', 'Admin\ContentFormPaymentController@updateOrder')->name('form-payment.order');
+Route::put('content/form-payment-status/{id}', 'Admin\ContentFormPaymentController@status')->name('form-payment.status');
+// Entrega de Devolução
+Route::resource('content/delivery-return', 'Admin\ContentDeliveryReturnController', ['except' => ['edit']]);
+Route::get('content/delivery-return-load', 'Admin\ContentDeliveryReturnController@loadContent')->name('delivery-return.load');
+Route::get('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@order')->name('delivery-return.order');
+Route::put('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@updateOrder')->name('delivery-return.order');
+Route::put('content/delivery-return-status/{id}', 'Admin\ContentDeliveryReturnController@status')->name('delivery-return.status');

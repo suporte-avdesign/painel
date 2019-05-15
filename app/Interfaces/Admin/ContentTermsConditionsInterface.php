@@ -2,12 +2,12 @@
 
 namespace AVDPainel\Interfaces\Admin;
 
-interface ContentPrivacyPolicyInterface
+interface ContentTermsConditionsInterface
 {
     /**
-     * Interface model ContentPrivacyPolice
+     * Interface model ContentTermsConditions
      *
-     * @return \AVDPainel\Repositories\Admin\ContentPrivacyPoliceRepository
+     * @return \AVDPainel\Repositories\Admin\ContentTermsConditionsRepository
      */
     public function getAll();
     public function setId($id);

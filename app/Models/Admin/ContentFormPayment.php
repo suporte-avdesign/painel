@@ -4,7 +4,7 @@ namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContentPrivacyPolicy extends Model
+class ContentFormPayment extends Model
 {
     protected $fillable = [
         'type',
@@ -24,7 +24,4 @@ class ContentPrivacyPolicy extends Model
             "status" => "required"
         ];
     }
-
 }
-
-

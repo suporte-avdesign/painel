@@ -3,12 +3,12 @@
 namespace AVDPainel\Repositories\Admin;
 
 
-use AVDPainel\Models\Admin\ContentPrivacyPolicy as Model;
-use AVDPainel\Interfaces\Admin\ContentPrivacyPolicyInterface;
+use AVDPainel\Models\Admin\ContentTermsConditions as Model;
+use AVDPainel\Interfaces\Admin\ContentTermsConditionsInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class ContentPrivacyPolicyRepository implements ContentPrivacyPolicyInterface
+class ContentTermsConditionsRepository implements ContentTermsConditionsInterface
 {
     use ValidatesRequests;
 
