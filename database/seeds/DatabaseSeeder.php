@@ -13,6 +13,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AdminsTableSeeder::class);
         $this->call(ConfigSiteTableSeeder::class);
+        $this->call(ConfigTemplateTableSeeder::class);
         $this->call(ConfigModulesTableSeeder::class);
         $this->call(ConfigProfilesTableSeeder::class);
         $this->call(ConfigPermissionsTableSeeder::class);

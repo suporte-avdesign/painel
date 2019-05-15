@@ -15,8 +15,6 @@
 							<b>Conteúdos do Site</b>
 
 							<ul class="files-list mini">
-
-
 								<!--can('config-module-view') -->
 								<li class="with-right-arrow grey-arrow">
 									<span class="icon folder-image"></span>
@@ -52,36 +50,35 @@
 									</ul>
 								</li>
 
+								@can('contents-site-view')
+									<li class="with-right-arrow grey-arrow">
+										<span class="icon folder-docs"></span>
+										<b>Informações ao Cliente</b>
+										<ul class="files-list mini">
+											<li>
+												<a href="/content/privacy-policy" class="file-link">
+													<span class="icon file-ttf"></span> Política de Privacidade
+												</a>
+											</li>
 
-								<!--can('config-module-view') -->
-								<li class="with-right-arrow grey-arrow">
-									<span class="icon folder-docs"></span>
-									<b>Informações ao Cliente</b>
-									<ul class="files-list mini">
-										<li>
-											<a href="/content/privacy-policy" class="file-link">
-												<span class="icon file-ttf"></span> Política de Privacidade
-											</a>
-										</li>
-
-										<li>
-											<a href="/content/terms-conditions" class="file-link">
-												<span class="icon file-ttf"></span> Termos e Condições
-											</a>
-										</li>
-										<li>
-											<a href="/content/form-payment" class="file-link">
-												<span class="icon file-ttf"></span> Forma de Pagamento
-											</a>
-										</li>
-										<li>
-											<a href="/content/delivery-return" class="file-link">
-												<span class="icon file-ttf"></span> Entrega e Devoluções
-											</a>
-										</li>
-									</ul>
-								</li>
-								<!--endcan -->
+											<li>
+												<a href="/content/terms-conditions" class="file-link">
+													<span class="icon file-ttf"></span> Termos e Condições
+												</a>
+											</li>
+											<li>
+												<a href="/content/form-payment" class="file-link">
+													<span class="icon file-ttf"></span> Forma de Pagamento
+												</a>
+											</li>
+											<li>
+												<a href="/content/delivery-return" class="file-link">
+													<span class="icon file-ttf"></span> Entrega e Devoluções
+												</a>
+											</li>
+										</ul>
+									</li>
+								@endcan
 
 							</ul>
 						</li>
@@ -132,6 +129,12 @@
 									<a href="config/1/site" class="file-link">
 										<span class="icon folder-program"></span>
 										Padrão do Site
+									</a>
+								</li>
+								<li>
+									<a href="config/template-site" class="file-link">
+										<span class="icon folder-program"></span>
+										Template do Site
 									</a>
 								</li>
 							@endcan

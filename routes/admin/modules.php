@@ -131,8 +131,6 @@ Route::resource('order/{id}/order-notes', 'Admin\OrderNoteController');
 // Pedido/Rastreamento/Metodo de Envio/Obs.
 Route::resource('order/{id}/order-shippings', 'Admin\OrderShippingController');
 
-// Conteúdos.
-Route::get('conteudos', 'Admin\ContentController@index');
 
 // Slider Home
 Route::resource('imagens/{id}/banner-slider', 'Admin\ImageSliderController');
@@ -171,3 +169,4 @@ Route::get('content/delivery-return-load', 'Admin\ContentDeliveryReturnControlle
 Route::get('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@order')->name('delivery-return.order');
 Route::put('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@updateOrder')->name('delivery-return.order');
 Route::put('content/delivery-return-status/{id}', 'Admin\ContentDeliveryReturnController@status')->name('delivery-return.status');
+

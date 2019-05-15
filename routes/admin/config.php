@@ -9,6 +9,9 @@ Route::put('config/site/{id}/alterar', 'Admin\ConfigSiteController@update')->nam
 |--------------------------------------------------------------------------
 */
 
+Route::resource('config/template-site', 'Admin\ConfigTemplateController');
+
+
 //Config Status Pagamento.
 Route::resource('config/status-pagamentos', 'Admin\ConfigStatusPaymentController');
 Route::get('config/status/payments/excluded', 'Admin\ConfigStatusPaymentController@excluded')->name('status.payments.excluded');

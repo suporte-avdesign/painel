@@ -45,6 +45,7 @@ class AppServiceProvider extends ServiceProvider
             'ConfigSection',
             'ConfigCategory',
             'ConfigShipping',
+            'ConfigTemplate',
             'ConfigColorGroup',
             'ConfigPermission',
             'ConfigFormPayment',
