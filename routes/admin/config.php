@@ -1,6 +1,6 @@
 <?php
 // Modulos vinculados ao site.
-Route::get('config/{id}/site', 'Admin\ConfigSiteController@edit');
+Route::get('config/{id}/site', 'Admin\ConfigSiteController@edit', ['except' => ['edit']]);
 Route::put('config/site/{id}/alterar', 'Admin\ConfigSiteController@update')->name('config.site.update');
 
 /*

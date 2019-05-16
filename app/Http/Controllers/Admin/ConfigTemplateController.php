@@ -24,10 +24,14 @@ class ConfigTemplateController extends Controller
 
         $this->messages = array(
             "fields" => array(
-                'type' => 'Tipo',
-                'page' => 'Página',
+                'tmp' => 'Template',
+                'name' => 'Nome',
                 'module' => "Modulo",
-                'status' => 'Status'
+                'status' => 'Status',
+                'save' => 'Salvar',
+                'cancel' => 'Cancelar',
+                'update' => 'Alterar',
+                'delete' => 'Excluir'
             ),
             "accesses" => array(
                 'create' => "Adicionou {$this->content} ",
@@ -39,8 +43,6 @@ class ConfigTemplateController extends Controller
             'module.required' => 'O modulo é obrigatório',
             'status.required' => 'O status é obrigatório',
             'title_index' => $this->content,
-            'select_text' => 'Selecione um..',
-
             'create_model' => array(
                 "create" => "Modulo",
                 "title" => "Adicionar Modulo"
@@ -49,6 +51,7 @@ class ConfigTemplateController extends Controller
                 "create" => "Página",
                 "title" => "Adicionar Página"
             ),
+            'select_text' => 'Selecione um',
             'edit_model' => "Editar Modulo",
             'edit_page' => "Editar Página",
             'create_true' => 'O registro foi salvo',
@@ -131,7 +134,16 @@ class ConfigTemplateController extends Controller
      */
     public function show($id)
     {
-        //
+        if( Gate::denies("{$this->ability}-update") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $pages = \AVDPainel\Models\Admin\ConfigPage::orderBy('name')->get();
+        $data = $this->interModel->setId($id);
+        $config = $this->messages;
+
+        return view("{$this->view}.form-module-edit", compact('config','data', 'pages'));
+
     }
 
     /**
@@ -146,25 +158,34 @@ class ConfigTemplateController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\ConfigTemplate  $configTemplate
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return json
      */
     public function update(Request $request, $id)
     {
-        //
+        if( Gate::denies("{$this->ability}-update") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $this->interModel->rules($request, $this->messages, $id);
+
+        $dataForm = $request->all();
+
+        $update = $this->interModel->update($dataForm, $id, $this->messages);
+
+        return response()->json($update);
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \AVDPainel\Models\Admin\ConfigTemplate  $configTemplate
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        if( Gate::denies("{$this->ability}-delete") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $delete = $this->interModel->delete($id, $this->messages);
+
+        return response()->json($delete);
     }
 }

@@ -11,5 +11,9 @@ interface ConfigPageInterface
      */
     public function getAll();
     public function create($input, $message);
-    public function update($input, $message);
+    public function setId($id);
+    public function update($input, $id, $message);
+    public function delete($id, $message);
+    public function rules($input, $messages, $id);
+
 }

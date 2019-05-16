@@ -67,31 +67,105 @@ class ConfigTemplateRepository implements ConfigTemplateInterface
     }
 
 
-    public function update($input, $message)
+    /**
+     * @param $input
+     * @param $id
+     * @return bool
+     */
+    public function update($input, $id, $message)
     {
-        $data  = $this->get();
+        $input['module'] = Str::slug($input['module'], "-");
+
+        $data = $this->setId($id);
+
         $update = $data->update($input);
         if ($update) {
 
-            $config = array(
-                'table_color' => $data->table_color,
-                'table_color_sel' => $data->table_color_sel, 
-                'table_limit' => $data->table_limit, 
-                'table_open_details' => $data->table_open_details 
-            );
-            $out = array(
-                "configUser" => $config
+            $acc = $message['accesses'];
+            $fid = $message['fields'];
+
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ', '.$acc['update'].
+                    ', '.$fid['module'].':'.$data->name.
+                    ', '.$fid['tmp'].':'.$data->tmp.
+                    ', '.$fid['status'].':'.$data->status)
             );
 
+            $success = true;
+            $message = $message['update_true'];
+        } else {
+            $success = false;
+            $message = $message['update_false'];
+        }
+
+        $out = array(
+            "success" => $success,
+            "message" => $message
+        );
+
+        return $out;
+    }
+
+
+    public function delete($id, $message)
+    {
+        $data   = $this->setId($id);
+        $delete = $data->delete();
+        if ($delete) {
+
+            $acc = $message['accesses'];
+            $fid = $message['fields'];
+
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ', '.$acc['delete'].
+                    ', '.$fid['module'].':'.$data->name.
+                    ', '.$fid['status'].':'.$data->status)
+            );
+            $success = true;
+            $message = $message['delete_true'];
+        } else {
+            $success = false;
+            $message = $message['delete_false'];
+
+        }
+
+        $out = array(
+            "success" => $success,
+            "message"=> $message
+        );
+
+        return $out;
+    }
+
+    /**
+     * Exclui todos os modulos referente ao $config_page_id
+     * @param $config_page_id
+     * @param $message
+     */
+    public function deleteAll($config_page_id, $message)
+    {
+        $data   = $this->model->where('config_page_id', $config_page_id);
+        $delete = $data->delete();
+        if ($delete) {
+            $acc = $message['accesses'];
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                ' Alterou sua configuração do sistema por uma de sua preferência.')
+                    ' '.$acc['delete_all']. $message['title_index'])
             );
-            
+
             return true;
         }
+
         return false;
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function setId($id)
+    {
+        return $this->model->find($id);
+    }
 
 }

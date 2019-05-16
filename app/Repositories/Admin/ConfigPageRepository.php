@@ -5,15 +5,17 @@ namespace AVDPainel\Repositories\Admin;
 
 use AVDPainel\Models\Admin\ConfigPage as Model;
 use AVDPainel\Interfaces\Admin\ConfigPageInterface;
+use AVDPainel\Interfaces\Admin\ConfigTemplateInterface as Template;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Str;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 
 class ConfigPageRepository implements ConfigPageInterface
 {
     use ValidatesRequests;
 
     public $model;
+    public $template;
 
     /**
      * ValidatesRequests
@@ -32,19 +34,26 @@ class ConfigPageRepository implements ConfigPageInterface
      *
      * @return void
      */
-    public function __construct(Model $model)
+    public function __construct(Model $model, Template $template)
     {
         $this->model = $model;
+        $this->template = $template;
     }
 
-
+    /**
+     * @return mixed
+     */
     public function getAll()
     {
         return $this->model->orderBy('name')->get();
         return $data;
     }
 
-
+    /**
+     * @param $input
+     * @param $message
+     * @return array
+     */
     public function create($input, $message)
     {
         $input['module'] = Str::slug($input['module'], "-");
@@ -66,32 +75,89 @@ class ConfigPageRepository implements ConfigPageInterface
         return $out;
     }
 
-
-    public function update($input, $message)
+    /**
+     * @param $input
+     * @param $id
+     * @param $message
+     * @return array
+     */
+    public function update($input, $id, $message)
     {
-        $data  = $this->get();
+        $input['module'] = Str::slug($input['module'], "-");
+
+        $data = $this->setId($id);
+
         $update = $data->update($input);
         if ($update) {
 
-            $config = array(
-                'table_color' => $data->table_color,
-                'table_color_sel' => $data->table_color_sel, 
-                'table_limit' => $data->table_limit, 
-                'table_open_details' => $data->table_open_details 
-            );
-            $out = array(
-                "configUser" => $config
+            $acc = $message['accesses'];
+            $fid = $message['fields'];
+
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ', '.$acc['update'].
+                    ', '.$fid['module'].':'.$data->name.
+                    ', '.$fid['status'].':'.$data->status)
             );
 
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                ' Alterou sua configuração do sistema por uma de sua preferência.')
-            );
-            
-            return true;
+            $success = true;
+            $message = $message['update_true'];
+        } else {
+            $success = false;
+            $message = $message['update_false'];
         }
-        return false;
+
+        $out = array(
+            "success" => $success,
+            "message" => $message
+        );
+
+        return $out;
     }
 
+    /**
+     * @param $id
+     * @param $message
+     * @return array
+     */
+    public function delete($id, $message)
+    {
+
+        $data   = $this->setId($id);
+
+        $temp = $this->template->deleteAll($id, $message);
+        $delete = $data->delete();
+        if ($delete) {
+            $acc = $message['accesses'];
+            $fds = $message['fields'];
+            generateAccessesTxt(
+                date('H:i:s').utf8_decode(
+                    ' '.$acc['delete'].$fds['module'].':'.$data->name)
+            );
+
+            $success = true;
+            $message = $message['delete_true'];
+
+        } else {
+            $success = false;
+            $message = $message['delete_false'];
+        }
+
+        $out = array(
+            "success" => $success,
+            "message" => $message
+        );
+
+        return $out;
+    }
+
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function setId($id)
+    {
+        return $this->model->find($id);
+    }
 
 }

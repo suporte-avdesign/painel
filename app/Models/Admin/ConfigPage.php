@@ -8,6 +8,9 @@ class ConfigPage extends Model
 {
     protected $fillable = ['name','module','status'];
 
+
+
+
     public function rules($id = '')
     {
         return [

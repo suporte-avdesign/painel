@@ -10,7 +10,7 @@ use Gate;
 class ConfigPageController extends Controller
 {
 
-    protected $content = 'Configuração: Template do Site';
+    protected $content = 'Configuração: Templates do Site';
     protected $ability = 'config-site';
     protected $view    = 'backend.config.template';
     protected $model;
@@ -32,6 +32,7 @@ class ConfigPageController extends Controller
                 'create' => "Adicionou {$this->content} ",
                 'update' => "Alterou {$this->content} ",
                 'delete' => "Excluiu {$this->content} ",
+                'delete_all' => "Excluiu todos os modulos referente a página "
             ),
             'name.required' => 'A página é obrigatória',
             'name.unique' => 'Já existe uma página com este nome',
@@ -43,19 +44,19 @@ class ConfigPageController extends Controller
             'text_page' => "Página",
             'text_model' => "Mólulo",
             'edit_page' => "Editar Página",
+            'edit_model' => "Editar Módulo",
             'create_true' => 'O registro foi salvo',
             'create_false' => 'Não foi possível salvar o registro',
             'update_true' => 'O registro foi alterado',
             'update_false' => 'Não foi possível alterar o registro',
             'delete_true' => 'O registro foi excluido',
-            'delete_false' => 'Não foi possível excluir o registro',
-            'status_true' => 'O status foi alterado',
-            'status_false' => 'Não foi possível alterar o status',
-            'error_serve' => 'Houve um erro no servidor.'
+            'delete_false' => 'Não foi possível excluir o registro'
         );
     }
 
-
+    /**
+     * @return View
+     */
     public function index()
     {
         if( Gate::denies("{$this->ability}-view") ) {
@@ -69,7 +70,9 @@ class ConfigPageController extends Controller
         return view("{$this->view}.index", compact('config','pages'));
     }
 
-
+    /**
+     * @return View
+     */
     public function load()
     {
         if( Gate::denies("{$this->ability}-view") ) {
@@ -85,8 +88,6 @@ class ConfigPageController extends Controller
 
 
     /**
-     * Adicionar Page.
-     *
      * @return View
      */
     public function create()
@@ -101,8 +102,10 @@ class ConfigPageController extends Controller
     }
 
 
-
-
+    /**
+     * @param Request $request
+     * @return json
+     */
     public function store(Request $request)
     {
         if( Gate::denies("{$this->ability}-create") ) {
@@ -119,47 +122,53 @@ class ConfigPageController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return View
      */
-    public function show(ConfigPage $configPage)
+    public function show($id)
     {
-        //
+        if( Gate::denies("{$this->ability}-update") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $data = $this->interModel->setId($id);
+
+        return view("{$this->view}.form-page-edit", compact('data'));
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $id
+     * @return json
      */
-    public function edit(ConfigPage $configPage)
+    public function update(Request $request, $id)
     {
-        //
+        if( Gate::denies("{$this->ability}-update") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $this->interModel->rules($request, $this->messages, $id);
+
+        $dataForm = $request->all();
+
+        $update = $this->interModel->update($dataForm, $id, $this->messages);
+
+        return response()->json($update);
+
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return json
      */
-    public function update(Request $request, ConfigPage $configPage)
+    public function destroy($id)
     {
-        //
-    }
+        if( Gate::denies("{$this->ability}-delete") ) {
+            return view("backend.erros.message-401");
+        }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(ConfigPage $configPage)
-    {
-        //
+        $delete = $this->interModel->delete($id, $this->messages);
+
+        return response()->json($delete);
     }
 }

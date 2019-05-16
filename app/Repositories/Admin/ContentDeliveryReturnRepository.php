@@ -152,7 +152,7 @@ class ContentDeliveryReturnRepository implements ContentDeliveryReturnInterface
             $fid = $message['fields'];
 
             generateAccessesTxt(date('H:i:s').utf8_decode(
-                ', '.$acc['update'].
+                ', '.$acc['delete'].
                 ', '.$fid['order'].':'.$data->order.
                 ', '.$fid['status'].':'.$data->status.
                 ', '.$fid['title'].':'.$data->title.
