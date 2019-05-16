@@ -8,9 +8,11 @@ Route::put('config/site/{id}/alterar', 'Admin\ConfigSiteController@update')->nam
 | Configurações do sistema
 |--------------------------------------------------------------------------
 */
-
+// Config Page Site
+Route::resource('config/page-site', 'Admin\ConfigPageController');
+Route::get('config/page-site-load', 'Admin\ConfigPageController@load')->name('page-site-load');
+// Config Templates Site
 Route::resource('config/template-site', 'Admin\ConfigTemplateController');
-
 
 //Config Status Pagamento.
 Route::resource('config/status-pagamentos', 'Admin\ConfigStatusPaymentController');

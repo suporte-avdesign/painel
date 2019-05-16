@@ -14,10 +14,13 @@ class CreateConfigTemplatesTable extends Migration
     public function up()
     {
         Schema::create('config_templates', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('page', 30);
-            $table->string('module', 50);
-            $table->smallInteger('type');
+            $table->increments('id');
+            $table->integer('config_page_id')->unsigned();
+            $table->foreign('config_page_id')
+                ->references('id')->on('config_pages');
+            $table->smallInteger('tmp');
+            $table->string('name', 100);
+            $table->string('module', 100);
             $table->enum('status', ['Ativo', 'Inativo']);
             $table->timestamps();
         });

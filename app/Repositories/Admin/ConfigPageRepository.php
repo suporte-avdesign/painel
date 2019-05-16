@@ -3,13 +3,13 @@
 namespace AVDPainel\Repositories\Admin;
 
 
-use AVDPainel\Models\Admin\ConfigTemplate as Model;
-use AVDPainel\Interfaces\Admin\ConfigTemplateInterface;
+use AVDPainel\Models\Admin\ConfigPage as Model;
+use AVDPainel\Interfaces\Admin\ConfigPageInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Support\Str;
 
-class ConfigTemplateRepository implements ConfigTemplateInterface
+class ConfigPageRepository implements ConfigPageInterface
 {
     use ValidatesRequests;
 
@@ -40,7 +40,7 @@ class ConfigTemplateRepository implements ConfigTemplateInterface
 
     public function getAll()
     {
-        return $this->model->orderBy('config_page_id')->get();
+        return $this->model->orderBy('name')->get();
         return $data;
     }
 

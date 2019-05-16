@@ -2,14 +2,14 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Interfaces\Admin\ConfigTemplateInterface as InterModel;
+use AVDPainel\Interfaces\Admin\ConfigPageInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Gate;
 
-
-class ConfigTemplateController extends Controller
+class ConfigPageController extends Controller
 {
+
     protected $content = 'Configuração: Template do Site';
     protected $ability = 'config-site';
     protected $view    = 'backend.config.template';
@@ -24,8 +24,7 @@ class ConfigTemplateController extends Controller
 
         $this->messages = array(
             "fields" => array(
-                'type' => 'Tipo',
-                'page' => 'Página',
+                'name' => 'Nome',
                 'module' => "Modulo",
                 'status' => 'Status'
             ),
@@ -39,17 +38,10 @@ class ConfigTemplateController extends Controller
             'module.required' => 'O modulo é obrigatório',
             'status.required' => 'O status é obrigatório',
             'title_index' => $this->content,
-            'select_text' => 'Selecione um..',
-
-            'create_model' => array(
-                "create" => "Modulo",
-                "title" => "Adicionar Modulo"
-            ),
-            'create_page' => array(
-                "create" => "Página",
-                "title" => "Adicionar Página"
-            ),
-            'edit_model' => "Editar Modulo",
+            'title_page' => "Adicionar Página",
+            'title_model' => "Adicionar Modulo",
+            'text_page' => "Página",
+            'text_model' => "Mólulo",
             'edit_page' => "Editar Página",
             'create_true' => 'O registro foi salvo',
             'create_false' => 'Não foi possível salvar o registro',
@@ -64,8 +56,7 @@ class ConfigTemplateController extends Controller
     }
 
 
-
-    public function index(ConfigPage $configPage)
+    public function index()
     {
         if( Gate::denies("{$this->ability}-view") ) {
             return view("backend.erros.message-401");
@@ -73,16 +64,28 @@ class ConfigTemplateController extends Controller
 
         $config = $this->messages;
 
-        $pages = $configPage->orderBy('name')->get();
+        $pages = $this->interModel->getAll();
 
         return view("{$this->view}.index", compact('config','pages'));
     }
 
 
+    public function load()
+    {
+        if( Gate::denies("{$this->ability}-view") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $config = $this->messages;
+
+        $pages = $this->interModel->getAll();
+
+        return view("{$this->view}.load", compact('config','pages'));
+    }
 
 
     /**
-     * Adicionar Modulo.
+     * Adicionar Page.
      *
      * @return View
      */
@@ -92,21 +95,14 @@ class ConfigTemplateController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $pages = \AVDPainel\Models\Admin\ConfigPage::orderBy('name')->get();
-
         $config = $this->messages;
 
-        return view("{$this->view}.form-module-create", compact('config','pages'));
+        return view("{$this->view}.form-page-create", compact('config'));
     }
 
 
 
-    /**
-     * Salvar Modulo
-     *
-     * @param Request $request
-     * @return json
-     */
+
     public function store(Request $request)
     {
         if( Gate::denies("{$this->ability}-create") ) {
@@ -122,14 +118,13 @@ class ConfigTemplateController extends Controller
         return response()->json($create);
     }
 
-
     /**
      * Display the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\ConfigTemplate  $configTemplate
+     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(ConfigPage $configPage)
     {
         //
     }
@@ -137,10 +132,10 @@ class ConfigTemplateController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\ConfigTemplate  $configTemplate
+     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(ConfigPage $configPage)
     {
         //
     }
@@ -149,10 +144,10 @@ class ConfigTemplateController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\ConfigTemplate  $configTemplate
+     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, ConfigPage $configPage)
     {
         //
     }
@@ -160,10 +155,10 @@ class ConfigTemplateController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \AVDPainel\Models\Admin\ConfigTemplate  $configTemplate
+     * @param  \AVDPainel\Models\Admin\ConfigPage  $configPage
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(ConfigPage $configPage)
     {
         //
     }

@@ -132,7 +132,7 @@
 									</a>
 								</li>
 								<li>
-									<a href="config/template-site" class="file-link">
+									<a href="config/page-site" class="file-link">
 										<span class="icon folder-program"></span>
 										Template do Site
 									</a>

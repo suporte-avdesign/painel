@@ -8,13 +8,13 @@
  * ------------ By Anselmo Velame ---------------
  *
  * Sistma Administrativo
- * Contents
+ * Templates
  *
  */
 ;(function($, undefined)
 {
 
-    formContents = function(ac, id, load)
+    formTemplate = function(ac, id, load)
     {
         var form = $('#form-'+id),
             url  = form.attr('action'),
@@ -30,7 +30,7 @@
             },
             success: function(data){
                 if(data.success == true){
-                    $( "#list-contents" ).load( load, function() {
+                    $( "#load-template" ).load( load, function() {
                         fechaModal();
                         msgNotifica(true, data.message, true, false);
                     });
@@ -45,6 +45,39 @@
             }
         });
     }
+
+    formPage = function(ac, id, load)
+    {
+        var form = $('#form-'+id),
+            url  = form.attr('action'),
+            txt;
+        (ac == 'create' ? txt = 'Salvar' : txt = 'Alterar');
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: url,
+            data: form.serialize(),
+            beforeSend: function() {
+                setBtn(4,'Aguarde',false,'loader','btn-modal',false,'silver');
+            },
+            success: function(data){
+                if(data.success == true){
+                    $( "#load-template" ).load( load, function() {
+                        fechaModal();
+                        msgNotifica(true, data.message, true, false);
+                    });
+                } else {
+                    setBtn(4,txt,true,'icon-outbox','btn-modal',false,'blue');
+                    msgNotifica(false, data.message, true, false);
+                }
+            },
+            error: function(xhr){
+                setBtn(4,txt,true,'icon-outbox','btn-modal',false,'blue');
+                ajaxFormError(xhr);
+            }
+        });
+    }
+
 
 
     /**

@@ -1,39 +1,42 @@
+<div class="block large-margin-bottom">
+	<div class="block-title">
+		<h3><span class="icon icon-publish"></span> {{$config['title_index']}}</h3>
+		@can('config-site-create')
+			<div class="button-group absolute-right compact">
+				<button onclick="abreModal('{{$config['title_page']}}', '{{route('page-site.create')}}', 'page', 2, true, 240, 340)"
+						title="{{$config['title_page']}}"
+						class="button icon-plus-round with-tooltip anthracite-gradient">{{$config['text_page']}}
+				</button>
+				<button onclick="abreModal('{{$config['title_model']}}', '{{route('template-site.create')}}', 'template', 2, true, 240, 340)"
+						title="{{$config['title_model']}}"
+						class="button icon-plus-round with-tooltip anthracite-gradient">{{$config['text_model']}}
+				</button>
+			</div>
+		@endcan
+	</div>
 
-    <h3 class="thin">Ribbons &amp; counts</h3>
+		<div class="with-padding" id="load-template">
 
-    <p class="button-height">
-		<span class="button-group">
-			<span class="button">
-				Standard
-				<span class="count">2</span>
-			</span>
-			<span class="button">
-				Colored
-				<span class="count green-gradient">2</span>
-			</span>
-			<span class="button">
-				Long number
-				<span class="count blue-gradient">255</span>
-			</span>
-			<span class="button">
-				On hover
-				<span class="count orange-gradient show-on-parent-hover">2</span>
-			</span>
-		</span>
-    </p>
+			@foreach($pages as $page)
+				<h4 class="grey underline">{{$page->name}}</h4>
+				<p class="button-height">
+					<span class="button-group">
+						@foreach($page->modules as $mod)
+							@if ($mod->tmp == 1)
+								<button class="button margin-top">{{$mod->name}}<span class="count blue-gradient">{{$mod->tmp}}</span></button>
+							@elseif ($mod->tmp == 2)
+								<button class="button margin-top">{{$mod->name}}<span class="count orange-gradient">{{$mod->tmp}}</span></button>
+							@elseif ($mod->tmp == 3)
+								<button class="button margin-top">{{$mod->name}}<span class="count green-gradient">{{$mod->tmp}}</span></button>
+							@else
+								<button class="button margin-top">{{$mod->name}}<span class="count grey-gradient">{{$mod->tmp}}</span></button>
+							@endif
+						@endforeach
+					</span>
+				</p>
+			@endforeach
 
-    <p class="wrapped relative" style="height: 65px">
-        <span class="ribbon"><span class="ribbon-inner">Hey!</span></span>
-        This block has a ribbon.
-    </p>
-
-    <p class="wrapped relative" style="height: 65px">
-        <span class="ribbon"><span class="ribbon-inner red-gradient glossy">Hey!</span></span>
-        Color can be customized at will.
-    </p>
-
-    <p class="wrapped relative" style="height: 45px">
-        <span class="ribbon tiny"><span class="ribbon-inner blue-gradient">Hey!</span></span>
-        And here's a tiny one!
-    </p>
+		</div>
+</div>
+<script src="{{url('assets/backend/scripts/settings/template.js')}}?{{time()}}"></script>
 

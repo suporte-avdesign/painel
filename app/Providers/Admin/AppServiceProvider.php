@@ -31,6 +31,7 @@ class AppServiceProvider extends ServiceProvider
         $models = array(
             'ConfigKit',
             'ConfigSite',
+            'ConfigPage',
             'ConfigAdmin',
             'ConfigBrand',
             'ConfigModule',
