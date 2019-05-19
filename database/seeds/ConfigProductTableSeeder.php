@@ -14,14 +14,14 @@ class ConfigProductTableSeeder extends Seeder
     {
         $date = date('Y-m-d H:i:s');
         ConfigProduct::create([
-            'price_default' => 'Normal',
-            'config_prices' => 0,
-            'view_prices' => 0,
+            'price_default' => 'Atacado',
+            'config_prices' => 1,
+            'view_prices' => 1,
             'price_profile' => 1,
-	        'cost' => 0,
-	        'stock' => 0,
-	        'freight' => 0,
-	        'kit' => 0,
+	        'cost' => 1,
+	        'stock' => 1,
+	        'freight' => 1,
+	        'kit' => 1,
 	        'colors' => 1,
 	       	'group_colors' => 1,
 	        'positions' => 1,

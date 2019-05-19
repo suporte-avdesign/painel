@@ -66,4 +66,7 @@ if (! function_exists('strInArray')) {
 			return false;
 		}
 	}
-}	
+}
+
+
+

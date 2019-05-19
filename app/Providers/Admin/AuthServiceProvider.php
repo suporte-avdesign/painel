@@ -28,7 +28,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $permissions = AdminPermissions::all();
+        $permissions = [];//AdminPermissions::all();
 
         foreach ( $permissions as $permission ) {
 

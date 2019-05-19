@@ -67,6 +67,7 @@ class ConfigPageController extends Controller
 
         $pages = $this->interModel->getAll();
 
+
         return view("{$this->view}.index", compact('config','pages'));
     }
 

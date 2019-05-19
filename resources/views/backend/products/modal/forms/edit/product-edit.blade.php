@@ -1,10 +1,10 @@
 <!-- Form: Product Edit -->
 <form id="form-products" method="post" action="{{route('catalogo.update', ['cat' => $data->category_id,'id' => $data->id])}}" onsubmit="return false">
-    <input name="_method" type="hidden" value="PUT">
     <input name="prod[brand]" type="hidden" value="{{$data->brand}}">
     <input name="prod[section]" type="hidden" value="{{$data->section}}">
     <input name="prod[category]" type="hidden" value="{{$data->category}}">
-    {{csrf_field()}}
+    @method("PUT")
+    @csrf
 
     <div align="center">
         <select id="select-brands" name="prod[brand_id]" class="select blue-gradient glossy">

@@ -27,7 +27,7 @@ class CreateImageColorsTable extends Migration
             $table->string('slug', 190)->unique();            
             $table->string('html', 30)->nullable();
             $table->tinyInteger('kit')->default(0);
-            $table->tinyInteger('stock')->default(0);
+            $table->integer('stock')->unsigned()->default(0);
             $table->string('kit_name', 30)->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('cover')->default(0);

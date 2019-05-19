@@ -10,22 +10,24 @@
 		<p class="button-height">
 			<span class="button-group">
 				@foreach($page->modules as $mod)
-					@if ($mod->tmp == 1)
+					@if($mod->status == "Inativo")
 						<button id="btn-mod-{{$mod->id}}" onclick="abreModal('{{$config['edit_model']}} {{$mod->name}}', '{{route('template-site.show', $mod->id)}}', 'page', 2, true, 240, 340);"  class="button margin-top">{{$mod->name}}
-							<span class="count blue-gradient">{{$mod->tmp}}</span>
-						</button>
-					@elseif ($mod->tmp == 2)
-						<button id="btn-mod-{{$mod->id}}" onclick="abreModal('{{$config['edit_model']}} {{$mod->name}}', '{{route('template-site.show', $mod->id)}}', 'page', 2, true, 240, 340);"  class="button margin-top">{{$mod->name}}
-							<span class="count orange-gradient">{{$mod->tmp}}</span>
-						</button>
-					@elseif ($mod->tmp == 3)
-						<button id="btn-mod-{{$mod->id}}" onclick="abreModal('{{$config['edit_model']}} {{$mod->name}}', '{{route('template-site.show', $mod->id)}}', 'page', 2, true, 240, 340);"  class="button margin-top">{{$mod->name}}
-							<span class="count green-gradient">{{$mod->tmp}}</span>
+							<span class="count red-gradient">{{$mod->tmp}}</span>
 						</button>
 					@else
-						<button id="btn-mod-{{$mod->id}}" onclick="abreModal('{{$config['edit_model']}} {{$mod->name}}', '{{route('template-site.show', $mod->id)}}', 'page', 2, true, 240, 340);"  class="button margin-top">{{$mod->name}}
-							<span class="count grey-gradient">{{$mod->tmp}}</span>
-						</button>
+						@if ($mod->tmp == 1)
+							<button id="btn-mod-{{$mod->id}}" onclick="abreModal('{{$config['edit_model']}} {{$mod->name}}', '{{route('template-site.show', $mod->id)}}', 'page', 2, true, 240, 340);"  class="button margin-top">{{$mod->name}}
+								<span class="count blue-gradient">{{$mod->tmp}}</span>
+							</button>
+						@elseif ($mod->tmp == 2)
+							<button id="btn-mod-{{$mod->id}}" onclick="abreModal('{{$config['edit_model']}} {{$mod->name}}', '{{route('template-site.show', $mod->id)}}', 'page', 2, true, 240, 340);"  class="button margin-top">{{$mod->name}}
+								<span class="count orange-gradient">{{$mod->tmp}}</span>
+							</button>
+						@elseif ($mod->tmp == 3)
+							<button id="btn-mod-{{$mod->id}}" onclick="abreModal('{{$config['edit_model']}} {{$mod->name}}', '{{route('template-site.show', $mod->id)}}', 'page', 2, true, 240, 340);"  class="button margin-top">{{$mod->name}}
+								<span class="count green-gradient">{{$mod->tmp}}</span>
+							</button>
+						@endif
 					@endif
 				@endforeach
 			</span>

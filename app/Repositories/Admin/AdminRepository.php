@@ -91,7 +91,7 @@ class AdminRepository implements AdminInterface
         if(!empty($query))
         {
             foreach ($query as $val){
-                if ($val->profile == 'Master') {
+                if ($val->profile != 'Master') {
 
                     ($val->status == "Ativo" ? $cor = 'green' : $cor = 'red');
                     

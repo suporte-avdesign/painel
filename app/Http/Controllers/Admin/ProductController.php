@@ -106,8 +106,6 @@ class ProductController extends Controller
         }
 
         $this->last_url = array("last_url" => "produtos/{$slug}/catalogo");
-
-
         $this->access->update($this->last_url);
 
         $data          = $this->interCategory->setName('slug', $slug);

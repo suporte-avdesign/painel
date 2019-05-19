@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateConfigTemplatesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Configuração dos modulos das páginas do site
      *
      * @return void
      */

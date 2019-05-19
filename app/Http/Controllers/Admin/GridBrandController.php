@@ -20,6 +20,7 @@ class GridBrandController extends AdminAjaxDataParamController
     {
         $this->middleware('auth:admin');
 
+
         $this->interModel   = $interModel;
         $this->messages     = array(
             'type.required'  => 'O tipo é obrigatório.',

@@ -17,7 +17,7 @@ class ConfigProfileClientTableSeeder extends Seeder
 
         ConfigProfileClient::create([
             'order' => '01',
-            'name' => 'Normal',
+            'name' => 'Atacado',
             'percent_cash' => 0,
             'percent_card' => 0,
             'sum' => '-',
@@ -27,26 +27,16 @@ class ConfigProfileClientTableSeeder extends Seeder
         ]);
 
         ConfigProfileClient::create([
-            'order' => '01',
+            'order' => '02',
             'name' => 'Varejo',
             'percent_cash' => 25,
             'percent_card' => 20,
-            'sum' => '-',
+            'sum' => '+',
             'status' => 'Ativo',
             'created_at' => $date,
             'updated_at' => $date
         ]);
 
-        ConfigProfileClient::create([
-            'order' => '02',
-            'name' => 'Atacado',
-            'percent_cash' => 25,
-            'percent_card' => 10,
-            'sum' => '-',
-            'status' => 'Ativo',
-            'created_at' => $date,
-            'updated_at' => $date
-        ]);
 
     }
 }

@@ -47,8 +47,11 @@ class GridCategoryRepository implements GridCategoryInterface
      */
     public function getAll($id)
     {
-        $data  = $this->model->where('category_id', $id)->get();
-        return $data;    
+
+        $data  = $this->model->where('category_id', $id)->orderBy('id','desc')->get();
+        return $data;
+
+
     }
 
 
@@ -68,11 +71,34 @@ class GridCategoryRepository implements GridCategoryInterface
      *
      * @param  int $id category
      * @param  array $input
-     * @return boolean true or false
+     * @return array
      */
     public function create($input, $id)
     {
         $input['category_id'] = $id;
+
+        if ($input['type'] == 'kit') {
+            unset($input['label']);
+
+            $filter_qty = array_filter($input['qty']);
+            $unique_des = array_unique($input['des']);
+            $filter_des = array_filter($unique_des);
+
+            $label = $this->getKit($filter_qty, $filter_des);
+            if (!$label)
+               return $this->emptyFields();
+
+            $input['label'] = $label;
+
+        } else {
+            $filter = array_filter($input['label']);
+            $label  = array_unique($filter);
+
+            if (empty($label))
+                return $this->emptyFields();
+
+            $input['label'] = implode($label, ',');
+        }
 
         $data = $this->model->create($input);
         if ($data) { 
@@ -105,6 +131,34 @@ class GridCategoryRepository implements GridCategoryInterface
         return array(
             'success' => false,
             'message' => 'Não foi possível altera a grade.');
+    }
+
+
+    public function getKit($input_qty, $input_des)
+    {
+        $count_qty = count(($input_qty));
+        $count_des = count(($input_des));
+
+        if ($count_qty != $count_des || $count_qty === 0 || $count_des === 0) {
+            return false;
+        } else {
+
+            for ($i=0; $i < $count_qty; $i++) {
+                $array[] = array(
+                    $input_qty[$i] => $input_des[$i]
+                );
+            }
+
+            $str = '';
+            foreach ($array as $keys => $values) {
+                foreach ($values as $key =>$value){
+                    $str .= $key.'/'.$value.',';
+                }
+            }
+
+            return substr($str, 0, -1);
+        }
+
     }
 
 
@@ -177,5 +231,16 @@ class GridCategoryRepository implements GridCategoryInterface
             return true;
         }
         return false;
+    }
+
+    public function emptyFields()
+    {
+        $out = array(
+            "success" => false,
+            "message" => "Preencha os campos corretamente!"
+
+        );
+
+        return $out;
     }
 }

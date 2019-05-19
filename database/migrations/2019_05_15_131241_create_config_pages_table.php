@@ -7,7 +7,7 @@ use Illuminate\Database\Migrations\Migration;
 class CreateConfigPagesTable extends Migration
 {
     /**
-     * Run the migrations.
+     * Configuração das páginas do site
      *
      * @return void
      */

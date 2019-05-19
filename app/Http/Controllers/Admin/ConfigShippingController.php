@@ -25,9 +25,12 @@ class ConfigShippingController extends Controller
     {
         $this->middleware('auth:admin');
 
+        $this->last_url   = array("last_url" => "config/sistema");
+        $this->access->update($this->last_url);
+
+
         $this->access     = $access;
         $this->interModel = $interModel;
-        $this->last_url   = array("last_url" => "config/metodos");
         $this->messages   = array(
             "name.required" => "O método é obrigatório",
             "name.unique" => "Esta método já se encontra utilizado.",

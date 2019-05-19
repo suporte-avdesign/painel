@@ -37,6 +37,22 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        $e = $this->prepareException($exception);
+        $code = $e->getCode();
+        $message = $e->getMessage();
+        $previous = $e->getPrevious();
+        $traces = $e->getTrace();
+        $redirect = route('login');
+
+        foreach ($traces as $trace) {
+            if ($trace['function'] == 'authenticate') {
+                return "<script>window.location.href = {$redirect}</script>";
+            }
+        }
+
+
+
+
         parent::report($exception);
     }
 
@@ -49,6 +65,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+
         if ($this->isHttpException($exception)) {
 
             return redirect()->route('painel');
@@ -67,6 +84,8 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+
+
 
         if ($request->expectsJson()) {
             return response()->view('backend.auth.unauthenticated');
@@ -99,6 +118,13 @@ class Handler extends ExceptionHandler
 
         return response()->json($exception->errors(), $exception->status);
     }
+
+
+
+
+
+
+
 
 
 

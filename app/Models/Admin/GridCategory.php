@@ -18,7 +18,7 @@ class GridCategory extends Model
     /**
     * @return array
     **/
-    public function rules($id = '')
+    public function rules($type = '')
     {
         return [
             "type" => "required",

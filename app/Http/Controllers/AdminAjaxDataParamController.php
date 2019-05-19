@@ -30,7 +30,6 @@ class AdminAjaxDataParamController extends BaseController
             return view("backend.erros.message-401");
         }
 
-
         $upload = $this->upload;
         $title  = $this->messages['title_index'];
         $data   = $this->interModel->getAll($id);

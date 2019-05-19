@@ -74,6 +74,7 @@ class ConfigTemplateController extends Controller
             return view("backend.erros.message-401");
         }
 
+
         $config = $this->messages;
 
         $pages = $configPage->orderBy('name')->get();

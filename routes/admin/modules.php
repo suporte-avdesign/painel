@@ -67,6 +67,7 @@ Route::resource('categorias', 'Admin\CategoryController');
 Route::post('categorias/data', 'Admin\CategoryController@data')->name('categories.data');
 Route::get('categoria/{id}/detalhes', 'Admin\CategoryController@details')->name('categories.details');
 Route::resource('categoria/{id}/grids-category', 'Admin\GridCategoryController');
+Route::get('categoria/{id}/grids-load', 'Admin\GridCategoryController@load')->name('category-grids-load');
 Route::resource('categoria/{id}/featured-category', 'Admin\FeaturedCategoryController');
 Route::put('categoria/status/{id}/featured', 'Admin\FeaturedCategoryController@status')->name('featured-category.status');
 Route::resource('categoria/{id}/banner-category', 'Admin\BannerCategoryController');

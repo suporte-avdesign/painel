@@ -1,0 +1,43 @@
+09:51:00 Fez login no sistema. IP:127.0.0.1
+09:55:52 Adicionou a Grade:Caixa: com 6, Tam:2/41.42,1/43.44,1/37.38	2/39.40, Tipo:kit, Seção:Seção 1
+09:56:58 Excluiu o Produto:produto-categoria-1-secao-1-marca-1, Total Cores:1
+12:00:27 Adicionou a Grade:Teste, Tam:2, 3, 3, 5, 3, Tipo:und, Categoria:Categoria 1
+13:24:11 Adicionou a Grade:Unid:, Tam:2, 1, 5, Tipo:und, Categoria:Categoria 1
+13:41:49 Adicionou a Grade:Grupo 1, Tam:2, 1, Tipo:und, Categoria:Categoria 1
+13:45:10 Adicionou a Grade:Teste, Tam:1,4, Tipo:unit, Fabricante:Marca 2
+13:52:40 Adicionou a Grade:Produto 1, Tam:2, 2, 2, 1, Tipo:und, Categoria:Categoria 1
+13:54:41 Excluiu a Grade:Unid:, Tam:2, 1, 5, Categoria:Categoria 1
+13:54:44 Excluiu a Grade:Produto 1, Tam:2, 2, 2, 1, Categoria:Categoria 1
+13:54:47 Excluiu a Grade:Grupo 1, Tam:2, 1, Categoria:Categoria 1
+13:55:14 Adicionou a Grade:Teste 2, Tam:2, 2, 1, Tipo:und, Categoria:Categoria 1
+14:30:57 Adicionou a Grade:Teste 4, Tam:2, 1, 2, Tipo:unit, Categoria:Categoria 1
+14:31:17 Excluiu a Grade:Teste 4, Tam:2, 1, 2, Categoria:Categoria 1
+14:31:19 Excluiu a Grade:Teste, Tam:2, 3, 3, 5, 3, Categoria:Categoria 1
+14:31:22 Excluiu a Grade:Teste 2, Tam:2, 2, 1, Categoria:Categoria 1
+14:31:46 Adicionou a Grade:Teste, Tam:2, , Tipo:unit, Categoria:Categoria 1
+14:32:06 Excluiu a Grade:Teste, Tam:2, , Categoria:Categoria 1
+14:35:02 Adicionou a Grade:Teste, Tam:2, 1, Tipo:unit, Categoria:Categoria 1
+14:36:33 Excluiu a Grade:Teste, Tam:2, 1, Categoria:Categoria 1
+14:41:10 Adicionou a Grade:Teste, Tam:2, 2, Tipo:unit, Categoria:Categoria 1
+14:46:49 Adicionou a Grade:Teste, Tam:2,2, Tipo:unit, Categoria:Categoria 1
+14:47:02 Excluiu a Grade:Teste, Tam:2,2, Categoria:Categoria 1
+14:47:15 Adicionou a Grade:Teste, Tam:2,2, Tipo:unit, Categoria:Categoria 1
+14:47:21 Excluiu a Grade:Teste, Tam:2,2, Categoria:Categoria 1
+14:48:31 Adicionou a Grade:Teste, Tam:3,1,5, Tipo:unit, Categoria:Categoria 1
+15:11:08 Excluiu todos os modulos referente a página Configuração: Templates do Site
+15:11:08 Excluiu Configuração: Templates do Site Modulo:Produtos
+16:08:27 Adicionou a Grade:Grupo 1, Tam:2, Tipo:unit, Categoria:Categoria 1
+16:14:24 Adicionou a Grade:Produto 1, Tam:1,2,3, Tipo:unit, Categoria:Categoria 1
+16:15:54 Adicionou a Grade:Produto 4, Tam:2, Tipo:unit, Categoria:Categoria 1
+16:18:36 Excluiu a Grade:Teste, Tam:2, 2, Categoria:Categoria 1
+16:18:38 Excluiu a Grade:Teste, Tam:3,1,5, Categoria:Categoria 1
+16:18:40 Excluiu a Grade:Grupo 1, Tam:2, Categoria:Categoria 1
+16:18:42 Excluiu a Grade:Produto 1, Tam:1,2,3, Categoria:Categoria 1
+16:18:47 Excluiu a Grade:Produto 4, Tam:2, Categoria:Categoria 1
+16:20:29 Adicionou a Grade:Teste, Tam:2,2,2, Tipo:unit, Categoria:Categoria 1
+16:22:20 Adicionou a Grade:Teste, Tam:2,3,1, Tipo:unit, Categoria:Categoria 1
+16:22:25 Excluiu a Grade:Teste, Tam:2,3,1, Categoria:Categoria 1
+16:25:40 Adicionou a Grade:Atacado, Tam:2, Tipo:unit, Categoria:Categoria 1
+16:45:41 Excluiu a Grade:Atacado, Tam:2, Categoria:Categoria 1
+16:45:43 Excluiu a Grade:Teste, Tam:2,2,2, Categoria:Categoria 1
+17:37:52 Adicionou a Grade:Grupo 1, Tam:, Tipo:kit, Categoria:Categoria 1
