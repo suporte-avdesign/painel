@@ -11,5 +11,160 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
+/*mix.js('resources/js/app.js', 'public/js')
     .sass('resources/sass/app.scss', 'public/css');
+*/
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Images Design
+ |--------------------------------------------------------------------------
+ */
+mix.copyDirectory('resources/assets/img', 'public/img');
+mix.copyDirectory('resources/assets/img', 'public/backend/img');
+
+
+mix.copyDirectory('resources/assets/css/Entypo', 'public/backend/css/Entypo');
+mix.copyDirectory('resources/assets/css/font-awesome', 'public/backend/css/font-awesome');
+/*
+ |--------------------------------------------------------------------------
+ | libs css/js
+ |--------------------------------------------------------------------------
+ */
+
+
+
+mix.copy('resources/assets/js/libs/modernizr.custom.js','public/backend/js/libs/modernizr.custom.js');
+// Painel
+mix.copy('resources/assets/js/libs/jquery/jquery-3.2.1.min.js','public/backend/js/libs/jquery/jquery.min.js');
+// Aviso para atualizar a versão
+mix.copy('resources/assets/js/version.js','public/backend/js/version.js');
+/*
+ |--------------------------------------------------------------------------
+ | Login pages stylesheet styles
+ |--------------------------------------------------------------------------
+ | min-width.css  2x.css, 480.css, 768.css, 992.css, 1200.css
+ |
+ */
+mix.styles([
+    'resources/assets/css/reset.css',
+    'resources/assets/css/style.css',
+    'resources/assets/css/colors.css',
+    'resources/assets/css/print.css',
+    'resources/assets/css/min-width.css',
+    'resources/assets/css/styles/form.css',
+    'resources/assets/css/styles/switches.css',
+    'resources/assets/css/login.css'
+], 'public/backend/css/login.min.css');
+
+
+mix.scripts([
+    'resources/assets/js/setup.js',
+    'resources/assets/js/avd.input.js',
+    'resources/assets/js/avd.message.js',
+    'resources/assets/js/avd.notify.js',
+    'resources/assets/js/avd.tooltip.js',
+    'resources/assets/scripts/login.js',
+    'resources/assets/js/avd.navigable.js',
+], 'public/backend/js/login.min.js');
+
+/*
+ |--------------------------------------------------------------------------
+ | Painel pages stylesheet styles
+ |--------------------------------------------------------------------------
+ | min-width.css  2x.css, 480.css, 768.css, 992.css, 1200.css
+ |
+ */
+mix.styles([
+    'resources/assets/css/reset.css',
+    'resources/assets/css/style.css',
+    'resources/assets/css/colors.css',
+    'resources/assets/css/print.css',
+    'resources/assets/css/min-width.css',
+    'resources/assets/css/styles/form.css',
+    'resources/assets/css/styles/switches.css',
+    'resources/assets/css/styles/agenda.css',
+    'resources/assets/css/styles/dashboard.css',
+    'resources/assets/css/styles/modal.css',
+    'resources/assets/css/styles/progress-slider.css',
+    'resources/assets/css/styles/files.css',
+    'resources/assets/css/styles/table.css',
+    'resources/assets/css/styles/avd.colorpicker.css'
+], 'public/backend/css/painel.min.css');
+
+// Configuração das cores das tabelas (DataTable)
+mix.styles('resources/assets/css/tables/anthracite-gradient.css', 'public/backend/css/tables/anthracite-gradient.css');
+mix.styles('resources/assets/css/tables/blue-gradient.css', 'public/backend/css/tables/blue-gradient.css');
+mix.styles('resources/assets/css/tables/green-gradient.css', 'public/backend/css/tables/green-gradient.css');
+mix.styles('resources/assets/css/tables/grey-gradient.css', 'public/backend/css/tables/grey-gradient.css');
+mix.styles('resources/assets/css/tables/orange-gradient.css', 'public/backend/css/tables/orange-gradient.css');
+mix.styles('resources/assets/css/tables/red-gradient.css', 'public/backend/css/tables/red-gradient.css');
+
+mix.scripts('resources/assets/scripts/settings/keywords.js', 'public/backend/scripts/settings.min.js');
+
+
+mix.scripts([
+    'resources/assets/js/setup.js',
+    'resources/assets/js/avd.functions.js',
+    'resources/assets/js/avd.input.js',
+    'resources/assets/js/avd.message.js',
+    'resources/assets/js/avd.modal.js',
+    'resources/assets/js/avd.navigable.js',
+    'resources/assets/js/avd.notify.js',
+    'resources/assets/js/avd.scroll.js',
+    'resources/assets/js/avd.accordions.js',
+    'resources/assets/js/avd.progress-slider.js',
+    'resources/assets/js/avd.tooltip.js',
+    'resources/assets/js/avd.confirm.js',
+    'resources/assets/js/avd.agenda.js',
+    'resources/assets/js/avd.content-panel.js',
+    'resources/assets/js/avd.tabs.js',
+    'resources/assets/js/avd.avd.colorpicker.js',
+], 'public/backend/js/painel.min.js');
+
+
+
+mix.scripts([
+    'resources/assets/js/libs/tinycon.min.js',
+    'resources/assets/js/libs/jquery.ba-hashchange.js',
+    'resources/assets/js/libs/Handlebars/handlebars.js',
+    'resources/assets/js/libs/DataTables/jquery.dataTables.js',
+], 'public/backend/js/libs/libs.min.js');
+
+
+mix.scripts('resources/assets/scripts/settings/keywords.js', 'public/backend/scripts/settings/keywords.min.js');
+mix.scripts('resources/assets/scripts/settings/kits.js', 'public/backend/scripts/settings/kits.min.js');
+mix.scripts('resources/assets/scripts/settings/modules.js', 'public/backend/scripts/settings/modules.min.js');
+mix.scripts('resources/assets/scripts/settings/permissions.js', 'public/backend/scripts/settings/permissions.min.js');
+mix.scripts('resources/assets/scripts/settings/profiles.js', 'public/backend/scripts/settings/profiles.min.js');
+mix.scripts('resources/assets/scripts/settings/template.js', 'public/backend/scripts/settings/template.min.js');
+mix.scripts('resources/assets/scripts/settings/subjects.js', 'public/backend/scripts/settings/subjects.min.js');
+
+
+/*
+ |--------------------------------------------------------------------------
+ | Error pages stylesheet styles
+ |--------------------------------------------------------------------------
+ | min-width.css  2x.css, 480.css, 768.css, 992.css, 1200.css
+ |
+ */
+mix.styles([
+    'resources/assets/css/reset.css',
+    'resources/assets/css/style.css',
+    'resources/assets/css/colors.css',
+    'resources/assets/css/error.css',
+], 'public/backend/css/error.min.css');
+
+mix.scripts([
+    'resources/assets/js/libs/jquery/jquery-3.2.1.min.js',
+    'resources/assets/js/setup.js',
+], 'public/backend/js/error.min.js');
+
+
+
+
+
+if (mix.inProduction()) {
+    mix.version();
+}

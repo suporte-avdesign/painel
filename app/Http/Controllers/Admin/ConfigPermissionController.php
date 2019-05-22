@@ -18,7 +18,7 @@ class ConfigPermissionController extends AdminAjaxTablesController
 {
 
     protected $ability = 'config-permission';
-    protected $view    = 'backend.config.permissions';
+    protected $view    = 'backend.settings.permissions';
     protected $model;
     protected $select;
     protected $last_url;
@@ -35,7 +35,7 @@ class ConfigPermissionController extends AdminAjaxTablesController
         $this->access     = $access;
         $this->confUser   = $confUser;
         $this->interModel = $interModel;
-        $this->last_url   = array('last_url' => 'config/permissoes');
+        $this->last_url   = array('last_url' => 'config/permissions');
         $this->messages   = array(
             'module_id.required' => 'A permissão é obrigatória.',
             'name.required'      => 'A permissão é obrigatória.',
@@ -89,7 +89,7 @@ class ConfigPermissionController extends AdminAjaxTablesController
         $data    = $this->interModel->setId($id);
         $active  = $data->profiles()->distinct('config_profile_id')->get();
 
-        return view('backend.config.permissions.profiles', compact('data', 'active'));     
+        return view("{$this->view}.profiles", compact('data', 'active'));
     }
 
 
@@ -116,7 +116,7 @@ class ConfigPermissionController extends AdminAjaxTablesController
         
         $title = "Vincular perfil a permissão:";
 
-        return view('backend.config.permissions.form-profiles', compact('data', 'profiles', 'title')); 
+        return view("{$this->view}.form-profiles", compact('data', 'profiles', 'title'));
     }
 
 

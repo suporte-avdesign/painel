@@ -13,7 +13,7 @@ class ConfigFreightController extends Controller
 {
 
     protected $ability  = 'config-freight';
-    protected $view     = 'backend.config.freights';
+    protected $view     = 'backend.settings.freights';
     protected $last_url;
 
 
@@ -40,7 +40,7 @@ class ConfigFreightController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $this->last_url = array("last_url" => "config/{$id}/fretes");
+        $this->last_url = array("last_url" => "config/{$id}/freights");
         $this->access->update($this->last_url);
 
         $data  = $this->interModel->setId($id);

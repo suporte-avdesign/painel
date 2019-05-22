@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigPage extends Model
 {
-    protected $fillable = ['name','module','status'];
+    protected $fillable = ['name','module','active'];
 
 
 
@@ -16,7 +16,7 @@ class ConfigPage extends Model
         return [
             "name" => "required|unique:config_pages,name,{$id},id",
             "module" => "required",
-            "status" => "required"
+            "active" => "required"
         ];
     }
 
@@ -25,10 +25,4 @@ class ConfigPage extends Model
     {
         return $this->hasMany(ConfigTemplate::class);
     }
-
-
-
-
-
-
 }

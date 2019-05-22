@@ -11,7 +11,7 @@ class ConfigTemplate extends Model
         'name',
         'module',
         'tmp',
-        'status'
+        'active'
     ];
 
     public function rules()
@@ -21,7 +21,7 @@ class ConfigTemplate extends Model
             "name" => "required",
             "module" => "required",
             "tmp" => "required|numeric",
-            "status" => "required"
+            "active" => "required"
         ];
     }
 

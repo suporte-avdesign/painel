@@ -6,21 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigKeyword extends Model
 {
-
     protected $fillable = [
         'title',
-        'genders', 
-        'categories', 
-        'description', 
+        'genders',
+        'categories',
+        'description',
         'keywords',
-        'status' 
+        'active'
     ];
 
 
     /**
-    * Validação
-    * @return array
-    **/
+     * Validação
+     * @return array
+     **/
     public function rules($id = '')
     {
         return [

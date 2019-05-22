@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class GroupColor extends Model
 {
-	protected $fillable = [
-		'config_color_group_id',
+    protected $fillable = [
+        'config_color_group_id',
         'product_id',
         'image_color_id',
         'pinker',
-		'label'
-	];
+        'label'
+    ];
 
-	public $timestamps = false;
-
+    public $timestamps = false;
 }

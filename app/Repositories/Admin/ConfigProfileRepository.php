@@ -111,8 +111,8 @@ class ConfigProfileRepository implements ConfigProfileInterface
             foreach ($query as $val){
                 if ($val->name != 'Master') {
 
-                    $edit   = "abreModal('Editar {$val->name}', '".route('perfis.edit', ['id' => $val->id])."', 'profiles', 2, 'true', 400, 220)";
-                    $delete = "deleteProfile('".route('perfis.destroy', ['id' => $val->id])."', '{$val->name}')";
+                    $edit   = "abreModal('Editar {$val->name}', '".route('profiles.edit', ['id' => $val->id])."', 'profiles', 2, 'true', 400, 220)";
+                    $delete = "deleteProfile('".route('profiles.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                     $nData['name']        = $val->name;
                     $nData['label']       = $val->label;

@@ -100,8 +100,4 @@ class Order extends Model
         return $this->hasMany(OrderShipping::class);
     }
 
-
-
-
-
 }

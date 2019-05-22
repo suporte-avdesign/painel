@@ -35,7 +35,7 @@ return [
     ],
 
     'stripe' => [
-        'model' => AVDPainel\Models\Admin\User::class,
+        'model' => AVDPainel\User::class,
         'key' => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
         'webhook' => [

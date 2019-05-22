@@ -59,7 +59,7 @@ class ConfigKitRepository implements ConfigKitInterface
         $columns = array( 
             0 => 'order',
             2 => 'name',
-            3 => 'status',
+            3 => 'active',
             4 => 'actions',
             5 => 'updated_at',
             6 => 'created_at',
@@ -98,14 +98,14 @@ class ConfigKitRepository implements ConfigKitInterface
         {
             foreach ($query as $val){
 
-                ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
+                ($val->active == constLang('active_true') ? $color = 'blue' : $color = 'red');
 
                 $edit   = "abreModal('Editar {$val->name}', '".route('kits.edit', ['id' => $val->id])."', 'kits', 2, 'true', 400, 220)";
                 $delete = "deleteKit('".route('kits.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                 $nData['order']        = $val->order;
                 $nData['name']         = $val->name;
-                $nData['status']       = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                $nData['active']       = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                 $nData['actions']      = '<span class="button-group">';
                 if (Gate::allows('config-percent-delete')) {
                     $nData['actions'] .= '<button onclick="'.$delete.'" class="button icon-trash red-gradient compact"></button>';
@@ -139,7 +139,7 @@ class ConfigKitRepository implements ConfigKitInterface
      */
     public function pluck()
     {
-        return $this->model->orderBy('order')->where('status', 'Ativo')->pluck('name','name');
+        return $this->model->orderBy('order')->where('active', constLang('active_true'))->pluck('name','name');
     }
 
 
@@ -191,7 +191,7 @@ class ConfigKitRepository implements ConfigKitInterface
                 date('H:i:s').utf8_decode(
                 ' Adicionou o kit:'.$data->name.
                 ', Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
             return $data;
         }
@@ -212,7 +212,7 @@ class ConfigKitRepository implements ConfigKitInterface
         $unit   = $data->unit;
         $name   = $data->name;
         $order  = $data->order;
-        $status = $data->status;
+        $active = $data->active;
 
         $update = $data->update($input);
         if ($update) {
@@ -220,10 +220,10 @@ class ConfigKitRepository implements ConfigKitInterface
                 date('H:i:s').utf8_decode(
                 ' Alterou o kit:'.$name.
                 ', Ordem:'.$order.
-                ', Status:'.$status.
+                ', Status:'.$active.
                 ' - Para:'.$input['name'].
                 ', Ordem:'.$input['order'].
-                ', Status:'.$input['status'])
+                ', Status:'.$input['active'])
             );
             return true;
         }
@@ -246,7 +246,7 @@ class ConfigKitRepository implements ConfigKitInterface
                 date('H:i:s').utf8_decode(
                 ' Removeu o kit:'.$data->name.
                 ', Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
             return true;
         }

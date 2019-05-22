@@ -13,7 +13,7 @@ class ImageBanner extends Model
         'description',
         'link',
         'image',
-        'status',
+        'active',
         'order'
     ];
 
@@ -26,7 +26,7 @@ class ImageBanner extends Model
     {
         return [
             "type" => "required",
-            "status" => "required",
+            "active" => "required",
             "order" => "required|numeric",
             "image" => "required|image|mimes:jpeg,gif,png"
         ];

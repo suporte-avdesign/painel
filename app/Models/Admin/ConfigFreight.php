@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigFreight extends Model
 {
-	protected $fillable = [
-	    'default',
-	    'weight',
-	    'width',
-	    'height',
-	    'length'
-	];
+    protected $fillable = [
+        'default',
+        'weight',
+        'width',
+        'height',
+        'length'
+    ];
 }

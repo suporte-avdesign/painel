@@ -2,6 +2,7 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
+use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigTemplateInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,21 +13,27 @@ class ConfigTemplateController extends Controller
 {
     protected $content = 'Configuração: Template do Site';
     protected $ability = 'config-site';
-    protected $view    = 'backend.config.template';
+    protected $view    = 'backend.settings.template';
+    protected $last_url;
     protected $model;
 
-    public function __construct(InterModel $interModel)
+    public function __construct(
+        InterModel $interModel,
+        InterAccess $access)
     {
 
         $this->middleware('auth:admin');
 
         $this->interModel = $interModel;
+        $this->access     = $access;
+        $this->last_url   = array("last_url" => "config/page-site");
 
         $this->messages = array(
             "fields" => array(
                 'tmp' => 'Template',
                 'name' => 'Nome',
                 'module' => "Modulo",
+                'active' => 'Status',
                 'status' => 'Status',
                 'save' => 'Salvar',
                 'cancel' => 'Cancelar',
@@ -41,7 +48,7 @@ class ConfigTemplateController extends Controller
             'name.required' => 'A página é obrigatória',
             'name.unique' => 'Já existe uma página com este nome',
             'module.required' => 'O modulo é obrigatório',
-            'status.required' => 'O status é obrigatório',
+            'active.required' => 'O status é obrigatório',
             'title_index' => $this->content,
             'create_model' => array(
                 "create" => "Modulo",
@@ -74,7 +81,7 @@ class ConfigTemplateController extends Controller
             return view("backend.erros.message-401");
         }
 
-
+        $this->access->update($this->last_url);
         $config = $this->messages;
 
         $pages = $configPage->orderBy('name')->get();

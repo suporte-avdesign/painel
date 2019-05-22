@@ -14,7 +14,7 @@ class ConfigModuleController extends AdminAjaxTablesController
 {
 
     protected $ability  = 'config-module';
-    protected $view     = 'backend.config.modules';
+    protected $view     = 'backend.settings.modules';
     protected $last_url;
     protected $messages;
 
@@ -29,7 +29,7 @@ class ConfigModuleController extends AdminAjaxTablesController
         $this->access     = $access;
         $this->confUser   = $confUser;
         $this->interModel = $interModel;
-        $this->last_url   = array('last_url' => 'config/modulos');
+        $this->last_url   = array('last_url' => 'config/modules');
         $this->messages   = array(
             'type.required'      => 'O tipo é obrigatório.',
             'name.required'      => 'O nome do modulo é obrigatório.',
@@ -74,7 +74,7 @@ class ConfigModuleController extends AdminAjaxTablesController
         $data    = $this->interModel->setId($id);
         $ativos  = $data->permissions()->distinct('module_id')->get();
 
-        return view('backend.config.modules.permissions', compact('title', 'data', 'ativos'));
+        return view("{$this->view}.permissions", compact('title', 'data', 'ativos'));
     }
 
     

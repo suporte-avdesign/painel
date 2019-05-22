@@ -15,19 +15,19 @@ class ConfigKitTableSeeder extends Seeder
         ConfigKit::create([
         	'name' => 'Caixa',
         	'order' => '01',
-            'status' => 'Ativo'
+            'active' => constLang('active_true')
         ]);
 
         ConfigKit::create([
         	'name' => 'Kit',
         	'order' => '02',
-            'status' => 'Ativo'
+            'active' => constLang('active_true')
         ]);
 
         ConfigKit::create([
         	'name' => 'Embalagem',
         	'order' => '03',
-            'status' => 'Ativo'
+            'active' => constLang('active_true')
         ]);
     }
 }

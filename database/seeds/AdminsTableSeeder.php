@@ -25,10 +25,10 @@ class AdminsTableSeeder extends Seeder
             'profile' => 'Master',
             'phone' => '(11) 96938-4849',
             'email' => 'suporte.avdesign@gmail.com',
-            'status' => 'Ativo',
-            'commission' => 'Sim',
+            'active' => constLang('active_true'),
+            'commission' => constLang('yes'),
             'percent' => 1,
-        	'password' => bcrypt('avdesign'),
+        	'password' => 'avdesign',
             'created_at' => $date
         ]);
 

@@ -31,7 +31,7 @@ class ConfigFormPaymentTableSeeder extends Seeder
                 -Acima de R$300,00 - 3x sem juros
                 -Acima de R$500,00 - 4x sem juros
                 -Acima de R$1000,00 - 5x sem juros',
-            'active' => 1,
+            'active' => 2,
             'created_at' => $date
         ]);
 

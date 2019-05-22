@@ -59,7 +59,7 @@ class ConfigKeywordRepository implements ConfigKeywordInterface
         $columns = array( 
             0 => 'title', 
             1 => 'description',
-            2 => 'status',
+            2 => 'active',
             3 => 'actions', 
             4 => 'keywords',
             5 => 'genders',
@@ -106,14 +106,14 @@ class ConfigKeywordRepository implements ConfigKeywordInterface
         {
             foreach ($query as $val){
 
-                ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
+                ($val->active == constLang('active_true') ? $color = 'blue' : $color = 'red');
 
                 $edit   = "abreModal('Editar Seo', '".route('keywords.edit', ['id' => $val->id])."', 'keywords', 2, 'true', 450, 450)";
                 $delete = "deleteKeyword('".route('keywords.destroy', ['id' => $val->id])."', '{$val->title}')";
 
                 $nData['title']       = $val->title;
                 $nData['description'] = $val->description;
-                $nData['status']      = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                $nData['active']      = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                 $nData['actions']     = '<span class="button-group">';
                 if (Gate::allows('config-keyword-delete')) {
                     $nData['actions'].= '<button onclick="'.$delete.'" class="button icon-trash red-gradient compact"></button>';
@@ -164,7 +164,7 @@ class ConfigKeywordRepository implements ConfigKeywordInterface
     {
         foreach ($this->model->get() as $key => $value) {
 
-           if ($value->status == 'Ativo') {
+           if ($value->active == constLang('active_true')) {
                $keywords[$key]['title']       = $value->title;
                $keywords[$key]['genders']     = $value->genders;
                $keywords[$key]['keywords']    = $value->keywords;

@@ -3,21 +3,20 @@
 namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
-use AVDPainel\Models\Admin\Category;
 
 class GridCategory extends Model
 {
 
-	protected $fillable = [
-		'category_id',
+    protected $fillable = [
+        'category_id',
         'type',
-		'name',
-		'label'
-	];
+        'name',
+        'label'
+    ];
 
     /**
-    * @return array
-    **/
+     * @return array
+     **/
     public function rules($type = '')
     {
         return [

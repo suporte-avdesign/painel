@@ -1,4 +1,0 @@
-22:08:15 Fez login no sistema. IP:127.0.0.1
-22:30:25, Alterou Configuração: Templates do Site , Modulo:Ordenar Produtos, Status:Ativo
-22:31:58, Alterou Configuração: Template do Site , Modulo:Aleatório, Template:1, Status:Inativo
-22:41:41, Alterou Configuração: Templates do Site , Modulo:Ordenar Produtos, Status:Ativo

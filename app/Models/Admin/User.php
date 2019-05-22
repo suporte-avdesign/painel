@@ -12,7 +12,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
      * @var array
      */
     protected $fillable = [
@@ -29,7 +28,7 @@ class User extends Authenticatable
         'password',
         'client',
         'date',
-        'status',
+        'active',
         'newsletter',
         'ip'
 
@@ -53,7 +52,7 @@ class User extends Authenticatable
     /**
      * Email em minúsculo
      *
-     * @param  string  $value
+     * @param  string $value
      * @return void
      */
     public function setEmailAttribute($value)
@@ -91,9 +90,7 @@ class User extends Authenticatable
      */
     public function wishlists()
     {
-        return $this->hasMany(Wishlist::class)->orderBy('id','desc');
+        return $this->hasMany(Wishlist::class)->orderBy('id', 'desc');
     }
-
-
 
 }

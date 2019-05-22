@@ -88,7 +88,7 @@ class ConfigTemplateRepository implements ConfigTemplateInterface
                     ', '.$acc['update'].
                     ', '.$fid['module'].':'.$data->name.
                     ', '.$fid['tmp'].':'.$data->tmp.
-                    ', '.$fid['status'].':'.$data->status)
+                    ', '.$fid['active'].':'.$data->active)
             );
 
             $success = true;
@@ -119,7 +119,7 @@ class ConfigTemplateRepository implements ConfigTemplateInterface
             generateAccessesTxt(date('H:i:s').utf8_decode(
                     ', '.$acc['delete'].
                     ', '.$fid['module'].':'.$data->name.
-                    ', '.$fid['status'].':'.$data->status)
+                    ', '.$fid['active'].':'.$data->active)
             );
             $success = true;
             $message = $message['delete_true'];

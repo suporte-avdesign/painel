@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'AV Design'),
+    'name' => env('APP_NAME', 'AVD Painel'),
 
     /*
     |--------------------------------------------------------------------------
@@ -163,7 +163,9 @@ return [
         Illuminate\View\ViewServiceProvider::class,
 
         /*
-         * Package Service Providers...
+         * Package Image ... Manipulação de Imagem
+         * Package PtBrValidator... calidar cpf,cep,cel,tel
+         *
          */
         Intervention\Image\ImageServiceProvider::class,
         LaravelLegends\PtBrValidator\ValidatorProvider::class,
@@ -171,12 +173,12 @@ return [
         /*
          * Application Service Providers...
          */
-
         AVDPainel\Providers\Admin\AppServiceProvider::class,
         AVDPainel\Providers\Admin\AuthServiceProvider::class,
         // AVDPainel\Providers\Admin\BroadcastServiceProvider::class,
         AVDPainel\Providers\Admin\EventServiceProvider::class,
         AVDPainel\Providers\Admin\RouteServiceProvider::class,
+
 
     ],
 
@@ -229,8 +231,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Package Image ... Manipulação de Imagem
+         */
         'Image' => Intervention\Image\Facades\Image::class,
-
 
     ],
 

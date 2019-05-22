@@ -21,7 +21,7 @@ class ConfigProfileClientTableSeeder extends Seeder
             'percent_cash' => 0,
             'percent_card' => 0,
             'sum' => '-',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date,
             'updated_at' => $date
         ]);
@@ -32,7 +32,7 @@ class ConfigProfileClientTableSeeder extends Seeder
             'percent_cash' => 25,
             'percent_card' => 20,
             'sum' => '+',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date,
             'updated_at' => $date
         ]);

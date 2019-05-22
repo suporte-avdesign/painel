@@ -7,57 +7,57 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-	protected $fillable = [
+    protected $fillable = [
         'section_id',
-		'name',
+        'name',
         'section',
-		'description',
-		'slug',
-		'tags',
-		'visits',
-		'order',
-		'status',
-		'status_featured',
-		'status_banner'
+        'description',
+        'slug',
+        'tags',
+        'visits',
+        'order',
+        'active',
+        'active_featured',
+        'active_banner'
     ];
 
     /**
-    * @return array
-    **/
+     * @return array
+     **/
     public function rules($id='')
     {
-    	return [
+        return [
             "section_id" => "required",
-			"name"       => "required",
-			"order"      => "required"
-		];
+            "name"       => "required",
+            "order"      => "required"
+        ];
     }
 
 
 
 
     /**
-    * Grids
-    * @return array
-    **/
+     * Grids
+     * @return array
+     **/
     public function grids()
     {
         return $this->hasMany(GridCategory::class);
     }
 
     /**
-    * Images
-    * @return array
-    **/
+     * Images
+     * @return array
+     **/
     public function images()
     {
         return $this->hasMany(ImageCategory::class);
     }
 
     /**
-    * Products
-    * @return array
-    **/
+     * Products
+     * @return array
+     **/
     public function products()
     {
         return $this->hasMany(Product::class);
@@ -65,9 +65,9 @@ class Category extends Model
 
 
     /**
-    * Section
-    * @return array
-    **/
+     * Section
+     * @return array
+     **/
     public function section()
     {
         return $this->belongsTo(Section::class);

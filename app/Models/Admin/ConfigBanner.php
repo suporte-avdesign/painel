@@ -8,7 +8,7 @@ class ConfigBanner extends Model
 {
     protected $fillable = [
         'type',
-        'status',
+        'active',
         'path',
         'width',
         'height',

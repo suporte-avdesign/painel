@@ -18,7 +18,7 @@ class ConfigKeywordsController extends AdminAjaxTablesController
 {
 
     protected $ability  = 'config-keyword';
-    protected $view     = 'backend.config.keywords';
+    protected $view     = 'backend.settings.keywords';
     protected $last_url;
     protected $messages;
 

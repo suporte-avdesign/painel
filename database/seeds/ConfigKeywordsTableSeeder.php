@@ -21,7 +21,7 @@ class ConfigKeywordsTableSeeder extends Seeder
             'keywords' => 'atacado,calçados',
             'genders' => 'feminino,masculino,juvenil,infantil,bebe',
             'categories' => 'botas,mocassim,sapatilhas,oxford,alpargatas,peep toe,ankle boot, espadrille,sandálias,tamancos,ana bela,gladiadoras,chinelos,scarpim,rasteiras,slippers,casual,havaianas,tênis,',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -31,7 +31,7 @@ class ConfigKeywordsTableSeeder extends Seeder
             'keywords' => 'distribuidor,calçados,atacado',
             'genders' => 'feminino,masculino,juvenil,infantil,bebe',
             'categories' => 'botas,mocassim,sapatilhas,oxford,alpargatas,peep toe,ankle boot, espadrille,sandálias,tamancos,ana bela,gladiadoras,chinelos,scarpim,rasteiras,slippers,casual,havaianas,tênis,',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -41,7 +41,7 @@ class ConfigKeywordsTableSeeder extends Seeder
             'keywords' => 'distribuidora,calçados,atacado',
             'genders' => 'feminino,masculino,juvenil,infantil,bebe',
             'categories' => 'botas,mocassim,sapatilhas,oxford,alpargatas,peep toe,ankle boot, espadrille,sandálias,tamancos,ana bela,gladiadoras,chinelos,scarpim,rasteiras,slippers,casual,havaianas,tênis,',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -51,7 +51,7 @@ class ConfigKeywordsTableSeeder extends Seeder
             'keywords' => 'atacadista,distribuidora,calçados,revenda,atacado',
             'genders' => 'feminino,masculino,juvenil,infantil,bebe',
             'categories' => 'botas,mocassim,sapatilhas,oxford,alpargatas,peep toe,ankle boot, espadrille,sandálias,tamancos,ana bela,gladiadoras,chinelos,scarpim,rasteiras,slippers,casual,havaianas,tênis,',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -61,7 +61,7 @@ class ConfigKeywordsTableSeeder extends Seeder
             'keywords' => 'fabrica,atacadista,calçados,atacado',
             'genders' => 'feminino,masculino,juvenil,infantil,bebe',
             'categories' => 'botas,mocassim,sapatilhas,oxford,alpargatas,peep toe,ankle boot, espadrille,sandálias,tamancos,ana bela,gladiadoras,chinelos,scarpim,rasteiras,slippers,casual,havaianas,tênis,',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -71,7 +71,7 @@ class ConfigKeywordsTableSeeder extends Seeder
             'keywords' => 'fabricante,distribuidor,calçados,revenda,atacado',
             'genders' => 'feminino,masculino,juvenil,infantil,bebe',
             'categories' => 'botas,mocassim,sapatilhas,oxford,alpargatas,peep toe,ankle boot, espadrille,sandálias,tamancos,ana bela,gladiadoras,chinelos,scarpim,rasteiras,slippers,casual,havaianas,tênis,',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -81,7 +81,7 @@ class ConfigKeywordsTableSeeder extends Seeder
             'keywords' => 'revendedor,distribuidor,calçados,atacado',
             'genders' => 'feminino,masculino,juvenil,infantil,bebe',
             'categories' => 'botas,mocassim,sapatilhas,oxford,alpargatas,peep toe,ankle boot, espadrille,sandálias,tamancos,ana bela,gladiadoras,chinelos,scarpim,rasteiras,slippers,casual,havaianas,tênis,',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 

@@ -2,14 +2,9 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
+use Illuminate\Http\Request;
 use AVDPainel\Http\Controllers\Controller;
 
-use AVDPainel\Models\Admin\Brand;
-use AVDPainel\Models\Admin\Product;
-use AVDPainel\Models\Admin\Section;
-use AVDPainel\Models\Admin\Category;
-use AVDPainel\Models\Admin\ImageColor;
-use AVDPainel\Models\Admin\Contact;
 
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigAdminInterface as InterConfigAvatar;
@@ -18,6 +13,7 @@ use AVDPainel\Interfaces\Admin\ConfigSystemInterface as InterConfigSystem;
 
 class PainelController extends Controller
 {
+
     protected $last_url;
     protected $sidbar;
     protected $phat_url;
@@ -44,24 +40,16 @@ class PainelController extends Controller
 
     }
 
+
     /**
-     * Show the application dashboard.
+     * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(
-        Brand $brand,
-        Contact $contact,
-        Section $section,
-        Product $product,
-        Category $category,
-        ImageColor $colors)
+    public function index()
     {
-
         $this->last_url   = array("last_url" => "admin");
 
-
-        $photos = auth()->user()->photo;
 
         $width    = $this->interConfigAvatar->width_photo;
         $height   = $this->interConfigAvatar->height_photo;
@@ -71,52 +59,89 @@ class PainelController extends Controller
 
         $avatar = $this->avatar_url;
         foreach ($photos as $photo) {
-            if ($photo->status == 'Ativo' && $photo->image != '') {
+            if ($photo->active == constLang('active_true') && $photo->image != '') {
                 $avatar = $path. $photo->image;
             }
         }
 
         $sidebar  = array(
-            'total_brands' => $brand->count(),
-            'total_sections' => $section->count(),
-            'total_categories' => $category->count(),
-            'total_products' => $product->count(),
-            'total_colors' => $colors->count(),
-            'total_mails' => $contact->where('send', 0)->count()
+            'total_brands' => 1,
+            'total_sections' => 1,
+            'total_categories' => 1,
+            'total_products' => 1,
+            'total_colors' => 1,
+            'total_mails' => 1
         );
 
         $this->access->update($this->last_url);
 
         return view('backend.home.index', compact('sidebar', 'avatar'));
+
     }
 
     /**
-     * Show the application dashboard.
+     * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function home()
+    public function create()
     {
-
-        $this->last_url = array("last_url" => "admin");
-        $this->access->update($this->last_url);
-        return view('backend.home.home');
+        //
     }
 
-  
     /**
-     * Show the application dashboard.
+     * Store a newly created resource in storage.
      *
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function catalog(Section $section)
+    public function store(Request $request)
     {
-
-        $catalog = $section->get();
-
-
-        return view('backend.products.menu', compact('catalog'));
+        //
     }
 
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
 
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
 }

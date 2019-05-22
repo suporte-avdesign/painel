@@ -9,6 +9,10 @@ use Illuminate\Notifications\Messages\MailMessage;
 class AdminResetPasswordNotification extends Notification
 {
     use Queueable;
+    /**
+     * @var
+     */
+    public $token;
 
     /**
      * Create a new notification instance.
@@ -40,10 +44,11 @@ class AdminResetPasswordNotification extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->line('Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta.')
+            ->line('VocÃª estÃ¡ recebendo este e-mail porque recebemos um pedido de redefiniÃ§Ã£o de senha para sua conta.')
             ->action('Trocar a senha', url(config('app.url').route('admin.password.reset', $this->token, false)))
-            ->line('Se você não solicitou uma alteração da senha, nenhuma ação adicional é necessária.');
+            ->line('Se vocÃª nÃ£o solicitou uma alteraÃ§Ã£o da senha, nenhuma aÃ§Ã£o adicional Ã© necessÃ¡ria.');
     }
+
 
     /**
      * Get the array representation of the notification.

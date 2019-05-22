@@ -3,6 +3,8 @@
 namespace AVDPainel\Providers\Admin;
 
 use Illuminate\Support\Facades\Event;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
 class EventServiceProvider extends ServiceProvider
@@ -13,13 +15,9 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'AVDPainel\Events\AdminResponseContactEvent' => [
-            'AVDPainel\Listeners\AdminResponseContactListener'
+        Registered::class => [
+            SendEmailVerificationNotification::class,
         ],
-        'AVDPainel\Events\UserAddressCreatedEvent' => [
-            'AVDPainel\Listeners\UserAddressCreatedListener',
-        ],
-
     ];
 
     /**

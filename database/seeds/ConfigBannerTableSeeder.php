@@ -15,9 +15,9 @@ class ConfigBannerTableSeeder extends Seeder
         $date = date('Y-m-d H:i:s');
         ConfigBanner::create([
             'type' => 'four',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'path' => 'imagens/banners/',
-            'width' => '262',
+            'width' => '1262',
             'height' => '256',
             'created_at' => $date
         ]);

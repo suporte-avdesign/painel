@@ -15,7 +15,7 @@ class ConfigkitController extends AdminAjaxTablesController
 {
     
     protected $ability = 'config-kit';
-    protected $view    = 'backend.config.kits';
+    protected $view    = 'backend.settings.kits';
     protected $last_url;
     protected $messages;
 
@@ -30,7 +30,7 @@ class ConfigkitController extends AdminAjaxTablesController
         $this->access     = $access;
         $this->confUser   = $confUser;
         $this->interModel = $interModel;
-        $this->last_url   = array('last_url' => 'config/kits');
+        $this->last_url   = array('last_url' => 'settings/kits');
         $this->messages = array(
             'name.required'   => 'O nome é obrigatório.',
             'order.required'  => 'A ordem é obrigatória.',

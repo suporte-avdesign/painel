@@ -6,26 +6,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigProfileClient extends Model
 {
-	protected $fillable = [
+    protected $fillable = [
         'order',
         'name',
-	    'percent_cash',
+        'percent_cash',
         'percent_card',
         'sum',
-	    'status'
-	];
+        'active'
+    ];
 
     /**
-    * Validação
-    * @return array
-    **/
+     * Validação
+     * @return array
+     **/
     public function rules($id = '')
     {
-    	return [
-            "order"    => "required",
-            "name"  => "required|unique:config_profile_clients,name,{$id},id",
-    		"percent_cash"  => "required",
-            "percent_card"  => "required"
-    	];
+        return [
+            "order" => "required",
+            "name" => "required|unique:config_profile_clients,name,{$id},id",
+            "percent_cash" => "required",
+            "percent_card" => "required"
+        ];
     }
 }

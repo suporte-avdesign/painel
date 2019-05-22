@@ -44,7 +44,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
      */
     public function get()
     {
-        $data  = $this->model->where('status', 'Ativo')->orderBy('order')->get();
+        $data  = $this->model->where('active', constLang('active_true'))->orderBy('order')->get();
         return $data;    
     }
 
@@ -62,7 +62,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
             2 => 'percent_card',
             3 => 'percent_cash',
             4 => 'sum',
-            5 => 'status',
+            5 => 'active',
             6 => 'actions',
             7 => 'updated_at',
             8 => 'created_at',
@@ -107,7 +107,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
                         $sum = '<span class="icon-squared-minus red-gradient icon-size2" title="Menos"></span>';
                     }
 
-                    ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
+                    ($val->active == 'Ativo' ? $color = 'blue' : $color = 'red');
 
                     $edit   = "abreModal('Editar {$val->name}', '".route('perfil-cliente.edit', ['id' => $val->id])."', 'profile-clients', 2, 'true', 380, 260)";
                     $delete = "deleteProfileClient('".route('perfil-cliente.destroy', ['id' => $val->id])."', '{$val->name}')";
@@ -117,7 +117,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
                     $nData['percent_card'] = round($val->percent_card, 2). '%';
                     $nData['percent_cash'] = round($val->percent_cash, 2). '%';
                     $nData['sum']          = $sum;
-                    $nData['status']       = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                    $nData['active']       = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                     $nData['actions']      = '<span class="button-group">';
                     if (Gate::allows('config-percent-delete')) {
                         $nData['actions'] .= '<button onclick="'.$delete.'" class="button icon-trash red-gradient compact"></button>';
@@ -152,7 +152,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
      */
     public function pluck()
     {
-        return $this->model->orderBy('order')->where('status', 'Ativo')->pluck('name','id');
+        return $this->model->orderBy('order')->where('active', constLang('active_true'))->pluck('name','id');
     }
 
 
@@ -207,7 +207,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
                 '% À Vísta:'.$data->percent_cash.
                 '%, Ordem:'.$data->order.
                 ', Calculo para:'.$data->sum.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
             return $data;
         }
@@ -227,7 +227,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
         $data         = $this->model->find($id);
         $sum          = $data->sum;
         $order        = $data->order;
-        $status       = $data->status;
+        $active       = $data->active;
         $profile      = $data->name;
         $percent_card = $data->percent_card;
         $percent_cash = $data->percent_cash;
@@ -241,12 +241,12 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
                 '% À Vísta:'.$percent_cash.
                 '%, Ordem:'.$order.
                 ', Calculo para:'.$data->sum.
-                ', Status:'.$status.
+                ', Status:'.$active.
                 ' - Para Parcelado:'.$input['percent_card'].
                 '% À Vísta:'.$input['percent_cash'].
                 '%, Ordem:'.$input['order'].
                 ', Calculo para:'.$data->sum.
-                ', Status:'.$input['status'])
+                ', Status:'.$input['active'])
             );
             return true;
         }
@@ -273,7 +273,7 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
                         '% À Vísta:'.$data->percent_cash.
                         '%, Ordem:'.$data->order.
                         ', Calculo para:'.$data->sum.
-                        ', Status:'.$data->status)
+                        ', Status:'.$data->active)
                 );
                 return true;
             }

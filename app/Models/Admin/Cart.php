@@ -38,5 +38,4 @@ class Cart extends Model
         'session'
     ];
 
-
 }

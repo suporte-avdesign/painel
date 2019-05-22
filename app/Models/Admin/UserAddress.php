@@ -19,6 +19,4 @@ class UserAddress extends Model
         'state',
         'zip_code'
     ];
-
-
 }

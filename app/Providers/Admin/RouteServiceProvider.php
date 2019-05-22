@@ -35,14 +35,47 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
+        $this->mapApiRoutes();
+        $this->mapWebRoutes();
+
         $this->mapAuthAdmins();
         $this->mapPanel();
         $this->mapConfigSistem();
         $this->mapUsersAdmins();
         $this->mapModules();
 
-        //
     }
+
+
+    /**
+     * Define the "web" routes for the application.
+     *
+     * These routes all receive session state, CSRF protection, etc.
+     *
+     * @return void
+     */
+    protected function mapWebRoutes()
+    {
+        Route::middleware('web')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/web.php'));
+    }
+
+    /**
+     * Define the "api" routes for the application.
+     *
+     * These routes are typically stateless.
+     *
+     * @return void
+     */
+    protected function mapApiRoutes()
+    {
+        Route::prefix('api')
+             ->middleware('api')
+             ->namespace($this->namespace)
+             ->group(base_path('routes/api.php'));
+    }
+
 
     /**
      * Define the "web" routes auth admin.
@@ -54,8 +87,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapAuthAdmins()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/admin/auth.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin/auth.php'));
     }
 
     /**
@@ -66,8 +99,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapPanel()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/admin/panel.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin/panel.php'));
     }
 
     /**
@@ -78,8 +111,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapConfigSistem()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/admin/config.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin/config.php'));
     }
 
     /**
@@ -90,8 +123,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapUsersAdmins()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/admin/admins.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin/admins.php'));
     }
 
     /**
@@ -102,8 +135,8 @@ class RouteServiceProvider extends ServiceProvider
     protected function mapModules()
     {
         Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/admin/modules.php'));
+            ->namespace($this->namespace)
+            ->group(base_path('routes/admin/modules.php'));
     }
 
 }

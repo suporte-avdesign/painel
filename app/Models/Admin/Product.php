@@ -6,44 +6,43 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
-	protected $fillable = [
-		'brand_id',
-		'section_id',
-		'category_id',
-		'name',
-		'description',
-		'brand',
-		'section',
-		'category',
-		'slug',
-		'tags',
-		'video',
-		'unit',
-		'measure',
-		'weight',
-		'width',
-		'height',
-		'length',
-		'cost',
-		'kit_name',
-		'kit',
-		'stock',
-		'freight',
-		'new',
-		'featured',
-		'offer',
-		'offer_date',
-		'active',
-		'trend',
-		'black_friday',
-		'visits'
+    protected $fillable = [
+        'brand_id',
+        'section_id',
+        'category_id',
+        'name',
+        'description',
+        'brand',
+        'section',
+        'category',
+        'slug',
+        'tags',
+        'video',
+        'unit',
+        'measure',
+        'weight',
+        'width',
+        'height',
+        'length',
+        'cost',
+        'kit_name',
+        'kit',
+        'stock',
+        'freight',
+        'new',
+        'featured',
+        'offer',
+        'offer_date',
+        'active',
+        'trend',
+        'black_friday',
+        'visits'
     ];
 
     /**
-    * Prices
-    * @return array
-    **/
+     * Prices
+     * @return array
+     **/
     public function prices()
     {
         return $this->hasMany(ProductPrice::class);
@@ -51,9 +50,9 @@ class Product extends Model
 
 
     /**
-    * Images
-    * @return array
-    **/
+     * Images
+     * @return array
+     **/
     public function images()
     {
         return $this->hasMany(ImageColor::class);
@@ -61,13 +60,11 @@ class Product extends Model
 
 
     /**
-    * Grids
-    * @return array
-    **/
+     * Grids
+     * @return array
+     **/
     public function grids()
     {
         return $this->hasMany(GridProduct::class);
     }
-
-
 }

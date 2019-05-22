@@ -2,7 +2,6 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigAdminInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 
@@ -14,7 +13,6 @@ class ConfigAdminController extends Controller
 
     protected $ability = 'config-admin';
     protected $view = 'backend.config.images.admins';
-    protected $last_url;
     protected $messages;
 
 
@@ -24,15 +22,8 @@ class ConfigAdminController extends Controller
     {
         $this->middleware('auth:admin');
 
-        $this->access = $access;
         $this->interModel = $interModel;
-        $this->messages = array(
-            "path.required" => "A pasta das imagens é obrigatória.",
-            "width_photo.required" => "A largura da foto é obrigatória.",
-            "width_photo.numeric" => "Digite apenas números na largura da foto.",
-            "height_photo.required" => "A altura da foto é obrigatória.",
-            "height_photo.numeric" => "Digite apenas números na largura da foto."
-        );
+        $this->messages = constLang('ConfigAdmin');
     }
 
 
@@ -41,18 +32,12 @@ class ConfigAdminController extends Controller
      */
     public function edit()
     {
-        /*
-        if (Gate::denies("{$this->ability}-view")) {
+        if (Gate::denies("{$this->ability}-update")) {
             return view("backend.erros.message-401");
         }
 
-        */
-
-        $this->last_url = array("last_url" => "config/imagens/usuarios");
-        $this->access->update($this->last_url);
-
-        $data = $this->interModel->setId(1);
-        $title = 'Configuração dos Usuários';
+        $data  = $this->interModel->setId(1);
+        $title = $this->messages['title'];
         return view("{$this->view}.form", compact('data', 'title'));
     }
 

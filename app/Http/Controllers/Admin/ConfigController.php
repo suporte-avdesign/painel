@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Gate;
 class ConfigController extends Controller
 {
     protected $ability  = 'config';
-    protected $view     = 'backend.config';
+    protected $view     = 'backend.settings';
 
 
     /**
-     * Acesso e Personalização.
+     * Acesso e personalização do sistema.
      *
      * @return void
      */
@@ -29,9 +29,10 @@ class ConfigController extends Controller
 
         $this->access     = $access;
         $this->interModel = $interModel;
+
     }
 
-    
+
     /**
      * Página inicial das configurações do sistema.
      *
@@ -43,7 +44,7 @@ class ConfigController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $register = ["last_url" => 'config/sistema'];
+        $register = ["last_url" => 'config/system'];
         $this->access->update($register);
 
         return view("{$this->view}.index");
@@ -57,11 +58,11 @@ class ConfigController extends Controller
     public function colorSystem()
     {
 
-        $register = ["last_url" => 'config/cores/sistema'];
+        $register = ["last_url" => 'config/color/system'];
         $this->access->update($register);
 
         $data = $this->interModel->get();
-        
+
         return view("{$this->view}.colors.index", compact('data'));
     }
 
@@ -70,22 +71,10 @@ class ConfigController extends Controller
     {
         $dataForm = $request->All();
         $update   = $this->interModel->update($dataForm);
-        if ($update ) {
-            $success = true;
-            $message = 'Alteração realizada.';
-        } else {
-            $success = false;
-            $message = 'Não foi possível alterar';
-        }
 
-        $out = array(
-            "success" => $success,
-            "message" => $message
-        );
-
-        return response()->json($out);
+        return response()->json($update);
     }
-    
+
 
     /**
      * Folders: Seguranca e Permissões
@@ -97,61 +86,4 @@ class ConfigController extends Controller
         return view("{$this->view}.folders.{$name}");
     }
 
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

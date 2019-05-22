@@ -17,21 +17,21 @@ class ConfigUnitMeasureTableSeeder extends Seeder
         	'unit' => 1,
         	'name' => 'Par',
         	'order' => '01',
-            'status' => 'Ativo'
+            'active' => constLang('active_true')
         ]);
 
         ConfigUnitMeasure::create([
         	'unit' => 6,
         	'name' => 'Pares',
         	'order' => '02',
-            'status' => 'Ativo'
+            'active' => constLang('active_true')
         ]);
 
         ConfigUnitMeasure::create([
         	'unit' => 12,
         	'name' => 'Pares',
         	'order' => '03',
-            'status' => 'Ativo'
+            'active' => constLang('active_true')
         ]);
 
 

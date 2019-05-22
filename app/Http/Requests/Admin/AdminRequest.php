@@ -27,7 +27,7 @@ class AdminRequest extends FormRequest
 
         if ($this->method() == 'PUT') {
             $confirmed = '';
-            $password  = ''; 
+            $password  = '';
             $login     = '';
         }
         else {
@@ -74,9 +74,9 @@ class AdminRequest extends FormRequest
             'password.max' => 'A senha não deverá conter mais de 10 caracteres.',
             'password_confirmation.required' => 'A confirmação da senha é obrigatória.',
             'password_confirmation.same' => 'A confirmação da senha não coincide.',
-            'commission.required'  => 'Comissionado: Sim ou Não?',            
-            'percent.required'  => 'A porcentagem é obrigatória.',            
-            'status.required'  => 'O status é obrigatório.'        
+            'commission.required'  => 'Comissionado: Sim ou Não?',
+            'percent.required'  => 'A porcentagem é obrigatória.',
+            'status.required'  => 'O status é obrigatório.'
         ];
     }
 }

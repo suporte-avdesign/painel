@@ -96,7 +96,7 @@ class ConfigPageRepository implements ConfigPageInterface
             generateAccessesTxt(date('H:i:s').utf8_decode(
                     ', '.$acc['update'].
                     ', '.$fid['module'].':'.$data->name.
-                    ', '.$fid['status'].':'.$data->status)
+                    ', '.$fid['active'].':'.$data->active)
             );
 
             $success = true;

@@ -34,7 +34,7 @@ class UsersTableSeeder extends Seeder
             'password' => bcrypt('avdesign'),
             'date' => '07/07/1962',
             'client' => 1,
-            'status' => 1,
+            'active' => constLang('active_true'),
             'newsletter' => 1,
             'visits' => 0,
             'ip' => '141441414441',

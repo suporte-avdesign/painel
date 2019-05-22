@@ -6,28 +6,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigImageProduct extends Model
 {
-	protected $fillable = [
+    protected $fillable = [
         'default',
         'type',
         'width',
         'height',
         'path'
-	];
+    ];
 
 
     /**
-    * Validação
-    * @return array
-    **/
+     * Validação
+     * @return array
+     **/
     public function rules($id = '')
     {
 
-    	return [
-    		"width"   => "required|numeric",
-    		"height"  => "required|numeric",
+        return [
+            "width"   => "required|numeric",
+            "height"  => "required|numeric",
             "path"    => "required"
-    	];
+        ];
     }
-
 
 }

@@ -19,7 +19,7 @@ class ConfigPagesTableSeeder extends Seeder
             'id' => 1,
             'name' => 'Home',
             'module' => 'home',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         //Modules Home
@@ -28,7 +28,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Slider',
             'module' => 'slider',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -36,7 +36,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Banner',
             'module' => 'banner',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -44,7 +44,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Ofertas',
             'module' => 'offer',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -52,7 +52,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Novos',
             'module' => 'new',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -60,7 +60,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Destaques',
             'module' => 'featured',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -68,7 +68,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Seções',
             'module' => 'section',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -76,7 +76,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Categorias',
             'module' => 'category',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -84,7 +84,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Marcas',
             'module' => 'brand',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         // Page Sections
@@ -92,7 +92,7 @@ class ConfigPagesTableSeeder extends Seeder
             'id' => 2,
             'name' => 'Seções',
             'module' => 'sections',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         //Modules Sections
@@ -101,7 +101,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Seção',
             'module' => 'section',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         //Page Categories
@@ -109,7 +109,7 @@ class ConfigPagesTableSeeder extends Seeder
             'id' => 3,
             'name' => 'Categorias',
             'module' => 'categories',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         //Modules Categories
@@ -118,7 +118,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Categoria',
             'module' => 'category',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         //Page Products
@@ -126,7 +126,7 @@ class ConfigPagesTableSeeder extends Seeder
             'id' => 4,
             'name' => 'Produtos',
             'module' => 'products',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         //Modules Products
@@ -135,7 +135,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Produto',
             'module' => 'product',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -143,7 +143,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Banner',
             'module' => 'banner',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -151,7 +151,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Ofertas',
             'module' => 'offer',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -159,7 +159,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Destaques',
             'module' => 'featured',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -167,7 +167,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Tabs',
             'module' => 'tab',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -175,7 +175,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Descrição',
             'module' => 'description',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -183,7 +183,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Comentários',
             'module' => 'review',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -191,7 +191,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Relacionados',
             'module' => 'related',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -200,7 +200,7 @@ class ConfigPagesTableSeeder extends Seeder
             'id' => 5,
             'name' => 'Ordenar Produtos',
             'module' => 'order',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -208,7 +208,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 1,
             'name' => 'Aleatório',
             'module' => 'random',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -216,7 +216,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 2,
             'name' => 'Crescente',
             'module' => 'asc',
-            'status' => 'Inativo',
+            'active' => constLang('active_false'),
             'created_at' => $date
         ]);
         ConfigTemplate::create([
@@ -224,7 +224,7 @@ class ConfigPagesTableSeeder extends Seeder
             'tmp' => 3,
             'name' => 'Decrescente',
             'module' => 'desc',
-            'status' => 'Inativo',
+            'active' => constLang('active_false'),
             'created_at' => $date
         ]);
     }

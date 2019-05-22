@@ -7,7 +7,6 @@ use AVDPainel\Models\Admin\ConfigSystem as Model;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface;
 
 
-
 class ConfigSystemRepository implements ConfigSystemInterface
 {
     public $model;
@@ -59,13 +58,24 @@ class ConfigSystemRepository implements ConfigSystemInterface
             );
 
             generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                ' Alterou sua configuração do sistema por uma de sua preferência.')
+                date('H:i:s ').constLang('accesses.update').
+                    constLang('ConfigSystem.tables')
             );
-            
-            return true;
+
+            $success = true;
+            $message = constLang('update_true');
+
+        } else {
+            $success = false;
+            $message = constLang('update_false');
         }
-        return false;
+
+        $out = array(
+            "success" => $success,
+            "message" => $message
+        );
+
+        return $out;
     }
 
 

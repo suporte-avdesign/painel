@@ -8,7 +8,7 @@ class State extends Model
 {
     protected $fillable = [
         'uf',
-        'name' 
+        'name'
     ];
 
     public $timestamps = false;

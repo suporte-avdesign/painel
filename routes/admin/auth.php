@@ -2,7 +2,7 @@
 
 /*
 |--------------------------------------------------------------------------
-| Autenticação de Usuários
+| Autenticação dos usuários administrativos
 |--------------------------------------------------------------------------
 */
 
@@ -11,6 +11,8 @@ Route::get('/', 'Admin\Auth\LoginController@showLoginForm')->name('admin.login')
 Route::post('/', 'Admin\Auth\LoginController@login')->name('admin.login');
 Route::get('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
 Route::post('logout', 'Admin\Auth\LoginController@logout')->name('admin.logout');
+/*
+
 
 
 // Recuperar senha
@@ -19,3 +21,4 @@ Route::get('recuperar/{id}/senha', 'Admin\Auth\RegisterController@showLinkReques
 Route::post('password/reset', 'Admin\Auth\ResetPasswordController@reset');
 Route::get('password/reset/{token}', 'Admin\Auth\ResetPasswordController@showResetForm')->name('admin.password.reset');
 
+*/

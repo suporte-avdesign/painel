@@ -7,16 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigColorGroup extends Model
 {
     protected $fillable = [
-        'name', 
-        'code', 
-        'order', 
-        'status'
+        'name',
+        'code',
+        'order',
+        'active'
     ];
 
     /**
-    * Validação
-    * @return array
-    **/
+     * Validação
+     * @return array
+     **/
     public function rules($id = '')
     {
         return [

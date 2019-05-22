@@ -16,7 +16,7 @@ class ConfigSiteController extends Controller
     protected $profiles;
 
     protected $ability  = 'config-site';
-    protected $view     = 'backend.config.site';
+    protected $view     = 'backend.settings.site';
     protected $last_url;
 
     public function __construct(

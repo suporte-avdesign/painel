@@ -68,8 +68,8 @@ class ConfigSubjectContactRepository implements ConfigSubjectContactInterface
         $data = $this->model->create($input);
         if ($data) {
 
-            ($data->send_guest == 1 ? $send_guest = 'Ativo' : $send_guest = 'Inativo');
-            ($data->send_user == 1 ? $send_user = 'Ativo' : $send_user = 'Inativo');
+            ($data->send_guest == 1 ? $send_guest = constLang('active_true') : $send_guest = constLang('active_false'));
+            ($data->send_user == 1 ? $send_user = constLang('active_true') : $send_user = constLang('active_false'));
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                     ' Adicionou no formulário de contato Assunto'.$data->label.
@@ -77,7 +77,7 @@ class ConfigSubjectContactRepository implements ConfigSubjectContactInterface
                     ',Enviar para Visitante:'.$send_guest.
                     ', Cliente:'.$send_user.
                     ', Ordem:'.$data->order.
-                    ', Status:'.$data->status)
+                    ', Status:'.$data->active)
             );
 
             return $data;
@@ -99,8 +99,8 @@ class ConfigSubjectContactRepository implements ConfigSubjectContactInterface
 
         $update = $data->update($input);
         if ($update) {
-            ($data->send_guest == 1 ? $send_guest = 'Ativo' : $send_guest = 'Inativo');
-            ($data->send_user == 1 ? $send_user = 'Ativo' : $send_user = 'Inativo');
+            ($data->send_guest == 1 ? $send_guest = constLang('active_true') : $send_guest = constLang('active_false'));
+            ($data->send_user == 1 ? $send_user = constLang('active_true') : $send_user = constLang('active_false'));
 
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
@@ -109,7 +109,7 @@ class ConfigSubjectContactRepository implements ConfigSubjectContactInterface
                     ',Enviar para Visitante:'.$send_guest.
                     ', Cliente:'.$send_user.
                     ', Ordem:'.$data->order.
-                    ', Status:'.$data->status)
+                    ', Status:'.$data->active)
             );
             return true;
         }

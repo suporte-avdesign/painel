@@ -12,11 +12,6 @@ class ProductInput extends Model
         'amount'
     ];
 
-    public function color()
-    {
-        return $this->belongsTo(ImageColor::class);
-    }
-
 
     public function product()
     {

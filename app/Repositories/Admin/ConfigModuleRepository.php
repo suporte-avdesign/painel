@@ -102,8 +102,8 @@ class ConfigModuleRepository implements ConfigModuleInterface
         {
             foreach ($query as $val){
 
-                $edit   = "abreModal('Editar {$val->name}', '".route('modulos.edit', ['id' => $val->id])."', 'metodo', 2, 'true', 400, 220)";
-                $delete = "deleteModule('".route('modulos.destroy', ['id' => $val->id])."', '{$val->name}')";
+                $edit   = "abreModal('Editar {$val->name}', '".route('modules.edit', ['id' => $val->id])."', 'metodo', 2, 'true', 400, 220)";
+                $delete = "deleteModule('".route('modules.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                 $nData['name']        = $val->name;
                 $nData['type']        = $val->type;

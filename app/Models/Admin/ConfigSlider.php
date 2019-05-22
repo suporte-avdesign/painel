@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigSlider extends Model
 {
     protected $fillable = [
-        'status',
+        'active',
         'delay',
         'path',
         'width',

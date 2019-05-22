@@ -84,7 +84,7 @@ class LoginController extends Controller
 
         $this->validateLogin($request);
 
-        
+
         $ajax = $request['ajax'];
 
         if ($ajax == 1){
@@ -99,7 +99,7 @@ class LoginController extends Controller
                 $ip = $_SERVER['REMOTE_ADDR'];
                 $register = ["login" => true,"last_ip" => $ip];
                 $this->access->update($register, $ac->id);
-                generateAccessesTxt(date('H:i:s').' Fez login no sistema. IP:'.$ip);
+                generateAccessesTxt(date('H:i:s').' '.constLang('accesses.login_entry').' IP:'.$ip);
 
 
                 return response()
@@ -133,16 +133,16 @@ class LoginController extends Controller
      */
     protected function sendFailedLoginResponse(Request $request)
     {
-       $errors = ["message" => trans('auth.failed')];
+        $errors = ["message" => trans('auth.failed')];
 
         if ($request->expectsJson()) {
             return response()->json($errors);
         }
-/*
-        return response()
-            ->json(['logged' => true, 'redirect' => url('painel/admin')])
-            ->withCallback($request->input('callback'));
-*/
+        /*
+                return response()
+                    ->json(['logged' => true, 'redirect' => url('painel/admin')])
+                    ->withCallback($request->input('callback'));
+        */
     }
 
 
@@ -194,7 +194,7 @@ class LoginController extends Controller
 
 
             return response()->json(["login" => route('admin.login')]);
-        }        
+        }
 
         return redirect(route('/'));
     }

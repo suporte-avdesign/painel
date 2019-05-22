@@ -18,7 +18,7 @@ class ConfigProductController extends Controller
     protected $profiles;
 
     protected $ability  = 'config-product';
-    protected $view     = 'backend.config.products';
+    protected $view     = 'backend.settings.products';
     protected $last_url;
 
     public function __construct(
@@ -32,7 +32,7 @@ class ConfigProductController extends Controller
         $this->interModel   = $interModel;
         $this->interProfile = $interProfile;
 
-        $this->last_url    = array("last_url" => "config/produtos");
+        $this->last_url    = array("last_url" => "config/products");
     }
 
 

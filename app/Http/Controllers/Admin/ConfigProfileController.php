@@ -17,7 +17,7 @@ class ConfigProfileController extends AdminAjaxTablesController
 {
     
     protected $ability = 'config-profile';
-    protected $view    = 'backend.config.profiles';
+    protected $view    = 'backend.settings.profiles';
     protected $users;
     protected $last_url;
     protected $messages;
@@ -35,7 +35,7 @@ class ConfigProfileController extends AdminAjaxTablesController
         $this->access     = $access;
         $this->confUser   = $confUser;
         $this->interModel = $interModel;
-        $this->last_url   = array('last_url' => 'config/perfis');
+        $this->last_url   = array('last_url' => 'config/profiles');
         $this->messages = array(
             'name.required'      => 'O perfil é obrigatório.',
             'name.unique'        => 'Este perfil já se encontra utilizado.',
@@ -80,7 +80,7 @@ class ConfigProfileController extends AdminAjaxTablesController
         $data    = $this->interModel->setId($id);
         $active  = $data->users()->distinct('admin_id')->get();
 
-        return view('backend.config.profiles.users', compact('data', 'active'));     
+        return view("{$this->view}.users", compact('data', 'active'));
     }
 
 
@@ -109,7 +109,7 @@ class ConfigProfileController extends AdminAjaxTablesController
         
         $title  = 'Adicionar usuários ao perfil:';
 
-        return view('backend.config.profiles.form-users', compact('data', 'users', 'title')); 
+        return view("{$this->view}.form-users", compact('data', 'users', 'title'));
     }
 
 

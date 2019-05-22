@@ -3,16 +3,15 @@
 namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
-use AVDPainel\Models\Admin\Brand;
 
 class GridBrand extends Model
 {
-	protected $fillable = [
-		'brand_id',
+    protected $fillable = [
+        'brand_id',
         'type',
-		'name',
-		'label'
-	];
+        'name',
+        'label'
+    ];
 
     /**
      * @param int $id

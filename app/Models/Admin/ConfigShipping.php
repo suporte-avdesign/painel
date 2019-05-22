@@ -6,17 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigShipping extends Model
 {
-	protected $fillable = [
-	    'name',
-	    'description',
-	    'order',
-	    'status'
-	];
+    protected $fillable = [
+        'name',
+        'description',
+        'order',
+        'active'
+    ];
 
     /**
-    * Validação
-    * @return array
-    **/
+     * Validação
+     * @return array
+     **/
     public function rules($id = '')
     {
         return [
@@ -25,5 +25,4 @@ class ConfigShipping extends Model
             "order"        => "required|unique:config_shippings,order,{$id},id"
         ];
     }
-
 }

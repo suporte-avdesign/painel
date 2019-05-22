@@ -44,9 +44,4 @@ class Contact extends Model
             "message" => "required"
         ];
     }
-
-
-
-
-
 }

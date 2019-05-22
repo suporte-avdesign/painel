@@ -2,19 +2,16 @@
 
 namespace AVDPainel\Models\Admin;
 
-use AVDPainel\Models\Admin\Admin;
-use AVDPainel\Models\Admin\ConfigPermission;
 use Illuminate\Database\Eloquent\Model;
 
 class ConfigProfile extends Model
 {
-
     protected $fillable = ['name', 'label'];
 
     /**
-    * Validação
-    * @return array
-    **/
+     * Validação
+     * @return array
+     **/
     public function rules($id = '')
     {
         return [
@@ -23,11 +20,10 @@ class ConfigProfile extends Model
         ];
     }
 
-
     /**
-    * Usuários vinculados ao perfil
-    * @return array
-    **/
+     * Usuários vinculados ao perfil
+     * @return array
+     **/
     public function users()
     {
         return $this->belongsToMany(Admin::class);
@@ -35,14 +31,11 @@ class ConfigProfile extends Model
 
 
     /**
-    * permissões vinculadas ao perfil
-    * @return array
-    **/
+     * permissões vinculadas ao perfil
+     * @return array
+     **/
     public function permissions()
     {
         return $this->belongsToMany(ConfigPermission::class);
     }
-
-
-    
 }

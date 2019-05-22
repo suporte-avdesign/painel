@@ -117,8 +117,8 @@ class ConfigPermissionRepository implements ConfigPermissionInterface
             foreach ($query as $val){
 
 
-                $edit   = "abreModal('Editar {$val->name}', '".route('permissoes.edit', ['id' => $val->id])."', 'metodo', 2, 'true', 400, 220)";
-                $delete = "deletePermission('".route('permissoes.destroy', ['id' => $val->id])."', '{$val->name}')";
+                $edit   = "abreModal('Editar {$val->name}', '".route('permissions.edit', ['id' => $val->id])."', 'metodo', 2, 'true', 400, 220)";
+                $delete = "deletePermission('".route('permissions.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                 $nData['label']       = $val->label;
                 $nData['name']        = $val->module->name;

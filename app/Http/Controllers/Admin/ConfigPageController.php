@@ -2,6 +2,7 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
+use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigPageInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -12,21 +13,26 @@ class ConfigPageController extends Controller
 
     protected $content = 'Configuração: Templates do Site';
     protected $ability = 'config-site';
-    protected $view    = 'backend.config.template';
+    protected $view    = 'backend.settings.template';
+    protected $last_url;
     protected $model;
 
-    public function __construct(InterModel $interModel)
+    public function __construct(
+        InterModel $interModel,
+        InterAccess $access)
     {
 
         $this->middleware('auth:admin');
 
         $this->interModel = $interModel;
+        $this->access     = $access;
+        $this->last_url   = array("last_url" => "config/page-site");
 
         $this->messages = array(
             "fields" => array(
                 'name' => 'Nome',
                 'module' => "Modulo",
-                'status' => 'Status'
+                'active' => 'Status'
             ),
             "accesses" => array(
                 'create' => "Adicionou {$this->content} ",
@@ -37,7 +43,7 @@ class ConfigPageController extends Controller
             'name.required' => 'A página é obrigatória',
             'name.unique' => 'Já existe uma página com este nome',
             'module.required' => 'O modulo é obrigatório',
-            'status.required' => 'O status é obrigatório',
+            'active.required' => 'O status é obrigatório',
             'title_index' => $this->content,
             'title_page' => "Adicionar Página",
             'title_model' => "Adicionar Modulo",
@@ -63,6 +69,7 @@ class ConfigPageController extends Controller
             return view("backend.erros.message-401");
         }
 
+        $this->access->update($this->last_url);
         $config = $this->messages;
 
         $pages = $this->interModel->getAll();

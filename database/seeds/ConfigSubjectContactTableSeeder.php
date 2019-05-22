@@ -17,7 +17,7 @@ class ConfigSubjectContactTableSeeder extends Seeder
             'label' => 'Sobre compras',
             'message' => 'Mensagem Sobre compras',
             'order' => '01',
-            'status' => 1,
+            'active' => constLang('active_true'),
             'send_guest' => 1,
             'send_user' => 0
         ]);
@@ -26,7 +26,7 @@ class ConfigSubjectContactTableSeeder extends Seeder
             'label' => 'Ativar Cadastro',
             'message' => 'Mensagem Ativar Cadastro',
             'order' => '02',
-            'status' => 1,
+            'active' => constLang('active_true'),
             'send_guest' => 1,
             'send_user' => 0
         ]);
@@ -35,7 +35,7 @@ class ConfigSubjectContactTableSeeder extends Seeder
             'label' => 'Sugestões',
             'message' => 'Mensagem Sugestões',
             'order' => '03',
-            'status' => 1,
+            'active' => constLang('active_true'),
             'send_guest' => 1,
             'send_user' => 0
         ]);
@@ -44,7 +44,7 @@ class ConfigSubjectContactTableSeeder extends Seeder
             'label' => 'Reclamações',
             'message' => 'Mensagem Reclamações',
             'order' => '04',
-            'status' => 1,
+            'active' => constLang('active_true'),
             'send_guest' => 1,
             'send_user' => 1
         ]);
@@ -53,7 +53,7 @@ class ConfigSubjectContactTableSeeder extends Seeder
             'label' => 'Assinar/Cancelar Newsletter',
             'message' => 'Mensagem Assinar/Cancelar Newsletter',
             'order' => '05',
-            'status' => 1,
+            'active' => constLang('active_true'),
             'send_guest' => 1,
             'send_user' => 1
         ]);
@@ -62,7 +62,7 @@ class ConfigSubjectContactTableSeeder extends Seeder
             'label' => 'Outro',
             'message' => 'Mensagem Outro',
             'order' => '06',
-            'status' => 1,
+            'active' => constLang('active_true'),
             'send_guest' => 1,
             'send_user' => 1
         ]);
@@ -71,7 +71,7 @@ class ConfigSubjectContactTableSeeder extends Seeder
             'label' => 'Erros no site',
             'message' => 'Mensagem Erros no site',
             'order' => '07',
-            'status' => 1,
+            'active' => constLang('active_true'),
             'send_guest' => 1,
             'send_user' => 1
         ]);

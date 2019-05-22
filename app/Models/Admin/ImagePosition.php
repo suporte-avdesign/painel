@@ -6,21 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class ImagePosition extends Model
 {
-	protected $fillable = [
-		'image_color_id',
-		'image',
-		'order',
-		'active'
-	];
-
+    protected $fillable = [
+        'image_color_id',
+        'image',
+        'order',
+        'active'
+    ];
 
     /**
-    * Color
-    * @return array
-    **/
+     * Color
+     * @return array
+     **/
     public function color()
     {
         return $this->belongsTo(ImageColor::class, 'image_color_id');
     }
-
 }

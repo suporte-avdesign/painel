@@ -10,7 +10,7 @@ class ConfigSubjectContact extends Model
         'label',
         'message',
         'order',
-        'status',
+        'active',
         'send_guest',
         'send_user'
     ];

@@ -12,7 +12,7 @@
 		<li><a href="usuarios" class="shortcut-users" title="Usuários">Usuários</a></li>
 	@endcan
 	@can('config-view')
-		<li><a href="config/sistema" class="shortcut-settings" title="Configurações">Configurações</a></li>
+		<li><a href="config/system" class="shortcut-settings" title="Configurações">Configurações</a></li>
 	@endcan
 </ul>
 

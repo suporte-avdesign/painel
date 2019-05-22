@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Gate;
 class ConfigBannerController extends Controller
 {
     protected $ability  = 'config-banners';
-    protected $view     = 'backend.config.images.banners';
+    protected $view     = 'backend.settings.images.banners';
     protected $last_url;
     protected $messages;
 
@@ -23,8 +23,9 @@ class ConfigBannerController extends Controller
     {
         $this->middleware('auth:admin');
 
-        $this->access     = $access;
         $this->interModel = $interModel;
+        $this->access     = $access;
+        $this->last_url   = array("last_url" => "config/images/banners");
         $this->messages   = array(
             "path.required"         => "A pasta das imagens é obrigatória.",
             "width.required"        => "A largura da imagem é obrigatória.",
@@ -45,9 +46,6 @@ class ConfigBannerController extends Controller
         if( Gate::denies("{$this->ability}-view") ) {
             return view("backend.erros.message-401");
         }
-
-        $this->last_url = array("last_url" => "config/imagens/banners");
-        $this->access->update($this->last_url);
 
         $data  = $this->interModel->setId(1);
         $title = 'Banners do site';

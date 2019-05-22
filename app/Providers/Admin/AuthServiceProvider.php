@@ -3,9 +3,9 @@
 namespace AVDPainel\Providers\Admin;
 
 use AVDPainel\Models\Admin\Admin;
-use AVDPainel\Models\Admin\AdminPermissions;
-use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use AVDPainel\Models\Admin\AdminPermission;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -15,9 +15,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        //Admin::class => AdminPolicy::class,
+        // 'AVDPainel\Model' => 'AVDPainel\Policies\ModelPolicy',
     ];
-
 
     /**
      * Register any authentication / authorization services.
@@ -28,7 +27,7 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        $permissions = [];//AdminPermissions::all();
+        $permissions = AdminPermission::all();
 
         foreach ( $permissions as $permission ) {
 

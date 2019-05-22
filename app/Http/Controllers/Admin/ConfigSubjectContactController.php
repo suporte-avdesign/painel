@@ -2,22 +2,28 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
+use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigSubjectContactInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
+
+use Illuminate\Http\Request;
 use Gate;
 
 class ConfigSubjectContactController extends Controller
 {
     protected $ability  = 'config-subject';
-    protected $view     = 'backend.config.subjects';
+    protected $view     = 'backend.settings.subjects';
     protected $last_url;
 
-    public function __construct(InterModel $interModel)
+    public function __construct(
+        InterAccess $access,
+        InterModel $interModel)
     {
         $this->middleware('auth:admin');
 
         $this->interModel   = $interModel;
+        $this->access       = $access;
+        $this->last_url     = array("last_url" => "config/contact-subjects");
         $this->messages     = array(
             'label.required' => 'O Assunto é obrigatório.',
             'message.min'    => 'A mensagem é obrigatória, mínimo 10 caracteres.',

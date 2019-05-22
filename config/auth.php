@@ -45,8 +45,9 @@ return [
             'provider' => 'admins',
         ],
         'api' => [
-            'driver' => 'jwt',
+            'driver' => 'token',
             'provider' => 'users',
+            'hash' => false,
         ],
     ],
 
@@ -76,7 +77,6 @@ return [
             'driver' => 'eloquent',
             'model' => AVDPainel\Models\Admin\Admin::class,
         ],
-
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
@@ -109,7 +109,6 @@ return [
             'table' => 'password_resets',
             'expire' => 60,
         ],
-
     ],
 
 ];

@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class ConfigKit extends Model
 {
-	protected $fillable = [
-	    'name',
-	    'order',
-	    'status'
-	];
+    protected $fillable = [
+        'name',
+        'order',
+        'active'
+    ];
 
     /**
-    * Validação
-    * @return array
-    **/
+     * Validação
+     * @return array
+     **/
     public function rules($id = '')
     {
-    	return [
-    		"name"    => "required",
-    		"order"    => "required"
-    	];
+        return [
+            "name"    => "required",
+            "order"    => "required"
+        ];
     }
 }

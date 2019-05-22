@@ -11,7 +11,7 @@ class ContentPrivacyPolicy extends Model
         'title',
         'description',
         'order',
-        'status'
+        'active'
     ];
 
     public function rules()
@@ -21,7 +21,7 @@ class ContentPrivacyPolicy extends Model
             "title" => "required",
             "description" => "required",
             "order" => "required|numeric",
-            "status" => "required"
+            "active" => "required"
         ];
     }
 

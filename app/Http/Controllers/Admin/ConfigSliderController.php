@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Gate;
 class ConfigSliderController extends Controller
 {
     protected $ability  = 'config-slider';
-    protected $view     = 'backend.config.images.sliders';
+    protected $view     = 'backend.settings.images.sliders';
     protected $last_url;
     protected $messages;
 
@@ -23,8 +23,9 @@ class ConfigSliderController extends Controller
     {
         $this->middleware('auth:admin');
 
-        $this->access     = $access;
         $this->interModel = $interModel;
+        $this->access     = $access;
+        $this->last_url   = array("last_url" => "config/images/slider");
         $this->messages   = array(
             "deley.numeric"         => "O valor do deley tem que ser numérico.",
             "path.required"         => "A pasta das imagens é obrigatória.",
@@ -51,7 +52,6 @@ class ConfigSliderController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $this->last_url = array("last_url" => "config/imagens/slider");
         $this->access->update($this->last_url);
 
         $data  = $this->interModel->setId(1);

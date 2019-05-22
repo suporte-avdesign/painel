@@ -19,7 +19,7 @@ class ConfigPercentTableSeeder extends Seeder
         ConfigPercent::create([
             'percent' => 5,
             'order' => '01',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date,
             'updated_at' => $date
         ]);
@@ -27,7 +27,7 @@ class ConfigPercentTableSeeder extends Seeder
         ConfigPercent::create([
             'percent' => 10,
             'order' => '02',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date,
             'updated_at' => $date
         ]);
@@ -35,7 +35,7 @@ class ConfigPercentTableSeeder extends Seeder
         ConfigPercent::create([
             'percent' => 15,
             'order' => '03',
-            'status' => 'Ativo',
+            'active' => constLang('active_true'),
             'created_at' => $date,
             'updated_at' => $date
         ]);

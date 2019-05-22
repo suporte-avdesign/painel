@@ -46,9 +46,9 @@ class ProductTableSeeder extends Seeder
         	'tags' => 'marca,1',
         	'visits' => 0,
         	'order' => '01',
-        	'status' => 'Ativo',
-        	'status_logo' => 'Ativo',
-        	'status_banner' => 'Ativo',
+        	'active' => constLang('active_true'),
+        	'active_logo' => constLang('active_true'),
+        	'active_banner' => constLang('active_true'),
             'created_at' => $date
         ]);
         //brand 2
@@ -69,9 +69,9 @@ class ProductTableSeeder extends Seeder
             'tags' => 'marca,2',
             'visits' => 0,
             'order' => '01',
-            'status' => 'Ativo',
-            'status_logo' => 'Ativo',
-            'status_banner' => 'Ativo',
+            'active' => constLang('active_true'),
+            'active_logo' => constLang('active_true'),
+            'active_banner' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -105,9 +105,9 @@ class ProductTableSeeder extends Seeder
             'tags' => 'produto,seção,1',
             'visits' => 0,
             'order' => '01',
-            'status' => 'Ativo',
-            'status_featured' => 'Ativo',
-            'status_banner' => 'Ativo',
+            'active' => constLang('active_true'),
+            'active_featured' => constLang('active_true'),
+            'active_banner' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -122,9 +122,9 @@ class ProductTableSeeder extends Seeder
             'tags' => 'categoria1,seção 1',
             'visits' => 0,
             'order' => '01',
-            'status' => 'Ativo',
-            'status_featured' => 'Ativo',
-            'status_banner' => 'Ativo',
+            'active' => constLang('active_true'),
+            'active_featured' => constLang('active_true'),
+            'active_banner' => constLang('active_true'),
             'created_at' => $date
         ]);
 

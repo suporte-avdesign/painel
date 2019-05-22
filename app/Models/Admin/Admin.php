@@ -2,7 +2,6 @@
 
 namespace AVDPainel\Models\Admin;
 
-use AVDPainel\Models\Admin\ConfigProfile;
 use AVDPainel\Notifications\AdminResetPasswordNotification;
 
 use Illuminate\Notifications\Notifiable;
@@ -14,9 +13,9 @@ class Admin extends Authenticatable
     use Notifiable, SoftDeletes;
 
     /**
-     * Send the password reset notification.
+     * Notifica o usuário e envia um token para alterar a senha.
      *
-     * @param  string  $token
+     * @param  string $token
      * @return void
      */
     public function sendPasswordResetNotification($token)
@@ -30,12 +29,12 @@ class Admin extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 
-        'login', 
-        'profile', 
+        'name',
+        'login',
+        'profile',
         'phone',
         'email',
-        'status',
+        'active',
         'commission',
         'percent',
         'last_url',
@@ -58,36 +57,29 @@ class Admin extends Authenticatable
     protected $dates = ['deleted_at'];
 
     /**
-     * Email em minúsculo
+     * Se o password estiver no campo aplica a criptografia automáticamente
+     * Retorna email com todos os caracteres convertidos para minúsculas.
      *
-     * @param  string  $value
-     * @return void
+     * @param array $attributes
+     * @return $this
      */
-    public function setEmailAttribute($value)
+    public function fill(array $attributes)
     {
-        $this->attributes['email'] = strtolower($value);
+        !isset($attributes['password']) ?: $attributes['password'] = bcrypt($attributes['password']);
+        !isset($attributes['email']) ?: $attributes['email'] = strtolower($attributes['email']);
+
+        return parent::fill($attributes);
     }
 
     /**
-     * Permissões vinculadas
+     * Retorna o acesso ip última url etc...
      * @return array
      **/
-
-    public function permissions()
-    {
-        return $this->hasMany(AdminPermissions::class);
-    }
-
-    /**
-    * User vinculado
-    * @return array
-    **/
 
     public function accesses()
     {
         return $this->hasMany(AdminAccess::class);
     }
-
 
     /**
      * Usuários vinculados ao perfil
@@ -98,6 +90,17 @@ class Admin extends Authenticatable
         return $this->belongsToMany(ConfigProfile::class);
     }
 
+
+
+    /**
+     * Permissões vinculadas
+     * @return array
+     **/
+    public function permissions()
+    {
+        return $this->hasMany(AdminPermissions::class);
+    }
+
     /**
      * Foto do perfil do usuário
      * @return array
@@ -106,6 +109,5 @@ class Admin extends Authenticatable
     {
         return $this->hasMany(ImageAdmin::class, 'admin_id');
     }
-
 
 }

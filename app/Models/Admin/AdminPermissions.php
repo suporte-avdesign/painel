@@ -4,10 +4,8 @@ namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class AdminPermissions extends Model
+class AdminPermission extends Model
 {
-	protected $table = 'admin_permissions';
-	
     protected $fillable = [
         'module_id',
         'admin_id',
@@ -16,6 +14,4 @@ class AdminPermissions extends Model
         'name',
         'label'
     ];
-
-    
 }
