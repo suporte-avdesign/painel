@@ -85,7 +85,7 @@ class AdminAjaxDataController extends BaseController
 
         if ($this->slug) {
             foreach ($this->slug as $slug => $label) {
-                $dataForm[$slug]  = Str::slug($dataForm[$label], $this->sl_ug);
+                $dataForm[$slug]  = Str::slug($dataForm[$label], $this->slug);
             }            
         }
         

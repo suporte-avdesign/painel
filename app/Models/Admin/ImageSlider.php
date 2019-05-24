@@ -26,7 +26,7 @@ class ImageSlider extends Model
     {
         return [
             "type"     => "required",
-            "status"   => "required",
+            "active"   => "required",
             "order"    => "required",
             "image"    => "required|image|mimes:jpeg,gif,png"
         ];

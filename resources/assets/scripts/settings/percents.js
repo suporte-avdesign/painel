@@ -42,7 +42,7 @@
             columns: [
                 {data: 'order', className: 'align-center'},
                 {data: 'percent'},
-                {data: 'status', className: 'align-center'},
+                {data: 'active', className: 'align-center'},
                 {
                     data: 'actions', 
                     className: 'align-right',

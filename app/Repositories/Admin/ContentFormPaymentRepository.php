@@ -75,7 +75,7 @@ class ContentFormPaymentRepository implements ContentFormPaymentInterface
             generateAccessesTxt(date('H:i:s').utf8_decode(
                     ', '.$acc['create'].
                     ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
+                    ', '.$fid['active'].':'.$data->active.
                     ', '.$fid['title'].':'.$data->title.
                     ', '.$fid['description'].':'.strip_tags($data->description))
             );
@@ -116,7 +116,7 @@ class ContentFormPaymentRepository implements ContentFormPaymentInterface
             generateAccessesTxt(date('H:i:s').utf8_decode(
                     ', '.$acc['update'].
                     ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
+                    ', '.$fid['active'].':'.$data->active.
                     ', '.$fid['title'].':'.$data->title.
                     ', '.$fid['description'].':'.strip_tags($data->description))
             );
@@ -154,7 +154,7 @@ class ContentFormPaymentRepository implements ContentFormPaymentInterface
             generateAccessesTxt(date('H:i:s').utf8_decode(
                     ', '.$acc['delete'].
                     ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
+                    ', '.$fid['active'].':'.$data->active.
                     ', '.$fid['title'].':'.$data->title.
                     ', '.$fid['description'].':'.strip_tags($data->description))
             );
@@ -183,9 +183,10 @@ class ContentFormPaymentRepository implements ContentFormPaymentInterface
      */
     public function status($id, $message)
     {
-
-        $data = $this->model->find($id);
-        ($data->status == 'Ativo' ? $change = ['status' => 'Inativo'] : $change = ['status' => 'Ativo']);
+        $data = $this->setId($id);
+        ($data->active == constLang('active_true') ?
+            $change = ['active' => constLang('active_false')] :
+            $change = ['active' => constLang('active_true')]);
 
         $update = $data->update($change);
         if ($update) {
@@ -196,24 +197,24 @@ class ContentFormPaymentRepository implements ContentFormPaymentInterface
             generateAccessesTxt(date('H:i:s').utf8_decode(
                     ', '.$acc['update'].
                     ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
+                    ', '.$fid['active'].':'.$data->active.
                     ', '.$fid['title'].':'.$data->title.
                     ', '.$fid['description'].':'.strip_tags($data->description))
             );
 
-            ($data->status == 'Ativo' ? $class = 'button icon-tick with-tooltip' : $class = 'button icon-tick with-tooltip red');
+            ($data->active == constLang('active_true') ? $class = 'button icon-tick with-tooltip' : $class = 'button icon-tick with-tooltip red');
 
             $out = array(
                 "success" => true,
-                "message" => "{$message['status_true']} para {$data->status}",
+                "message" => "{$message['status_true']} para {$data->active}",
                 "class"   => $class,
-                "text"    => $data->status
+                "text"    => $data->active
             );
 
         } else {
             $out = array(
                 "success"    => false,
-                "message"    => "{$message['status_false']} para {$change['status']}"
+                "message"    => "{$message['status_false']} para {$change['active']}"
             );
         }
 
@@ -259,7 +260,7 @@ class ContentFormPaymentRepository implements ContentFormPaymentInterface
             generateAccessesTxt(date('H:i:s').utf8_decode(
                     ', '.$acc['update'].
                     ', '.$fid['order'].':'.$data->order.
-                    ', '.$fid['status'].':'.$data->status.
+                    ', '.$fid['active'].':'.$data->active.
                     ', '.$fid['title'].':'.$data->title.
                     ', '.$fid['description'].':'.strip_tags($data->description))
             );

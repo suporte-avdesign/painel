@@ -5,6 +5,14 @@
 | Autenticação de UsuáriosADMIN
 |--------------------------------------------------------------------------
 */
+
+Route::post('perfil-cliente/prices', 'Admin\ConfigProfileClientController@prices')->name('profile.client.get.prices');
+Route::post('perfil-cliente/offers', 'Admin\ConfigProfileClientController@offers')->name('profile.client.get.offers');
+
+
+
+
+
 // Clientes
 Route::resource('clientes', 'Admin\UserController');
 Route::post('accounts/data', 'Admin\UserController@data')->name('accounts.data');
@@ -133,17 +141,6 @@ Route::resource('order/{id}/order-notes', 'Admin\OrderNoteController');
 Route::resource('order/{id}/order-shippings', 'Admin\OrderShippingController');
 
 
-// Slider Home
-Route::resource('imagens/{id}/banner-slider', 'Admin\ImageSliderController');
-Route::put('imagens/{id}/slider/status', 'Admin\ImageSliderController@status')->name('banner-slider.status');
-Route::get('imagens/{id}/slider/order', 'Admin\ImageSliderController@order')->name('banner-slider.order');
-Route::put('imagens/slider/order', 'Admin\ImageSliderController@updateOrder')->name('banner-slider.order');
-
-// Banner Home
-Route::resource('imagens/{id}/banner', 'Admin\ImageBannerController', ['except' => ['show']]);
-Route::put('imagens/banner/status/{id}', 'Admin\ImageBannerController@status')->name('banner.status');
-Route::get('imagens/banner/order/{id}', 'Admin\ImageBannerController@order')->name('banner.order');
-Route::put('imagens/banner/order', 'Admin\ImageBannerController@updateOrder')->name('banner.order');
 
 // Conteudo do site
 // Política e Privacidade
@@ -171,3 +168,15 @@ Route::get('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnCon
 Route::put('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@updateOrder')->name('delivery-return.order');
 Route::put('content/delivery-return-status/{id}', 'Admin\ContentDeliveryReturnController@status')->name('delivery-return.status');
 
+
+// Slider Home
+Route::resource('images/{id}/banner-slider', 'Admin\ImageSliderController');
+Route::put('images/{id}/slider/status', 'Admin\ImageSliderController@status')->name('banner-slider.status');
+Route::get('images/{id}/slider/order', 'Admin\ImageSliderController@order')->name('banner-slider.order');
+Route::put('images/slider/order', 'Admin\ImageSliderController@updateOrder')->name('banner-slider.order');
+
+// Banner Home
+Route::resource('images/{id}/banner', 'Admin\ImageBannerController', ['except' => ['show']]);
+Route::put('images/banner/status/{id}', 'Admin\ImageBannerController@status')->name('banner.status');
+Route::get('images/banner/order/{id}', 'Admin\ImageBannerController@order')->name('banner.order');
+Route::put('images/banner/order', 'Admin\ImageBannerController@updateOrder')->name('banner.order');

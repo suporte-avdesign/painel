@@ -27,6 +27,8 @@ mix.copyDirectory('resources/assets/img', 'public/backend/img');
 
 mix.copyDirectory('resources/assets/css/Entypo', 'public/backend/css/Entypo');
 mix.copyDirectory('resources/assets/css/font-awesome', 'public/backend/css/font-awesome');
+mix.copyDirectory('resources/assets/js/libs/ckeditor','public/backend/js/libs/ckeditor');
+
 /*
  |--------------------------------------------------------------------------
  | libs css/js
@@ -40,6 +42,10 @@ mix.copy('resources/assets/js/libs/modernizr.custom.js','public/backend/js/libs/
 mix.copy('resources/assets/js/libs/jquery/jquery-3.2.1.min.js','public/backend/js/libs/jquery/jquery.min.js');
 // Aviso para atualizar a versão
 mix.copy('resources/assets/js/version.js','public/backend/js/version.js');
+
+//formData - upload de arquivos
+mix.scripts('resources/assets/js/libs/formData/jquery.form.js', 'public/backend/js/libs/formData/jquery.form.min.js');
+
 /*
  |--------------------------------------------------------------------------
  | Login pages stylesheet styles
@@ -101,7 +107,6 @@ mix.styles('resources/assets/css/tables/grey-gradient.css', 'public/backend/css/
 mix.styles('resources/assets/css/tables/orange-gradient.css', 'public/backend/css/tables/orange-gradient.css');
 mix.styles('resources/assets/css/tables/red-gradient.css', 'public/backend/css/tables/red-gradient.css');
 
-mix.scripts('resources/assets/scripts/settings/keywords.js', 'public/backend/scripts/settings.min.js');
 
 
 mix.scripts([
@@ -132,14 +137,32 @@ mix.scripts([
     'resources/assets/js/libs/DataTables/jquery.dataTables.js',
 ], 'public/backend/js/libs/libs.min.js');
 
+// Editor
 
+// Configuração do sistema
+mix.scripts('resources/assets/scripts/settings/colors-group.js', 'public/backend/scripts/settings/colors-group.min.js');
+mix.scripts('resources/assets/scripts/settings/colors-positions.js', 'public/backend/scripts/settings/colors-positions.min.js');
+mix.scripts('resources/assets/scripts/settings/customers-perfil.js', 'public/backend/scripts/settings/customers-perfil.min.js');
+mix.scripts('resources/assets/scripts/settings/forms-payments.js', 'public/backend/scripts/settings/forms-payments.min.js');
 mix.scripts('resources/assets/scripts/settings/keywords.js', 'public/backend/scripts/settings/keywords.min.js');
 mix.scripts('resources/assets/scripts/settings/kits.js', 'public/backend/scripts/settings/kits.min.js');
 mix.scripts('resources/assets/scripts/settings/modules.js', 'public/backend/scripts/settings/modules.min.js');
+mix.scripts('resources/assets/scripts/settings/percents.js', 'public/backend/scripts/settings/percents.min.js');
 mix.scripts('resources/assets/scripts/settings/permissions.js', 'public/backend/scripts/settings/permissions.min.js');
 mix.scripts('resources/assets/scripts/settings/profiles.js', 'public/backend/scripts/settings/profiles.min.js');
-mix.scripts('resources/assets/scripts/settings/template.js', 'public/backend/scripts/settings/template.min.js');
+mix.scripts('resources/assets/scripts/settings/shippings.js', 'public/backend/scripts/settings/shippings.min.js');
+mix.scripts('resources/assets/scripts/settings/status-payments.js', 'public/backend/scripts/settings/status-payments.min.js');
 mix.scripts('resources/assets/scripts/settings/subjects.js', 'public/backend/scripts/settings/subjects.min.js');
+mix.scripts('resources/assets/scripts/settings/template.js', 'public/backend/scripts/settings/template.min.js');
+mix.scripts('resources/assets/scripts/settings/unit-measures.js', 'public/backend/scripts/settings/unit-measures.min.js');
+
+// Conteudo do site
+mix.scripts('resources/assets/scripts/banners.js', 'public/backend/scripts/banners.min.js');
+mix.scripts('resources/assets/scripts/content-site.js', 'public/backend/scripts/content-site.min.js');
+mix.scripts('resources/assets/scripts/sliders.js', 'public/backend/scripts/sliders.min.js');
+
+
+
 
 
 /*

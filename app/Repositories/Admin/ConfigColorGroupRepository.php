@@ -80,7 +80,7 @@ class ConfigColorGroupRepository implements ConfigColorGroupInterface
                 ' Adicionou uma cor no grupo, Nome:'.$data->name.
                 ', Código:'.$data->code.
                 ', Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
 
             return $data;
@@ -109,7 +109,7 @@ class ConfigColorGroupRepository implements ConfigColorGroupInterface
         $name    = $data->name;
         $code    = $data->code;
         $order   = $data->order;
-        $status  = $data->status;
+        $status  = $data->active;
         $description = $data->description;
 
         $update = $data->update($input);
@@ -122,7 +122,7 @@ class ConfigColorGroupRepository implements ConfigColorGroupInterface
                 ', Ordem:'.$order.
                 ' para Nome:'.$data->name.
                 ', Código:'.$data->code.
-                ', Status:'.$data->status.
+                ', Status:'.$data->active.
                 ', Ordem:'.$data->order)
             );
 
@@ -147,7 +147,7 @@ class ConfigColorGroupRepository implements ConfigColorGroupInterface
                 date('H:i:s').utf8_decode(
                 ' Excluiu a cor do grupo:  Nome:'.$data->name.
                 ', Código:'.$data->code.
-                ', Status:'.$data->status.
+                ', Status:'.$data->active.
                 ', Ordem:'.$data->order)
             );
             return true;

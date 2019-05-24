@@ -25,9 +25,9 @@ class ConfigSiteController extends Controller
     {
         $this->middleware('auth:admin');
 
-        $this->access       = $access;
         $this->interModel   = $interModel;
 
+        $this->access       = $access;
         $this->last_url    = array("last_url" => "config/site");
     }
 

@@ -1,5 +1,5 @@
 <div id="modal-color-grup">
-	<form id="form-color-grup" method="POST" action="{{route('grupo-cores.store')}}" onsubmit="return false">
+	<form id="form-color-grup" method="POST" action="{{route('grupo-colors.store')}}" onsubmit="return false">
 		@csrf
 		<fieldset class="fieldset">
 			<p class="button-height inline-label">
@@ -15,17 +15,17 @@
 				<label for="order" class="label">order / Status</label>
 				<span class="number input margin-right">
 					<button type="button" class="button number-down">-</button>
-					<input type="text" name="order" value="" class="input order" size="2">
+					<input type="text" name="order" value="01" class="input order" size="2">
 					<button type="button" class="button number-up">+</button>
 				</span>
 				<span class="button-group">
-					<label for="status-1" class="button blue-active">
-						<input type="radio" name="status" id="status-1" value="Ativo" checked>
-						Ativo
+					<label for="active-1" class="button blue-active">
+						<input type="radio" name="active" id="active-1" value="{{constLang('active_true')}}" checked>
+						{{constLang('active_true')}}
 					</label>
-					<label for="status-0" class="button red-active">
-						<input type="radio" name="status" id="status-0" value="Inativo">
-						Inativo
+					<label for="active-0" class="button red-active">
+						<input type="radio" name="active" id="active-0" value="{{constLang('active_false')}}">
+						{{constLang('active_false')}}
 					</label>
 				</span>
 			</p>

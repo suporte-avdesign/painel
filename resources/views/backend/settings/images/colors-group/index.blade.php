@@ -4,7 +4,7 @@
 
         @can('config-color-group-create')
             <div class="button-group absolute-right">
-                <a href="javascript:abreModal('Adicionar Cor', '{{route('grupo-cores.create')}}', 'color-grup', 2, 'true', 400, 250)" class="button blue-gradient icon-plus-round">Adicionar</a>
+                <a href="javascript:abreModal('Adicionar Cor', '{{route('grupo-colors.create')}}', 'color-grup', 2, 'true', 400, 250)" class="button blue-gradient icon-plus-round">Adicionar</a>
             </div>
         @endcan
     </div>
@@ -16,10 +16,10 @@
                     <span class="controls">
                         <span class="button-group compact">
                             @can('config-color-group-update')
-                                <a href="javascript:abreModal('Editar {{$hexa->name}}', '{{route('grupo-cores.edit', $hexa->id)}}', 'color-grup', 2, 'true', 400, 250)" class="button icon-pencil" title="Editar"></a>
+                                <a href="javascript:abreModal('Editar {{$hexa->name}}', '{{route('grupo-colors.edit', $hexa->id)}}', 'color-grup', 2, 'true', 400, 250)" class="button icon-pencil" title="Editar"></a>
                             @endcan
                             @can('config-color-group-delete')
-                                <a href="javascript:deleteColorGrup('{{$hexa->id}}', '{{route('grupo-cores.destroy', $hexa->id)}}', '{{csrf_token()}}')" class="button icon-trash red-gradient confirm" title="Excluir"></a>
+                                <a href="javascript:deleteColorGrup('{{$hexa->id}}', '{{route('grupo-colors.destroy', $hexa->id)}}', '{{csrf_token()}}')" class="button icon-trash red-gradient confirm" title="Excluir"></a>
                             @endcan
                         </span>
                     </span>
@@ -28,4 +28,4 @@
         </ul>
     </div>
 </div>
-<script src="{{url('assets/backend/scripts/settings/colors-grup.js')}}?{{time()}}"></script>
+<script src="{{mix('backend/scripts/settings/colors-group.min.js')}}"></script>

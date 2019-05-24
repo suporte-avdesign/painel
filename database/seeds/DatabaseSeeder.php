@@ -29,7 +29,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigKitTableSeeder::class);        
         $this->call(ConfigSectionTableSeeder::class);
         $this->call(ConfigCategoryTableSeeder::class);
-        $this->call(ConfigImageProductTableSeeder::class);
+        $this->call(ConfigColorPositionTableSeeder::class);
         $this->call(ConfigColorGroupTableSeeder::class);
         $this->call(ConfigSubjectContactTableSeeder::class);
         $this->call(ConfigFormPaymentTableSeeder::class);

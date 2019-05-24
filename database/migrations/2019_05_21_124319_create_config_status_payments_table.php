@@ -21,7 +21,7 @@ class CreateConfigStatusPaymentsTable extends Migration
             $table->string('gateway', 50);
             $table->string('label', 50)->unique();
             $table->text('description');
-            $table->smallInteger('active')->default(1);
+            $table->enum('active', [constLang('active_true'), constLang('active_false')]);
             $table->timestamps();
             $table->softDeletes();
         });

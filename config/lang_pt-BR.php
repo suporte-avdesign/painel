@@ -17,7 +17,9 @@ return [
     | Modules
     |--------------------------------------------------------------------------
     */
-    'ConfigAdmin' => 'Configuração dos Usuários',
+    'ConfigAdmin' => [
+       'title' => 'Configuração dos Usuários'
+    ],
     'ConfigSystem' => [
         'tables' => 'a configuração das tabelas por uma de sua preferência'
     ],

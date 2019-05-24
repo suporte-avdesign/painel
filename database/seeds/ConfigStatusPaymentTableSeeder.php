@@ -22,7 +22,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Aguardando Boleto',
             'description' => 'Aguardando até que o Banco confirme a compensação do valor. Os Bancos tem um prazo médio de até 3 dias úteis a partir da data do pagamento do boleto.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -33,7 +33,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Aguardando Depósito',
             'description' => 'Aguardando a compensação do valor do depósito. Os Bancos tem um prazo médio de até 3 dias úteis.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -44,7 +44,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Aguardando Pagamento',
             'description' => 'Aguardando a forma de pagamento.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -55,7 +55,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Cancelado',
             'description' => 'O pedido foi cancelado pelo cliente.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -66,7 +66,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Desistiu',
             'description' => 'O cliente desistiu do pedido.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -77,7 +77,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Fraude',
             'description' => 'O pedido foi identificado como fraude.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -88,7 +88,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Liberado para pagamento',
             'description' => 'O pedido foi liberado para pagamento.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -99,7 +99,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Pago (boleto)',
             'description' => 'Pagamento através de boleto.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -110,7 +110,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Pago (depósito)',
             'description' => 'pagamento através de depósito em conta corrente.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -121,7 +121,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Pago (cartão)',
             'description' => 'pagamento através de cartão de débito ou crédito.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -132,7 +132,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Suspenso',
             'description' => 'O pedido foi suspenso por falta de pagamento na data prevista.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -143,7 +143,7 @@ class ConfigStatusPaymentTableSeeder extends Seeder
             'gateway' => 'admin',
             'label' => 'Verificando Estoque',
             'description' => 'Verificando a disponibilidade dos produtos no estoque.',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
     }

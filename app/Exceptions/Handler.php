@@ -3,7 +3,10 @@
 namespace AVDPainel\Exceptions;
 
 use Exception;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Validation\ValidationException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Support\Arr;
 
 class Handler extends ExceptionHandler
 {
@@ -34,6 +37,19 @@ class Handler extends ExceptionHandler
      */
     public function report(Exception $exception)
     {
+        $e = $this->prepareException($exception);
+        $code = $e->getCode();
+        $message = $e->getMessage();
+        $previous = $e->getPrevious();
+        $traces = $e->getTrace();
+        $redirect = route('login');
+
+        foreach ($traces as $trace) {
+            if ($trace['function'] == 'authenticate') {
+                return "<script>window.location.href = {$redirect}</script>";
+            }
+        }
+
         parent::report($exception);
     }
 
@@ -46,6 +62,55 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        if ($this->isHttpException($exception)) {
+
+            return redirect()->route('painel');
+        }
+
         return parent::render($request, $exception);
     }
+
+    /**
+     * Convert an authentication exception into an unauthenticated response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Auth\AuthenticationException  $exception
+     * @return \Illuminate\Http\Response
+     */
+    protected function unauthenticated($request, AuthenticationException $exception)
+    {
+
+        if ($request->expectsJson()) {
+            return response()->view('backend.auth.unauthenticated');
+            //return response()->json(['error' => 'Unauthenticated.'], 401);
+        }
+
+        $guard = Arr::get($exception->guards(),0);
+
+        switch($guard){
+            case 'admin';
+                return redirect()->guest(route('admin.login'));
+                break;
+            default:
+                return redirect()->guest(url('/login'));
+                break;
+        }
+
+    }
+
+
+
+    /**
+     * Convert a validation exception into a JSON response.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Validation\ValidationException  $exception
+     * @return \Illuminate\Http\JsonResponse
+     */
+    protected function invalidJson($request, ValidationException $exception)
+    {
+
+        return response()->json($exception->errors(), $exception->status);
+    }
+
 }

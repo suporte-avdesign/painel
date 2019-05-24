@@ -6,73 +6,6 @@
 |--------------------------------------------------------------------------
 */
 
-
-//Config Status Pagamento.
-Route::resource('config/status-pagamentos', 'Admin\ConfigStatusPaymentController');
-Route::get('config/status/payments/excluded', 'Admin\ConfigStatusPaymentController@excluded')->name('status.payments.excluded');
-Route::get('config/status/payments/{id}/reactivate', 'Admin\ConfigStatusPaymentController@reactivate')->name('status.payments.reactivate');
-
-//Config Forma de Pagamentos.
-Route::resource('config/forma-pagamentos', 'Admin\ConfigFormPaymentController');
-Route::get('config/form/payments/excluded', 'Admin\ConfigFormPaymentController@excluded')->name('form-payments.excluded');
-Route::get('config/form/payments/{id}/reactivate', 'Admin\ConfigFormPaymentController@reactivate')->name('form-payments.reactivate');
-
-
-
-//Config Group Colors.
-Route::resource('config/grupo-cores', 'Admin\ConfigColorGroupController');
-
-// Config images products.
-Route::post('config/images/products/data', 'Admin\ConfigImageProductController@data')->name('config.images.data');
-Route::resource('config/images/products', 'Admin\ConfigImageProductController');
-
-// Config images categories.
-Route::get('config/imagens/categorias', 'Admin\ConfigCategoryController@edit');
-Route::put('config/imagens/{id}/categorias', 'Admin\ConfigCategoryController@update')->name('config.category.update');
-
-// Config images sections.
-Route::get('config/imagens/secoes', 'Admin\ConfigSectionController@edit');
-Route::put('config/imagens/{id}/secoes', 'Admin\ConfigSectionController@update')->name('config.section.update');
-
-// Config images brands.
-Route::get('config/imagens/fabricantes', 'Admin\ConfigBrandController@edit');
-Route::put('config/imagens/{id}/fabricantes', 'Admin\ConfigBrandController@update')->name('config.brand.update');
-
-
-
-// Config images admins.
-Route::get('config/imagens/usuarios', 'Admin\ConfigAdminController@edit');
-Route::put('config/imagens/{id}/usuarios', 'Admin\ConfigAdminController@update')->name('config.admin.update');
-
-// Config Unit Measure.
-Route::post('config/unidades/data', 'Admin\ConfigUnitMeasureController@data')->name('measures.data');
-Route::resource('config/unidades', 'Admin\ConfigUnitMeasureController');
-
-
-// Metodos de envio.
-Route::post('config/metodos/loader', 'Admin\ConfigShippingController@load')->name('shipping.load');
-Route::resource('config/metodos', 'Admin\ConfigShippingController');
-
-// Porcentagens sobre os produtos.
-Route::post('config/porcentagens/data', 'Admin\ConfigPercentController@data')->name('percent.data');
-Route::resource('config/porcentagens', 'Admin\ConfigPercentController');
-
-// Perfil e porcentagens de preços do cliente.
-Route::resource('config/perfil-cliente', 'Admin\ConfigProfileClientController');
-Route::post('config/perfil-cliente/data', 'Admin\ConfigProfileClientController@data')->name('profile.client.data');
-Route::post('perfil-cliente/prices', 'Admin\ConfigProfileClientController@prices')->name('profile.client.get.prices');
-Route::post('perfil-cliente/offers', 'Admin\ConfigProfileClientController@offers')->name('profile.client.get.offers');
-
-
-
-
-
-
-
-
-
-
-
 // Cores do sistema
 Route::get('config/system', 'Admin\ConfigController@index');
 Route::get('config/color/system', 'Admin\ConfigController@colorSystem')->name('config.colors');
@@ -128,6 +61,26 @@ Route::delete('config/permissions/{id}/perfis/{idper}/excluir', 'Admin\ConfigPer
 Route::resource('config/permissions', 'Admin\ConfigPermissionController');
 
 
+// Config images brands.
+Route::get('config/images/brands', 'Admin\ConfigBrandController@edit');
+Route::put('config/images/{id}/brands', 'Admin\ConfigBrandController@update')->name('config.brand.update');
+
+// Config images sections.
+Route::get('config/images/sections', 'Admin\ConfigSectionController@edit');
+Route::put('config/images/{id}/sections', 'Admin\ConfigSectionController@update')->name('config.section.update');
+
+// Config images categories.
+Route::get('config/images/categories', 'Admin\ConfigCategoryController@edit');
+Route::put('config/images/{id}/categories', 'Admin\ConfigCategoryController@update')->name('config.category.update');
+
+// Config images products.
+Route::post('config/colors-positions/data', 'Admin\ConfigColorPositionController@data')->name('config.colors-positions.data');
+Route::resource('config/colors-positions', 'Admin\ConfigColorPositionController');
+
+// Config images admins.
+Route::get('config/images/admins', 'Admin\ConfigAdminController@edit');
+Route::put('config/images/{id}/admins', 'Admin\ConfigAdminController@update')->name('config.images-admin.update');
+
 // Config imagens  slider da home
 Route::get('config/images/slider', 'Admin\ConfigSliderController@edit');
 Route::put('config/images/{id}/slider', 'Admin\ConfigSliderController@update')->name('config.slider.update');
@@ -136,6 +89,35 @@ Route::put('config/images/{id}/slider', 'Admin\ConfigSliderController@update')->
 Route::get('config/images/banners', 'Admin\ConfigBannerController@edit');
 Route::put('config/images/{id}/banners', 'Admin\ConfigBannerController@update')->name('config.banners.update');
 
+//Config Group Colors.
+Route::resource('config/grupo-colors', 'Admin\ConfigColorGroupController');
+
 //Config message.
 Route::resource('config/contact-subjects', 'Admin\ConfigSubjectContactController');
 Route::get('config/contact-subjects-load', 'Admin\ConfigSubjectContactController@loadSubjects')->name('contact-subjects.load');
+
+//Config Forma de Pagamentos.
+Route::resource('config/forms-payments', 'Admin\ConfigFormPaymentController');
+Route::get('config/form/payments/excluded', 'Admin\ConfigFormPaymentController@excluded')->name('forms-payments.excluded');
+Route::get('config/form/payments/{id}/reactivate', 'Admin\ConfigFormPaymentController@reactivate')->name('forms-payments.reactivate');
+
+//Config Status Pagamento.
+Route::resource('config/status-payments', 'Admin\ConfigStatusPaymentController');
+Route::get('config/status/payments/excluded', 'Admin\ConfigStatusPaymentController@excluded')->name('status.payments.excluded');
+Route::get('config/status/payments/{id}/reactivate', 'Admin\ConfigStatusPaymentController@reactivate')->name('status.payments.reactivate');
+
+// Config unidade de medida.
+Route::post('config/units-measures/data', 'Admin\ConfigUnitMeasureController@data')->name('units-measures.data');
+Route::resource('config/units-measures', 'Admin\ConfigUnitMeasureController');
+
+// Métodos de envio.
+Route::post('config/shippings/loader', 'Admin\ConfigShippingController@load')->name('shippings.load');
+Route::resource('config/shippings', 'Admin\ConfigShippingController');
+
+// Perfil e porcentagens de preços do cliente.
+Route::resource('config/customers-perfil', 'Admin\ConfigProfileClientController');
+Route::post('config/customers-perfil/data', 'Admin\ConfigProfileClientController@data')->name('customers-perfil.data');
+
+// Porcentagens sobre os produtos.
+Route::post('config/percents/data', 'Admin\ConfigPercentController@data')->name('percents.data');
+Route::resource('config/percents', 'Admin\ConfigPercentController');

@@ -109,8 +109,8 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
 
                     ($val->active == 'Ativo' ? $color = 'blue' : $color = 'red');
 
-                    $edit   = "abreModal('Editar {$val->name}', '".route('perfil-cliente.edit', ['id' => $val->id])."', 'profile-clients', 2, 'true', 380, 260)";
-                    $delete = "deleteProfileClient('".route('perfil-cliente.destroy', ['id' => $val->id])."', '{$val->name}')";
+                    $edit   = "abreModal('Editar {$val->name}', '".route('customers-perfil.edit', ['id' => $val->id])."', 'profile-clients', 2, 'true', 380, 260)";
+                    $delete = "deleteProfileClient('".route('customers-perfil.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                     $nData['order']        = $val->order;
                     $nData['name']         = $val->name;

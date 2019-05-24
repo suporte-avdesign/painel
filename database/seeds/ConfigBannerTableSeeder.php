@@ -17,7 +17,7 @@ class ConfigBannerTableSeeder extends Seeder
             'type' => 'four',
             'active' => constLang('active_true'),
             'path' => 'imagens/banners/',
-            'width' => '1262',
+            'width' => '262',
             'height' => '256',
             'created_at' => $date
         ]);

@@ -18,7 +18,7 @@ class ConfigFormPaymentTableSeeder extends Seeder
             'order' => 1,
             'label' => 'Pagamento à Vista',
             'description' => 'Para pagamento à vista no momento só aceitamos "Depósito Bancário".',
-            'active' => 1,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
@@ -31,7 +31,7 @@ class ConfigFormPaymentTableSeeder extends Seeder
                 -Acima de R$300,00 - 3x sem juros
                 -Acima de R$500,00 - 4x sem juros
                 -Acima de R$1000,00 - 5x sem juros',
-            'active' => 2,
+            'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 

@@ -76,7 +76,7 @@ class ImageSliderRepository implements ImageSliderInterface
                     ' Adicionou uma imagem no slider da home')
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
                 $route_order  = route($data->type.'-slider.order');
                 $route_status = route($data->type.'-slider.status', $data->id);
@@ -91,7 +91,7 @@ class ImageSliderRepository implements ImageSliderInterface
                     'idm'        => $id,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "order"      => $data->order,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -100,7 +100,7 @@ class ImageSliderRepository implements ImageSliderInterface
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
                     "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)",
-                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
+                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"images/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
                 );
 
                 return $out;
@@ -145,7 +145,7 @@ class ImageSliderRepository implements ImageSliderInterface
         $name = $input['type'].'-'.Str::slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
         $path = $conf['disk'] . $conf['path'].$name;
         $file->move($conf['disk'] . $conf['path'], $name);
-        $status = $data->status;
+        $status = $data->active;
 
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
@@ -158,10 +158,11 @@ class ImageSliderRepository implements ImageSliderInterface
                     date('H:i:s').utf8_decode(
                     " Alterou o ".$input['type'].
                     ', Status:'.$status.
-                    ' para Status:'.$data->status)
+                    ' para Status:'.$data->active)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+
                 $route_status = route($data->type.'-slider.status', $data->id);
                 $route_order  = route($data->type.'-slider.order');
                 $route_delete = route($data->type.'-slider.destroy', ['id' => $id, 'file' => $data->id]);
@@ -175,7 +176,7 @@ class ImageSliderRepository implements ImageSliderInterface
                     'idm'        => $id,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "order"      => $data->order,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
@@ -184,7 +185,7 @@ class ImageSliderRepository implements ImageSliderInterface
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
                     "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)",
-                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"imagens/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
+                    "script"     => '<script>$("#order-'.$data->id.'").menuTooltip("Carregando...",{classes:["with-mid-padding"],ajax:"images/'.$data->id.'/slider/order",onShow:function(e){e.parent().removeClass("show-on-parent-hover")},onRemove:function(e){e.parent().addClass("show-on-parent-hover")}});</script>'
                 );
 
                 return $out;
@@ -246,7 +247,9 @@ class ImageSliderRepository implements ImageSliderInterface
     public function status($id)
     {
         $data = $this->model->find($id);
-        ($data->status == 'Ativo' ? $change = ['status' => 'Inativo'] : $change = ['status' => 'Ativo']);
+        ($data->active == constLang('active_true') ?
+            $change = ['active' => constLang('active_false')] :
+            $change = ['active' => constLang('active_true')]);
 
         $update = $data->update($change);
         if ($update) {
@@ -255,7 +258,7 @@ class ImageSliderRepository implements ImageSliderInterface
                 " Alterou o status da imagen do slider")
             );
 
-            ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+            ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
             $out = array(
                 "success"    => true,
@@ -323,7 +326,7 @@ class ImageSliderRepository implements ImageSliderInterface
      */
     public function getAll($type)
     {
-        $data  = $this->model->where('type', $type)->get();
+        $data  = $this->model->orderBy('order')->where('type', $type)->get();
         return $data;
     }
 

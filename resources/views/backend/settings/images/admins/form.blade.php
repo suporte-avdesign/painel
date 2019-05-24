@@ -6,9 +6,9 @@
 </div>
 <div class="silver-gradient">
 	<div class="with-padding">
-		<form id="form-config-brands" method="POST" action="{{route('config.admin.update', $data->id)}}" onsubmit="return false">
-			<input name="_method" type="hidden" value="PUT">
-			{{csrf_field()}}
+		<form id="form-config-brands" method="POST" action="{{route('config.images-admin.update', $data->id)}}" onsubmit="return false">
+			@method("PUT")
+			@csrf
 
 			<fieldset class="fieldset">
 			    <legend class="legend">Padrão da Foto</legend>

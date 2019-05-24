@@ -59,7 +59,7 @@ class ConfigPercentRepository implements ConfigPercentInterface
         $columns = array( 
             0 => 'order',
             1 => 'percent',
-            2 => 'status',
+            2 => 'active',
             3 => 'actions',
             4 => 'updated_at',
             5 => 'created_at',
@@ -100,12 +100,12 @@ class ConfigPercentRepository implements ConfigPercentInterface
 
                 ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
 
-                $edit   = "abreModal('Editar {$val->percent}', '".route('porcentagens.edit', ['id' => $val->id])."', 'percent', 2, 'true', 380, 200)";
-                $delete = "deletePercent('".route('porcentagens.destroy', ['id' => $val->id])."', '{$val->percent}')";
+                $edit   = "abreModal('Editar {$val->percent}', '".route('percents.edit', ['id' => $val->id])."', 'percent', 2, 'true', 380, 200)";
+                $delete = "deletePercent('".route('percents.destroy', ['id' => $val->id])."', '{$val->percent}')";
 
                 $nData['order']        = $val->order;
                 $nData['percent']      = $val->percent. '%';
-                $nData['status']       = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                $nData['active']       = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                 $nData['actions']      = '<span class="button-group">';
                 if (Gate::allows('config-percent-delete')) {
                     $nData['actions'] .= '<button onclick="'.$delete.'" class="button icon-trash red-gradient compact"></button>';
@@ -139,7 +139,7 @@ class ConfigPercentRepository implements ConfigPercentInterface
      */
     public function pluck()
     {
-        return $this->model->orderBy('order')->where('status', 'Ativo')->pluck('percent','id');
+        return $this->model->orderBy('order')->where('active', constLang('active_true'))->pluck('percent','id');
     }
 
 
@@ -191,7 +191,7 @@ class ConfigPercentRepository implements ConfigPercentInterface
                 date('H:i:s').utf8_decode(
                 ' Adicionou a porcentagem:'.$data->percent.
                 '%, Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
             return $data;
         }
@@ -210,7 +210,7 @@ class ConfigPercentRepository implements ConfigPercentInterface
     {
         $data    = $this->model->find($id);
         $order   = $data->order;
-        $status  = $data->status;
+        $status  = $data->active;
         $percent = $data->percent;
 
         $update = $data->update($input);
@@ -222,7 +222,7 @@ class ConfigPercentRepository implements ConfigPercentInterface
                 ', Status:'.$status.
                 ' - Para:'.$input['percent'].
                 '%, Ordem:'.$input['order'].
-                ', Status:'.$input['status'])
+                ', Status:'.$input['active'])
             );
             return true;
         }
@@ -245,7 +245,7 @@ class ConfigPercentRepository implements ConfigPercentInterface
                 date('H:i:s').utf8_decode(
                 ' Removeu a porcentagem:'.$data->percent.
                 '%, Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
             return true;
         }

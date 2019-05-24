@@ -60,7 +60,7 @@ class ConfigUnitMeasureRepository implements ConfigUnitMeasureInterface
             0 => 'order',
             1 => 'unit',
             2 => 'name',
-            3 => 'status',
+            3 => 'active',
             4 => 'actions',
             5 => 'updated_at',
             6 => 'created_at',
@@ -101,15 +101,15 @@ class ConfigUnitMeasureRepository implements ConfigUnitMeasureInterface
         {
             foreach ($query as $val){
 
-                ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
+                ($val->active == constLang('active_true') ? $color = 'blue' : $color = 'red');
 
-                $edit   = "abreModal('Editar {$val->name}', '".route('unidades.edit', ['id' => $val->id])."', 'unit-measure', 2, 'true', 400, 220)";
-                $delete = "deleteUnitMeasure('".route('unidades.destroy', ['id' => $val->id])."', '{$val->name}')";
+                $edit   = "abreModal('Editar {$val->name}', '".route('units-measures.edit', ['id' => $val->id])."', 'unit-measure', 2, 'true', 400, 220)";
+                $delete = "deleteUnitMeasure('".route('units-measures.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                 $nData['order']        = $val->order;
                 $nData['unit']         = $val->unit;
                 $nData['name']         = $val->name;
-                $nData['status']       = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                $nData['active']       = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                 $nData['actions']      = '<span class="button-group">';
                 if (Gate::allows('config-percent-delete')) {
                     $nData['actions'] .= '<button onclick="'.$delete.'" class="button icon-trash red-gradient compact"></button>';
@@ -143,7 +143,7 @@ class ConfigUnitMeasureRepository implements ConfigUnitMeasureInterface
      */
     public function pluck()
     {
-        return $this->model->orderBy('order')->where('status', 'Ativo')->pluck('name','unit');
+        return $this->model->orderBy('order')->where('active', constLang('active_true'))->pluck('name','unit');
     }
 
 
@@ -196,7 +196,7 @@ class ConfigUnitMeasureRepository implements ConfigUnitMeasureInterface
                 ' Adicionou a unidade de medida:'.$data->unit.
                 ', Nome:'.$data->name.
                 ', Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
             return $data;
         }
@@ -217,7 +217,7 @@ class ConfigUnitMeasureRepository implements ConfigUnitMeasureInterface
         $unit   = $data->unit;
         $name   = $data->name;
         $order  = $data->order;
-        $status = $data->status;
+        $status = $data->active;
 
         $update = $data->update($input);
         if ($update) {
@@ -230,7 +230,7 @@ class ConfigUnitMeasureRepository implements ConfigUnitMeasureInterface
                 ' - Para:'.$input['unit'].
                 ', Nome:'.$input['name'].
                 ', Ordem:'.$input['order'].
-                ', Status:'.$input['status'])
+                ', Status:'.$input['active'])
             );
             return true;
         }
@@ -254,7 +254,7 @@ class ConfigUnitMeasureRepository implements ConfigUnitMeasureInterface
                 ' Removeu a unidade de medida:'.$data->unit.
                 ', Nome:'.$data->name.
                 ', Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
             return true;
         }

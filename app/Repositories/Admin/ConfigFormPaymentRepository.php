@@ -80,14 +80,13 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
     {
         $data = $this->model->create($input);
         if ($data) {
-            ($data->status == 1 ? $status = 'Ativo' : $status = 'Inativo');
 
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 ' Adicionou o status do pagamento: '.$data->label.
                 ', Descrição:'.$data->description.
                 ', Ordem:'.$data->order.
-                ', Status: '.$status.
+                ', Status: '.$data->active.
                 ', Gateway:'.$data->gateway.
                 ', Tipo:'.$data->type)
             );
@@ -113,7 +112,7 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
         $type        = $data->type;
         $label       = $data->label;
         $order       = $data->order;
-        $status      = $data->status;
+        $status      = $data->active;
         $gateway     = $data->gateway;
         $description = $data->description;
 
@@ -131,7 +130,7 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
                 ' para Status:'.$data->label.
                 ', Descrição:'.$data->description.
                 ', Ordem:'.$data->order.
-                ', Status:'.$data->status.
+                ', Status:'.$data->active.
                 ', Gateway:'.$data->gateway.
                 ', Tipo:'.$data->type)
             );
@@ -158,7 +157,7 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
                 ' Excluiu o status do pagamento: '.$data->label.
                 ', Descrição: '.$data->description.
                 ', Ordem:'.$data->order.
-                ', Status: '.$data->status.
+                ', Status: '.$data->actve.
                 ', Gateway:'.$data->gateway.
                 ', Tipo:'.$data->type)
             );

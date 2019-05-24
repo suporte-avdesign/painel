@@ -12,9 +12,9 @@ class ConfigColorGroupController extends AdminAjaxDataController
 {
 
     protected $ability      = 'config-color-group';
-    protected $view         = 'backend.config.images.colors-group';
-    protected $route_edit   = 'grupo-cores.edit';
-    protected $route_delete = 'grupo-cores.destroy';
+    protected $view         = 'backend.settings.images.colors-group';
+    protected $route_edit   = 'grupo-colors.edit';
+    protected $route_delete = 'grupo-colors.destroy';
     protected $last_url;
 
 
@@ -27,7 +27,7 @@ class ConfigColorGroupController extends AdminAjaxDataController
 
         $this->access     = $access;
         $this->interModel = $interModel;
-        $this->last_url   = array('last_url' => 'config/grupo-cores');
+        $this->last_url   = array('last_url' => 'config/grupo-colors');
         $this->messages   = array(
             'code.required'  => 'A cor é obrigatória.',
             'code.unique'    => 'Esta cor já se encontra utilizada.',

@@ -43,7 +43,7 @@
                 {data: 'order', className: 'align-center'},
                 {data: 'unit'},
                 {data: 'name'},
-                {data: 'status', className: 'align-center'},
+                {data: 'active', className: 'align-center'},
                 {
                     data: 'actions', 
                     className: 'align-right',

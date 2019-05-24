@@ -9,7 +9,7 @@ use Intervention\Image\Facades\Image;
 use AVDPainel\Models\Admin\ImageColor as Model;
 use AVDPainel\Interfaces\Admin\ImageColorInterface;
 use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImage;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
 
 class ImageColorRepository implements ImageColorInterface
 {

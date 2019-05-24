@@ -1,5 +1,5 @@
 <div id="modal-color-grup">
-	<form id="form-color-grup" method="POST" action="{{route('grupo-cores.update', $data->id)}}" onsubmit="return false">
+	<form id="form-color-grup" method="POST" action="{{route('grupo-colors.update', $data->id)}}" onsubmit="return false">
 		@method("PUT")
 		@csrf
 	<fieldset class="fieldset">
@@ -20,13 +20,13 @@
 				<button type="button" class="button number-up">+</button>
 			</span>
 			<span class="button-group">
-				<label for="status-1" class="button blue-active">
-					<input type="radio" name="status" id="status-1" value="Ativo" @if($data->status == 'Ativo') checked @endif>
-					Ativo
+				<label for="active-1" class="button blue-active">
+					<input type="radio" name="active" id="active-1" value="{{constLang('active_true')}}" @if($data->active == constLang('active_true')) checked @endif>
+					{{constLang('active_true')}}
 				</label>
-				<label for="status-0" class="button red-active">
-					<input type="radio" name="status" id="status-0" value="Inativo" @if($data->status == 'Inativo') checked @endif>
-					Inativo
+				<label for="active-0" class="button red-active">
+					<input type="radio" name="active" id="active-0" value="{{constLang('active_false')}}" @if($data->active == constLang('active_false')) checked @endif>
+					{{constLang('active_false')}}
 				</label>
 			</span>
 		</p>

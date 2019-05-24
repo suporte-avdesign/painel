@@ -81,7 +81,7 @@ class ConfigShippingRepository implements ConfigShippingInterface
                 ' Adicionou o método de envio: '.$data->name.
                 ', Descrição:'.$data->description.
                 ', Ordem:'.$data->order.
-                ', Status: '.$data->status)
+                ', Status: '.$data->active)
             );
 
             return $data;
@@ -121,7 +121,7 @@ class ConfigShippingRepository implements ConfigShippingInterface
         $data        = $this->model->find($id);
         $name        = $data->name;
         $order       = $data->order;
-        $status      = $data->status;
+        $status      = $data->active;
         $description = $data->description;
 
         $update = $data->update($input);
@@ -135,7 +135,7 @@ class ConfigShippingRepository implements ConfigShippingInterface
                 ' para método:'.$data->name.
                 ', Descrição:'.$data->description.
                 ', Ordem:'.$data->order.
-                ', Status:'.$data->status)
+                ', Status:'.$data->active)
             );
 
             return true;
@@ -160,7 +160,7 @@ class ConfigShippingRepository implements ConfigShippingInterface
                 ' Excluiu o método de envio: '.$data->name.
                 ', Descrição: '.$data->description.
                 ', Ordem:'.$data->order.
-                ', Status: '.$data->status)
+                ', Status: '.$data->active)
             );
             return true;
         }

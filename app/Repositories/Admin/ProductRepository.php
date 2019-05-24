@@ -8,7 +8,7 @@ use AVDPainel\Interfaces\Admin\ProductInterface;
 use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as ConfigFreight;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImage;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
 
 use DB;
 

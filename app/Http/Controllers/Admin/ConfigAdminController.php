@@ -2,6 +2,7 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
+use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigAdminInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 
@@ -12,7 +13,8 @@ class ConfigAdminController extends Controller
 {
 
     protected $ability = 'config-admin';
-    protected $view = 'backend.config.images.admins';
+    protected $view = 'backend.settings.images.admins';
+    protected $last_url;
     protected $messages;
 
 
@@ -24,6 +26,8 @@ class ConfigAdminController extends Controller
 
         $this->interModel = $interModel;
         $this->messages = constLang('ConfigAdmin');
+        $this->access   = $access;
+        $this->last_url = array('last_url' => 'config/images/admins');
     }
 
 
@@ -47,6 +51,8 @@ class ConfigAdminController extends Controller
         if (Gate::denies("{$this->ability}-update")) {
             return view("backend.erros.message-401");
         }
+        $this->access->update($this->last_url);
+
 
         $this->interModel->rules($request, $this->messages, $id);
 
