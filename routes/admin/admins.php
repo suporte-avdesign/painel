@@ -4,32 +4,43 @@
 |--------------------------------------------------------------------------
 | Autenticação de Usuários
 |--------------------------------------------------------------------------
-| Module:  Users crud
+| Module:  admins crud
 |--------------------------------------------------------------------------
 */
-Route::resource('usuarios', 'Admin\Auth\RegisterController');
-Route::post('usuario/reativar', 'Admin\Auth\RegisterController@reactivateExcluded')->name('admins.reactivate');
-Route::post('usuarios/excluidos/data', 'Admin\Auth\RegisterController@dataExcluded')->name('admins.excluded.data');
-Route::get('usuarios/excluidos', 'Admin\Auth\RegisterController@excluded');
-Route::put('usuario/{id}/perfil', 'Admin\Auth\RegisterController@updateProfile')->name('admin.profile.update');
-Route::post('usuarios/data', 'Admin\Auth\RegisterController@data')->name('admins.data');
+Route::resource('admins', 'Admin\Auth\RegisterController');
+Route::put('admin/{id}/profile', 'Admin\Auth\RegisterController@updateProfile')->name('admin.profile.update');
+Route::post('admins/data', 'Admin\Auth\RegisterController@data')->name('admins.data');
 
 /*
 |--------------------------------------------------------------------------
-| Module:  Users modulos.
+| Admins:  Admins excluded, modulos.
 |--------------------------------------------------------------------------
 */
-Route::get('usuario/{id}/perfil', 'Admin\AdminController@profile')->name('admin.profile');
-Route::get('usuario/{id}/acessos', 'Admin\AdminController@accessView');
-Route::post('usuario/{id}/acessos', 'Admin\AdminController@accessActions')->name('admin.access.actions');
-Route::get('usuario/{id}/{mod}/modulos', 'Admin\AdminController@getModules');
-Route::get('usuario/{id}/permissoes/{idmod}/data', 'Admin\AdminController@permissions')->name('admin.permissions.data');
-Route::put('usuario/{id}/permissao/alterar', 'Admin\AdminController@updatePermission')->name('admin.permission.update');
+Route::post('admins/excluded/data', 'Admin\Auth\RegisterController@dataExcluded')->name('admins.excluded.data');
+Route::get('admin/excluded', 'Admin\Auth\RegisterController@excludeds');
+Route::post('admins/reactivate', 'Admin\Auth\RegisterController@reactivateExcluded')->name('admins.reactivate');
+Route::get('admin/excluded/{id}/profile', 'Admin\AdminController@profileExcluded')->name('admin.excluded-profile');
+Route::get('admin/excluded/{id}/access', 'Admin\AdminController@accessViewExcluded');
+Route::get('admin/excluded/{id}/photo-admin', 'Admin\AdminController@photoAdminExcluded');
+Route::delete('admin/excluded/{id}/photo-admin', 'Admin\ImageAdminController@photoDeleteExcluded')->name('photo-admin-excluded');
+
 
 /*
 |--------------------------------------------------------------------------
-| Module:  Users photos.
+| Details:  Admins modulos.
 |--------------------------------------------------------------------------
 */
-Route::resource('usuario/{id}/foto-admin', 'Admin\ImageAdminController');
-Route::put('usuario/status/{id}/photo', 'Admin\ImageAdminController@status')->name('photo.admin.status');
+Route::get('admin/{id}/profile', 'Admin\AdminController@profile')->name('admin.profile');
+Route::get('admin/{id}/access', 'Admin\AdminController@accessView');
+Route::post('admin/{id}/access', 'Admin\AdminController@accessActions')->name('admin.access.actions');
+Route::get('admin/{id}/{mod}/modules', 'Admin\AdminController@getModules');
+Route::get('admin/{id}/permissions/{idmod}/data', 'Admin\AdminController@permissions')->name('admin.permissions.data');
+Route::put('admin/{id}/permission/update', 'Admin\AdminController@updatePermission')->name('admin.permission.update');
+
+/*
+|--------------------------------------------------------------------------
+| Module:  Admins photos.
+|--------------------------------------------------------------------------
+*/
+Route::resource('admin/{id}/photo-admin', 'Admin\ImageAdminController', ['except' => ['show']]);
+Route::put('admin/status/{id}/photo', 'Admin\ImageAdminController@status')->name('photo-admin.status');

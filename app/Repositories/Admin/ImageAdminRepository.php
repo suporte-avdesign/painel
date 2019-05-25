@@ -6,6 +6,7 @@ namespace AVDPainel\Repositories\Admin;
 use AVDPainel\Models\Admin\ImageAdmin as Model;
 use AVDPainel\Interfaces\Admin\AdminInterface as InterAdmin;
 use AVDPainel\Interfaces\Admin\ImageAdminInterface;
+use Illuminate\Support\Facades\Auth;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Str;
 
@@ -82,12 +83,23 @@ class ImageAdminRepository implements ImageAdminInterface
      */
     public function create($input, $id)
     {
+        // id = 86153534
 
-        $mode = $this->interAdmin->setId(numLetter($id));
+        $admin = $this->interAdmin->setId(numLetter($id));
+        $count = count($this->model->where('admin_id', $input['admin_id'])->get());
+        if ($count >= 1) {
+            return array(
+                'success' => false,
+                'message' => "Já exite uma foto deste usuário.");
+        }
+
+
+
+
         $conf = $input['config'];
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
-        $name = Str::slug($mode->name).'-'.time().'.'.$ext;
+        $name = Str::slug($admin->name).'-'.time().'.'.$ext;
         $path = $conf['disk'] . $conf['path'].$name;
         $file->move($conf['disk'] . $conf['path'], $name);
 
@@ -99,31 +111,36 @@ class ImageAdminRepository implements ImageAdminInterface
             if ($data) { 
          
                 generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ' Adicionou a foto do usuário:'. $mode->name)
+                    ' Adicionou a foto do usuário:'. $admin->name)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
-                $route_status = route('photo.admin.status', $data->id);
-                $route_delete = route('foto-admin.destroy', ['id' => $id, 'file' => $data->id]);
-                $route_edit   = route('foto-admin.edit', ['id' => $id, 'file' => $data->id]);
+                $route_status = route('photo-admin.status', $data->id);
+                $route_delete = route('photo-admin.destroy', ['id' => $id, 'file' => $data->id]);
+                $route_edit   = route('photo-admin.edit', ['id' => $id, 'file' => $data->id]);
 
+                // Se é o usúario autenticaddo
+                (Auth::id() == numLetter($id) ? $auth = true : $auth = false);
 
                 $out = array(
                     "success"    => true,
                     "message"    => "A foto foi salva.",
                     'ac'         => 'create',
+                    'auth'       => $auth,
                     "id"         => $data->id,
                     'idm'        => $id,
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
-                    "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)"
+                    "url_edit"   => "abreModal('Editar: Foto', '".$route_edit."', 'form-image', 2, 'true', 500, 400)"
                 );
+
+
 
                 return $out;
             }
@@ -147,7 +164,7 @@ class ImageAdminRepository implements ImageAdminInterface
     public function update($input, $id, $idfile)
     {
         $data = $this->model->find($idfile);
-        $mode = $this->interAdmin->setId(numLetter($id));
+        $admin = $this->interAdmin->setId(numLetter($id));
         $conf = $input['config'];
         // Remove image current
         $current = $conf['disk'] . $conf['path'] .$data->image;
@@ -157,7 +174,7 @@ class ImageAdminRepository implements ImageAdminInterface
 
         $file = $input['image'];
         $ext  = $file->getClientOriginalExtension();
-        $name = Str::slug($mode->name).'-'.time().'.'.$ext;
+        $name = Str::slug($admin->name).'-'.time().'.'.$ext;
         $path = $conf['disk'] . $conf['path'].$name;
         $file->move($conf['disk'] . $conf['path'], $name);
         $status = $data->status;
@@ -171,29 +188,33 @@ class ImageAdminRepository implements ImageAdminInterface
             if ($update) {
                 generateAccessesTxt(
                     date('H:i:s').utf8_decode(
-                    " Alterou a foto do usuário ". $mode->name.
+                    " Alterou a foto do usuário ". $admin->name.
                     ', Status:'.$status)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
-                $route_status = route('photo.admin.status', $data->id);
-                $route_delete = route('foto-admin.destroy', ['id' => $id, 'file' => $data->id]);
-                $route_edit = route('foto-admin.edit', ['id' => $id, 'file' => $data->id]);
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                $route_status = route('photo-admin.status', $data->id);
+                $route_delete = route('photo-admin.destroy', ['id' => $id, 'file' => $data->id]);
+                $route_edit = route('photo-admin.edit', ['id' => $id, 'file' => $data->id]);
+
+                // Se é o usúario autenticaddo
+                (Auth::id() == numLetter($id) ? $auth = true : $auth = false);
 
                 $out = array(
                     "success"    => true,
                     "message"    => "A foto foi alterada.",
                     'ac'         => 'update',
+                    'auth'       => $auth,
                     "id"         => $data->id,
                     'idm'        => $id,
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "active"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
                     "url_status" => "statusImage('{$data->id}', '" . $route_status . "', '" . csrf_token() . "')",
                     "url_delete" => "deleteImage('{$data->id}', '" . $route_delete . "', '" . csrf_token() . "')",
-                    "url_edit" => "abreModal('Editar: {$data->type}', '" . $route_edit . "', 'form-image', 2, 'true', 500, 400)"
+                    "url_edit" => "abreModal('Editar: Foto', '" . $route_edit . "', 'form-image', 2, 'true', 500, 400)"
                 );
 
                 return $out;
@@ -213,9 +234,30 @@ class ImageAdminRepository implements ImageAdminInterface
      */
     public function delete($id, $conf='')
     {
-
         $data   = $this->model->find($id);
+        $admin  =
         $admin  = $data->admin;
+
+        $image = $conf['disk'] .$conf['path'] .$data->image;
+        if (file_exists($image)) {
+            unlink($image);
+        }
+
+        $delete = $data->delete();
+        if ($delete) {
+            generateAccessesTxt(
+                date('H:i:s').utf8_decode(
+                ' Excluiu a foto do usuário: '.$admin->name)
+            );
+            return true;
+        }
+        return false;
+    }
+
+    public function deleteExcluded($id, $admin, $conf='')
+    {
+        $data   = $this->model->find($id);
+        $admin  = $this->interAdmin->setIdExcluded(numLetter($admin));
 
         $image = $conf['disk'] .$conf['path'] .$data->image;
         if (file_exists($image)) {
@@ -242,20 +284,22 @@ class ImageAdminRepository implements ImageAdminInterface
      */
     public function status($id)
     {
-        $data = $this->model->find($id);
-        $mode = $this->interAdmin->setId($data->admin_id);
+        $data = $this->setId($id);
+        $admin = $this->interAdmin->setId($data->admin_id);
 
-        ($data->status == 'Ativo' ? $change = ['status' => 'Inativo'] : $change = ['status' => 'Ativo']);
+        ($data->active == constLang('active_true') ?
+            $data->active = constLang('active_false') :
+            $data->active = constLang('active_true'));
 
-        $update = $data->update($change);
+        $update = $data->save();
         if ($update) {
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                " Alterou o status da foto do usuário ". $mode->name.
-                ', para '.$data->status)
+                " Alterou o status da foto do usuário ". $admin->name.
+                ', para '.$data->active)
             );
 
-            ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+            ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
             $out = array(
                 "success"    => true,

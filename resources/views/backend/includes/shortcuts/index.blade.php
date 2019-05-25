@@ -9,7 +9,7 @@
 	-->
 	<li><a href="lista-desejos" class="shortcut-stats" title="Lista de Desejos">Lista de Desejos</a></li>
 	@can('model-admins-view')
-		<li><a href="usuarios" class="shortcut-users" title="Usuários">Usuários</a></li>
+		<li><a href="admins" class="shortcut-users" title="Usuários">Usuários</a></li>
 	@endcan
 	@can('config-view')
 		<li><a href="config/system" class="shortcut-settings" title="Configurações">Configurações</a></li>

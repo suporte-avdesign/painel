@@ -162,10 +162,10 @@ class ConfigProfileRepository implements ConfigProfileInterface
      * @param  string  $filde
      * @return int or string $id
      */
-    public function getFilde($filde, $name)
+    public function getFild($fild, $name)
     {
         
-        $data = $this->model->where($filde, $name)->first();
+        $data = $this->model->where($fild, $name)->first();
 
         return $data;
     }

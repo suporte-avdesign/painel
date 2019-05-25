@@ -40,7 +40,7 @@
                 columns:[
                     {data: 'name', className:'align-left'},
                     {data: 'profile', className:'align-right'},
-                    {data: 'status', className:'align-center'},
+                    {data: 'active', className:'align-center'},
                     {data: 'phone', className:'align-right'},
                     {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''}
                 ],
@@ -99,6 +99,112 @@
                 $.modal.alert(tableAdminExcluded.cancelReactivate);
             });
         };
+
+
+        /**
+         * Access Admins (txt)
+         * @param ac
+         * @param id
+         * @param name
+         * @param path
+         * @param date
+         */
+        adminAccessTxt = function(ac, id, name, path, date)
+        {
+            if (ac == 'delete-all' || ac == 'delete') {
+                if (ac == 'delete-all') {
+                    var content = filesAccess.txtConfirmAll+name;
+                    setBtn(4,filesAccess.txtLoader,false,'loader','del-all-'+id,false,'silver');
+                }
+                else {
+                    var content = filesAccess.txtConfirm+date+' de '+name;
+                }
+                $.modal.confirm(content, function(){
+                    $.ajax({
+                        type: 'POST',
+                        dataType: 'json',
+                        data: { ac:ac, user:name, path:path, _token:filesAccess.token },
+                        url: filesAccess.url,
+                        success: function( data ){
+                            if (data.success == true) {
+                                if (ac == 'delete') {
+                                    $("#"+date+"_"+id).hide();
+                                    $("#return_"+id).html('');
+                                    $("#info_"+id).show();
+                                } else {
+                                    $("#del-all-"+id).hide();
+                                    $("#return_"+id).hide();
+                                    $("#files_"+id).hide();
+                                }
+                            } else {
+
+                                if (ac == 'delete-all') {
+                                    setBtn(4,filesAccess.txtDelete,true,'icon-trash ','del-all-'+id,false,'red');
+                                };
+                            }
+
+                            msgNotifica(data.success, data.message, true, false);
+                        },
+                        error: function( response ){
+                            msgNotifica(false, filesAccess.txtError, true, false);
+                            if (ac == 'delete-all') {
+                                setBtn(4,filesAccess.txtDelete,true,'icon-trash ','btn-modal',false,'red');
+                            };
+                        }
+                    });
+
+                }, function()
+                {
+                    $.modal.alert(filesAccess.txtCancel);
+                    setBtn(4,filesAccess.txtDelete,true,'icon-trash ','del-all-'+id,false,'red');
+                });
+            }
+            else {
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'html',
+                    data: { ac:ac, user:name, path:path, _token:filesAccess.token },
+                    url: filesAccess.url,
+                    success: function(data){
+                        $("#return_"+id).html(data);
+                        $("#info_"+id).hide();
+                    },
+                    error: function(xhr){
+                        ajaxFormError(xhr);
+                    }
+                });
+            }
+        };
+
+
+
+        /**
+         * Remove Image
+         * @param int id
+         * @param string url
+         * @param string token
+         */
+        deleteImage = function (id, url, token) {
+            $.ajax({
+                type: 'POST',
+                dataType: "json",
+                headers: {'X-CSRF-TOKEN': token},
+                url: url,
+                data: {_method: 'delete', admin: id},
+                success: function (data) {
+                    if (data.success == true) {
+                        $("#img-" + id).remove();
+                        msgNotifica(true, data.message, true, false);
+                    } else {
+                        msgNotifica(false, data.message, true, false);
+                    }
+                },
+                error: function (xhr) {
+                    ajaxFormError(xhr);
+                }
+            });
+        }
+
 
 
     };

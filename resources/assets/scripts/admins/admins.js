@@ -44,7 +44,7 @@
                 columns:[
                     {data: 'name', className:'align-left'},
                     {data: 'profile', className:'align-right'},
-                    {data: 'status', className:'align-center'},
+                    {data: 'active', className:'align-center'},
                     {data: 'phone', className:'align-right'},
                     {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''}
                 ],
@@ -333,6 +333,7 @@
                 data: {_method: 'delete'},
                 success: function (data) {
                     if (data.success == true) {
+                        $("#btn-add-image-admin").show();
                         $("#img-" + id).remove();
                         msgNotifica(true, data.message, true, false);
                     } else {
@@ -383,7 +384,11 @@
                             '</span>' +
                             '</div>');
                     }
-                    $("#avatar").attr('src', data.path);
+                    if(data.auth === true) {
+                        $("#avatar").attr('src', data.path);
+                    }
+                    $("#btn-add-image-admin").hide();
+
                     fechaModal();
                     msgNotifica(true, data.message, true, false);
                 } else {
@@ -399,8 +404,8 @@
             }
         };
 
-
     }
+
 })(jQuery);
 
 

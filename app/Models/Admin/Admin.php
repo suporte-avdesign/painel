@@ -98,7 +98,7 @@ class Admin extends Authenticatable
      **/
     public function permissions()
     {
-        return $this->hasMany(AdminPermissions::class);
+        return $this->hasMany(AdminPermission::class);
     }
 
     /**

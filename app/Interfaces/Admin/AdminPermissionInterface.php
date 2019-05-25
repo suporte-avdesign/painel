@@ -11,7 +11,7 @@ interface AdminPermissionInterface
      */
     public function get();
     public function getAll($input);
-    public function getFilde($filde, $name);
+    public function getFild($fild, $name);
     public function set($id);
     public function create($input);
     public function update($input, $id);

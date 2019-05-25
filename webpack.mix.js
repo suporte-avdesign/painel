@@ -45,6 +45,7 @@ mix.copy('resources/assets/js/version.js','public/backend/js/version.js');
 
 //formData - upload de arquivos
 mix.scripts('resources/assets/js/libs/formData/jquery.form.js', 'public/backend/js/libs/formData/jquery.form.min.js');
+mix.scripts('resources/assets/js/libs/Mask/jquery.maskedinput.js', 'public/backend/js/libs/Mask/jquery.maskedinput.min.js');
 
 /*
  |--------------------------------------------------------------------------
@@ -135,9 +136,16 @@ mix.scripts([
     'resources/assets/js/libs/jquery.ba-hashchange.js',
     'resources/assets/js/libs/Handlebars/handlebars.js',
     'resources/assets/js/libs/DataTables/jquery.dataTables.js',
+    'resources/assets/js/libs/DataTables/ext/dataTables.buttons.js',
+    'resources/assets/js/libs/DataTables/ext/buttons.colVis.js',
+    'resources/assets/js/libs/DataTables/ext/buttons.server-side.js',
 ], 'public/backend/js/libs/libs.min.js');
 
-// Editor
+// Editor Admin
+mix.scripts('resources/assets/scripts/admins/admins.js', 'public/backend/scripts/admins/admins.min.js');
+mix.scripts('resources/assets/scripts/admins/admins-excluded.js', 'public/backend/scripts/admins/admins-excluded.min.js');
+mix.scripts('resources/assets/scripts/admins/myprofile.js', 'public/backend/scripts/admins/myprofile.min.js');
+
 
 // Configuração do sistema
 mix.scripts('resources/assets/scripts/settings/colors-group.js', 'public/backend/scripts/settings/colors-group.min.js');
@@ -156,7 +164,7 @@ mix.scripts('resources/assets/scripts/settings/subjects.js', 'public/backend/scr
 mix.scripts('resources/assets/scripts/settings/template.js', 'public/backend/scripts/settings/template.min.js');
 mix.scripts('resources/assets/scripts/settings/unit-measures.js', 'public/backend/scripts/settings/unit-measures.min.js');
 
-// Conteudo do site
+
 mix.scripts('resources/assets/scripts/banners.js', 'public/backend/scripts/banners.min.js');
 mix.scripts('resources/assets/scripts/content-site.js', 'public/backend/scripts/content-site.min.js');
 mix.scripts('resources/assets/scripts/sliders.js', 'public/backend/scripts/sliders.min.js');

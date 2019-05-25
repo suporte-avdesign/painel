@@ -3,7 +3,7 @@
 namespace AVDPainel\Repositories\Admin;
 
 
-use AVDPainel\Models\Admin\AdminPermissions as Model;
+use AVDPainel\Models\Admin\AdminPermission as Model;
 use AVDPainel\Interfaces\Admin\AdminPermissionInterface;
 
 
@@ -133,9 +133,9 @@ class AdminPermissionRepository implements AdminPermissionInterface
      * @param  string  $filde
      * @return int or string $id
      */
-    public function getFilde($filde, $name)
+    public function getFild($fild, $name)
     {        
-        $data = $this->model->where($filde, $name)->get();
+        $data = $this->model->where($fild, $name)->get();
 
         return $data;
     }

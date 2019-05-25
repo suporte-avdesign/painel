@@ -12,6 +12,7 @@ interface AdminInterface
     public function get();
     public function getAll($input);
     public function setId($id);
+    public function setIdExcluded($id);
     public function pluck();
     public function create($input);
     public function update($input, $id);

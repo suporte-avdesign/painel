@@ -20,6 +20,7 @@ class AppServiceProvider extends ServiceProvider
         $models = array(
             'Admin',
             'AdminAccess',
+            'AdminPermission',
             'ConfigAdmin',
             'ConfigBanner',
             'ConfigBrand',
@@ -50,6 +51,7 @@ class AppServiceProvider extends ServiceProvider
             'ContentFormPayment',
             'ContentPrivacyPolicy',
             'ContentTermsConditions',
+            'ImageAdmin',
             'ImageBanner',
             'ImageSlider'
         );

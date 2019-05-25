@@ -22,7 +22,7 @@
 			<li><a href="calendars.html" title="Agenda"><span class="icon-calendar"></span></a></li>
 			-->
 			<li>
-				<a href="javascript:void(0)" onclick="abreModal('Meu Perfil', '{{route('usuarios.show', numLetter(Auth::user()->id, 'letter'))}}', 'myprofile', 2, 'true', 400, 470);" title="Meu Perfil">
+				<a href="javascript:void(0)" onclick="abreModal('Meu Perfil', '{{route('admins.show', numLetter(Auth::user()->id, 'letter'))}}', 'myprofile', 2, 'true', 400, 470);" title="Meu Perfil">
 					<span class="icon-user"></span>
 				</a>
 			</li>

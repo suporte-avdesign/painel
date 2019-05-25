@@ -104,6 +104,7 @@
 			// Load content
 			loadPanelContent(url, contentPanel, panelContent, false, options);
 		});
+
 	};
 
 	/**

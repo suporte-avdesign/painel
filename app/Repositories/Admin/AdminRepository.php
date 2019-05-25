@@ -42,7 +42,7 @@ class AdminRepository implements AdminInterface
         $columns = array( 
             0 => 'name',
             1 => 'profile',
-            2 => 'status',
+            2 => 'active',
             3 => 'phone',
             4 => 'commission',
             5 => 'percent',            
@@ -93,17 +93,17 @@ class AdminRepository implements AdminInterface
             foreach ($query as $val){
                 if ($val->profile != 'Master') {
 
-                    ($val->status == "Ativo" ? $cor = 'green' : $cor = 'red');
+                    ($val->active == constLang('active_true') ? $cor = 'green' : $cor = 'red');
                     
                     $nData['name']        = $val->name;
                     $nData['profile']     = $val->profile;
-                    $nData['status']      = '<small class="tag '.$cor.'-bg">'.$val->status.'</small>';
+                    $nData['active']      = '<small class="tag '.$cor.'-bg">'.$val->active.'</small>';
                     $nData['phone']       = $val->phone;
                     $nData['commission']  = $val->commission;
                     $nData['percent']     = $val->percent;
                     $nData['created_at']  = date('j M Y h:i:s',strtotime($val->created_at));
                     $nData['updated_at']  = date('j M Y h:i:s',strtotime($val->updated_at));
-                    $nData['txt_status']  = '<small class="tag '.$cor.'-bg">'.$val->status.'</small>';
+                    $nData['txt_status']  = '<small class="tag '.$cor.'-bg">'.$val->active.'</small>';
                     $nData['email']       = $val->email;
                     $nData['id']          = numLetter($val->id, 'letter');
                     $data[] = $nData;
@@ -142,6 +142,17 @@ class AdminRepository implements AdminInterface
     }
 
     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return array
+     */
+    public function setIdExcluded($id)
+    {
+        return $this->model->onlyTrashed()->find($id);
+    }
+
+    /**
      * Store a newly created resource in storage.
      *
      * @param  array $input
@@ -172,7 +183,7 @@ class AdminRepository implements AdminInterface
      */
     public function update($input, $id)
     {
-        $data   = $this->model->find($id);
+        $data   = $this->setId($id);
         $update = $data->update($input);
         if ($update) {
             generateAccessesTxt(
@@ -198,7 +209,7 @@ class AdminRepository implements AdminInterface
      */
     public function updateProfile($input, $id)
     {
-        $data   = $this->model->find($id);
+        $data   = $this->setId($id);
         $update = $data->update($input);
         if ($update) {
             generateAccessesTxt(
@@ -222,7 +233,7 @@ class AdminRepository implements AdminInterface
      */
     public function delete($id)
     {
-        $data   = $this->model->find($id);
+        $data   = $this->setId($id);
         $delete = $data->delete();
         if ($delete) {
             generateAccessesTxt(
@@ -275,7 +286,7 @@ class AdminRepository implements AdminInterface
         $columns = array( 
             0 => 'name',
             1 => 'profile',
-            2 => 'status',
+            2 => 'active',
             3 => 'phone',
             4 => 'commission',
             5 => 'percent',            
@@ -324,17 +335,17 @@ class AdminRepository implements AdminInterface
             foreach ($query as $val){
                 if ($val->profile != 'Master') {
 
-                    ($val->status == "Ativo" ? $cor = 'green' : $cor = 'red');
+                    ($val->active == constLang('active_true') ? $cor = 'green' : $cor = 'red');
                     
                     $nData['name']        = $val->name;
                     $nData['profile']     = $val->profile;
-                    $nData['status']      = '<small class="tag '.$cor.'-bg">'.$val->status.'</small>';
+                    $nData['active']      = '<small class="tag '.$cor.'-bg">'.$val->active.'</small>';
                     $nData['phone']       = $val->phone;
                     $nData['commission']  = $val->commission;
                     $nData['percent']     = $val->percent;
                     $nData['created_at']  = date('j M Y h:i:s',strtotime($val->created_at));
                     $nData['updated_at']  = date('j M Y h:i:s',strtotime($val->updated_at));
-                    $nData['txt_status']  = '<small class="tag '.$cor.'-bg">'.$val->status.'</small>';
+                    $nData['txt_status']  = '<small class="tag '.$cor.'-bg">'.$val->active.'</small>';
                     $nData['email']       = $val->email;
                     $nData['id']          = numLetter($val->id, 'letter');
                     $data[] = $nData;
