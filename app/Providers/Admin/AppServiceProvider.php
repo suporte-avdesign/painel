@@ -46,14 +46,27 @@ class AppServiceProvider extends ServiceProvider
             'ConfigSubjectContact',
             'ConfigSystem',
             'ConfigTemplate',
+            'Contact',
+            'ContactSpam',
             'ConfigUnitMeasure',
             'ContentDeliveryReturn',
             'ContentFormPayment',
             'ContentPrivacyPolicy',
             'ContentTermsConditions',
+            'GridProduct',
             'ImageAdmin',
+            'ImageColor',
             'ImageBanner',
-            'ImageSlider'
+            'ImageSlider',
+            'Order',
+            'OrderItem',
+            'OrderNote',
+            'OrderShipping',
+            'State',
+            'User',
+            'UserAddress',
+            'UserNote',
+            'Wishlist'
         );
 
         foreach ($models as $model) {

@@ -1,13 +1,13 @@
 <div class="block-title">
     <h3><span class="icon icon-clipboard"> </span><strong> {{$title}} </strong></h3>
     <div class="button-group absolute-right">
-        <a href="pedidos" class="button icon-clipboard margin-left blue-gradient glossy ">Pedidos</a>
+        <a href="orders" class="button icon-clipboard margin-left blue-gradient glossy ">Pedidos</a>
 
     </div>
 </div>
 
 <!-- DataTables -->
-<link rel="stylesheet" href="{!! url('assets/backend/js/libs/DataTables/'.$confUser->table_color.'.css?'.time()) !!}">
+<link rel="stylesheet" href="{{ mix('backend/css/tables/'.$confUser->table_color.'.css')}}">
 
 <table class="table responsive-table" id="orders-excludeds">
     <thead>
@@ -29,8 +29,7 @@
     </tr>
     </tfoot>
 </table>
-
-<script src="{!! url('assets/backend/scripts/orders-excludeds.js?'.time()) !!}"></script>
+<script src="{{mix('backend/scripts/orders/excludeds.min.js')}}"></script>
 <script>
     var tableOrderExcluded = {!! json_encode([
         "id" => 'orders-excludeds',

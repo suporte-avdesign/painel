@@ -1,5 +1,5 @@
 <div id="modal-orders">
-	<form id="form-orders" method="POST" action="{{route('pedidos.update', $data->id)}}" onsubmit="return false">
+	<form id="form-orders" method="POST" action="{{route('orders.update', $data->id)}}" onsubmit="return false">
 		@method("PUT")
 		@csrf
 		<fieldset class="fieldset">

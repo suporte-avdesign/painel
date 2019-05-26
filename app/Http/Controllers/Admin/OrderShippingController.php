@@ -5,7 +5,7 @@ namespace AVDPainel\Http\Controllers\Admin;
 use AVDPainel\Interfaces\Admin\OrderInterface as InterOrder;
 use AVDPainel\Interfaces\Admin\OrderShippingInterface as InterModel;
 use AVDPainel\Interfaces\Admin\ConfigShippingInterface as ConfigShipping;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImages;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImages;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -16,7 +16,7 @@ use PDF;
 class OrderShippingController extends Controller
 {
     protected $ability  = 'orders';
-    protected $view     = 'backend.orders-shippings';
+    protected $view     = 'backend.orders.shippings';
     protected $view_pdf = 'backend.orders';
     protected $disk_pdf;
     protected $url_pdf;
@@ -36,8 +36,8 @@ class OrderShippingController extends Controller
         $this->configImages   = $configImages;
         $this->configShipping = $configShipping;
         $this->photo_url       = 'storage/';
-        $this->url_pdf       = 'storage/pdf/pedidos';
-        $this->disk_pdf      = storage_path('app/public/pdf/pedidos');
+        $this->url_pdf       = 'storage/pdf/order';
+        $this->disk_pdf      = storage_path('app/public/pdf/order');
         $this->messages = array(
             'config_shipping_id.required' => 'O método é obrigatório.',
             'status.required'             => 'O status é obrigatório.',

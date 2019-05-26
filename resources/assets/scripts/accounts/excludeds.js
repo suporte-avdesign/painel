@@ -47,7 +47,7 @@
                     {data: 'first_name'},
                     {data: 'visits', className:'align-center'},
                     {data: 'admin'},
-                    {data: 'status', className:'align-center'},
+                    {data: 'active', className:'align-center'},
                     {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''}
                 ],
                 order: [[0, 'desc']]

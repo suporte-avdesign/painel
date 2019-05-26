@@ -24,7 +24,6 @@ Route::get('admin/excluded/{id}/access', 'Admin\AdminController@accessViewExclud
 Route::get('admin/excluded/{id}/photo-admin', 'Admin\AdminController@photoAdminExcluded');
 Route::delete('admin/excluded/{id}/photo-admin', 'Admin\ImageAdminController@photoDeleteExcluded')->name('photo-admin-excluded');
 
-
 /*
 |--------------------------------------------------------------------------
 | Details:  Admins modulos.

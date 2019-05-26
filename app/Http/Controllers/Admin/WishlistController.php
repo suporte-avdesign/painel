@@ -12,7 +12,7 @@ use AVDPainel\Interfaces\Admin\GridProductInterface as InterGrid;
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImages;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImages;
 
 
 use Illuminate\Http\Request;
@@ -50,7 +50,7 @@ class WishlistController extends AdminAjaxTablesController
         $this->interProduct = $interProduct;
         $this->configProduct = $configProduct;
         $this->configImages = $configImages;
-        $this->last_url     = array('last_url' => 'lista-desejos');
+        $this->last_url     = array('last_url' => 'wishlist');
         $this->messages = array(
             'quantity.required' => 'A quantidade é obrigatória.',
             'title_index'       => 'Lista de Desejos',

@@ -3,7 +3,7 @@
 </div>
 
 <!-- DataTables -->
-<link rel="stylesheet" href="{!! url('assets/backend/js/libs/DataTables/'.$confUser->table_color.'.css?'.time()) !!}">
+<link rel="stylesheet" href="{{ mix('backend/css/tables/'.$confUser->table_color.'.css')}}">
 
 <table class="table responsive-table" id="wishlist">
     <thead>
@@ -20,8 +20,7 @@
         </tr>
     </tfoot>
 </table>
-
-<script src="{!! url('assets/backend/scripts/wishlist.js?'.time()) !!}"></script>
+<script src="{{mix('backend/scripts/wishlist.min.js')}}"></script>
 <script>
     var tableWishlist= {!! json_encode([
         "id" => 'wishlist',

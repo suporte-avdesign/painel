@@ -49,16 +49,22 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+
     /**
-     * Email em minúsculo
+     * Se o password estiver no campo aplica a criptografia automáticamente
+     * Retorna email com todos os caracteres convertidos para minúsculas.
      *
-     * @param  string $value
-     * @return void
+     * @param array $attributes
+     * @return $this
      */
-    public function setEmailAttribute($value)
+    public function fill(array $attributes)
     {
-        $this->attributes['email'] = strtolower($value);
+        !isset($attributes['password']) ?: $attributes['password'] = bcrypt($attributes['password']);
+        !isset($attributes['email']) ?: $attributes['email'] = strtolower($attributes['email']);
+
+        return parent::fill($attributes);
     }
+
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -1,5 +1,5 @@
 <div id="modal-orders">
-	<form id="form-orders" method="POST" action="{{route('pedidos.store')}}" onsubmit="return false">
+	<form id="form-orders" method="POST" action="{{route('orders.store')}}" onsubmit="return false">
 		@csrf
 		<fieldset class="fieldset">
 			<legend class="legend">Informações do Pedido</legend>

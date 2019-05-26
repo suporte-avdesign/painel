@@ -13,42 +13,8 @@ Route::post('perfil-cliente/offers', 'Admin\ConfigProfileClientController@offers
 
 
 
-// Clientes
-Route::resource('clientes', 'Admin\UserController');
-Route::post('accounts/data', 'Admin\UserController@data')->name('accounts.data');
-Route::get('account/{id}/profile', 'Admin\UserController@profile')->name('account.profile');
-Route::get('account/load/profile/{opc}/update/{id}', 'Admin\UserController@loadUpdateProfile');
-Route::get('account/load/profile/{opc}', 'Admin\UserController@loadProfile');
-// Endereços
-Route::resource('account/{id}/address', 'Admin\UserAddressController');
-Route::get('address/{id}/refresh', 'Admin\UserAddressController@refresh')->name('account-address.refresh');
-// Observações
-Route::resource('account/{id}/notes', 'Admin\UserNoteController');
-Route::get('note/{id}/refresh', 'Admin\UserNoteController@refresh')->name('account-notes.refresh');
-// Excluidos
-Route::get('clientes/excluidos', 'Admin\UserController@show')->name('accounts.excluded');
-Route::post('accounts/excluded/data', 'Admin\UserController@dataExcluded')->name('accounts.excluded.data');
-Route::post('account/{id}/reactivate', 'Admin\UserController@reactivate');
-// Reativar
-Route::post('cliente/reativar', 'Admin\UserController@reactivateExcluded')->name('accounts.reactivate');
-Route::get('clientes/excluidos', 'Admin\UserController@excluded');
 
-// Contato
 
-Route::resource('contatos', 'Admin\ContactController');
-Route::post('contacts/data', 'Admin\ContactController@data')->name('contacts.data');
-Route::get('contato/mensagem/{id}', 'Admin\ContactController@message')->name('contacts.message');
-Route::get('contato/{id}/detalhes', 'Admin\ContactController@details')->name('contacts.details');
-Route::post('contacts/{id}/response', 'Admin\ContactController@response')->name('contacts.response');
-Route::post('contacts/{id}/status', 'Admin\ContactController@status')->name('contacts.status');
-Route::post('contacts/{id}/spam', 'Admin\ContactController@spam')->name('contacts.spam');
-Route::get('contacts/{id}/refresh', 'Admin\ContactController@refresh')->name('contacts.refresh');
-
-// Spams Contatos
-Route::resource('spams', 'Admin\ContactSpamController');
-Route::post('spams/data', 'Admin\ContactSpamController@data')->name('spams.data');
-Route::get('spam/mensagem/{id}', 'Admin\ContactSpamController@message')->name('spams.message');
-Route::get('spam/{id}/detalhes', 'Admin\ContactSpamController@details')->name('spams.details');
 
 // Marcas & Fabricantes
 Route::resource('marcas', 'Admin\BrandController');
@@ -106,39 +72,7 @@ Route::get('produtos/cores', 'Admin\ImageColorController@products');
 Route::post('produtos/colors/data', 'Admin\ImageColorController@data')->name('colors.data');
 Route::put('produtos/{idpro}/colors-status/{id}', 'Admin\ImageColorController@colorsStatus')->name('colors-status');
 
-// Lista de Desejos
-Route::resource('lista-desejos', 'Admin\WishlistController');
-Route::post('wishlist/data', 'Admin\WishlistController@data')->name('wishlist.data');
-Route::get('wishlist/{id}/profile', 'Admin\WishlistController@profile')->name('wishlist.profile');
-Route::get('wishlist/{id}/lists', 'Admin\WishlistController@lists')->name('wishlist.lists');
-Route::get('wishlist/{id}/reload', 'Admin\WishlistController@reload')->name('wishlist.reload');
-Route::get('wishlist/{id}/products', 'Admin\WishlistController@products')->name('wishlist.products');
-Route::post('wishlist/{id}/add/{user_id}', 'Admin\WishlistController@add')->name('wishlist.add');
-Route::post('wishlist/{user_id}/search', 'Admin\WishlistController@search')->name('wishlist.search');
-Route::delete('wishlist/delete/{user_id}/all', 'Admin\WishlistController@deleteAll')->name('wishlist.delete.all');
-Route::get('wishlist/admin/{user_id}/edit', 'Admin\WishlistController@editAdmin')->name('wishlist.admin.edit');
-Route::put('wishlist/admin/{user_id}/store', 'Admin\WishlistController@storeAdmin')->name('wishlist.admin.store');
-Route::get('wishlist/admin/{user_id}/save', 'Admin\WishlistController@saveWishlist')->name('wishlist.save');
 
-// Pedidos
-Route::resource('pedidos', 'Admin\OrderController');
-Route::post('orders/data', 'Admin\OrderController@data')->name('orders.data');
-Route::get('order/{id}/details', 'Admin\OrderController@details');
-// Pedidos Excluded
-Route::post('orders/excluded/data', 'Admin\OrderController@dataExcluded')->name('orders.excluded.data');
-Route::post('order/{id}/reactivate', 'Admin\OrderController@reactivate');
-// Itens dos Pedidos
-Route::resource('order/{id}/order-items', 'Admin\OrderItemController',['except' => ['store','show']]);
-Route::get('order/{id}/products', 'Admin\OrderItemController@products')->name('order-items.products');
-Route::post('order/{id}/search', 'Admin\OrderItemController@search')->name('order-items.search');
-Route::post('order/{id}/add/{order_id}', 'Admin\OrderItemController@add')->name('order-items.add');
-Route::get('order/{id}/reload', 'Admin\OrderItemController@reload')->name('order-items.reload');
-// Imprimir PDF
-Route::get('order/{id}/printer', 'Admin\OrderController@printerPdf')->name('order-items.printer');
-// Observações
-Route::resource('order/{id}/order-notes', 'Admin\OrderNoteController');
-// Pedido/Rastreamento/Metodo de Envio/Obs.
-Route::resource('order/{id}/order-shippings', 'Admin\OrderShippingController');
 
 
 
@@ -180,3 +114,76 @@ Route::resource('images/{id}/banner', 'Admin\ImageBannerController', ['except' =
 Route::put('images/banner/status/{id}', 'Admin\ImageBannerController@status')->name('banner.status');
 Route::get('images/banner/order/{id}', 'Admin\ImageBannerController@order')->name('banner.order');
 Route::put('images/banner/order', 'Admin\ImageBannerController@updateOrder')->name('banner.order');
+
+
+
+
+
+
+// Lista de Desejos
+Route::resource('wishlist', 'Admin\WishlistController');
+Route::post('wishlist/data', 'Admin\WishlistController@data')->name('wishlist.data');
+Route::get('wishlist/{id}/profile', 'Admin\WishlistController@profile')->name('wishlist.profile');
+Route::get('wishlist/{id}/lists', 'Admin\WishlistController@lists')->name('wishlist.lists');
+Route::get('wishlist/{id}/reload', 'Admin\WishlistController@reload')->name('wishlist.reload');
+Route::get('wishlist/{id}/products', 'Admin\WishlistController@products')->name('wishlist.products');
+Route::post('wishlist/{id}/add/{user_id}', 'Admin\WishlistController@add')->name('wishlist.add');
+Route::post('wishlist/{user_id}/search', 'Admin\WishlistController@search')->name('wishlist.search');
+Route::delete('wishlist/delete/{user_id}/all', 'Admin\WishlistController@deleteAll')->name('wishlist.delete.all');
+Route::get('wishlist/admin/{user_id}/edit', 'Admin\WishlistController@editAdmin')->name('wishlist.admin.edit');
+Route::put('wishlist/admin/{user_id}/store', 'Admin\WishlistController@storeAdmin')->name('wishlist.admin.store');
+Route::get('wishlist/admin/{user_id}/save', 'Admin\WishlistController@saveWishlist')->name('wishlist.save');
+
+// Pedidos
+Route::resource('orders', 'Admin\OrderController');
+Route::post('orders/data', 'Admin\OrderController@data')->name('orders.data');
+Route::get('order/{id}/details', 'Admin\OrderController@details');
+Route::resource('order/{id}/order-items', 'Admin\OrderItemController',['except' => ['store','show']]);
+Route::get('order/{id}/products', 'Admin\OrderItemController@products')->name('order-items.products');
+Route::post('order/{id}/search', 'Admin\OrderItemController@search')->name('order-items.search');
+Route::post('order/{id}/add/{order_id}', 'Admin\OrderItemController@add')->name('order-items.add');
+Route::get('order/{id}/reload', 'Admin\OrderItemController@reload')->name('order-items.reload');
+Route::resource('order/{id}/order-notes', 'Admin\OrderNoteController');
+Route::resource('order/{id}/order-shippings', 'Admin\OrderShippingController');
+// Pedidos Excluded
+Route::post('orders/excluded/data', 'Admin\OrderController@dataExcluded')->name('orders.excluded.data');
+Route::post('order/{id}/reactivate', 'Admin\OrderController@reactivate');
+// Imprimir PDF
+Route::get('order/{id}/printer', 'Admin\OrderController@printerPdf')->name('order-items.printer');
+Route::get('order/{id}/download', 'Admin\OrderController@downloadPdf')->name('order-items.download');
+
+
+
+// Clientes
+Route::resource('accounts', 'Admin\UserController');
+Route::post('accounts/data', 'Admin\UserController@data')->name('accounts.data');
+Route::get('account/{id}/profile', 'Admin\UserController@profile')->name('account.profile');
+Route::get('account/load/profile/{opc}/update/{id}', 'Admin\UserController@loadUpdateProfile');
+Route::get('account/load/profile/{opc}', 'Admin\UserController@loadProfile');
+// Endereços
+Route::resource('account/{id}/address', 'Admin\UserAddressController');
+Route::get('address/{id}/refresh', 'Admin\UserAddressController@refresh')->name('account-address.refresh');
+// Observações
+Route::resource('account/{id}/notes', 'Admin\UserNoteController');
+Route::get('note/{id}/refresh', 'Admin\UserNoteController@refresh')->name('account-notes.refresh');
+// Excluidos
+Route::get('accounts/excluded', 'Admin\UserController@show')->name('accounts.excluded');
+Route::post('accounts/excluded/data', 'Admin\UserController@dataExcluded')->name('accounts.excluded.data');
+Route::post('account/{id}/reactivate', 'Admin\UserController@reactivate');
+
+
+// Contato
+Route::resource('contacts', 'Admin\ContactController');
+Route::get('contacts/message/{id}', 'Admin\ContactController@message')->name('contacts.message');
+Route::get('contacts/{id}/details', 'Admin\ContactController@details')->name('contacts.details');
+Route::post('contacts/data', 'Admin\ContactController@data')->name('contacts.data');
+Route::post('contacts/{id}/response', 'Admin\ContactController@response')->name('contacts.response');
+Route::post('contacts/{id}/status', 'Admin\ContactController@status')->name('contacts.status');
+Route::post('contacts/{id}/spam', 'Admin\ContactController@spam')->name('contacts.spam');
+Route::get('contacts/{id}/refresh', 'Admin\ContactController@refresh')->name('contacts.refresh');
+
+// Spams Contatos
+Route::resource('spams', 'Admin\ContactSpamController');
+Route::post('spams/data', 'Admin\ContactSpamController@data')->name('spams.data');
+Route::get('spam/message/{id}', 'Admin\ContactSpamController@message')->name('spams.message');
+Route::get('spam/{id}/details', 'Admin\ContactSpamController@details')->name('spams.details');

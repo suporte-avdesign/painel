@@ -52,7 +52,7 @@ class UserRepository implements UserInterface
             2  => 'first_name',
             3  => 'admin',
             4  => 'visits',
-            5  => 'status',
+            5  => 'active',
             6  => 'last_name',
             7  => 'email',
             8  => 'document1',
@@ -141,8 +141,8 @@ class UserRepository implements UserInterface
                 ($val->client == 1 ? $client = '<small class="tag">Sim</small>' :
                     $client = '<small class="tag red-bg">Não</small>');
 
-                ($val->status == 1 ? $status = '<small class="tag">Ativo</small>' :
-                    $status = '<small class="tag red-bg">Inativo</small>');
+                ($val->active == constLang('active_true') ? $active = '<small class="tag">'.constLang('active_true').'</small>' :
+                    $active = '<small class="tag red-bg">'.constLang('active_false').'</small>');
 
                 ($val->newsletter == 1 ? $newsletter = '<small class="tag">Ativo</small>' :
                     $newsletter = '<small class="tag red-bg">Inativo</small>');
@@ -162,7 +162,7 @@ class UserRepository implements UserInterface
                 }
                 $nData['admin']         = $val->admin;
                 $nData['visits']        = $val->visits;
-                $nData['status']        = $status;
+                $nData['active']        = $active;
                 $nData['html_name']     = $html_name;
                 $nData['html_document'] = $html_document;
 
@@ -230,7 +230,7 @@ class UserRepository implements UserInterface
      */
     public function countAdmin($name)
     {
-        return $this->model->where(['status' => 1, 'admin' => $name])->get()->count();
+        return $this->model->where(['active' => constLang('active_true'), 'admin' => $name])->get()->count();
     }
 
     /**
@@ -318,7 +318,7 @@ class UserRepository implements UserInterface
             2  => 'first_name',
             3  => 'admin',
             4  => 'visits',
-            5  => 'status',
+            5  => 'active',
             6  => 'last_name',
             7  => 'email',
             8  => 'document1',
@@ -402,8 +402,8 @@ class UserRepository implements UserInterface
                 ($val->client == 1 ? $client = '<small class="tag">Sim</small>' :
                     $client = '<small class="tag red-bg">Não</small>');
 
-                ($val->status == 1 ? $status = '<small class="tag">Ativo</small>' :
-                    $status = '<small class="tag red-bg">Inativo</small>');
+                ($val->active == constLang('active_true') ? $active = '<small class="tag">'.constLang('active_true').'</small>' :
+                    $active = '<small class="tag red-bg">'.constLang('active_false').'</small>');
 
                 ($val->newsletter == 1 ? $newsletter = '<small class="tag">Ativo</small>' :
                     $newsletter = '<small class="tag red-bg">Inativo</small>');
@@ -424,7 +424,7 @@ class UserRepository implements UserInterface
                 }
                 $nData['admin']         = $val->admin;
                 $nData['visits']        = $val->visits;
-                $nData['status']        = $status;
+                $nData['active']        = $active;
                 $nData['html_name']     = $html_name;
                 $nData['html_document'] = $html_document;
 

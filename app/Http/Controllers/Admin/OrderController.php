@@ -7,7 +7,7 @@ use AVDPainel\Interfaces\Admin\OrderInterface as InterModel;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as ConfigFreight;
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImages;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImages;
 
 
 use AVDPainel\Interfaces\Admin\UserInterface as InterUser;
@@ -47,7 +47,7 @@ class OrderController extends Controller
         $this->configImages  = $configImages;
         $this->configFreight = $configFreight;
         $this->statusPayment = $statusPayment;
-        $this->last_url      = array('last_url' => 'pedidos');
+        $this->last_url      = array('last_url' => 'orders');
         $this->messages = array(
             'user_id.required'                  => 'O código do cliente é obrigatório.',
             'config_status_payment_id.required' => 'O status do pedido é obrigatório.',
@@ -57,6 +57,7 @@ class OrderController extends Controller
             'title_create'                      => 'Adicionar Pedido',
             'title_edit'                        => 'Alterar Pedido',
             'title_printer'                     => 'Imprimir',
+            'title_download'                    => 'Download',
             'store_true'                        => 'O pedido foi adicionado.',
             'store_false'                       => 'Não foi possível adicionar o pedido.',
             'update_true'                       => 'O pedido foi alterado.',
@@ -82,14 +83,21 @@ class OrderController extends Controller
 
         $this->access->update($this->last_url);
 
-        $title         = $this->messages['title_index'];
-        $confUser      = $this->confUser->get();
-        $title_edit    = $this->messages['title_edit'];
-        $title_create  = $this->messages['title_create'];
-        $title_printer = $this->messages['title_printer'];
+        $title          = $this->messages['title_index'];
+        $confUser       = $this->confUser->get();
+        $title_edit     = $this->messages['title_edit'];
+        $title_create   = $this->messages['title_create'];
+        $title_printer  = $this->messages['title_printer'];
+        $title_download = $this->messages['title_download'];
 
 
-        return view("{$this->view}.index", compact('title', 'title_create','title_printer','title_edit','confUser'));
+        return view("{$this->view}.index", compact(
+            'title',
+            'title_create',
+            'title_printer',
+            'title_download',
+            'title_edit',
+            'confUser'));
     }
 
     /**
@@ -357,6 +365,28 @@ class OrderController extends Controller
 
         }
     }
+
+
+    /**
+     * @param $order_id
+     * @return Json
+     */
+    public function downloadPdf($order_id)
+    {
+        if( Gate::denies("{$this->ability}-view") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $order   = $this->interModel->setId($order_id);
+        if (count($order) == 0) {
+            return redirect()->back();
+        } else {
+
+            return printerOrderPdf($order);
+
+        }
+    }
+
 
 
     /**

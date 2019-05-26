@@ -141,11 +141,20 @@ mix.scripts([
     'resources/assets/js/libs/DataTables/ext/buttons.server-side.js',
 ], 'public/backend/js/libs/libs.min.js');
 
+// Editor Accounts
+mix.scripts('resources/assets/scripts/accounts/accounts.js', 'public/backend/scripts/accounts/accounts.min.js');
+mix.scripts('resources/assets/scripts/accounts/address.js', 'public/backend/scripts/accounts/address.min.js');
+mix.scripts('resources/assets/scripts/accounts/excludeds.js', 'public/backend/scripts/accounts/excludeds.min.js');
+mix.scripts('resources/assets/scripts/accounts/notes.js', 'public/backend/scripts/accounts/notes.min.js');
+
+
 // Editor Admin
 mix.scripts('resources/assets/scripts/admins/admins.js', 'public/backend/scripts/admins/admins.min.js');
 mix.scripts('resources/assets/scripts/admins/admins-excluded.js', 'public/backend/scripts/admins/admins-excluded.min.js');
 mix.scripts('resources/assets/scripts/admins/myprofile.js', 'public/backend/scripts/admins/myprofile.min.js');
 
+mix.scripts('resources/assets/scripts/contacts/contacts.js', 'public/backend/scripts/contacts/contacts.min.js');
+mix.scripts('resources/assets/scripts/contacts/spams.js', 'public/backend/scripts/contacts/spams.min.js');
 
 // Configuração do sistema
 mix.scripts('resources/assets/scripts/settings/colors-group.js', 'public/backend/scripts/settings/colors-group.min.js');
@@ -165,10 +174,19 @@ mix.scripts('resources/assets/scripts/settings/template.js', 'public/backend/scr
 mix.scripts('resources/assets/scripts/settings/unit-measures.js', 'public/backend/scripts/settings/unit-measures.min.js');
 
 
+
+
 mix.scripts('resources/assets/scripts/banners.js', 'public/backend/scripts/banners.min.js');
 mix.scripts('resources/assets/scripts/content-site.js', 'public/backend/scripts/content-site.min.js');
-mix.scripts('resources/assets/scripts/sliders.js', 'public/backend/scripts/sliders.min.js');
 
+mix.scripts('resources/assets/scripts/orders/orders.js', 'public/backend/scripts/orders/orders.min.js');
+mix.scripts('resources/assets/scripts/orders/excludeds.js', 'public/backend/scripts/orders/excludeds.min.js');
+mix.scripts('resources/assets/scripts/orders/items.js', 'public/backend/scripts/orders/items.min.js');
+mix.scripts('resources/assets/scripts/orders/notes.js', 'public/backend/scripts/orders/notes.min.js');
+mix.scripts('resources/assets/scripts/orders/shippings.js', 'public/backend/scripts/orders/shippings.min.js');
+
+mix.scripts('resources/assets/scripts/sliders.js', 'public/backend/scripts/sliders.min.js');
+mix.scripts('resources/assets/scripts/wishlist.js', 'public/backend/scripts/wishlist.min.js');
 
 
 

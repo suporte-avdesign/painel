@@ -4,7 +4,7 @@ namespace AVDPainel\Http\Controllers\Admin;
 
 use AVDPainel\Interfaces\Admin\OrderInterface as InterOrder;
 use AVDPainel\Interfaces\Admin\OrderNoteInterface as InterModel;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImages;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImages;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -15,7 +15,7 @@ use PDF;
 class OrderNoteController extends Controller
 {
     protected $ability  = 'orders';
-    protected $view     = 'backend.orders-notes';
+    protected $view     = 'backend.orders.notes';
     protected $view_pdf = 'backend.orders';
     protected $disk_pdf;
     protected $url_pdf;
@@ -33,8 +33,8 @@ class OrderNoteController extends Controller
         $this->interModel    = $interModel;
         $this->configImages  = $configImages;
         $this->photo_url     = 'storage/';
-        $this->url_pdf       = 'storage/pdf/pedidos';
-        $this->disk_pdf      = storage_path('app/public/pdf/pedidos');
+        $this->url_pdf       = 'storage/pdf/order';
+        $this->disk_pdf      = storage_path('app/public/pdf/order');
         $this->messages = array(
             'description.required' => 'A observação é obrigatória.',
             'title_index'          => 'Observações do Pedido',

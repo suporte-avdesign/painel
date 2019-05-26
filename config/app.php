@@ -165,6 +165,7 @@ return [
         /*
          * Package Image ... Manipulação de Imagem
          * Package PtBrValidator... calidar cpf,cep,cel,tel
+         * Package DomPDF... gerar pdf
          *
          */
         Intervention\Image\ImageServiceProvider::class,
@@ -233,6 +234,7 @@ return [
 
         /*
          * Package Image ... Manipulação de Imagem
+         * Package PDF ... Manipulação de PDF
          */
         'Image' => Intervention\Image\Facades\Image::class,
 

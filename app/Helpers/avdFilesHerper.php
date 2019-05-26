@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Contracts\Filesystem\Factory as fileFactory;
-use Barryvdh\DomPDF\PDF;
 
+use Barryvdh\DomPDF\Facade as PDF;
 
 /**
  * Abrir PDF no browser
@@ -11,14 +11,16 @@ use Barryvdh\DomPDF\PDF;
 if (! function_exists('printerOrderPdf')) {
     function printerOrderPdf($order) {
 
-        $pdf_url  = 'storage/pdf/pedidos';
+        $pdf_url  = 'storage/pdf/order';
         $factory = app(fileFactory::class);
         $diskAccesses = $factory->disk('local');
 
         $name = md5($order->id) . md5($order->user_id).'.pdf';
         $year = date('Y', strtotime($order->created_at));
         $file = url("{$pdf_url}/{$year}/{$order->user_id}/{$name}");
-        $path    = "public/pdf/pedidos/{$year}/{$order->user_id}/{$name}";
+        $path    = "public/pdf/order/{$year}/{$order->user_id}/{$name}";
+
+
 
         if ($diskAccesses->exists($path)) {
             $success = true;
@@ -37,7 +39,7 @@ if (! function_exists('printerOrderPdf')) {
         );
 
         if ($diskAccesses->exists($path)) {
-          $out['taget'] =  "_blank";
+            $out['taget'] =  "_blank";
 
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
@@ -45,14 +47,13 @@ if (! function_exists('printerOrderPdf')) {
             );
         }
 
-
         return response()->json($out);
 
     }
 }
 
 /**
- * Gerar arquivos pdf dor pedidos.
+ * Gerar arquivos pdf dor order.
  *
  * @var string str
  * @return  void
@@ -62,8 +63,8 @@ if (! function_exists('generateOrderPdf')) {
 
 
         $photo_url = 'storage/';
-        $pdf_url   = 'storage/pdf/pedidos';
-        $disk_pdf  = storage_path('app/public/pdf/pedidos');
+        $pdf_url   = 'storage/pdf/order';
+        $disk_pdf  = storage_path('app/public/pdf/order');
         $view_pdf  = 'backend.orders.pdf';
 
         $items = $order->items;
@@ -80,8 +81,9 @@ if (! function_exists('generateOrderPdf')) {
         $route = url("{$pdf_url}/{$year}/{$order->user_id}/{$name}");
 
         if ($method == 'store') {
-            if (!file_exists($path)) {
-                \File::makeDirectory($path, 0777, true);
+
+            if ( !file_exists($path) ) {
+                Storage::makeDirectory($path, 0777, true);
             }
         }
 

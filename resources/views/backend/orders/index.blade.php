@@ -1,19 +1,17 @@
 <div class="block-title">
     <h3><span class="icon icon-clipboard"> </span><strong> {{$title}} </strong></h3>
     <div class="button-group absolute-right">
-        <a href="pedidos/excluidos" class="button icon-clipboard margin-left red-gradient glossy ">Excluidos</a>
-
+        <a href="orders/excluded" class="button icon-clipboard margin-left red-gradient glossy ">Excluidos</a>
         @can('orders-create')
-            <a href="javascript:void(0)" onclick="abreModal('{{$title_create}}', '{{route('pedidos.create')}}', 'accounts', 2, 'true', 400, 260);" class="button margin-right with-tooltip" data-tooltip-options='{"classes":["anthracite-gradient"],"position":"bottom"}' title="{{$title_create}}">Adicionar
+            <a href="javascript:void(0)" onclick="abreModal('{{$title_create}}', '{{route('orders.create')}}', 'accounts', 2, 'true', 400, 260);" class="button margin-right with-tooltip" data-tooltip-options='{"classes":["anthracite-gradient"],"position":"bottom"}' title="{{$title_create}}">Adicionar
                 <span class="button-icon right-side"><span class="icon-plus-round"></span></span>
             </a>
         @endcan
-
     </div>
 </div>
 
 <!-- DataTables -->
-<link rel="stylesheet" href="{!! url('assets/backend/js/libs/DataTables/'.$confUser->table_color.'.css?'.time()) !!}">
+<link rel="stylesheet" href="{{ mix('backend/css/tables/'.$confUser->table_color.'.css')}}">
 
 <table class="table responsive-table" id="orders">
     <thead>
@@ -36,14 +34,10 @@
     </tfoot>
 </table>
 
-
-
-<script src="{!! url('assets/backend/scripts/orders.js?'.time()) !!}"></script>
-<script src="{!! url('assets/backend/scripts/orders-items.js?'.time()) !!}"></script>
-<script src="{!! url('assets/backend/scripts/orders-notes.js?'.time()) !!}"></script>
-<script src="{!! url('assets/backend/scripts/orders-shippings.js?'.time()) !!}"></script>
-
-
+<script src="{{mix('backend/scripts/orders/orders.min.js')}}"></script>
+<script src="{{mix('backend/scripts/orders/items.min.js')}}"></script>
+<script src="{{mix('backend/scripts/orders/notes.min.js')}}"></script>
+<script src="{{mix('backend/scripts/orders/shippings.min.js')}}"></script>
 <script>
     var tableOrders = {!! json_encode([
         "id" => 'orders',
@@ -133,8 +127,9 @@
 
                     <li>
                         <div class="button-group absolute-right compact">
-                            <button onclick="deleteOrder('pedidos/@{{{id}}}', '@{{{id}}}')" class="button icon-trash with-tooltip red-gradient" title="Excluir Lista"></button>
-                            <button onclick="abreModal('{{$title_edit}}', 'pedidos/@{{{id}}}/edit', 'edit-order', 2, 'true', 400, 600);" class="button icon-pencil blue-gradient with-tooltip">Editar</button>
+                            <button onclick="deleteOrder('orders/@{{{id}}}', '@{{{id}}}')" class="button icon-trash with-tooltip red-gradient" title="Excluir Lista"></button>
+                            <button onclick="abreModal('{{$title_edit}}', 'orders/@{{{id}}}/edit', 'edit-order', 2, 'true', 400, 600);" class="button icon-pencil blue-gradient with-tooltip">Editar</button>
+                            <button onclick="downloadPdf('order/@{{{id}}}/download')"  class="button icon-down-fat with-tooltip green-gradient"></button>
                             <button onclick="printerPdf('order/@{{{id}}}/printer')"  class="button icon-printer with-tooltip anthracite-gradient">{{$title_printer}}</button>
                         </div>
                     </li>

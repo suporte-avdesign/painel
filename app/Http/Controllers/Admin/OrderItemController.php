@@ -10,7 +10,7 @@ use AVDPainel\Interfaces\Admin\ImageColorInterface as InterProduct;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as ConfigFreight;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImages;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImages;
 
 use AVDPainel\Interfaces\Admin\UserInterface as InterUser;
 use AVDPainel\Interfaces\Admin\ConfigStatusPaymentInterface as StatusPayment;
@@ -24,7 +24,7 @@ use AVDPainel\Http\Controllers\Controller;
 class OrderItemController extends Controller
 {
     protected $ability  = 'orders';
-    protected $view     = 'backend.orders-items';
+    protected $view     = 'backend.orders.items';
     protected $view_pdf = 'backend.orders';
     protected $disk_pdf;
     protected $url_pdf;
@@ -61,8 +61,8 @@ class OrderItemController extends Controller
         $this->statusPayment = $statusPayment;
         $this->configImages  = $configImages;
         $this->photo_url     = 'storage/';
-        $this->url_pdf       = 'storage/pdf/pedidos';
-        $this->disk_pdf      = storage_path('app/public/pdf/pedidos');
+        $this->url_pdf       = 'storage/pdf/order';
+        $this->disk_pdf      = storage_path('app/public/pdf/order');
         $this->messages = array(
             'quantity.required'                 => 'A quantidade é obrigatória.',
             'title_index'                       => 'Produtos do Pedido',

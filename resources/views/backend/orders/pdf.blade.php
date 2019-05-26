@@ -12,7 +12,7 @@
 <div class="wrapped margin-bottom">
     <h4 class="no-margin-bottom">
         <span class="float-right">Pedido: {{$order->id}} </span>
-        <img src="{{asset('assets/backend/img/logo/logo-pdf.png')}}" width="100px">
+        <img src="{{asset('backend/img/logo/logo-pdf.png')}}" width="100px">
     </h4>
     {{env('DT_ADDRESS')}} - {{env('DT_DISTRICT')}} - {{env('DT_CITY')}}-{{env('DT_STATE')}}
     <span class="float-right">
