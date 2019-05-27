@@ -105,7 +105,7 @@ class ProductController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $this->last_url = array("last_url" => "produtos/{$slug}/catalogo");
+        $this->last_url = array("last_url" => "products/{$slug}/catalog");
         $this->access->update($this->last_url);
 
         $data          = $this->interCategory->setName('slug', $slug);
@@ -160,10 +160,10 @@ class ProductController extends Controller
         // Carregar Modulos
         ($configProduct->freight == 1 ? $freight = $this->configFreight->setId(1) : $freight = 0);
         
-        ($configProduct->group_colors == 1 ? $hexa = \AVDPainel\Models\Admin\ConfigColorGroup::get() : $hexa = array());
+        ($configProduct->group_colors == 1 ? $group_colors = \AVDPainel\Models\Admin\ConfigColorGroup::get() : $group_colors = array());
         
-        return view('backend.products.modal.tabs', compact(
-            'hexa',
+        return view('backend.products.pixels.tabs', compact(
+            'group_colors',
             'kits',
             'idpro',
             'group',

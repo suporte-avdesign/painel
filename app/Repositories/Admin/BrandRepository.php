@@ -59,7 +59,7 @@ class BrandRepository implements BrandInterface
      */
     public function pluck()
     {
-        return $this->model->orderBy('name')->where('status', 'Ativo')->pluck('name','id');
+        return $this->model->orderBy('name')->where('active', constLang('active_true'))->pluck('name','id');
     }
 
 
