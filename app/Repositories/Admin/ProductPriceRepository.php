@@ -10,6 +10,7 @@ class ProductPriceRepository implements ProductPriceInterface
 {
 
     public $model;
+    public $profileClient;
 
     /**
      * Create construct.
@@ -21,7 +22,7 @@ class ProductPriceRepository implements ProductPriceInterface
         $this->model = $model;
     }
 
-    public function create($input, $idpro, $offer)
+    public function create($input, $idpro, $offer, $price_default)
     {     
         $text_offer_card = '';
         $text_offer_cash = '';
@@ -30,8 +31,8 @@ class ProductPriceRepository implements ProductPriceInterface
             ($value['price_cash_percent'] < 0 ? $sum_cash = '-' : $sum_cash = '+');
             ($value['price_card_percent'] < 0 ? $sum_card = '-' : $sum_card = '+');
             
-            ($value['profile'] != 'Normal' ? $value['sum_card'] = $sum_card : $value['sum_card'] = '-');
-            ($value['profile'] != 'Normal' ? $value['sum_cash'] = $sum_cash : $value['sum_cash'] = '-');
+            ($value['profile'] != $price_default ? $value['sum_card'] = $sum_card : $value['sum_card'] = '-');
+            ($value['profile'] != $price_default ? $value['sum_cash'] = $sum_cash : $value['sum_cash'] = '-');
 
             $value['price_cash_percent'] = abs($value['price_cash_percent']);
             $value['price_card_percent'] = abs($value['price_card_percent']);
@@ -44,7 +45,7 @@ class ProductPriceRepository implements ProductPriceInterface
                     $text_offer_card = '- Oferta Parcelado:'.setReal($data->offer_card);
                     $text_offer_cash = ', Á vista:'.round($data->offer_percent, 2).'% '.setReal($data->offer_cash);
                 }
-                if ($data->profile == 'Normal') {
+                if ($data->profile == $price_default) {
                     $price_card_percent = '';
                     $price_cash_percent = round($data->price_cash_percent, 2);
                 } else {
@@ -63,7 +64,7 @@ class ProductPriceRepository implements ProductPriceInterface
     }
 
 
-    public function update($input, $idpro, $offer)
+    public function update($input, $idpro, $offer, $price_default)
     {
 
         $text_offer_card = '';
@@ -73,8 +74,8 @@ class ProductPriceRepository implements ProductPriceInterface
             ($value['price_cash_percent'] < 0 ? $sum_cash = '-' : $sum_cash = '+');
             ($value['price_card_percent'] < 0 ? $sum_card = '-' : $sum_card = '+');
             
-            ($value['profile'] != 'Normal' ? $value['sum_card'] = $sum_card : $value['sum_card'] = '-');
-            ($value['profile'] != 'Normal' ? $value['sum_cash'] = $sum_cash : $value['sum_cash'] = '-');
+            ($value['profile'] != $price_default ? $value['sum_card'] = $sum_card : $value['sum_card'] = '-');
+            ($value['profile'] != $price_default ? $value['sum_cash'] = $sum_cash : $value['sum_cash'] = '-');
 
             $value['price_cash_percent'] = abs($value['price_cash_percent']);
             $value['price_card_percent'] = abs($value['price_card_percent']);
@@ -90,7 +91,7 @@ class ProductPriceRepository implements ProductPriceInterface
                     $text_offer_card = '- Oferta Parcelado:'.setReal($data->offer_card);
                     $text_offer_cash = ', Á vista:'.round($data->offer_percent, 2).'% '.setReal($data->offer_cash);
                 }
-                if ($data->profile == 'Normal') {
+                if ($data->profile == $price_default) {
                     $price_card_percent = '';
                     $price_cash_percent = round($data->price_cash_percent, 2);
                 } else {

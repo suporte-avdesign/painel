@@ -156,6 +156,14 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
     }
 
 
+    public function setDefault()
+    {
+        $data = $this->model->where('default', 1)->first();
+
+        return $data;
+
+    }
+
 
     /**
      * Obter o valor correspondente ao campo indicado.
@@ -163,10 +171,10 @@ class ConfigProfileClientRepository implements ConfigProfileClientInterface
      * @param  string  $filde
      * @return int or string $id
      */
-    public function getFilde($filde, $name)
+    public function getFild($fild, $name)
     {
         
-        $data = $this->model->where($filde, $name)->first();
+        $data = $this->model->where($fild, $name)->first();
 
         return $data;
     }

@@ -11,8 +11,9 @@ interface ConfigProfileClientInterface
      */
     public function get();
     public function getAll($input);
-    public function getFilde($filde, $name);
+    public function getFild($fild, $name);
     public function setId($id);
+    public function setDefault();
     public function pluck();
     public function create($input);
     public function update($input, $id);

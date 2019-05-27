@@ -107,11 +107,11 @@
         <div class="panel-control align-right">
             <div class="open-on-panel-content">
                 @can('product-delete')
-                    <button id="btn-excluir" onclick="deleteProduct('produtos/{{$data->slug}}/catalogo/@{{{id}}}', '@{{{name}}}');" class="button icon-trash with-tooltip red-gradient" title="Excluir Categoria">Excluir
+                    <button id="btn-excluir" onclick="deleteProduct('products/{{$data->slug}}/catalog/@{{{id}}}', '@{{{name}}}');" class="button icon-trash with-tooltip red-gradient" title="Excluir Categoria">Excluir
                     </button>
                 @endcan
                 @can('product-update')
-                    <button id="btn-editar"  onclick="abreModal('Editar Produto {{$data->name}} / {{$data->section}}', 'produtos/{{$data->slug}}/catalogo/@{{{id}}}/edit', 'products', 2, 'true', 800, 780);" class="button blue-gradient icon-pencil with-tooltip" title="Alterar Produto">Editar
+                    <button id="btn-editar"  onclick="abreModal('Editar Produto {{$data->name}} / {{$data->section}}', 'products/{{$data->slug}}/catalog/@{{{id}}}/edit', 'products', 2, 'true', 800, 780);" class="button blue-gradient icon-pencil with-tooltip" title="Alterar Produto">Editar
                     </button>
                 @endcan
             </div>   
@@ -121,18 +121,16 @@
             <div class="block">
                 <div class="with-padding">
                     <h4 class="blue underline">Perfil do Produto</h4>
-                    <ul class="bullet-list">
-                        <li>Nome: <strong> @{{{name}}} </strong></li>
-                        <li>Descrição: <strong> @{{{description}}} </strong></li>
-                        <li>Tags: <strong> @{{{tags}}} </strong></li>
+                        <p>Nome: <strong> @{{{name}}} </strong></p>
+                        <p>Descrição: <strong> @{{{description}}} </strong></p>
+                        <p>Tags: <strong> @{{{tags}}} </strong></p>
                         @{{{cost}}}
                         @{{{sum_stock}}}
                         @{{{kit}}}
-                        <li>Unidade Medida: <strong>  @{{{unit}}} @{{{measure}}} </strong></li>
+                        <p>Unidade Medida: <strong>  @{{{unit}}} @{{{measure}}} </strong></p>
                         @{{{prices}}}
                         @{{{freight}}}
                         @{{{video}}}
-                    </ul>
                 </div>
             </div>
         </div>

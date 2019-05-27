@@ -16,6 +16,7 @@ class ConfigProfileClientTableSeeder extends Seeder
         $date = date('Y-m-d H:i:s');
 
         ConfigProfileClient::create([
+            'default' => 1,
             'order' => '01',
             'name' => 'Atacado',
             'percent_cash' => 0,
@@ -27,6 +28,7 @@ class ConfigProfileClientTableSeeder extends Seeder
         ]);
 
         ConfigProfileClient::create([
+            'default' => 0,
             'order' => '02',
             'name' => 'Varejo',
             'percent_cash' => 25,

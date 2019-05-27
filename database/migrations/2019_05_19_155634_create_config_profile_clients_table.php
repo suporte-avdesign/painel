@@ -18,6 +18,7 @@ class CreateConfigProfileClientsTable extends Migration
     {
         Schema::create('config_profile_clients', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->smallInteger('default')->default(0);
             $table->char('order', 2);
             $table->string('name', 50)->unique();
             $table->float('percent_cash');

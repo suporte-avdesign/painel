@@ -33,14 +33,14 @@
             <fieldset class="fieldset">
                 <legend class="legend">Status do produto</legend>
                 <p class="button-height inline-label">
-                    <label for="active" class="label">Status</label>
+                    <label for="status" class="label">Status</label>
                     <span class="button-group">
-                        <label for="active_1" class="button green-active">
-                            <input type="radio" name="prod[active]" id="active_1" value="1"  checked >
+                        <label for="status_1" class="button green-active">
+                            <input type="radio" name="prod[status]" id="status_1" value="1"  checked>
                             Ativo
                         </label>
-                                <label for="active_2" class="button red-active" >
-                            <input type="radio" name="prod[active]" id="active_2" value="0" >
+                        <label for="status_0" class="button red-active" >
+                            <input type="radio" name="prod[status]" id="status_0" value="0">
                             Inativo
                         </label>
                     </span>
@@ -49,11 +49,11 @@
                     <label for="new" class="label">Novo</label>
                     <span class="button-group">
                         <label for="new_1" class="button green-active">
-                            <input type="radio" name="prod[new]" id="new_1" value="1"  checked >
+                            <input type="radio" name="prod[new]" id="new_1" value="1"  checked>
                             Ativo
                         </label>
-                                <label for="new_2" class="button red-active" >
-                            <input type="radio" name="prod[new]" id="new_2" value="0" >
+                                <label for="new_0" class="button red-active" >
+                            <input type="radio" name="prod[new]" id="new_0" value="0" >
                             Inativo
                         </label>
                     </span>
@@ -65,8 +65,8 @@
                             <input type="radio" name="prod[featured]" id="featured_1" value="1">
                             Ativo
                         </label>
-                                <label for="featured_2" class="button red-active" >
-                            <input type="radio" name="prod[featured]" id="featured_2" value="0" checked>
+                                <label for="featured_0" class="button red-active" >
+                            <input type="radio" name="prod[featured]" id="featured_0" value="0" checked>
                             Inativo
                         </label>
                     </span>
@@ -78,8 +78,8 @@
                             <input type="radio" name="prod[trend]" id="trend_1" value="1">
                             Ativo
                         </label>
-                        <label for="trend_2" class="button red-active" >
-                            <input type="radio" name="prod[trend]" id="trend_2" value="0" checked>
+                        <label for="trend_0" class="button red-active" >
+                            <input type="radio" name="prod[trend]" id="trend_0" value="0" checked>
                             Inativo
                         </label>
                     </span>
@@ -91,8 +91,8 @@
                             <input type="radio" name="prod[black_friday]" id="black_friday_1" value="1">
                             Ativo
                         </label>
-                        <label for="black_friday_2" class="button red-active" >
-                            <input type="radio" name="prod[black_friday]" id="black_friday_2" value="0" checked>
+                        <label for="black_friday_0" class="button red-active" >
+                            <input type="radio" name="prod[black_friday]" id="black_friday_0" value="0" checked>
                             Inativo
                         </label>
                     </span>
@@ -106,8 +106,8 @@
                                 <input type="radio" name="prod[kit]"  id="kit_1" onclick="setKit('1','{{$idpro}}','painel/produto')" value="1" checked >
                                 Ativo
                             </label>
-                            <label for="kit_2" class="button red-active">
-                                <input type="radio" name="prod[kit]" id="kit_2" onclick="setKit('0','{{$idpro}}','painel/produto')" value="0" >
+                            <label for="kit_0" class="button red-active">
+                                <input type="radio" name="prod[kit]" id="kit_0" onclick="setKit('0','{{$idpro}}','painel/produto')" value="0" >
                                 Inativo
                             </label>
                         </span>
@@ -122,19 +122,20 @@
                                 <input type="radio" name="prod[stock]"  id="stock_1" onclick="setStock('1','{{$idpro}}','painel/produto')" value="1" checked >
                                 Ativo
                             </label>
-                            <label for="stock_2" class="button red-active">
-                                <input type="radio" name="prod[stock]" id="stock_2" onclick="setStock('0','{{$idpro}}','painel/produto')" value="0" >
+                            <label for="stock_0" class="button red-active">
+                                <input type="radio" name="prod[stock]" id="stock_0" onclick="setStock('0','{{$idpro}}','painel/produto')" value="0" >
                                 Inativo
                             </label>
                         </span>
                     </p>
                 @endif
-
-                @if($configProduct->freight == 1)
-                    @include('backend.products2.modal.forms.create.freight')
-                @endif
-
             </fieldset>
+
+            @if($configProduct->freight == 1)
+                @include('backend.products.pixels.forms.create.freight')
+            @endif
+
+
         </div>
         <div class="seven-columns twelve-columns-tablet">
             <fieldset class="fieldset">
@@ -160,7 +161,7 @@
                 @if($configProduct->cost == 1)
                     <p class="button-height inline-small-label">
                         <label for="cost" class="label"><b>Custo</b><span class="red">*</span></label>
-                        <input type="text" name="prod[cost]" id="cost" value="" class="input" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8">
+                        <input type="text" name="cost[value]" id="cost" value="" class="input" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8">
                     </p>
                 @endif
 
@@ -180,7 +181,7 @@
                         <input type="text" name="price[1][price_cash]" onKeyDown="javascript: return maskValor(this,event,8,2);" class="input-unstyled" placeholder="À Vista" value="" style="width: 80px;">
                         <a id="get_prices" href="javascript:get_prices('{{route('profile.client.get.prices')}}', '{{$configProduct->price_profile}}')" class="button compact">Calcular</a>
                     </span>
-                    <input type="hidden" name="price[1][profile]" value="Normal">
+                    <input type="hidden" name="price[1][profile]" value="{{$configProduct->price_default}}">
                     <input type="hidden" name="price[1][price_card_percent]" value="0">
                     <input type="hidden" name="price[1][config_profile_client_id]" value="1">
                 </p>
@@ -195,8 +196,8 @@
                             <input type="radio" onclick="get_offers('{{route('profile.client.get.offers')}}', '1', '{{$configProduct->price_profile}}')" name="prod[offer]" id="offer_1" value="1">
                             Sim
                         </label>
-                        <label for="offer_2" class="button red-active compact" >
-                            <input type="radio" onclick="get_offers('{{route('profile.client.get.offers')}}', '0', '{{$configProduct->price_profile}}')" name="prod[offer]" id="offer_2" value="0" checked>
+                        <label for="offer_0" class="button red-active compact" >
+                            <input type="radio" onclick="get_offers('{{route('profile.client.get.offers')}}', '0', '{{$configProduct->price_profile}}')" name="prod[offer]" id="offer_0" value="0" checked>
                             Não
                         </label>
                         <input type="number" name="prod[offer_days]" class="input-unstyled" value="30" style="width: 50px;" maxlength="2">

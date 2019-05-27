@@ -71,6 +71,7 @@ class AppServiceProvider extends ServiceProvider
             'OrderNote',
             'OrderShipping',
             'Product',
+            'ProductCost',
             'ProductPrice',
             'Section',
             'State',

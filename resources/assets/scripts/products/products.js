@@ -282,6 +282,7 @@
                 success: function(data){
                     if(data.success == true){
                         btn.html(data.click);
+                        console.log(data.click);
                         msgNotifica(true, data.message, true, false);
                     } else {
                         msgNotifica(false, data.message, true, false);

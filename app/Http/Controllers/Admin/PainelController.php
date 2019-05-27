@@ -8,7 +8,7 @@ use AVDPainel\Models\Admin\Brand;
 use AVDPainel\Models\Admin\Product;
 use AVDPainel\Models\Admin\Section;
 use AVDPainel\Models\Admin\Category;
-//use AVDPainel\Models\Admin\ImageColor;
+use AVDPainel\Models\Admin\ImageColor;
 use AVDPainel\Models\Admin\Contact;
 
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
@@ -37,6 +37,7 @@ class PainelController extends Controller
         $this->middleware('auth:admin');
 
         $this->access            = $access;
+
         $this->interConfigSystem = $interConfigSystem;
         $this->interConfigAvatar = $interConfigAvatar->setId(1);
         $this->avatar_url        = 'https://www.gravatar.com/avatar';
@@ -54,8 +55,9 @@ class PainelController extends Controller
         Contact $contact,
         Section $section,
         Product $product,
-        Category $category)
-        //ImageColor $colors
+        Category $category,
+        ImageColor $colors)
+
     {
 
         $this->last_url   = array("last_url" => "admin");
@@ -81,8 +83,7 @@ class PainelController extends Controller
             'total_sections' => $section->count(),
             'total_categories' => $category->count(),
             'total_products' => $product->count(),
-            //'total_colors' => $colors->count(),
-            'total_colors' => 1,
+            'total_colors' => $colors->count(),
             'total_mails' => $contact->where('send', 0)->count()
         );
 

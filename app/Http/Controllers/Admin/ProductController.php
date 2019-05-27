@@ -13,12 +13,12 @@ use AVDPainel\Interfaces\Admin\ConfigKitInterface as ConfigKit;
 use AVDPainel\Interfaces\Admin\SectionInterface as InterSection;
 use AVDPainel\Interfaces\Admin\CategoryInterface as InterCategory;
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
+use AVDPainel\Interfaces\Admin\ProductCostInterface as ProductCost;
 use AVDPainel\Interfaces\Admin\ProductPriceInterface as ProductPrice;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as ConfigFreight;
 use AVDPainel\Interfaces\Admin\ConfigPercentInterface as ConfigPercent;
-use AVDPainel\Interfaces\Admin\ConfigProfileClientInterface as ConfigPrice;
 use AVDPainel\Interfaces\Admin\ConfigUnitMeasureInterface as ConfigUnitMeasure;
 use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImageProduct;
 
@@ -51,7 +51,7 @@ class ProductController extends Controller
         InterModel $interModel,
         InterBrand $interBrand,
         ConfigSystem $confUser,
-        ConfigPrice $configPrice,
+        ProductCost $productCost,
         ProductPrice $productPrice,
         InterSection $interSection,
         InterCategory $interCategory,
@@ -68,7 +68,7 @@ class ProductController extends Controller
         $this->configKit          = $configKit;
         $this->interModel         = $interModel;
         $this->interBrand         = $interBrand;
-        $this->configPrice        = $configPrice;
+        $this->productCost        = $productCost;
         $this->productPrice       = $productPrice;
         $this->interSection       = $interSection;
         $this->interCategory      = $interCategory;
@@ -173,7 +173,8 @@ class ProductController extends Controller
             'category',
             'percentage',
             'unit_measure',
-            'configProduct')
+            'configProduct',
+            'profileClient')
         );
     }
 
@@ -200,8 +201,11 @@ class ProductController extends Controller
             $data = $this->interModel->create($dataForm['prod']);
 
             if ($data) {
+                $cost = $this->productCost->create($dataForm['cost'], $data);
 
-                $prices = $this->productPrice->create($dataForm['price'], $data->id, $data->offer);
+                $configProduct = $this->configProduct->setId(1);
+
+                $prices = $this->productPrice->create($dataForm['price'], $data->id, $data->offer, $configProduct->price_default);
                 if ($prices) {
                     $success = true;
                     $message = $this->messages['store_true'];
@@ -339,7 +343,10 @@ class ProductController extends Controller
 
             $update = $this->interModel->update($dataForm, $data, $id);
             if ($update) {
-                $prices = $this->productPrice->update($request['price'], $id, $dataForm['offer']);
+
+                $configProduct = $this->configProduct->setId(1);
+
+                $prices = $this->productPrice->update($request['price'], $id, $dataForm['offer'], $configProduct->price_default);
                 DB::commit();
             }
 

@@ -43,18 +43,13 @@ class ProductRepository implements ProductInterface
     }
 
 
-    /**
-     * Table: Keyword
-     *
-     * @return array
-     */
     public function getAll($request, $id)
     {
         $columns = array(
             0  => 'id',
             1  => 'visits',
             2  => 'offer',
-            3  => 'active',
+            3  => 'status',
             4  => 'featured',
             5  => 'new',
             6  => 'trend',
@@ -78,21 +73,21 @@ class ProductRepository implements ProductInterface
             29 => 'prices',
             30 => 'kit'
         );
-  
+
         $totalData = $this->model->where('category_id',$id)->with(array(
             'images' => function ($query) {
                 $query->orderBy('cover', 'asc');
             }
         ))
-        ->count();
+            ->count();
 
-        $totalFiltered = $totalData; 
+        $totalFiltered = $totalData;
 
         $limit = $request->input('length');
         $start = $request->input('start');
         $order = $columns[$request->input('order.0.column')];
         $dir   = $request->input('order.0.dir');
-            
+
         if (empty($request->input('search.value'))) {
 
             $query = $this->model->where('category_id',$id)->with(array(
@@ -100,31 +95,14 @@ class ProductRepository implements ProductInterface
                     $query->orderBy('id', 'asc');
                 }
             ))
-            ->with(array(
-                'images' => function ($query) {
-                    $query->orderBy('cover', 'asc');
-                }
-            ))           
-            ->with(array(
-                'grids' => function ($query) {
-                    $query->where('entry', '>', 0);
-                }
-            ))           
-            ->offset($start)
-            ->limit($limit)
-            ->orderBy($order,$dir)
-            ->get();
-
-        } else {
-            $search = $request->input('search.value');
-            if (strlen($search) >= 3) {
-                $query = $this->model->where('category_id',$id)->with(array(
-                    'images' => function ($query) use($search) {
-                        $query->where('code', 'LIKE',"%{$search}%")
-                        ->where('description', 'LIKE',"%{$search}%")
-                        ->where('image', 'LIKE',"%{$search}%")
-                        ->orWhere('code', 'LIKE',"%{$search}%")
-                        ->orderBy('cover', 'asc');
+                ->with(array(
+                    'images' => function ($query) {
+                        $query->orderBy('cover', 'asc');
+                    }
+                ))
+                ->with(array(
+                    'grids' => function ($query) {
+                        $query->where('entry', '>', 0);
                     }
                 ))
                 ->offset($start)
@@ -132,17 +110,34 @@ class ProductRepository implements ProductInterface
                 ->orderBy($order,$dir)
                 ->get();
 
+        } else {
+            $search = $request->input('search.value');
+            if (strlen($search) >= 3) {
+                $query = $this->model->where('category_id',$id)->with(array(
+                    'images' => function ($query) use($search) {
+                        $query->where('code', 'LIKE',"%{$search}%")
+                            ->where('description', 'LIKE',"%{$search}%")
+                            ->where('image', 'LIKE',"%{$search}%")
+                            ->orWhere('code', 'LIKE',"%{$search}%")
+                            ->orderBy('cover', 'asc');
+                    }
+                ))
+                    ->offset($start)
+                    ->limit($limit)
+                    ->orderBy($order,$dir)
+                    ->get();
+
                 $totalFiltered = $this->model->where('category_id',$id)->with(array(
                     'images' => function ($query) use($search) {
                         $query->where('code', 'LIKE',"%{$search}%")
-                        ->where('description', 'LIKE',"%{$search}%")
-                        ->where('image', 'LIKE',"%{$search}%")
-                        ->orWhere('code', 'LIKE',"%{$search}%")
-                        ->count();
+                            ->where('description', 'LIKE',"%{$search}%")
+                            ->where('image', 'LIKE',"%{$search}%")
+                            ->orWhere('code', 'LIKE',"%{$search}%")
+                            ->count();
                     }
                 ))
-                ->orWhere('description', 'LIKE',"%{$search}%")
-                ->count();
+                    ->orWhere('description', 'LIKE',"%{$search}%")
+                    ->count();
             }
         }
         // Configurações
@@ -150,8 +145,10 @@ class ProductRepository implements ProductInterface
         $configProduct = $this->configProduct->setId(1);
         $configFreight = $this->configFreight->setId(1);
 
+        $price_default = $configFreight->price_default;
+
         $default = $configProduct->freight;
-        $weight  = $configFreight->weight; 
+        $weight  = $configFreight->weight;
         $height  = $configFreight->height;
         $length  = $configFreight->length;
         $width   = $configFreight->width;
@@ -162,8 +159,8 @@ class ProductRepository implements ProductInterface
         $prices  = '';
         $cost    = $configProduct->cost;
         $path    = 'storage/'. $configImage->path;
-        $kit     = $configProduct->kit;        
-        $data    = array();        
+        $kit     = $configProduct->kit;
+        $data    = array();
         if(!empty($query))
         {
             foreach ($query as $val){
@@ -181,7 +178,7 @@ class ProductRepository implements ProductInterface
                     }
 
                 } else {
-                    $image = '<img src="'.url('assets/imagens/padrao/product-no-image.png').'" />';                    
+                    $image = '<img src="'.url('imagens/padrao/product-no-image.png').'" />';
                 }
                 // Stock
                 $grids = count($val->grids);
@@ -196,23 +193,23 @@ class ProductRepository implements ProductInterface
                     }
                 }
 
-               // Prices
+                // Prices
                 foreach ($val->prices as $price) {
-                    ($price->profile == 'Normal' ? $price_card_percent = '' : $price_card_percent = $price->sum_card.round($price->price_card_percent, 2).'%&nbsp;&nbsp;');
+                    ($price->profile == $price_default ? $price_card_percent = '' : $price_card_percent = $price->sum_card.round($price->price_card_percent, 2).'%&nbsp;&nbsp;');
                     $prices .= '<li><small class="tag">'.$price->profile.'</small> À Vista: '.$price->sum_cash.round($price->price_cash_percent, 2).'%<strong>&nbsp;&nbsp;'.
                         setReal($price->price_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: '.$price_card_percent.'<strong>'.
                         setReal($price->price_card).'</strong></li>';
-                    
+
                     if ($val->offer == 1) {
                         $prices .= '<li><small class="tag green-bg">'.
                             $price->profile.'</small> Oferta à Vista: '.round($price->offer_percent, 2).'%<strong>&nbsp;&nbsp;'.
                             setReal($price->offer_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: <strong>'.
                             setReal($price->offer_card).'</strong></li>';
-                            $offer_cash = $price->offer_cash;
-                            $offer_card = $price->offer_card;
+                        $offer_cash = $price->offer_cash;
+                        $offer_card = $price->offer_card;
                     } else {
-                            $offer_cash = '';
-                            $offer_card = '';
+                        $offer_cash = '';
+                        $offer_card = '';
                     }
                     $price_cash = $price->price_cash;
                     $price_card = $price->price_card;
@@ -230,7 +227,7 @@ class ProductRepository implements ProductInterface
                 if($offer == 1) {
                     $offers .= '<p>À vista: '.setReal($offer_cash).'</p>';
                     $offers .= '<p>À prazo: '.setReal($offer_card).'</p>';
-                }    
+                }
                 // Active
                 $status = $val->active;
                 ($status == 1 ? $color_status = 'icon-tick green-gradient">Ativo' : $color_status = 'grey-gradient">Inativo');
@@ -295,28 +292,34 @@ class ProductRepository implements ProductInterface
                 $nData['price_card']  = setReal($price_card);
                 $nData['price_cash']  = setReal($price_cash);
                 $nData['offer_card']  = ($offer_card != null && $offer == 1 ?
-                                        'Em Oferta: <strong>'.setReal($offer_card).'</strong>' : '');
+                    'Em Oferta: <strong>'.setReal($offer_card).'</strong>' : '');
                 $nData['offer_cash']  = ($offer_cash != null && $offer == 1 ?
-                                        'Em Oferta: <strong>'.setReal($offer_cash).'</strong>' : '');
+                    'Em Oferta: <strong>'.setReal($offer_cash).'</strong>' : '');
                 $nData['sum_stock']   = $sum_stock;
                 $nData['freight']     = $freight;
                 $nData['prices']      = $prices;
                 $nData['kit']         = $kit;
 
                 $data[] = $nData;
-                
+
             }
         }
-          
+
         $out = array(
-            "draw" => intval($request->input('draw')),  
-            "recordsTotal" => intval($totalData),  
-            "recordsFiltered" => intval($totalFiltered), 
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
             "data" => $data
         );
 
         return $out;
     }
+
+    /**
+     * Table: Keyword
+     *
+     * @return array
+     */
 
     /**
      * Display the specified resource.
@@ -381,8 +384,6 @@ class ProductRepository implements ProductInterface
             if ($update) {
 
                 ($data->stock != 0 ? $stock = ", Estoque:$data->stock" : $stock = "");
-                ($data->cost  != NULL ? $cost = ", Custo:{$data->cost}" : $cost = '');
-                
                 ($data->weight != NULL ? $weight = ", Peso:{$data->weight}"   : $weight = "");
                 ($data->width  != NULL ? $width  = ", Largura:{$data->width}" : $width  = "");
                 ($data->height != NULL ? $height = ", Altura:{$data->height}" : $height = "");
@@ -400,7 +401,6 @@ class ProductRepository implements ProductInterface
                     ', Status:'.$active.
                     ', Und Medida:'.$data->unit.' '.$data->measure.
                     $stock.
-                    $cost.
                     $weight.$width.$height.$length.
                     ', Tags: '.$data->tags.
                     ', Descrição: '.strip_tags($data->description).
@@ -468,9 +468,6 @@ class ProductRepository implements ProductInterface
         $current_category_id = $data->category_id;
 
         ($data->stock != 0 ? $current_stock = ", Estoque:$data->stock" : $current_stock = "");
-        ($data->cost  != NULL ? $current_cost = ", Custo:{$data->cost}" : $current_cost = '');
-
-
         ($data->weight != NULL ? $current_weight = ", Peso:{$data->weight}"   : $current_weight = "");
         ($data->width  != NULL ? $current_width  = ", Largura:{$data->width}" : $current_width  = "");
         ($data->height != NULL ? $current_height = ", Altura:{$data->height}" : $current_height = "");
@@ -495,9 +492,6 @@ class ProductRepository implements ProductInterface
         if ($update) {
 
             ($data->stock != 0 ? $stock = ", Estoque:$data->stock" : $stock = "");
-            ($data->cost  != NULL ? $cost = ", Custo:{$data->cost}" : $cost = '');
-
-            
             ($data->weight != NULL ? $weight = ", Peso:{$data->weight}"   : $weight = "");
             ($data->width  != NULL ? $width  = ", Largura:{$data->width}" : $width  = "");
             ($data->height != NULL ? $height = ", Altura:{$data->height}" : $height = "");
@@ -516,7 +510,6 @@ class ProductRepository implements ProductInterface
                 ', Status:'.$current_active.
                 ', Und Medida:'.$current_unit.' '.$current_measure.
                 $current_stock.
-                $current_cost.
                 $current_weight.$current_width.$current_height.$current_length.
                 ', Tags: '.$current_tags.
                 ', Descrição: '.strip_tags($current_description).
@@ -525,7 +518,6 @@ class ProductRepository implements ProductInterface
                 ', Status:'.$active.
                 ', Und Medida:'.$data->unit.' '.$data->measure.
                 $stock.
-                $cost.
                 $weight.$width.$height.$length.
                 ', Tags: '.$data->tags.
                 ', Descrição: '.strip_tags($data->description).
@@ -627,38 +619,47 @@ class ProductRepository implements ProductInterface
         $update = $data->update($form);
 
         if ($update) {
-            $success = true;
-            $message = 'O status foi alterado.';
-            ($status == 1 ? $color = 'icon-tick green-gradient">Ativo' : $color = 'grey-gradient">Inativo');
-            $click = "statusFields('{$field}','{$id}','".route('product.status', $id)."','{$status}','".csrf_token()."')";
-            $btn = '<button type="button" onclick="'.$click.'" class="button compact '.$color.'</button>';
+
             switch ($field) {
                 case 'offer':
-                     $name = 'Oferta';
+                    $name = 'oferta';
                     break;
                 case 'new':
-                     $name = 'Novo';
-                    break;                
+                    $name = 'novo';
+                    break;
                 case 'featured':
-                     $name = 'Destaque';
-                    break;                
+                    $name = 'destaque';
+                    break;
                 case 'trend':
-                     $name = 'Tendência';
-                    break;                
+                    $name = 'tendência';
+                    break;
                 case 'black_friday':
-                     $name = 'Black Friday';
-                    break;                
+                    $name = 'black friday';
+                    break;
                 default:
-                     $name = '';
+                    $name = ' ';
                     break;
             }
 
-            ($status == 1 ? $txt_status = $name.' para Ativo' : $txt_status = $name.' para Inativo');
-            
+            $route = route('product.status', $id);
+            $token = csrf_token();
+            $onclick = "statusFields('{$field}','{$id}','{$route}','{$status}','{$token}')";
+
+            if ($status == 1) {
+                $txt_status = ' para ativo';
+                $btn = '<button onclick="'.$onclick.'" class="button compact icon-tick green-gradient">Ativo</button>';
+            } else {
+                $txt_status = ' para inativo';
+                $btn = '<button onclick="'.$onclick.'" class="button compact grey-gradient">Inativo</button>';
+            }
+
+            $success = true;
+            $message = " Alterou o status {$name} {$txt_status}";
+
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                ' Alterou o Status:'.$txt_status.' do Produto:'.Str::slug($data->name.
-                '-'.$data->category.'-'.$data->section.'-'.$data->brand))
+                    ' '.$message.' do Produto:'.Str::slug($data->name.
+                        '-'.$data->category.'-'.$data->section.'-'.$data->brand))
             );
 
         } else {

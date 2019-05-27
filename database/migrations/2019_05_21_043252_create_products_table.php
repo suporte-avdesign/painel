@@ -32,8 +32,8 @@ class CreateProductsTable extends Migration
             $table->float('width', 8, 3)->nullable();
             $table->float('height', 8, 3)->nullable();
             $table->float('length', 8, 3)->nullable();
-            $table->decimal('cost', 8, 2)->nullable();
             $table->string('kit_name', 30)->nullable();
+            $table->tinyInteger('cost')->default(0);;
             $table->tinyInteger('kit')->default(0);
             $table->tinyInteger('stock')->default(0);
             $table->tinyInteger('freight')->default(0);
@@ -43,7 +43,7 @@ class CreateProductsTable extends Migration
             $table->dateTime('offer_date')->nullable();
             $table->tinyInteger('trend')->default(0);
             $table->tinyInteger('black_friday')->default(0);
-            $table->enum('active', [constLang('active_true'), constLang('active_false')]);
+            $table->tinyInteger('active')->default(0);
             $table->smallInteger('visits')->default(0);
             $table->timestamps();
 
