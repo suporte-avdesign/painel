@@ -75,7 +75,6 @@ class GridCategoryRepository implements GridCategoryInterface
      */
     public function create($input, $id)
     {
-        $input['category_id'] = $id;
 
         if ($input['type'] == 'kit') {
             unset($input['label']);
@@ -85,8 +84,12 @@ class GridCategoryRepository implements GridCategoryInterface
             $filter_des = array_filter($unique_des);
 
             $label = $this->getKit($filter_qty, $filter_des);
-            if (!$label)
-               return $this->emptyFields();
+            if (!$label) {
+
+                return $this->emptyFields();
+            }
+
+
 
             $input['label'] = $label;
 
@@ -94,8 +97,10 @@ class GridCategoryRepository implements GridCategoryInterface
             $filter = array_filter($input['label']);
             $label  = array_unique($filter);
 
-            if (empty($label))
+            if (empty($label)) {
+
                 return $this->emptyFields();
+            }
 
             $input['label'] = implode($label, ',');
         }
@@ -103,14 +108,11 @@ class GridCategoryRepository implements GridCategoryInterface
         $data = $this->model->create($input);
         if ($data) { 
 
-            $ship   = $data->category;
-     
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 ' Adicionou a Grade:'.$data->name.
                 ', Tam:'.$data->label.
-                ', Tipo:'.$data->type.
-                ', Categoria:'.$ship->name)
+                ', Tipo:'.$data->type)
             );
 
             $out = array(
@@ -130,16 +132,23 @@ class GridCategoryRepository implements GridCategoryInterface
 
         return array(
             'success' => false,
-            'message' => 'Não foi possível altera a grade.');
+            'message' => 'Não foi possível criar a grade.');
     }
 
-
+    /**
+     * Verifica se exite duplicidade na descrição da grade
+     *
+     * @param $input_qty
+     * @param $input_des
+     * @return bool|string
+     */
     public function getKit($input_qty, $input_des)
     {
         $count_qty = count(($input_qty));
         $count_des = count(($input_des));
 
         if ($count_qty != $count_des || $count_qty === 0 || $count_des === 0) {
+
             return false;
         } else {
 

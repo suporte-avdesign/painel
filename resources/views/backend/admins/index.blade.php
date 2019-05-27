@@ -139,14 +139,12 @@
                     <div class="with-padding">
                         <div class="float-right"></div>
                         <h4 class="blue underline">Perfil do Usuário</h4>
-                        <ul class="bullet-list">
-                            <li>Nome: <strong> @{{{name}}} </strong></li>
-                            <li>Email: <strong> @{{{email}}} </strong></li>
-                            <li>Telefone: <strong> @{{{phone}}} </strong></li>
-                            <li>Perfil: <strong> @{{{profile}}} </strong></li>
-                            <li>Status: <strong> @{{{txt_status}}} </strong></li>
-                            <li>Comissao: <strong> @{{{commission}}}  @{{{percent}}} %</strong></li>
-                        </ul>
+                        <p>Nome: <strong> @{{{name}}} </strong></p>
+                        <p>Email: <strong> @{{{email}}} </strong></p>
+                        <p>Telefone: <strong> @{{{phone}}} </strong></p>
+                        <p>Perfil: <strong> @{{{profile}}} </strong></p>
+                        <p>Status: <strong> @{{{txt_status}}} </strong></p>
+                        <p>Comissao: <strong> @{{{commission}}}  @{{{percent}}} %</strong></p>
                     </div>
                 </div>
             </div>

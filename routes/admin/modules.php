@@ -11,42 +11,6 @@ Route::post('perfil-cliente/offers', 'Admin\ConfigProfileClientController@offers
 
 
 
-
-
-
-
-
-// Marcas & Fabricantes
-Route::resource('marcas', 'Admin\BrandController');
-Route::post('marcas/data', 'Admin\BrandController@data')->name('brands.data');
-Route::get('marca/{id}/detalhes', 'Admin\BrandController@details')->name('brands.details');
-Route::resource('marca/{id}/grids-brand', 'Admin\GridBrandController');
-Route::resource('marca/{id}/logo-brand', 'Admin\LogoBrandController');
-Route::put('marca/status/{id}/logo', 'Admin\LogoBrandController@status')->name('logo-brand.status');
-Route::resource('marca/{id}/banner-brand', 'Admin\BannerBrandController');
-Route::put('marca/status/{id}/banner', 'Admin\BannerBrandController@status')->name('banner-brand.status');
-
-// Seções dos Produtos
-Route::resource('secoes', 'Admin\SectionController');
-Route::post('secoes/data', 'Admin\SectionController@data')->name('sections.data');
-Route::get('secao/{id}/detalhes', 'Admin\SectionController@details')->name('sections.details');
-Route::resource('secao/{id}/grids-section', 'Admin\GridSectionController');
-Route::resource('secao/{id}/featured-section', 'Admin\FeaturedSectionController');
-Route::put('secao/status/{id}/featured', 'Admin\FeaturedSectionController@status')->name('featured-section.status');
-Route::resource('secao/{id}/banner-section', 'Admin\BannerSectionController');
-Route::put('secao/status/{id}/banner', 'Admin\BannerSectionController@status')->name('banner-section.status');
-
-// Categorias dos Produtos
-Route::resource('categorias', 'Admin\CategoryController');
-Route::post('categorias/data', 'Admin\CategoryController@data')->name('categories.data');
-Route::get('categoria/{id}/detalhes', 'Admin\CategoryController@details')->name('categories.details');
-Route::resource('categoria/{id}/grids-category', 'Admin\GridCategoryController');
-Route::get('categoria/{id}/grids-load', 'Admin\GridCategoryController@load')->name('category-grids-load');
-Route::resource('categoria/{id}/featured-category', 'Admin\FeaturedCategoryController');
-Route::put('categoria/status/{id}/featured', 'Admin\FeaturedCategoryController@status')->name('featured-category.status');
-Route::resource('categoria/{id}/banner-category', 'Admin\BannerCategoryController');
-Route::put('categoria/status/{id}/banner', 'Admin\BannerCategoryController@status')->name('banner-category.status');
-
 // Products / Categories
 Route::resource('produtos/{slug}/catalogo', 'Admin\ProductController');
 Route::get('produto/{id}/detalhes', 'Admin\ProductController@details');
@@ -116,10 +80,6 @@ Route::get('images/banner/order/{id}', 'Admin\ImageBannerController@order')->nam
 Route::put('images/banner/order', 'Admin\ImageBannerController@updateOrder')->name('banner.order');
 
 
-
-
-
-
 // Lista de Desejos
 Route::resource('wishlist', 'Admin\WishlistController');
 Route::post('wishlist/data', 'Admin\WishlistController@data')->name('wishlist.data');
@@ -152,8 +112,6 @@ Route::post('order/{id}/reactivate', 'Admin\OrderController@reactivate');
 Route::get('order/{id}/printer', 'Admin\OrderController@printerPdf')->name('order-items.printer');
 Route::get('order/{id}/download', 'Admin\OrderController@downloadPdf')->name('order-items.download');
 
-
-
 // Clientes
 Route::resource('accounts', 'Admin\UserController');
 Route::post('accounts/data', 'Admin\UserController@data')->name('accounts.data');
@@ -171,7 +129,6 @@ Route::get('accounts/excluded', 'Admin\UserController@show')->name('accounts.exc
 Route::post('accounts/excluded/data', 'Admin\UserController@dataExcluded')->name('accounts.excluded.data');
 Route::post('account/{id}/reactivate', 'Admin\UserController@reactivate');
 
-
 // Contato
 Route::resource('contacts', 'Admin\ContactController');
 Route::get('contacts/message/{id}', 'Admin\ContactController@message')->name('contacts.message');
@@ -187,3 +144,38 @@ Route::resource('spams', 'Admin\ContactSpamController');
 Route::post('spams/data', 'Admin\ContactSpamController@data')->name('spams.data');
 Route::get('spam/message/{id}', 'Admin\ContactSpamController@message')->name('spams.message');
 Route::get('spam/{id}/details', 'Admin\ContactSpamController@details')->name('spams.details');
+
+
+// Seções dos Produtos
+Route::resource('sections', 'Admin\SectionController');
+Route::post('sections/data', 'Admin\SectionController@data')->name('sections.data');
+Route::get('section/{id}/details', 'Admin\SectionController@details')->name('section.details');
+Route::resource('section/{id}/grids-section', 'Admin\GridSectionController');
+Route::get('section/{id}/grids-load', 'Admin\GridSectionController@load')->name('section-grids-load');
+Route::resource('section/{id}/featured-section', 'Admin\FeaturedSectionController');
+Route::put('section/status/{id}/featured', 'Admin\FeaturedSectionController@status')->name('featured-section.status');
+Route::resource('section/{id}/banner-section', 'Admin\BannerSectionController');
+Route::put('section/status/{id}/banner', 'Admin\BannerSectionController@status')->name('banner-section.status');
+
+// Categorias dos Produtos
+Route::resource('categories', 'Admin\CategoryController');
+Route::post('categories/data', 'Admin\CategoryController@data')->name('categories.data');
+Route::get('category/{id}/details', 'Admin\CategoryController@details')->name('category.details');
+Route::resource('category/{id}/grids-category', 'Admin\GridCategoryController');
+Route::get('category/{id}/grids-load', 'Admin\GridCategoryController@load')->name('category-grids-load');
+Route::resource('category/{id}/featured-category', 'Admin\FeaturedCategoryController');
+Route::put('category/status/{id}/featured', 'Admin\FeaturedCategoryController@status')->name('featured-category.status');
+Route::resource('category/{id}/banner-category', 'Admin\BannerCategoryController');
+Route::put('category/status/{id}/banner', 'Admin\BannerCategoryController@status')->name('banner-category.status');
+
+
+// Marcas & Fabricantes
+Route::resource('brands', 'Admin\BrandController');
+Route::post('brands/data', 'Admin\BrandController@data')->name('brands.data');
+Route::get('brand/{id}/details', 'Admin\BrandController@details')->name('brands.details');
+Route::resource('brand/{id}/grids-brand', 'Admin\GridBrandController');
+Route::get('brand/{id}/grids-load', 'Admin\GridBrandController@load')->name('brand-grids-load');
+Route::resource('brand/{id}/logo-brand', 'Admin\LogoBrandController');
+Route::put('brand/status/{id}/logo', 'Admin\LogoBrandController@status')->name('logo-brand.status');
+Route::resource('brand/{id}/banner-brand', 'Admin\BannerBrandController');
+Route::put('brand/status/{id}/banner', 'Admin\BannerBrandController@status')->name('banner-brand.status');

@@ -177,6 +177,8 @@ mix.scripts('resources/assets/scripts/settings/unit-measures.js', 'public/backen
 
 
 mix.scripts('resources/assets/scripts/banners.js', 'public/backend/scripts/banners.min.js');
+mix.scripts('resources/assets/scripts/brands.js', 'public/backend/scripts/brands.min.js');
+mix.scripts('resources/assets/scripts/categories.js', 'public/backend/scripts/categories.min.js');
 mix.scripts('resources/assets/scripts/content-site.js', 'public/backend/scripts/content-site.min.js');
 
 mix.scripts('resources/assets/scripts/orders/orders.js', 'public/backend/scripts/orders/orders.min.js');
@@ -185,6 +187,7 @@ mix.scripts('resources/assets/scripts/orders/items.js', 'public/backend/scripts/
 mix.scripts('resources/assets/scripts/orders/notes.js', 'public/backend/scripts/orders/notes.min.js');
 mix.scripts('resources/assets/scripts/orders/shippings.js', 'public/backend/scripts/orders/shippings.min.js');
 
+mix.scripts('resources/assets/scripts/sections.js', 'public/backend/scripts/sections.min.js');
 mix.scripts('resources/assets/scripts/sliders.js', 'public/backend/scripts/sliders.min.js');
 mix.scripts('resources/assets/scripts/wishlist.js', 'public/backend/scripts/wishlist.min.js');
 

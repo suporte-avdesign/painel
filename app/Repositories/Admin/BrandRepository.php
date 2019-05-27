@@ -75,7 +75,7 @@ class BrandRepository implements BrandInterface
             1  => 'name',
             2  => 'visits',
             3  => 'description',
-            4  => 'status',
+            4  => 'active',
             5  => 'contact',
             6  => 'email',
             7  => 'phone',
@@ -86,8 +86,8 @@ class BrandRepository implements BrandInterface
             12 => 'state',
             13 => 'zip_code',
             14 => 'tags',
-            15 => 'status_logo',
-            16 => 'status_banner',
+            15 => 'active_logo',
+            16 => 'active_banner',
             17 => 'id'
         );
   
@@ -131,18 +131,18 @@ class BrandRepository implements BrandInterface
         {
             foreach ($query as $val){
 
-                ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
-                ($val->status_logo == 'Ativo' ? $color_logo = 'blue' : $color_logo = 'red');
-                ($val->status_banner == 'Ativo' ? $color_banner = 'blue' : $color_banner = 'red');
+                ($val->active == constLang('active_true') ? $color = 'blue' : $color = 'red');
+                ($val->active_logo == constLang('active_true') ? $color_logo = 'blue' : $color_logo = 'red');
+                ($val->active_banner == constLang('active_true') ? $color_banner = 'blue' : $color_banner = 'red');
 
-                $edit   = "abreModal('Editar {$val->name}', '".route('marcas.edit', $val->id)."', 'brands', 2, 'true', 450, 450)";
-                $delete = "deleteBrand('".route('marcas.destroy', ['id' => $val->id])."', '{$val->name}')";
+                $edit   = "abreModal('Editar {$val->name}', '".route('brands.edit', $val->id)."', 'brands', 2, 'true', 450, 450)";
+                $delete = "deleteBrand('".route('brands.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                 $nData['order']          = $val->order;
                 $nData['name']           = $val->name;
                 $nData['visits']         = $val->visits;
                 $nData['description']    = $val->description;
-                $nData['status']         = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                $nData['active']         = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                 $nData['contact']        = $val->contact;
                 $nData['email']          = $val->email;
                 $nData['phone']          = $val->phone;
@@ -153,8 +153,8 @@ class BrandRepository implements BrandInterface
                 $nData['state']          = $val->state;
                 $nData['zip_code']       = $val->zip_code;
                 $nData['tags']           = $val->tags;
-                $nData['status_logo']    = '<small class="tag '.$color_logo.'-bg">'.$val->status_logo.'</small>';
-                $nData['status_banner']  = '<small class="tag '.$color_banner.'-bg">'.$val->status_banner.'</small>';
+                $nData['active_logo']    = '<small class="tag '.$color_logo.'-bg">'.$val->active_logo.'</small>';
+                $nData['active_banner']  = '<small class="tag '.$color_banner.'-bg">'.$val->active_banner.'</small>';
                 $nData['id']             = $val->id;
                 $data[] = $nData;
             }
@@ -240,7 +240,6 @@ class BrandRepository implements BrandInterface
         $data        = $this->model->find($id);
         $name        = $data->name;
         $tags        = $data->tags;
-        $description = $data->description;
 
         $update = $data->update($input);
         if ($update) {

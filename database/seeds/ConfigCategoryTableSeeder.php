@@ -26,7 +26,7 @@ class ConfigCategoryTableSeeder extends Seeder
             'width_banner' => 1600,
             'height_banner' => 400,
             'width_modal' => 400,
-            'height_modal' => 400,
+            'height_modal' => 440,
             'created_at' => $date
         ]);
     }

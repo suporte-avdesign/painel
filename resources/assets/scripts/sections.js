@@ -47,7 +47,7 @@
                 {data: 'name'},
                 {data: 'visits', className:'align-center'},
                 {data: 'description'},
-                {data: 'status', className:'align-center'},
+                {data: 'active', className:'align-center'},
                 {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''}
             ],
             order: [[0, 'asc']]
@@ -160,79 +160,113 @@
             });
         };
 
+
+
         /**
-         * Form Grid
-         * @param string ac
-         * @param string id, 
-         * @param string loader
-         * @param string txt
-        */
-        formGridSection = function(ac, id, loader, txt)
+         * Verifica o type da grid
+         * @param type
+         */
+        typeGrideSection = function (type) {
+            if (type === 'unit') {
+                $("#grid-name").show();
+                $("#grid-unit").show();
+                $("#grid-kit").hide();
+            }
+            if (type === 'kit') {
+                $("#grid-name").show();
+                $("#grid-kit").show();
+                $("#grid-unit").hide();
+            }
+        }
+
+        /**
+         * Adiciona um campo input para und
+         */
+        plusUndSection = function () {
+            $("#plus-unit").append('<span class="puls_grid input margin-right">'+
+                '<input type="text" name="label[]" value="" size="4" class="input-unstyled">'+
+                '<button onclick="removeGridSection(this,\'.puls_grid\');" class="remove-unit button red-gradient icon-minus" title="'+tableSection.texDelete+'"></button>'+
+                '</span>');
+        }
+
+        /**
+         * Adicionar input kit
+         */
+        plusKitSection = function(){
+            $("#plus-kit").append('<p class="puls_grid button-height inline-small-label">'+
+                '<span class="input">'+
+                '<input type="text" name="qty[]" class="amount input-unstyled input-sep" placeholder="'+tableSection.texQty+'" value="0" maxlength="3" style="width: 30px;">'+
+                '<input type="text" name="des[]" class="input-unstyled" placeholder="'+tableSection.txtDesc+'" value="" style="width: 80px;">'+
+                '<button onclick="removeGridSection(this,\'.puls_grid\')" class="remove button red-gradient icon-minus" title="'+tableSection.texDelete+'"></button>'+
+                '</span>' +
+                '</p>');
+            sumGridsSection();
+        }
+
+        /**
+         * Remover input Unit
+         */
+        removeGridSection = function(_this, id) {
+            $(_this).parents(id).remove();
+        }
+
+        /**
+         * Somar total das grades
+         */
+        sumGridsSection = function () {
+            var inputs = document.getElementsByClassName( 'amount' ),
+                amount  = [].map.call(inputs, function( input ) {
+                    return parseInt(input.value);
+                }).reduce(function(a, b) {
+                    return a + b;
+                });
+
+            $("#total-grids").text(amount);
+        }
+
+
+        /**
+         *  Form grids
+         */
+        formGridSection = function(id, ac, ele, load, loading, btn)
         {
-            var form  = $('#form-'+id),
-            token = $('#_token'),
-            url   = form.attr('action');
+
+            var form = $('#form-'+ele),
+                url  = form.attr('action');
             $.ajax({
                 type: 'POST',
                 dataType: "json",
                 url: url,
                 data: form.serialize(),
                 beforeSend: function() {
-                    setBtn(4,loader,false,'loader','btn-modal',false,'silver');
+                    setBtn(4,loading,false,'loader','btn-modal',false,'silver');
                 },
-                success: function(json){
-                    if(json.success == true){
-
-                        if (json.type == 'unit') {
-                            var icon = '<span class="icon-stop" title="Und"></span>&nbsp;';
-                        }
-                        if (json.type == 'kit') {
-                            var icon = '<span class="icon-thumbs" title="Kit"></span>&nbsp;';
-                        }
-
-                        if (ac == 'update') {
-                            $("#grid_"+json.id).html('<h3 class="thin underline">'+icon+' '+json.name+'</h3>'+
-                                '<a href="javascript:void(0)" class="list-link">'+
-                                '<strong> '+json.label+' </strong>'+
-                                '</a>'+
-                                '<div class="button-group absolute-right compact">'+
-                                    "<button id=\"btn-edit\" onclick=\"abreModal('Alterar Grade: "+json.name+"', '"+json.url_edit+"', '"+id+"', 2, 'true', 400, 250);\" class=\"button icon-pencil blue-gradient\">Editar</button>"+
-                                    "<button id=\"btn-delete\" onclick=\"deleteGrid('"+json.id+"', '"+json.name+"', '"+json.url_delete+"',  '"+json.token+"');\" class=\"button icon-trash with-tooltip red-gradient\" title=\"Excluir Grade\"></button>"+
-                                '</div>');
-
-                        } else {
-                            $("#grids").prepend('<li id="grid_'+json.id+'">'+
-                                '<h3 class="thin underline">'+icon+' '+json.name+'</h3>'+
-                                '<a href="javascript:void(0)" class="list-link">'+
-                                '<strong> '+json.label+' </strong>'+
-                                '</a>'+
-                                '<div class="button-group absolute-right compact">'+
-                                    "<button id=\"btn-edit\" onclick=\"abreModal('Alterar Grade: "+json.name+"', '"+json.url_edit+"', '"+id+"', 2, 'true', 400, 250);\" class=\"button icon-pencil blue-gradient\">Editar</button>"+
-                                    "<button id=\"btn-delete\" onclick=\"deleteGrid('"+json.id+"', '"+json.name+"', '"+json.url_delete+"', '"+json.token+"');\" class=\"button icon-trash with-tooltip red-gradient\" title=\"Excluir Grade\"></button>"+
-                                '</div>');
-                        }
-                        fechaModal();
-                        msgNotifica(true, json.message, true, false);
+                success: function(data){
+                    if(data.success == true){
+                        $( "#load-grids-"+id ).load( load, function() {
+                            msgNotifica(true, data.message, true, false);
+                        });
                     } else {
-                        setBtn(4,txt,true,'icon-publish','btn-modal',false,'blue');
-                        msgNotifica(false, json.message, true, false);
+                        setBtn(4,btn,true,'icon-outbox','btn-modal',false,'blue');
+                        msgNotifica(false, data.message, true, false);
                     }
                 },
                 error: function(xhr){
-                    setBtn(4,txt,true,'icon-publish','btn-modal',false,'blue');
+                    setBtn(4,btn,true,'icon-outbox','btn-modal',false,'blue');
                     ajaxFormError(xhr);
-                }          
+                }
             });
-        };
+        }
+
 
         /**
          * Delete Grid
          * @param int id
-         * @param string name 
+         * @param string name
          * @param string url
          * @param string token
-        */
-        deleteGrid = function(id, name, url, token)
+         */
+        deleteGridSection = function(id, name, url, token)
         {
             $.modal.confirm(tableSection.txtRemove+' '+name+'?', function(){
                 $.ajax({

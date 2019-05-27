@@ -96,7 +96,7 @@ class ImageBrandRepository implements ImageBrandInterface
                     ', Marca:'.$mode->name)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
                 $route_status = route($data->type.'-brand.status', $data->id);
                 $route_delete = route($data->type.'-brand.destroy', ['id' => $id, 'file' => $data->id]);
@@ -110,7 +110,7 @@ class ImageBrandRepository implements ImageBrandInterface
                     'idm'        => $id,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
@@ -153,7 +153,7 @@ class ImageBrandRepository implements ImageBrandInterface
         $name = $input['type'].'-'.$mode->slug.'-'.Str::slug(config('app.name'), '-').'-'.date('Ymdhs').'.'.$ext;
         $path = $conf['disk'] . $conf['path'].$name;
         $file->move($conf['disk'] . $conf['path'], $name);
-        $status = $data->status;
+        $status = $data->active;
 
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
@@ -167,10 +167,10 @@ class ImageBrandRepository implements ImageBrandInterface
                     " Alterou o ".$input['type'].
                     ', Status:'.$status.
                     ', Fabricante:'.$mode->name.
-                    ' para Status:'.$data->status)
+                    ' para Status:'.$data->active)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
                 $route_status = route($data->type.'-brand.status', $data->id);
                 $route_delete = route($data->type.'-brand.destroy', ['id' => $id, 'file' => $data->id]);
                 $route_edit   = route($data->type.'-brand.edit', ['id' => $id, 'file' => $data->id]);
@@ -183,7 +183,7 @@ class ImageBrandRepository implements ImageBrandInterface
                     'idm'        => $id,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
@@ -244,18 +244,20 @@ class ImageBrandRepository implements ImageBrandInterface
         $data = $this->model->find($id);
         $mode = $this->interModel->setId($data->brand_id);
 
-        ($data->status == 'Ativo' ? $change = ['status' => 'Inativo'] : $change = ['status' => 'Ativo']);
+        ($data->active == constLang('active_true') ?
+            $change = ['active' => constLang('active_false')] :
+            $change = ['active' => constLang('active_true')]);
 
         $update = $data->update($change);
         if ($update) {
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 " Alterou o status do ".$data->type.
-                ', para '.$data->status.
+                ', para '.$data->active.
                 ', do fabricante:'.$mode->name)
             );
 
-            ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+            ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
             $out = array(
                 "success"    => true,

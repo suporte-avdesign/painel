@@ -38,17 +38,17 @@
 				</li>
 
 				<li>
-					<a href="marcas" title="Fabricantes">Fabricantes 
+					<a href="brands" title="Fabricantes">Fabricantes
 						<span><span id="count_brand" class="list-count">{{$sidebar['total_brands']}}</span></span>
 					</a>					
 				</li>
 				<li>
-					<a href="secoes" title="Seções">Seções 
+					<a href="sections" title="Seções">Seções
 						<span><span id="count_section" class="list-count">{{$sidebar['total_sections']}}</span></span>
 					</a>					
 				</li>
 				<li>
-					<a href="categorias" title="Categorias">Categorias 
+					<a href="categories" title="Categorias">Categorias
 						<span><span id="count_category" class="list-count">{{$sidebar['total_categories']}}</span></span>
 					</a>					
 				</li>

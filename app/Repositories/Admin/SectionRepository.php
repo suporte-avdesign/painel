@@ -66,7 +66,7 @@ class SectionRepository implements SectionInterface
      */
     public function pluck($name, $id)
     {
-        return $this->model->pluck($name,$id);
+        return $this->model->where('active', constLang('active_true'))->pluck($name,$id);
     }
 
 
@@ -82,10 +82,10 @@ class SectionRepository implements SectionInterface
             1 => 'name',
             2 => 'visits',
             3 => 'description',
-            4 => 'status',
+            4 => 'active',
             5 => 'tags',
-            6 => 'status_featured',
-            7 => 'status_banner',
+            6 => 'active_featured',
+            7 => 'active_banner',
             8 => 'id'
         );
   
@@ -121,18 +121,18 @@ class SectionRepository implements SectionInterface
         {
             foreach ($query as $val){
 
-                ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
-                ($val->status_featured == 'Ativo' ? $color_featured = 'blue' : $color_featured = 'red');
-                ($val->status_banner == 'Ativo' ? $color_banner = 'blue' : $color_banner = 'red');
+                ($val->active == constLang('active_true') ? $color = 'blue' : $color = 'red');
+                ($val->active_featured == constLang('active_true') ? $color_featured = 'blue' : $color_featured = 'red');
+                ($val->active_banner == constLang('active_true') ? $color_banner = 'blue' : $color_banner = 'red');
 
                 $nData['order']           = $val->order;
                 $nData['name']            = $val->name;
                 $nData['visits']          = $val->visits;
                 $nData['description']     = $val->description;
-                $nData['status']          = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                $nData['active']          = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                 $nData['tags']            = $val->tags;
-                $nData['status_featured'] = '<small class="tag '.$color_featured.'-bg">'.$val->status_featured.'</small>';
-                $nData['status_banner']   = '<small class="tag '.$color_banner.'-bg">'.$val->status_banner.'</small>';
+                $nData['active_featured'] = '<small class="tag '.$color_featured.'-bg">'.$val->active_featured.'</small>';
+                $nData['active_banner']   = '<small class="tag '.$color_banner.'-bg">'.$val->active_banner.'</small>';
                 $nData['id']              = $val->id;
                 $data[] = $nData;
             }
@@ -218,7 +218,6 @@ class SectionRepository implements SectionInterface
         $data        = $this->model->find($id);
         $name        = $data->name;
         $tags        = $data->tags;
-        $description = $data->description;
 
         $update = $data->update($input);
         if ($update) {

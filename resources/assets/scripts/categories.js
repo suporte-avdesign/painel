@@ -48,7 +48,7 @@
                 {data: 'section'},
                 {data: 'visits', className:'align-center'},
                 {data: 'description'},
-                {data: 'status', className:'align-center'},
+                {data: 'active', className:'align-center'},
                 {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''}
             ],
             order: [[0, 'asc']]
@@ -163,7 +163,7 @@
          * Verifica o type da grid
          * @param type
          */
-        typeGride = function (type) {
+        typeGrideCategory = function (type) {
             if (type === 'unit') {
                 $("#grid-name").show();
                 $("#grid-unit").show();
@@ -179,38 +179,38 @@
         /**
          * Adiciona um campo input para und
          */
-        plusUnd = function () {
+        plusUndCategory = function () {
             $("#plus-unit").append('<span class="puls_grid input margin-right">'+
                     '<input type="text" name="label[]" value="" size="4" class="input-unstyled">'+
-                    '<button onclick="removeGrid(this,\'.puls_grid\');" class="remove-unit button red-gradient icon-minus" title="Remover"></button>'+
+                    '<button onclick="removeGridCategory(this,\'.puls_grid\');" class="remove-unit button red-gradient icon-minus" title="'+tableCategory.texDelete+'"></button>'+
                 '</span>');
         }
 
         /**
          * Adicionar input kit
          */
-        plusKit = function(){
+        plusKitCategory = function(){
             $("#plus-kit").append('<p class="puls_grid button-height inline-small-label">'+
                     '<span class="input">'+
-                        '<input type="text" name="qty[]" class="amount input-unstyled input-sep" placeholder="Qtd" value="0" maxlength="3" style="width: 30px;">'+
-                        '<input type="text" name="des[]" class="input-unstyled" placeholder="Descrição" value="" style="width: 80px;">'+
-                        '<button onclick="removeGrid(this,\'.puls_grid\')" class="remove button red-gradient icon-minus" title="Remover"></button>'+
+                        '<input type="text" name="qty[]" class="amount input-unstyled input-sep" placeholder="'+tableCategory.texQty+'" value="0" maxlength="3" style="width: 30px;">'+
+                        '<input type="text" name="des[]" class="input-unstyled" placeholder="'+tableCategory.txtDesc+'" value="" style="width: 80px;">'+
+                        '<button onclick="removeGridCategory(this,\'.puls_grid\')" class="remove button red-gradient icon-minus" title="'+tableCategory.texDelete+'"></button>'+
                     '</span>' +
                 '</p>');
-            sumGrids();
+            sumGridsCategory();
         }
 
         /**
          * Remover input Unit
          */
-        removeGrid = function(_this, id) {
+        removeGridCategory = function(_this, id) {
             $(_this).parents(id).remove();
         }
 
         /**
          * Somar total das grades
          */
-        sumGrids = function () {
+        sumGridsCategory = function () {
             var inputs = document.getElementsByClassName( 'amount' ),
                 amount  = [].map.call(inputs, function( input ) {
                     return parseInt(input.value);
@@ -263,7 +263,7 @@
          * @param string url
          * @param string token
         */
-        deleteGrid = function(id, name, url, token)
+        deleteGridCategory = function(id, name, url, token)
         {
             $.modal.confirm(tableCategory.txtRemove+' '+name+'?', function(){
                 $.ajax({

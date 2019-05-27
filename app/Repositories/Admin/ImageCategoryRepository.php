@@ -101,11 +101,11 @@ class ImageCategoryRepository implements ImageCategoryInterface
          
                 generateAccessesTxt(date('H:i:s').utf8_decode(
                     ' Adicionou a imagem:'.$type.
-                    ', Status:'.$data->status.
+                    ', Status:'.$data->active.
                     ', Categoria:'.$mode->slug)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
                 $route_status = route($data->type.'-category.status', $data->id);
                 $route_delete = route($data->type.'-category.destroy', ['id' => $id, 'file' => $data->id]);
@@ -121,7 +121,7 @@ class ImageCategoryRepository implements ImageCategoryInterface
                     'idm'        => $id,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
@@ -167,7 +167,7 @@ class ImageCategoryRepository implements ImageCategoryInterface
         $name  = Str::slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
         $path = $conf['disk'] . $conf['path'].$name;
         $file->move($conf['disk'] . $conf['path'], $name);
-        $status = $data->status;
+
 
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
@@ -179,11 +179,12 @@ class ImageCategoryRepository implements ImageCategoryInterface
                 generateAccessesTxt(
                     date('H:i:s').utf8_decode(
                     " Alterou a imagem ".$type.
-                    ', Status:'.$status.
+                    ', Status:'.$data->active.
                     ', Categoria:'.$mode->slug)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+
                 $route_status = route($data->type.'-category.status', $data->id);
                 $route_delete = route($data->type.'-category.destroy', ['id' => $id, 'file' => $data->id]);
                 $route_edit   = route($data->type.'-category.edit', ['id' => $id, 'file' => $data->id]);
@@ -196,7 +197,7 @@ class ImageCategoryRepository implements ImageCategoryInterface
                     'idm'        => $id,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
@@ -254,7 +255,9 @@ class ImageCategoryRepository implements ImageCategoryInterface
         $data = $this->model->find($id);
         $mode = $this->interModel->setId($data->category_id);
 
-        ($data->status == 'Ativo' ? $change = ['status' => 'Inativo'] : $change = ['status' => 'Ativo']);
+        ($data->active == constLang('active_true') ?
+            $change = ['active' => constLang('active_false')] :
+            $change = ['active' => constLang('active_true')]);
         ($data->type == 'featured' ? $type = 'destaque' : $type = $data->type);
 
         $update = $data->update($change);
@@ -262,11 +265,11 @@ class ImageCategoryRepository implements ImageCategoryInterface
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 " Alterou o status da imagem ".$type.
-                ', para '.$data->status.
+                ', para '.$data->active.
                 ', da categoria:'.$mode->slug)
             );
 
-            ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+            ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
             $out = array(
                 "success"    => true,

@@ -74,7 +74,7 @@ class CategoryRepository implements CategoryInterface
             2  => 'section',
             3  => 'visits',
             4  => 'description',
-            5  => 'status',
+            5  => 'active',
             6  => 'tags',
             7  => 'status_featured',
             8  => 'status_banner',
@@ -115,22 +115,22 @@ class CategoryRepository implements CategoryInterface
         {
             foreach ($query as $val){
 
-                ($val->status == 'Ativo' ? $color = 'blue' : $color = 'red');
-                ($val->status_featured == 'Ativo' ? $color_featured = 'blue' : $color_featured = 'red');
-                ($val->status_banner == 'Ativo' ? $color_banner = 'blue' : $color_banner = 'red');
+                ($val->active == constLang('active_true') ? $color = 'blue' : $color = 'red');
+                ($val->active_featured == constLang('active_true') ? $color_featured = 'blue' : $color_featured = 'red');
+                ($val->active_banner == constLang('active_true') ? $color_banner = 'blue' : $color_banner = 'red');
 
-                $edit   = "abreModal('Editar {$val->name}', '".route('categorias.edit', $val->id)."', 'categories', 2, 'true', 450, 450)";
-                $delete = "deleteCategory('".route('categorias.destroy', ['id' => $val->id])."', '{$val->name}')";
+                $edit   = "abreModal('Editar {$val->name}', '".route('categories.edit', $val->id)."', 'categories', 2, 'true', 450, 450)";
+                $delete = "deleteCategory('".route('categories.destroy', ['id' => $val->id])."', '{$val->name}')";
 
                 $nData['order']           = $val->order;
                 $nData['name']            = $val->name;
                 $nData['section']         = $val->section;
                 $nData['visits']          = $val->visits;
                 $nData['description']     = $val->description;
-                $nData['status']          = '<small class="tag '.$color.'-bg">'.$val->status.'</small>';
+                $nData['active']          = '<small class="tag '.$color.'-bg">'.$val->active.'</small>';
                 $nData['tags']            = $val->tags;
-                $nData['status_featured'] = '<small class="tag '.$color_featured.'-bg">'.$val->status_featured.'</small>';
-                $nData['status_banner']   = '<small class="tag '.$color_banner.'-bg">'.$val->status_banner.'</small>';
+                $nData['active_featured'] = '<small class="tag '.$color_featured.'-bg">'.$val->active_featured.'</small>';
+                $nData['active_banner']   = '<small class="tag '.$color_banner.'-bg">'.$val->active_banner.'</small>';
                 $nData['id']              = $val->id;
                 $data[] = $nData;
             }

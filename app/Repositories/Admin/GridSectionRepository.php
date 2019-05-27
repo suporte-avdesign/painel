@@ -47,7 +47,7 @@ class GridSectionRepository implements GridSectionInterface
      */
     public function getAll($id)
     {
-        $data  = $this->model->where('section_id', $id)->get();
+        $data  = $this->model->orderBy('id', 'desc')->where('section_id', $id)->get();
         return $data;    
     }
 
@@ -63,28 +63,50 @@ class GridSectionRepository implements GridSectionInterface
         return $this->model->find($id);
     }
 
+
     /**
      * Create
      *
-     * @param  int $id section
+     * @param  int $id category
      * @param  array $input
-     * @return boolean true or false
+     * @return array
      */
     public function create($input, $id)
     {
-        $input['section_id'] = $id;
+        if ($input['type'] == 'kit') {
+            unset($input['label']);
+
+            $filter_qty = array_filter($input['qty']);
+            $unique_des = array_unique($input['des']);
+            $filter_des = array_filter($unique_des);
+
+            $label = $this->getKit($filter_qty, $filter_des);
+            if (!$label) {
+                return $this->emptyFields();
+            }
+
+            $input['label'] = $label;
+
+        } else {
+            $filter = array_filter($input['label']);
+            $label  = array_unique($filter);
+
+            if (empty($label)) {
+
+                return $this->emptyFields();
+            }
+
+            $input['label'] = implode($label, ',');
+        }
 
         $data = $this->model->create($input);
-        if ($data) { 
+        if ($data) {
 
-            $ship   = $data->section;
-     
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
-                ' Adicionou a Grade:'.$data->name.
-                ', Tam:'.$data->label.
-                ', Tipo:'.$data->type.
-                ', Seção:'.$ship->name)
+                    ' Adicionou a Grade:'.$data->name.
+                    ', Tam:'.$data->label.
+                    ', Tipo:'.$data->type)
             );
 
             $out = array(
@@ -104,7 +126,43 @@ class GridSectionRepository implements GridSectionInterface
 
         return array(
             'success' => false,
-            'message' => 'Não foi possível altera a grade.');
+            'message' => 'Não foi possível criar a grade.');
+    }
+
+
+    /**
+     * Verifica se exite duplicidade na descrição da grade
+     *
+     * @param $input_qty
+     * @param $input_des
+     * @return bool|string
+     */
+    public function getKit($input_qty, $input_des)
+    {
+        $count_qty = count(($input_qty));
+        $count_des = count(($input_des));
+
+        if ($count_qty != $count_des || $count_qty === 0 || $count_des === 0) {
+
+            return false;
+        } else {
+
+            for ($i=0; $i < $count_qty; $i++) {
+                $array[] = array(
+                    $input_qty[$i] => $input_des[$i]
+                );
+            }
+
+            $str = '';
+            foreach ($array as $keys => $values) {
+                foreach ($values as $key =>$value){
+                    $str .= $key.'/'.$value.',';
+                }
+            }
+
+            return substr($str, 0, -1);
+        }
+
     }
 
 
@@ -178,4 +236,15 @@ class GridSectionRepository implements GridSectionInterface
         }
         return false;
     }
+
+    public function emptyFields()
+    {
+        $out = array(
+            "success" => false,
+            "message" => "Preencha os campos corretamente!"
+        );
+
+        return $out;
+    }
+
 }

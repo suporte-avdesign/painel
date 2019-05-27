@@ -101,11 +101,11 @@ class ImageSectionRepository implements ImageSectionInterface
          
                 generateAccessesTxt(date('H:i:s').utf8_decode(
                     ' Adicionou a imagem:'.$type.
-                    ', Status:'.$data->status.
+                    ', Status:'.$data->active.
                     ', Seção:'.$mode->name)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
                 $route_status = route($data->type.'-section.status', $data->id);
                 $route_delete = route($data->type.'-section.destroy', ['id' => $id, 'file' => $data->id]);
@@ -119,7 +119,7 @@ class ImageSectionRepository implements ImageSectionInterface
                     'idm'        => $id,
                     "type"       => $input['type'],
                     "path"       => url($conf['photo_url'].$name),
-                    "status"     => $data->status,
+                    "status"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
@@ -163,9 +163,8 @@ class ImageSectionRepository implements ImageSectionInterface
         $file  = $input['image'];
         $ext   = $file->getClientOriginalExtension();
         $name  = Str::slug($words['description'].'-'.$mode->slug.'-'.config('app.name').'-'.$type).'-'.date('Ymdhs').'.'.$ext;
-        $path  = $conf['disk'] . $conf['path'].$name;
+        $path = $conf['disk'] . $conf['path'].$name;
         $file->move($conf['disk'] . $conf['path'], $name);
-        $status = $data->status;
 
         $upload = Image::make($path)->resize($conf['width'], $conf['height'])->save();
         if ($upload) {
@@ -176,12 +175,13 @@ class ImageSectionRepository implements ImageSectionInterface
             if ($update) {
                 generateAccessesTxt(
                     date('H:i:s').utf8_decode(
-                    " Alterou a imagem ".$type.
-                    ', Status:'.$status.
-                    ', Seção:'.$mode->name)
+                        " Alterou a imagem ".$type.
+                        ', Status:'.$data->active.
+                        ', Seção:'.$mode->slug)
                 );
 
-                ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+                ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+
                 $route_status = route($data->type.'-section.status', $data->id);
                 $route_delete = route($data->type.'-section.destroy', ['id' => $id, 'file' => $data->id]);
                 $route_edit   = route($data->type.'-section.edit', ['id' => $id, 'file' => $data->id]);
@@ -193,15 +193,15 @@ class ImageSectionRepository implements ImageSectionInterface
                     "id"         => $data->id,
                     'idm'        => $id,
                     "type"       => $input['type'],
-                    "path"       => url($path),                    
-                    "status"     => $data->status,
+                    "path"       => url($conf['photo_url'].$name),
+                    "status"     => $data->active,
                     "btn"        => $conf['btn'],
                     "class"      => $class,
                     'token'      => csrf_token(),
                     "url_status" => "statusImage('{$data->id}', '".$route_status."', '".csrf_token()."')",
                     "url_delete" => "deleteImage('{$data->id}', '".$route_delete."', '".csrf_token()."')",
-                    "url_edit"   => "abreModal('Editar: {$type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)"
-                );                
+                    "url_edit"   => "abreModal('Editar: {$data->type}', '".$route_edit."', 'form-image', 2, 'true', 500, 400)"
+                );
 
                 return $out;
             }
@@ -254,7 +254,9 @@ class ImageSectionRepository implements ImageSectionInterface
         $data = $this->model->find($id);
         $mode = $this->interModel->setId($data->section_id);
 
-        ($data->status == 'Ativo' ? $change = ['status' => 'Inativo'] : $change = ['status' => 'Ativo']);
+        ($data->active == constLang('active_true') ?
+            $change = ['active' => constLang('active_false')] :
+            $change = ['active' => constLang('active_true')]);
         ($data->type == 'featured' ? $type = 'destaque' : $type = $data->type);
 
         $update = $data->update($change);
@@ -263,11 +265,11 @@ class ImageSectionRepository implements ImageSectionInterface
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                 " Alterou o status da imagem ".$type.
-                ', para '.$data->status.
+                ', para '.$data->active.
                 ', da seção:'.$mode->name)
             );
 
-            ($data->status == 'Ativo' ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
+            ($data->active == constLang('active_true') ? $class = 'button icon-tick green-gradient' : $class = 'button icon-tick red-gradient');
 
             $out = array(
                 "success"    => true,

@@ -104,36 +104,36 @@
             </div>
 
             <div class="panel-load-target scrollable with-padding" style="height:450px">
-                <div class="with-padding white-gradient ">
-                    <h4 class="blue underline">
-                        @{{{profile_id}}}
-                        <span class="button-group float-right compact">
-                            @can('account-update')
-                                <button id="btn-editar" onclick="abreModal('Alterar Cliente: @{{{first_name}}}', 'accounts/@{{{id}}}/edit', 'dados-accounts', 2, 'true', 400, 500);" class="button blue-gradient icon-pencil with-tooltip" title="Alterar Cliente">
-                                    Editar
-                                </button>
-                            @endcan
-                        </span>
-                    </h4>
-                    @{{{notes}}}
-                    @{{{html_name}}}
-                    @{{{html_document}}}
-                    <p>Email: <strong> @{{{email}}} </strong></p>
-                    <p>Telefone: <strong> @{{{phone}}} </strong></p>
-                    <p>Celular: <strong> @{{{cell}}} </strong></p>
-                    <p>Status: <strong> @{{{active}}} </strong></p>
-                    <p>Vendedor: <strong> @{{{admin}}} </strong></p>
-                    <p>Cliente: <strong> @{{{client}}} </strong></p>
-                    <p>Data Nascimento: <strong> @{{{date}}} </strong></p>
-                    <p>Total de Visitas: <strong> @{{{visits}}} </strong></p>
-                    <p>Data Cadastro: <strong> @{{{created_at}}} </strong></p>
-                    <p>Alterou Cadastro: <strong> @{{{updated_at}}} </strong></p>
-                    <p>Ultimo Login: <strong> @{{{last_login}}} </strong></p>
-                    <p>Data Logout: <strong> @{{{logout}}} </strong></p>
-                    <p>IP: <strong> @{{{ip}}} </strong></p>
-                    <input type="hidden" id="note_@{{{id}}}" value="@{{{count_notes}}}"></input>
-
-
+                <div class="large-box-shadow white-gradient with-border">
+                    <div class="with-padding">
+                        <h4 class="blue underline">
+                            @{{{profile_id}}}
+                            <span class="button-group float-right compact">
+                                @can('account-update')
+                                    <button id="btn-editar" onclick="abreModal('Alterar Cliente: @{{{first_name}}}', 'accounts/@{{{id}}}/edit', 'dados-accounts', 2, 'true', 400, 500);" class="button blue-gradient icon-pencil with-tooltip" title="Alterar Cliente">
+                                        Editar
+                                    </button>
+                                @endcan
+                            </span>
+                        </h4>
+                        @{{{notes}}}
+                        @{{{html_name}}}
+                        @{{{html_document}}}
+                        <p>Email: <strong> @{{{email}}} </strong></p>
+                        <p>Telefone: <strong> @{{{phone}}} </strong></p>
+                        <p>Celular: <strong> @{{{cell}}} </strong></p>
+                        <p>Status: <strong> @{{{active}}} </strong></p>
+                        <p>Vendedor: <strong> @{{{admin}}} </strong></p>
+                        <p>Cliente: <strong> @{{{client}}} </strong></p>
+                        <p>Data Nascimento: <strong> @{{{date}}} </strong></p>
+                        <p>Total de Visitas: <strong> @{{{visits}}} </strong></p>
+                        <p>Data Cadastro: <strong> @{{{created_at}}} </strong></p>
+                        <p>Alterou Cadastro: <strong> @{{{updated_at}}} </strong></p>
+                        <p>Ultimo Login: <strong> @{{{last_login}}} </strong></p>
+                        <p>Data Logout: <strong> @{{{logout}}} </strong></p>
+                        <p>IP: <strong> @{{{ip}}} </strong></p>
+                        <input type="hidden" id="note_@{{{id}}}" value="@{{{count_notes}}}"></input>
+                    </div>
                 </div>
             </div>
         </div>

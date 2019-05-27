@@ -2030,6 +2030,7 @@
 		// Trigger enter event
 		doc.trigger('enter-query-'+$.template.mediaQuery.name);
 
+
 		// Open/hide menu
 		$('#open-menu').on('touchend click', function(event)
 		{
