@@ -11,30 +11,7 @@ Route::post('perfil-cliente/offers', 'Admin\ConfigProfileClientController@offers
 
 
 
-// Products / Categories
-Route::resource('produtos/{slug}/catalogo', 'Admin\ProductController');
-Route::get('produto/{id}/detalhes', 'Admin\ProductController@details');
-Route::post('produtos/{id}/catalogo/data', 'Admin\ProductController@data')->name('catalogo.data');
-Route::put('produto/{id}/status', 'Admin\ProductController@status')->name('product.status');
-Route::post('produto/combo/categories', 'Admin\ProductController@comboCataegory')->name('combo.categories');
-Route::get('produto/{idpro}/grids/{module}/{id}/{stock}/{kit}', 'Admin\ProductController@grids');
 
-// Images Colors Products
-Route::resource('produto/{idpro}/colors-product', 'Admin\ImageColorController');
-Route::put('produto/{idpro}/status-color/{id}', 'Admin\ImageColorController@status')->name('status-color');
-Route::get('produto/{id}/add-grid', 'Admin\ImageColorController@addGrid')->name('add-grid');
-Route::get('produto/{id}/change-grids/{stock}/{kit}', 'Admin\ImageColorController@changeGrids');
-Route::get('produto/{id}/grids/{stock}/{kit}', 'Admin\ImageColorController@grids');
-
-
-// Images Positions Colors
-Route::resource('produto/{idpro}/positions-product', 'Admin\ImagePositionController');
-Route::put('produto/{id}/status-position', 'Admin\ImagePositionController@status')->name('status-position');
-Route::get('produto/{idimg}/add-positions', 'Admin\ImagePositionController@addPosition')->name('add-positions');
-// Todas as Cores
-Route::get('produtos/cores', 'Admin\ImageColorController@products');
-Route::post('produtos/colors/data', 'Admin\ImageColorController@data')->name('colors.data');
-Route::put('produtos/{idpro}/colors-status/{id}', 'Admin\ImageColorController@colorsStatus')->name('colors-status');
 
 
 
@@ -179,3 +156,28 @@ Route::resource('brand/{id}/logo-brand', 'Admin\LogoBrandController');
 Route::put('brand/status/{id}/logo', 'Admin\LogoBrandController@status')->name('logo-brand.status');
 Route::resource('brand/{id}/banner-brand', 'Admin\BannerBrandController');
 Route::put('brand/status/{id}/banner', 'Admin\BannerBrandController@status')->name('banner-brand.status');
+
+
+// Products / Categories
+Route::resource('products/{slug}/catalog', 'Admin\ProductController');
+Route::get('produto/{id}/detalhes', 'Admin\ProductController@details');
+Route::post('produtos/{id}/catalogo/data', 'Admin\ProductController@data')->name('catalogo.data');
+Route::put('produto/{id}/status', 'Admin\ProductController@status')->name('product.status');
+Route::post('produto/combo/categories', 'Admin\ProductController@comboCataegory')->name('combo.categories');
+Route::get('produto/{idpro}/grids/{module}/{id}/{stock}/{kit}', 'Admin\ProductController@grids');
+
+// Images Colors Products
+Route::resource('produto/{idpro}/colors-product', 'Admin\ImageColorController');
+Route::put('produto/{idpro}/status-color/{id}', 'Admin\ImageColorController@status')->name('status-color');
+Route::get('produto/{id}/add-grid', 'Admin\ImageColorController@addGrid')->name('add-grid');
+Route::get('produto/{id}/change-grids/{stock}/{kit}', 'Admin\ImageColorController@changeGrids');
+Route::get('produto/{id}/grids/{stock}/{kit}', 'Admin\ImageColorController@grids');
+
+// Images Positions Colors
+Route::resource('produto/{idpro}/positions-product', 'Admin\ImagePositionController');
+Route::put('produto/{id}/status-position', 'Admin\ImagePositionController@status')->name('status-position');
+Route::get('produto/{idimg}/add-positions', 'Admin\ImagePositionController@addPosition')->name('add-positions');
+// Todas as Cores
+Route::get('produtos/cores', 'Admin\ImageColorController@products');
+Route::post('produtos/colors/data', 'Admin\ImageColorController@data')->name('colors.data');
+Route::put('produtos/{idpro}/colors-status/{id}', 'Admin\ImageColorController@colorsStatus')->name('colors-status');

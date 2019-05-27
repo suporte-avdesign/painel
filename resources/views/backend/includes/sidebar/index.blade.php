@@ -17,7 +17,7 @@
 
 		<!-- By default, this section is made for 4 icons, see the doc to learn how to change this, in "basic markup explained" -->
 		<ul id="access" class="children-tooltip">
-			<li><a href="contatos" title="Mensagens"><span class="icon-mail"></span><span class="count">{{$sidebar['total_mails']}}</span></a></li>
+			<li><a href="contacts" title="Mensagens"><span class="icon-mail"></span><span class="count">{{$sidebar['total_mails']}}</span></a></li>
 			<!--
 			<li><a href="calendars.html" title="Agenda"><span class="icon-calendar"></span></a></li>
 			-->
