@@ -33,7 +33,6 @@ class CreateProductsTable extends Migration
             $table->float('height', 8, 3)->nullable();
             $table->float('length', 8, 3)->nullable();
             $table->string('kit_name', 30)->nullable();
-            $table->tinyInteger('cost')->default(0);;
             $table->tinyInteger('kit')->default(0);
             $table->tinyInteger('stock')->default(0);
             $table->tinyInteger('freight')->default(0);

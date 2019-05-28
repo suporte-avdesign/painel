@@ -41,16 +41,16 @@ class ProductCostRepository implements ProductCostInterface
 
     public function update($input, $product)
     {
-        $input['product_id'] = $product->id;
+        $cost   = $product->cost;
+        $data   = $this->model->find($cost->id);
 
-        $data   = $this->model->find($input['id']);
         $update = $data->update($input);
 
         if ($update) {
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(
                     ' Alterou Custo do Produto'.$product->name.
-                    ' de '.$input['cost'].' para '.setReal($data->value))
+                    ' de '.$input['value'].' para '.setReal($data->value))
             );
         }
 

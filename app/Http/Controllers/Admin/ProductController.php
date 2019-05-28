@@ -261,6 +261,7 @@ class ProductController extends Controller
         }
 
         $data          = $this->interModel->setId($id);
+        $cost          = $data->cost;
         $prices        = $data->prices;
         $brands        = $this->interBrand->pluck();
         $section       = $this->interSection->setId($data->section_id);
@@ -269,8 +270,6 @@ class ProductController extends Controller
         $percentage    = $this->configPercent->pluck();
         $unit_measure  = $this->configUnitMeasure->pluck();
         $configProduct = $this->configProduct->setId(1);
-
-
 
         $offer_days = 0;
         if ($data->offer == 1) {
@@ -285,8 +284,9 @@ class ProductController extends Controller
         // Carregar Modulos
         ($configProduct->freight == 1 ? $freight = $this->configFreight->setId(1) : $freight = 0);
 
-        return  view('backend.products.modal.forms.edit.product-edit', compact(
+        return  view('backend.products.pixels.forms.edit.product', compact(
             'data',
+            'cost',
             'kits',
             'prices',
             'freight',
@@ -341,8 +341,12 @@ class ProductController extends Controller
                 $dataForm['refresh'] = false;
             }
 
+
+
             $update = $this->interModel->update($dataForm, $data, $id);
             if ($update) {
+
+                $cost = $this->productCost->update($request['cost'], $data);
 
                 $configProduct = $this->configProduct->setId(1);
 

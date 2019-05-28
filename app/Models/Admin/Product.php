@@ -67,4 +67,10 @@ class Product extends Model
     {
         return $this->hasMany(GridProduct::class);
     }
+
+
+    public function cost()
+    {
+        return $this->hasOne(ProductCost:: class);
+    }
 }

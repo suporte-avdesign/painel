@@ -5,7 +5,10 @@
         <p>Descrição: <strong> {{$data->description}} </strong></p>
         <p>Tags: <strong> {{$data->tags}} </strong></p>
         @if($configProduct->cost == 1)
-            <p>Custo: <strong> {{setReal($data->cost)}} </strong></p>
+            @php
+                $cost = $data->cost;
+            @endphp
+            <p>Custo: <strong> {{setReal($cost->value)}} </strong></p>
         @endif
         @if($configProduct->stock == 1)
             <p>Estoque: <strong> {{$stock}} </strong></p>
@@ -18,7 +21,7 @@
         @foreach($prices as $price)
 
             @php
-                ($price->profile != 'Normal' ? $price_card_percent = $price->sum_card.round($price->price_cash_percent, 2).'%' : $price_card_percent = '');
+                ($price->profile != $configProduct->price_default ? $price_card_percent = $price->sum_card.round($price->price_cash_percent, 2).'%' : $price_card_percent = '');
             @endphp
             <p><small class="tag">{{$price->profile}}</small> À Vista: {{$price->sum_cash}}{{round($price->price_cash_percent, 2)}}%<strong>&nbsp;&nbsp;{{setReal($price->price_cash)}}</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: {{$price_card_percent}}<strong>&nbsp;&nbsp;{{setReal($price->price_card)}}</strong></p>
             @if($data->offer == 1)

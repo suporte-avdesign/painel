@@ -33,14 +33,14 @@
             <fieldset class="fieldset">
                 <legend class="legend">Status do produto</legend>
                 <p class="button-height inline-label">
-                    <label for="status" class="label">Status</label>
+                    <label for="active" class="label">Status</label>
                     <span class="button-group">
-                        <label for="status_1" class="button green-active">
-                            <input type="radio" name="prod[status]" id="status_1" value="1"  checked>
+                        <label for="active_1" class="button green-active">
+                            <input type="radio" name="prod[active]" id="active_1" value="1"  checked>
                             Ativo
                         </label>
-                        <label for="status_0" class="button red-active" >
-                            <input type="radio" name="prod[status]" id="status_0" value="0">
+                        <label for="active_0" class="button red-active" >
+                            <input type="radio" name="prod[active]" id="active_0" value="0">
                             Inativo
                         </label>
                     </span>
