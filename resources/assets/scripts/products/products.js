@@ -148,10 +148,11 @@
                             nextTabs('new-product','show-colors', true);
                         } else {
                             if (data.refresh == true){
-                                // faz o load dento da div 
+
+                                // faz o load dento da div
                                 $( "#info-product-"+data.id ).load( data.redirect, function() {
-                                  fechaModal();
-                                });                            
+                                    fechaModal();
+                                });
                             } else  {
                                 if (data.change == true) {
                                     var count_section_current = $("#count-section-"+data.current.section_id).html(),
@@ -173,6 +174,9 @@
                                 table.ajax.reload();
                                 fechaModal();
                             }
+
+                            table.ajax.reload();
+                            fechaModal();
                         }
 
                         msgNotifica(true, data.message, true, false);

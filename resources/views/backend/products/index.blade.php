@@ -74,7 +74,7 @@
                 <ul class="files-list mini open-on-panel-content">
                     @can('product-view')
                         <li>
-                            <a href="produto/@{{{id}}}/detalhes" class="file-link">
+                            <a href="product/@{{{id}}}/details" class="file-link">
                                 <span class="icon file-css"></span>
                                 Detalhes do Produto
                             </a>

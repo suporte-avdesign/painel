@@ -159,14 +159,16 @@ Route::put('brand/status/{id}/banner', 'Admin\BannerBrandController@status')->na
 
 
 // Products / Categories
-Route::resource('products/{slug}/catalog', 'Admin\ProductController');
-Route::get('produto/{id}/detalhes', 'Admin\ProductController@details');
-Route::post('produtos/{id}/catalogo/data', 'Admin\ProductController@data')->name('catalogo.data');
-Route::put('produto/{id}/status', 'Admin\ProductController@status')->name('product.status');
-Route::post('produto/combo/categories', 'Admin\ProductController@comboCataegory')->name('combo.categories');
-Route::get('produto/{idpro}/grids/{module}/{id}/{stock}/{kit}', 'Admin\ProductController@grids');
+Route::resource('products/{slug}/catalog', 'Admin\ProductController',['except' => ['show']]);
+Route::post('product/{id}/catalog/data', 'Admin\ProductController@data')->name('catalogo.data');
+Route::put('product/{id}/status', 'Admin\ProductController@status')->name('product.status');
+Route::get('product/{id}/details', 'Admin\ProductController@details');
+Route::post('product/change/categories', 'Admin\ProductController@change')->name('change.product');
+
+
 
 // Images Colors Products
+Route::get('produto/{idpro}/grids/{module}/{id}/{stock}/{kit}', 'Admin\ProductController@grids');
 Route::resource('produto/{idpro}/colors-product', 'Admin\ImageColorController');
 Route::put('produto/{idpro}/status-color/{id}', 'Admin\ImageColorController@status')->name('status-color');
 Route::get('produto/{id}/add-grid', 'Admin\ImageColorController@addGrid')->name('add-grid');

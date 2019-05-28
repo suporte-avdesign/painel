@@ -160,10 +160,10 @@ class ProductController extends Controller
         // Carregar Modulos
         ($configProduct->freight == 1 ? $freight = $this->configFreight->setId(1) : $freight = 0);
         
-        ($configProduct->group_colors == 1 ? $group_colors = \AVDPainel\Models\Admin\ConfigColorGroup::get() : $group_colors = array());
+        ($configProduct->group_colors == 1 ? $groupColors = \AVDPainel\Models\Admin\ConfigColorGroup::get() : $group_colors = array());
         
-        return view('backend.products.pixels.tabs', compact(
-            'group_colors',
+        return view('backend.products.tabs-1', compact(
+            'groupColors',
             'kits',
             'idpro',
             'group',
@@ -235,17 +235,6 @@ class ProductController extends Controller
         }            
     }
 
-    /**
-     * Show
-     *
-     * @param  int  $idcat
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($idcat, $id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -284,7 +273,7 @@ class ProductController extends Controller
         // Carregar Modulos
         ($configProduct->freight == 1 ? $freight = $this->configFreight->setId(1) : $freight = 0);
 
-        return  view('backend.products.pixels.forms.edit.product', compact(
+        return  view('backend.products.form-edit', compact(
             'data',
             'cost',
             'kits',
@@ -511,7 +500,7 @@ class ProductController extends Controller
      * @param  int  $id section
      * @return \Illuminate\Http\Response
      */
-    public function comboCataegory(Request $request)
+    public function change(Request $request)
     {
         if( Gate::denies("{$this->ability}-update") ) {
             return view("backend.erros.message-401");
@@ -519,7 +508,7 @@ class ProductController extends Controller
         $section       = $this->interSection->setId($request['get_option']);
         $categories    = $section->categories;
 
-        return view('backend.products.modal.forms.categories', compact('categories'));
+        return view('backend.products.change', compact('categories'));
     }
 
     

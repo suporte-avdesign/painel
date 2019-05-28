@@ -1,6 +1,6 @@
 <div class="block">
     <div class="with-padding">
-        <h4 class="blue underpne">Perfil do Produto</h4>
+        <h4 class="blue underline">Perfil do Produto</h4>
         <p>Nome: <strong> {{$data->name}} </strong></p>
         <p>Descrição: <strong> {{$data->description}} </strong></p>
         <p>Tags: <strong> {{$data->tags}} </strong></p>

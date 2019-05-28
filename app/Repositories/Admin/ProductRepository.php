@@ -428,6 +428,7 @@ class ProductRepository implements ProductInterface
      */
     public function update($input, $data, $id)
     {
+        //dd($input);
         $offer_days = '';
         $success = false;
         $message = 'Não foi possível alterar o produto';

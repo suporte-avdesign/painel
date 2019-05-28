@@ -132,7 +132,7 @@
             </fieldset>
 
             @if($configProduct->freight == 1)
-                @include('backend.products.pixels.forms.create.freight')
+                @include('backend.freights.form-create')
             @endif
 
 

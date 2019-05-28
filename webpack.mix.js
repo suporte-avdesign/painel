@@ -129,7 +129,8 @@ mix.scripts([
     'resources/assets/js/avd.avd.colorpicker.js',
 ], 'public/backend/js/painel.min.js');
 
-
+// Script para selecionar a cor em
+mix.scripts('resources/assets/js/avd.hexa.js','public/backend/js/avd.hexa.min.js');
 
 mix.scripts([
     'resources/assets/js/libs/tinycon.min.js',
