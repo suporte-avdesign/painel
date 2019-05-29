@@ -3,7 +3,7 @@
 namespace AVDPainel\Http\Requests\Admin;
 
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
-use AVDPainel\Interfaces\Admin\ConfigImageProductInterface as ConfigImages;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImages;
 
 use Illuminate\Foundation\Http\FormRequest;
 

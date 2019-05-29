@@ -36,7 +36,6 @@ class ProductController extends Controller
 {
     protected $ability  = 'product';
     protected $view     = 'backend.products';
-    protected $upload;
     protected $last_url;
     protected $messages;
 
@@ -77,7 +76,6 @@ class ProductController extends Controller
         $this->configPercent      = $configPercent;
         $this->configUnitMeasure  = $configUnitMeasure;
         $this->configImageProduct = $configImageProduct;
-        $this->upload             = $this->configImageProduct;
         $this->messages = array(
             'section_id.required'   => 'A seção é obrigatória.',
             'name.required'         => 'O nome do é obrigatório.',
@@ -162,7 +160,7 @@ class ProductController extends Controller
         
         ($configProduct->group_colors == 1 ? $groupColors = \AVDPainel\Models\Admin\ConfigColorGroup::get() : $group_colors = array());
         
-        return view('backend.products.tabs-1', compact(
+        return view('backend.products.tabs-hexa', compact(
             'groupColors',
             'kits',
             'idpro',
@@ -488,9 +486,9 @@ class ProductController extends Controller
         }
 
         if ($kit == 1) {
-            return view('backend.products.modal.forms.grids-create-kits', compact('grids','module','idpro','stock'));
+            return view('backend.colors-grids.form-create-kits', compact('grids','module','idpro','stock'));
         } else {
-            return view('backend.products.modal.forms.grids-create', compact('grids','module','idpro','stock'));
+            return view('backend.colors-grids.form-create', compact('grids','module','idpro','stock'));
         }
     }
 

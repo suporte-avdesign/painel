@@ -1,7 +1,7 @@
 <div class="standard-tabs margin-bottom" id="add-tabs">
 	<ul class="tabs new-product">
 		<li id="show-product" class="active"><a href="#tab-product">Dados do Produto</a></li>
-		<li id="show-colors" class=""><a href="#tab-colors">Imagens</a></li>
+		<li id="show-colors" class="disabled"><a href="#tab-colors">Imagens</a></li>
 		@if($configProduct->positions == 1)
 			<li id="show-positions" class="disabled"><a href="#tab-positions">Posições</a></li>
 		@endif	
@@ -14,7 +14,7 @@
 		</div>
 
 		<div id="tab-colors" class="with-padding">
-				@include('backend.colors.hexa.layout')
+				@include('backend.colors.layout_hexa-create')
 		</div>
 		
 		@if($configProduct->positions == 1)

@@ -126,7 +126,7 @@ mix.scripts([
     'resources/assets/js/avd.agenda.js',
     'resources/assets/js/avd.content-panel.js',
     'resources/assets/js/avd.tabs.js',
-    'resources/assets/js/avd.avd.colorpicker.js',
+    'resources/assets/js/avd.colorpicker.js',
 ], 'public/backend/js/painel.min.js');
 
 // Script para selecionar a cor em
@@ -189,6 +189,7 @@ mix.scripts('resources/assets/scripts/orders/notes.js', 'public/backend/scripts/
 mix.scripts('resources/assets/scripts/orders/shippings.js', 'public/backend/scripts/orders/shippings.min.js');
 
 mix.scripts('resources/assets/scripts/products/products.js', 'public/backend/scripts/products/products.min.js');
+mix.scripts('resources/assets/scripts/colors.js', 'public/backend/scripts/colors.min.js');
 
 mix.scripts('resources/assets/scripts/sections.js', 'public/backend/scripts/sections.min.js');
 mix.scripts('resources/assets/scripts/sliders.js', 'public/backend/scripts/sliders.min.js');

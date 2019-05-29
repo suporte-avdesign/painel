@@ -445,6 +445,22 @@
 
 
         /**
+         * Peview Image
+         * @param int id
+         * @param int width
+         */
+        preview_image = function(arq,prev,width)
+        {
+            $('#'+prev).html("");
+            var total_file=document.getElementById(arq).files.length;
+            for(var i=0;i<total_file;i++)
+            {
+                $('#'+prev).append('<img src="'+URL.createObjectURL(event.target.files[i])+'" width="'+width+'">');
+            }
+        };
+
+
+        /**
          * Ability kit module new product.
          * @param int kit
          * @param int idcat
@@ -458,7 +474,7 @@
                $("#kits").hide(); 
             }
             $("#grid_kit").val(kit);
-            
+            /*
             $("#select_grid .select-value").text("Selecione Uma");
             $( "#box-grids-colors" ).html( '' );           
             var id,
@@ -476,59 +492,9 @@
                     $( "#box-grids-colors" ).html( data );
                 }); 
             };
+            */
         }
 
-        /**
-         * Ability kit module color.
-         * @param int kit
-         * @param int idpro
-         * @param string url
-         * @param string ac
-         */
-        setKitColor = function(kit, idpro, url, ac)
-        {
-            $("#grid_kit").val(kit);
-
-            stock = $("input[name='img[stock]']:checked").val();
-            if (kit == 1) {
-               $("#kits").show(); 
-            } else {
-               $("#kits").hide();
-               $("input[name='img[kit_name]']").val('');
-            }
-            if (ac == 'create') {
-                
-                $("#select_grid .select-value").text("Selecione Uma");
-                $( "#box-grids-colors" ).html('');           
-                var id,
-                opc = $('#grid_colors option:selected').val();
-                if (opc == 'brand') {
-                    id  = $("#bra_id").val();
-                } else if (opc == 'section') {
-                    id = $('#sec_id').val();
-                } else if (opc == 'category') {
-                    id = $('#cat_id').val();
-                }
-                if (opc != '') {
-                    $.get( base+"/"+url+"/"+idpro+"/grids/"+opc+"/"+id+"/"+stock+"/"+kit, function( data ) {
-                        $( "#box-grids-colors" ).html( data );
-                    }); 
-                };
-            };
-
-            if (ac == 'update') {
-                var text;
-                (kit == 1 ? text = tableProduct.txtKit : text = tableProduct.txtUnit);
-                (stock == 1 ? textStock = tableProduct.txtUpdateGridsStock : textStock = tableProduct.txtUpdateGrids);
-                $.modal.confirm(textStock+text, function(){
-                    $.get( base+"/"+url+"/"+stock+"/"+kit, function( data ) {
-                        $( "#update-grids" ).html( data );
-                    });
-                }, function(){
-                    $.modal.alert(tableProduct.txtCancel);
-                });
-            }
-        }
 
         /**
          * Ability stock module new product.
@@ -540,7 +506,7 @@
         {
 
             $("#grid_stock").val(stock);
-
+            /*
             $("#select_grid .select-value").text("Selecione Uma");
             $( "#box-grids-colors" ).html( '' );           
             var id,
@@ -558,70 +524,7 @@
                     $( "#box-grids-colors" ).html( data );
                 }); 
             };
-        };
-
-        /**
-         * Ability stock module color.
-         * @param int stock
-         * @param int idpro
-         * @param string url
-         * @param string ac
-         */
-        setStockColor = function(stock, idpro, url, ac)
-        {
-            $("#grid_stock").val(stock);
-            
-            kit = $("input[name='img[kit]']:checked").val();
-
-            if (ac == 'create') {
-                $("#select_grid .select-value").text("Selecione Uma");
-                $( "#box-grids-colors" ).html( '' );           
-                var id,
-                opc = $('#grid_colors option:selected').val();
-                if (opc == 'brand') {
-                    id = $("#bra_id").val();
-                } else if (opc == 'section') {
-                    id = $("#sec_id").val();
-                } else if (opc == 'category') {
-                    id = $("#cat_id").val();
-                }
-                if (opc != '') {
-                    $.get( base+"/"+url+"/"+idpro+"/grids/"+opc+"/"+id+"/"+stock+"/"+kit, function( data ) {
-                        $( "#box-grids-colors" ).html( data );
-                    }); 
-                };
-            };
-
-            if (ac == 'update') {
-                if (stock == 0 && kit == 0) {
-                    $.modal.confirm(tableProduct.txtUpdateStock, function(){
-                        $.get( base+"/"+url+"/"+stock+"/"+kit, function( data ) {
-                            $( "#update-grids" ).html( data );
-                        });
-                    }, function(){
-                        $.modal.alert(tableProduct.txtCancel);
-                    });                        
-                } else {
-                    $.get( base+"/"+url+"/"+stock+"/"+kit, function( data ) {
-                        $( "#update-grids" ).html( data );
-                    });
-                }
-            }
-        };
-
-        /**
-         * Peview Image
-         * @param int id
-         * @param int width 
-        */
-        preview_image = function(arq,prev,width)
-        {
-            $('#'+prev).html("");
-            var total_file=document.getElementById(arq).files.length;
-            for(var i=0;i<total_file;i++)
-            {
-                $('#'+prev).append('<img src="'+URL.createObjectURL(event.target.files[i])+'" width="'+width+'">');
-            }
+            */
         };
 
 
@@ -686,6 +589,7 @@
         }
 
 
+
         /**
          * Update Status collor.
          *
@@ -698,7 +602,7 @@
         statusColor = function(id, url, sta, cover, token)
         {
             var status;
-            (sta == 1 ? status = 0 : status = 1);            
+            (sta == 1 ? status = 0 : status = 1);
             $.ajax({
                 type: 'POST',
                 headers: {'X-CSRF-TOKEN':token},
@@ -730,28 +634,36 @@
 
         deleteColor = function(id, url)
         {
-            $.ajax({
-                type: 'DELETE',
-                dataType: "json",
-                url: url,
-                headers: {'X-CSRF-TOKEN':tableProduct.token},
-                success: function(data){
-                    if(data.success == true){
-                        if (data.reload == true) {
-                            table.ajax.reload();
+
+            $.modal.confirm(tableProduct.txtConfirm+' '+name+'?', function() {
+                $.ajax({
+                    type: 'DELETE',
+                    dataType: "json",
+                    url: url,
+                    headers: {'X-CSRF-TOKEN': tableProduct.token},
+                    success: function (data) {
+                        if (data.success == true) {
+                            if (data.reload == true) {
+                                table.ajax.reload();
+                            } else {
+                                $("#img-colors-" + id).remove();
+                            }
+                            msgNotifica(true, data.message, true, false);
                         } else {
-                            $("#img-colors-"+id).remove(); 
-                        }                                               
-                        msgNotifica(true, data.message, true, false);
-                    } else {
-                        msgNotifica(false, data.message, true, false);
+                            msgNotifica(false, data.message, true, false);
+                        }
+                    },
+                    error: function (xhr) {
+                        ajaxFormError(xhr);
                     }
-                },
-                error: function(xhr){
-                    ajaxFormError(xhr);
-                }
+                });
+            }, function(){
+                $.modal.alert(tableProduct.txtCancel);
             });
+
+
         };
+
 
 
         /**

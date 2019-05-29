@@ -82,7 +82,7 @@
                     @endcan
                     @can('product-images-view')
                         <li>
-                            <a href="produto/@{{{id}}}/colors-product" class="file-link">
+                            <a href="colors/@{{{id}}}/colors-product" class="file-link">
                                 <span class="icon folder-image"></span>
                                 Editar Cores
                             </a>
@@ -91,7 +91,7 @@
                     @if($configProduct->positions == 1)
                         @can('product-images-view')
                             <li>
-                                <a href="produto/@{{{id}}}/positions-product" class="file-link">
+                                <a href="position/@{{{id}}}/positions-product" class="file-link">
                                     <span class="icon folder-image"></span>
                                     Editar Posições
                                 </a>

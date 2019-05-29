@@ -1,19 +1,35 @@
-<p class="block-label button-height">
-    <label for="grid_colors" class="label">Grades<span class="red"> *</span></label>
-    <select id="grid_colors" name="grid" class="select grid_colors">
-        <option value="">Selecione Uma</option>
-        <option value="brand">Fabricante</option>
-        <option value="section">Seção</option>
-        <option value="category">Categoria</option>
-    </select>
-    @if(isset($product))
-        <input id="bra_id" type="hidden" value="{{$product->brand_id}}">
-        <input id="sec_id" type="hidden" value="{{$product->section_id}}">
-        <input id="cat_id" type="hidden" value="{{$product->category_id}}">
-        <input id="sto_id" name="prod[stock]" type="hidden" value="{{$product->stock}}">
-        <input id="kit_id" name="prod[kit]" type="hidden" value="{{$product->kit}}">
-    @endif
-</p>
+@if(isset($data))
+    <fieldset class="fieldset">
+        <legend class="legend">Grades</legend>
+        <div class="align-right compact">
+            <a href="javascript:addGrid('{{$data->id}}','{{$stock}}','{{$kit}}');" class="button icon-plus blue-gradient" title="Adicionar"></a>
+        </div>
+        <div id="update-grids">            
+            @if($kit == 1)       
+                @include('backend.products2.modal.forms.grids-update-kits')
+            @else
+                @include('backend.products2.modal.forms.grids-update')
+            @endif
+        </div>
+    </fieldset>
+@else
+    <p class="block-label button-height">
+        <label for="grid_colors" class="label">Grades<span class="red"> *</span></label>
+        <select id="grid_colors" name="grid" class="select grid_colors">
+            <option value="">Selecione Uma</option>
+            <option value="brand">Fabricante</option>
+            <option value="section">Seção</option>
+            <option value="category">Categoria</option>
+        </select>
+        @if(isset($product))
+            <input id="bra_id" type="hidden" value="{{$product->brand_id}}">
+            <input id="sec_id" type="hidden" value="{{$product->section_id}}">
+            <input id="cat_id" type="hidden" value="{{$product->category_id}}">
+            <input id="sto_id" name="prod[stock]" type="hidden" value="{{$product->stock}}">
+            <input id="kit_id" name="prod[kit]" type="hidden" value="{{$product->kit}}">
+        @endif
+    </p>
+@endif                    
 
 <div align="center">
     <span id="loader-grids" class="loader working" style="display:none;"></span>
@@ -40,7 +56,7 @@
         $( "#box-grids-colors").html("");
 
       
-        $.get( base+"/produto/{{$idpro}}/grids/"+opc+"/"+mod+"/"+stock+"/"+kit, function( data ) {
+        $.get( base+"/product/{{$idpro}}/grids/"+opc+"/"+mod+"/"+stock+"/"+kit, function( data ) {
             $("#loader-grids").hide();
             $( "#box-grids-colors").html( data );
         });
@@ -66,7 +82,7 @@
         if (mod) {
             $("#loader-grids").show();
             $("#box-grids-colors").html("");          
-            $.get( base+"/produto/"+idpro+"/grids/"+opc+"/"+mod+"/"+stock+"/"+kit, function( data ) {
+            $.get( base+"/product/"+idpro+"/grids/"+opc+"/"+mod+"/"+stock+"/"+kit, function( data ) {
                 $("#loader-grids").hide();
                 $("#box-grids-colors").html( data );
             });
