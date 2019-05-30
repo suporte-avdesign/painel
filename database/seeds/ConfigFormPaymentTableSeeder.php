@@ -16,16 +16,27 @@ class ConfigFormPaymentTableSeeder extends Seeder
 
         ConfigFormPayment::create([
             'order' => 1,
-            'label' => 'Pagamento à Vista',
-            'description' => 'Para pagamento à vista no momento só aceitamos "Depósito Bancário".',
+            'label' => 'Depósito em Conta',
+            'description' => '
+                -Banco: '.env('DEP_BANK').
+                '-Agência: '.env('DEP_AGENCY').'-'.env('DEP_AGENCY_DIG').
+                '-Conta Corrente:'.env('DEP_ACCOUNT').'-'.env('DEP_ACCOUNT_DIG'),
+                '-Favorecido:'.env('DEP_NAME'),
+                '-'.env('DEP_DOCUMENT_NAME').':'.env('DEP_DOCUMENT_NUMBER'),
             'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
-
+        ConfigFormPayment::create([
+            'order' => 1,
+            'label' => 'Boleto Bancário',
+            'description' => 'Emita o boleto bancário e pague em qualquer agência.',
+            'active' => constLang('active_true'),
+            'created_at' => $date
+        ]);
 
         ConfigFormPayment::create([
-            'order' => 2,
+            'order' => 3,
             'label' => 'Cartão de Crédito',
             'description' => '
                 -Acima de R$300,00 - 3x sem juros

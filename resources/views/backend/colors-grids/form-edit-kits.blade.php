@@ -33,6 +33,8 @@
     @if($stock == 1)
         @php
             $sum_stock = $sum_entry - $sum_low;
+
+
         @endphp
         <li><label for="grid_colors" class="label"> Entada | Saida | Estoque</label></li>
         <li>

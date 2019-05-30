@@ -16,17 +16,17 @@ class CreateImageColorsTable extends Migration
         Schema::create('image_colors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
-            $table->string('brand', 30);
-            $table->string('section', 30);
-            $table->string('category', 30);
+            //$table->string('brand', 30);
+            //$table->string('section', 30);
+            //$table->string('category', 30);
             $table->string('color', 30);
             $table->string('code', 30);
             $table->string('image',190);
             $table->string('slug', 190)->unique();
             $table->string('html', 30)->nullable();
-            $table->tinyInteger('kit')->default(0);
-            $table->integer('stock')->unsigned()->default(0);
-            $table->string('kit_name', 30)->nullable();
+            //$table->tinyInteger('kit')->default(0);
+            //$table->integer('stock')->unsigned()->default(0);
+            //$table->string('kit_name', 30)->nullable();
             $table->text('description')->nullable();
             $table->tinyInteger('cover')->default(0);
             $table->char('order', 2);

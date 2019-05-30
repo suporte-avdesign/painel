@@ -48,10 +48,10 @@ class ProductRepository implements ProductInterface
         $columns = array(
             0  => 'id',
             1  => 'visits',
-            2  => 'offer',
-            3  => 'status',
-            4  => 'featured',
-            5  => 'new',
+            2  => 'new',
+            3  => 'offer',
+            4  => 'active',
+            5  => 'featured',
             6  => 'trend',
             7  => 'black_friday',
             8  => 'name',
@@ -217,8 +217,16 @@ class ProductRepository implements ProductInterface
 
                 // Visits
                 $visits  = '<p><button type="button" class="button compact blue-gradient">Visitas '.$val->visits.'</button></p>';
-                $visits .= '<p>À vista: '.setReal($price_cash).'</p>';
-                $visits .= '<p>À prazo: '.setReal($price_card).'</p>';
+                $visits .= "<p>{$val->name}</p>";
+
+                // New
+                $new = $val->new;
+                ($new == 1 ? $color_new = 'icon-tick green-gradient">Ativo' : $color_new = 'grey-gradient">Inativo');
+                $clickNew = "statusFields('new','{$val->id}','".route('product.status', $val->id)."','{$new}','".csrf_token()."')";
+                $new  = '<p id="new-'.$val->id.'"><button type="button" onclick="'.$clickNew.'" class="button compact '.$color_new.'</button></p>';
+                $new .= '<p>À vista: '.setReal($price_cash).'</p>';
+                $new .= '<p>À prazo: '.setReal($price_card).'</p>';
+
                 // Offer
                 $offer = $val->offer;
                 ($offer == 1 ? $color_offer = 'icon-tick green-gradient">Ativo' : $color_offer = 'grey-gradient">Inativo');
@@ -238,11 +246,7 @@ class ProductRepository implements ProductInterface
                 ($featured == 1 ? $color_featured = 'icon-tick green-gradient">Ativo' : $color_featured = 'grey-gradient">Inativo');
                 $clickFeatured = "statusFields('featured','{$val->id}','".route('product.status', $val->id)."','{$featured}','".csrf_token()."')";
                 $featured  = '<p id="featured-'.$val->id.'"><button type="button" onclick="'.$clickFeatured.'" class="button compact '.$color_featured.'</button></p>';
-                // New
-                $new = $val->new;
-                ($new == 1 ? $color_new = 'icon-tick green-gradient">Ativo' : $color_new = 'grey-gradient">Inativo');
-                $clickNew = "statusFields('new','{$val->id}','".route('product.status', $val->id)."','{$new}','".csrf_token()."')";
-                $new  = '<p id="new-'.$val->id.'"><button type="button" onclick="'.$clickNew.'" class="button compact '.$color_new.'</button></p>';
+
                 // Trend
                 $trend = $val->trend;
                 ($trend == 1 ? $color_trend = 'icon-tick green-gradient">Ativo' : $color_trend = 'grey-gradient">Inativo');
@@ -276,10 +280,10 @@ class ProductRepository implements ProductInterface
 
                 $nData['image']       = $image;
                 $nData['visits']      = [0 => $visits];
+                $nData['new']         = $new;
                 $nData['offer']       = [0 => $offers];
                 $nData['active']      = $status;
                 $nData['featured']    = $featured;
-                $nData['new']         = $new;
                 $nData['trend']       = $trend;
                 $nData['black_friday']= $black_friday;
                 $nData['id']          = $val->id;

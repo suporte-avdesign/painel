@@ -125,6 +125,7 @@
                 </p>
 
                 @if($configProduct->kit == 1)
+                    <!--
                     <p class="button-height inline-label">
                         <label for="kit" class="label">Venda Caixa</label>
                         <span class="button-group">
@@ -138,9 +139,11 @@
                             </label>
                         </span>
                     </p>
+                    -->
                 @endif
 
                 @if($configProduct->stock == 1)
+                    <!--
                     <p class="button-height inline-label">
                         <label for="stock" class="label">Estoque</label>
                         <span class="button-group">
@@ -154,6 +157,7 @@
                             </label>
                         </span>
                     </p>
+                    -->
                 @endif
 
                 @if($configProduct->freight == 1)

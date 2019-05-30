@@ -17,9 +17,9 @@ class ConfigFreightsTableSeeder extends Seeder
         ConfigFreight::create([
             'default' => 1,
             'weight' => 1,
-            'width' => 1,
-            'height' => 1,
-            'length' => 1,
+            'width' => 0,
+            'height' => 0,
+            'length' => 0,
             'created_at' => $date
         ]);
     }

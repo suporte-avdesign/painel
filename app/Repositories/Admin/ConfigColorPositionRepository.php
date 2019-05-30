@@ -176,13 +176,10 @@ class ConfigColorPositionRepository implements ConfigColorPositionInterface
      */
     public function create($input)
     {
-        $width  = $input['width'];
-        $height = $input['height'];
-        $path   = storage_path().'/app/public/'.$input['path'];
+        $path   = 'public/'.$input['path'];
 
-
-        if ( !file_exists($path.'/'.$width.'x'.$height) ) {
-            Storage::makeDirectory($path.'/'.$width.'x'.$height, 0777, true);
+        if ( !file_exists($path) ) {
+            Storage::makeDirectory($path, 0777, true);
         }
 
         $data = $this->model->create($input);
@@ -212,12 +209,10 @@ class ConfigColorPositionRepository implements ConfigColorPositionInterface
      */
     public function update($input, $id)
     {
-        $width  = $input['width'];
-        $height = $input['height'];
         $path   = 'public/'.$input['path'];
 
-        if ( !file_exists($path.'/'.$width.'x'.$height) ) {
-            Storage::makeDirectory($path.'/'.$width.'x'.$height, 0777, true);
+        if ( !file_exists($path) ) {
+            Storage::makeDirectory($path, 0777, true);
         }
 
         $data = $this->model->find($id);

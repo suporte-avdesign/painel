@@ -45,7 +45,7 @@
 
             <!-- Modulo: grids -->
             @if($configProduct->grids == 1)
-                @include('backend.colors-grids.select-grid')
+                @include('backend.colors-grids.layout-create')
             @endif
 
         </div>

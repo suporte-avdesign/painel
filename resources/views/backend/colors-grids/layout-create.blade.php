@@ -4,8 +4,8 @@
         <div class="align-right compact">
             <a href="javascript:addGrid('{{$data->id}}','{{$stock}}','{{$kit}}');" class="button icon-plus blue-gradient" title="Adicionar"></a>
         </div>
-        <div id="update-grids">            
-            @if($kit == 1)       
+        <div id="update-grids">
+            @if($kit == 1)
                 @include('backend.colors-grids.form-edit-kits')
             @else
                 @include('backend.colors-grids.form-edit')
@@ -29,7 +29,7 @@
             <input id="kit_id" name="prod[kit]" type="hidden" value="{{$product->kit}}">
         @endif
     </p>
-@endif                    
+@endif
 
 <div align="center">
     <span id="loader-grids" class="loader working" style="display:none;"></span>
@@ -78,10 +78,10 @@
         } else if (opc == 'category') {
             mod = $('input[name="prod[category_id]"]').val();
         }
-        
+
         if (mod) {
             $("#loader-grids").show();
-            $("#box-grids-colors").html("");          
+            $("#box-grids-colors").html("");
             $.get( base+"/product/"+idpro+"/grids/"+opc+"/"+mod+"/"+stock+"/"+kit, function( data ) {
                 $("#loader-grids").hide();
                 $("#box-grids-colors").html( data );

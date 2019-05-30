@@ -15,14 +15,14 @@
 <table class="table responsive-table" id="products">
     <thead>
         <tr>
-            <th scope="col" width="7%" class="align-center">Foto</th>
-            <th scope="col" width="20%" class="align-center">Visitas</th>
-            <th scope="col" width="20%" class="align-center">Oferta</th>
-            <th scope="col" width="10%" class="align-center">Status</th>
-            <th scope="col" width="10%" class="align-center">Destaque</th>
-            <th scope="col" width="10%" class="align-center">Novo</th>
-            <th scope="col" width="10%" class="align-center">Tendência</th>
-            <th scope="col" width="10%" class="align-center">Black Friday</th>
+            <th scope="col" width="8%" class="align-center">Foto</th>
+            <th scope="col" width="18%" class="align-center">Visitas</th>
+            <th scope="col" width="18%" class="align-center">Novo</th>
+            <th scope="col" width="18%" class="align-center">Oferta</th>
+            <th scope="col" width="9%" class="align-center">Status</th>
+            <th scope="col" width="9%" class="align-center">Destaque</th>
+            <th scope="col" width="9%" class="align-center">Tendência</th>
+            <th scope="col" width="9%" class="align-center">Black Friday</th>
             <th width="2%"></th>
         </tr>
     </thead>

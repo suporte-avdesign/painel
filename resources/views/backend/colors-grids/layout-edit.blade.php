@@ -6,9 +6,9 @@
         </div>
         <div id="update-grids">            
             @if($kit == 1)       
-                @include('backend.products2.modal.forms.grids-update-kits')
+                @include('backend.colors-grids.form-edit-kits')
             @else
-                @include('backend.products2.modal.forms.grids-update')
+                @include('backend.colors-grids.form-edit')
             @endif
         </div>
     </fieldset>

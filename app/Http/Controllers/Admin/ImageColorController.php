@@ -72,7 +72,7 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Criar cores
+     * Adicionar uma nova cor ao produto
      *
      * @return \Illuminate\Http\Response
      */
@@ -94,8 +94,7 @@ class ImageColorController extends Controller
         if ($configProduct->mini_colors == 'hexa') {
             ($configProduct->group_colors == 1 ? $groupColors = $this->interHexa->getAll() : $groupColors = array());
 
-
-            return view("{$this->view}.form_hexa-create", compact(
+            return view("{$this->view}.layout_hexa-create", compact(
                 'configProduct',
                 'groupColors',
                 'product',
@@ -133,6 +132,7 @@ class ImageColorController extends Controller
             ($stock   == 0 ? $dataForm['stock'] = 0 : $dataForm['stock'] = $stock);
             $dataForm['kit'] = $kit;
 
+            //dd($request['grids']);
             $data = $this->interModel->create($dataForm, $config, $file);
 
             if ($data) {
@@ -215,14 +215,16 @@ class ImageColorController extends Controller
         }
 
         $data           = $this->interModel->setId($id);
-        $conf           = $this->configImage->setName('default','N');
-        $path           = 'storage/'.$conf->path;
+        $product        = $data->product;
         $grids          = $data->grids;
-        $stock          = $data->stock;
-        $kit            = $data->kit;
+        $stock          = $product->stock;
+        $kit            = $product->kit;
         $configProduct  = $this->configProduct->setId(1);
 
-        ($configProduct->kit == 1 ? $kits = $this->configKit->pluck() : $kits = false);
+        $conf           = $this->configImage->setName('default','N');
+        $path           = 'storage/'.$conf->path;
+
+        dd($grids);
 
         if ($configProduct->mini_colors == 'hexa') {
             $groupColors = $this->interHexa->getAll();
@@ -236,7 +238,6 @@ class ImageColorController extends Controller
                 'stock',
                 'group',
                 'path',
-                'kits',
                 'data',
                 'kit'
             ));
@@ -271,6 +272,8 @@ class ImageColorController extends Controller
             $dataForm['product_name'] = $product->name;
 
 
+
+
             $data = $this->interModel->update($dataForm, $id, $config, $file);
            
             if ($data) {
@@ -281,8 +284,8 @@ class ImageColorController extends Controller
                         $dataGrids,
                         $data->id,
                         $data->product_id,
-                        $data->stock,
-                        $data->kit);
+                        $product->stock,
+                        $product->kit);
                 }
 
                 if ($configProduct->group_colors == 1) {

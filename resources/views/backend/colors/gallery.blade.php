@@ -20,12 +20,12 @@
 		<h4 class="blue underline"><strong>{{$title_count}}</strong></h4>	
 
 		<ul id="gallery-colors-{{$idpro}}" class="gallery">
-		    @foreach($colors->sortBy('ordem') as $color)
+		    @forelse($colors->sortBy('ordem') as $color)
 				<li id="img-colors-{{$color->id}}">					
 					<img src="{{url($path.$color->image)}}" class="framed">
 					<div class="controls">
 						@php
-							($color->active == 1 ? $col = 'green' : $col = 'red');
+							($color->active == constLang('active_true') ? $col = 'green' : $col = 'red');
 							($color->cover == 1 ? $title = 'capa' : $title = '');
 							($color->cover == 1 ? $option = '{"classes":["red-gradient"],"position":"top"}' : $option = ''); 
 						@endphp
@@ -36,7 +36,9 @@
 						</span>
 					</div>
 				</li>
-			@endforeach
-		</ul>         
+			@empty
+				<li>Não existe foto para este produto</li>
+			@endforelse
+		</ul>
 	</div>
 </div>

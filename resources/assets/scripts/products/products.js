@@ -49,10 +49,10 @@
                     } 
                 },
                 {data: "visits.0", className:'align-center'},
+                {data: 'new', className:'align-center'},
                 {data: 'offer.0', className:'align-center'},
                 {data: 'active', className:'align-center'},
                 {data: 'featured', className:'align-center'},
-                {data: 'new', className:'align-center'},
                 {data: 'trend', className:'align-center'},
                 {data: 'black_friday', className:'align-center'},
                 {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''},
@@ -536,6 +536,9 @@
         {
             kit   = $("input[name='img[kit]']:checked").val();
             stock = $("input[name='img[stock]']:checked").val();
+
+            console.log('KIT: '+kit);
+            console.log('STOCK: '+stock);
             //Number Random
             var num = Math.random(),
                 html;

@@ -2,46 +2,28 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImagePositionController.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-kits.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/positions/form-edit.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/positions/gallery.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/Admin/ProductAttribute.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/Admin/ProductInput.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Models/Admin/ProductOutput.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2019_05_21_144343_create_product_attributes_table.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2019_05_21_144518_create_product_inputs_table.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2019_05_21_144700_create_product_outputs_table.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/backend/colors/hexa/forms/edit/freight.blade.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/backend/colors/hexa/forms/edit/product.blade.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/backend/colors/hexa/forms/create/colors.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/backend/colors/hexa/forms/create/grids.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/backend/colors/hexa/forms/create/groups.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-groups/group_hexa.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/backend/colors/hexa/layout.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/views/backend/products/tabs-1.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/products/tabs-hexa.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.env.example" afterPath="$PROJECT_DIR$/.env.example" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductPositionRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductPositionRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/Admin/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/Admin/AppServiceProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/backend/js/painel.min.js" afterPath="$PROJECT_DIR$/public/backend/js/painel.min.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ImageColor.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ImageColor.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ConfigColorPositionRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ConfigColorPositionRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_05_21_111439_create_image_colors_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_05_21_111439_create_image_colors_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigFormPaymentTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigFormPaymentTableSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigFreightsTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigFreightsTableSeeder.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigProductTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigProductTableSeeder.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/backend/scripts/products/products.min.js" afterPath="$PROJECT_DIR$/public/backend/scripts/products/products.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/mix-manifest.json" afterPath="$PROJECT_DIR$/public/mix-manifest.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/scripts/products/products.js" afterPath="$PROJECT_DIR$/resources/assets/scripts/products/products.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/positions/form-create.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/positions/form-create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-kits.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-kits.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/products/form-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/products/form-edit.blade.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/admin/modules.php" afterPath="$PROJECT_DIR$/routes/admin/modules.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/webpack.mix.js" afterPath="$PROJECT_DIR$/webpack.mix.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -63,54 +45,58 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="ImageColorController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="229">
+              <caret line="226" column="19" lean-forward="false" selection-start-line="226" selection-start-column="19" selection-end-line="226" selection-end-column="19" />
+              <folding>
+                <element signature="e#1903#2505#0#PHP" expanded="false" />
+                <element signature="e#2616#3611#0#PHP" expanded="false" />
+                <element signature="e#3772#6500#0#PHP" expanded="false" />
+                <element signature="e#11123#12386#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigColorPositionRepository.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ConfigColorPositionRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="198">
+              <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ConfigColorPositionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ConfigColorPositionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-422">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="layout-edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-504">
-              <caret line="59" column="26" lean-forward="false" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+            <state relative-caret-position="144">
+              <caret line="8" column="61" lean-forward="false" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout_hexa-create.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php">
+      <file leaf-file-name="form-edit-kits.blade.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
-              <caret line="47" column="60" lean-forward="false" selection-start-line="47" selection-start-column="60" selection-end-line="47" selection-end-column="60" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="products.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/resources/assets/scripts/products/products.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1564">
-              <caret line="635" column="8" lean-forward="false" selection-start-line="635" selection-start-column="8" selection-end-line="635" selection-end-column="8" />
+            <state relative-caret-position="540">
+              <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
               <folding>
-                <element signature="e#3904#9201#0" expanded="false" />
-                <element signature="e#9257#10355#0" expanded="false" />
-                <element signature="e#10557#11566#0" expanded="false" />
-                <element signature="e#11830#12797#0" expanded="false" />
-                <element signature="e#15120#17721#0" expanded="false" />
-                <element signature="e#17934#18174#0" expanded="false" />
-                <element signature="e#18376#18560#0" expanded="false" />
-                <element signature="e#18721#19022#0" expanded="false" />
-                <element signature="e#24790#24844#0" expanded="false" />
-                <element signature="e#25122#26059#0" expanded="false" />
-                <element signature="e#26220#27307#0" expanded="false" />
-                <element signature="e#27544#28319#0" expanded="false" />
-                <element signature="e#28486#29162#0" expanded="false" />
-                <element signature="e#29220#29297#0" expanded="false" />
-                <element signature="e#33469#33552#0" expanded="false" />
-                <element signature="e#33588#35033#0" expanded="false" />
-                <marker date="1559132110151" expanded="true" signature="22098:22110" ph="..." />
-                <marker date="1559132110151" expanded="true" signature="22321:22333" ph="..." />
-                <marker date="1559132110151" expanded="true" signature="23048:23060" ph="..." />
-                <marker date="1559132110151" expanded="true" signature="23271:23283" ph="..." />
-                <marker date="1559132110151" expanded="true" signature="23475:23487" ph="..." />
-                <marker date="1559132110151" expanded="true" signature="24191:24203" ph="..." />
+                <marker date="1559182033204" expanded="true" signature="60:151" ph="..." />
               </folding>
             </state>
           </provider>
@@ -120,7 +106,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>getF</find>
       <find>getFild</find>
       <find>his</find>
       <find>setId</find>
@@ -150,6 +135,7 @@
       <find>setStockColor</find>
       <find>btn-colors</find>
       <find>removeThis</find>
+      <find>kits</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -158,26 +144,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Models/Admin/ConfigProfileClient.php" />
-        <option value="$PROJECT_DIR$/app/Interfaces/Admin/ConfigProfileClientInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ConfigProfileClientRepository.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductPriceRepository.php" />
-        <option value="$PROJECT_DIR$/app/Interfaces/Admin/ProductPriceInterface.php" />
-        <option value="$PROJECT_DIR$/app/Http/Requests/Admin/ProductRequest.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/pixels/forms/create/freight.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_05_21_043252_create_products_table.php" />
-        <option value="$PROJECT_DIR$/app/Models/Admin/Product.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/pixels/forms/edit/product.blade.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductCostRepository.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/pixels/forms/create/product.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/pixels/layout.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/pixels/tabs.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/forms/edit/product.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/products/form-create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/hexa/forms/create/groups.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/products/details.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/form-edit.blade.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/products/tabs-1.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/grids/grids.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
@@ -194,21 +163,38 @@
         <option value="$PROJECT_DIR$/webpack.mix.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/teste.blade.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/positions/form-edit.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" />
         <option value="$PROJECT_DIR$/routes/admin/modules.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/positions/form-create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/positions/gallery.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImagePositionController.php" />
+        <option value="$PROJECT_DIR$/database/seeds/ConfigFreightsTableSeeder.php" />
+        <option value="$PROJECT_DIR$/database/seeds/ConfigProductTableSeeder.php" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/database/seeds/ConfigFormPaymentTableSeeder.php" />
+        <option value="$PROJECT_DIR$/.env.example" />
+        <option value="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
         <option value="$PROJECT_DIR$/resources/assets/scripts/products/products.js" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/products/form-edit.blade.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors/teste_create.blade.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_05_21_111439_create_image_colors_table.php" />
+        <option value="$PROJECT_DIR$/app/Models/Admin/ImageColor.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors/teste-edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-kits.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ConfigColorPositionRepository.php" />
       </list>
     </option>
   </component>
@@ -387,6 +373,48 @@
               <option name="myItemId" value="modal" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="painel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="painel" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="resources" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="views" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="backend" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="products2" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modal" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="modules" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="create" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -546,58 +574,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="positions" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="colors-groups" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="colors-grids" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -659,80 +635,6 @@
               <option name="myItemId" value="assets" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="settings" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="scripts" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="products" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -765,6 +667,10 @@
               <option name="myItemId" value="Repositories" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -781,10 +687,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Providers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -817,10 +719,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -879,6 +777,10 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Requests" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -1058,18 +960,18 @@
       <workItem from="1558738168530" duration="47000" />
       <workItem from="1558738292131" duration="38258000" />
       <workItem from="1558810299912" duration="73981000" />
-      <workItem from="1558953999958" duration="99726000" />
+      <workItem from="1558953999958" duration="128664000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="468655000" />
+    <option name="totallyTimeSpent" value="497593000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32988048" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33386454" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1077,7 +979,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.101195216" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18486056" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1088,26 +990,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.101195216" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -1122,181 +1004,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="3" column="0" lean-forward="true" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
-          <folding>
-            <element signature="e#48#84#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ConfigColorGroupRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="4" lean-forward="true" selection-start-line="5" selection-start-column="4" selection-end-line="5" selection-end-column="4" />
-          <folding>
-            <element signature="e#49#102#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/ProductPositionRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="59" lean-forward="false" selection-start-line="5" selection-start-column="59" selection-end-line="5" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/ProductRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="4" lean-forward="true" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#49#92#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/hexa/forms/create/groups.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="8" lean-forward="true" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="8" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/hexa/form-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/products2/modal/forms/create/colors.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/tabs/products-hexa.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/products2/modal/modules/groups.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/layouts/painel.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/css/font-awesome/css/font-awesome.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5000">
-          <caret line="2337" column="0" lean-forward="false" selection-start-line="2337" selection-start-column="0" selection-end-line="2337" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Providers/Admin/AppServiceProvider.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="67" column="28" lean-forward="false" selection-start-line="67" selection-start-column="28" selection-end-line="67" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/products2/modal/modules/create/hexa.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/products2/colors/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1552400240000" expanded="true" signature="1294:1880" ph="..." />
-            <marker date="1552400240000" expanded="true" signature="1307:1878" ph="..." />
-            <marker date="1552400240000" expanded="true" signature="1308:1877" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/scripts/colors.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1552400240188" expanded="true" signature="4504:4516" ph="..." />
-            <marker date="1552400240188" expanded="true" signature="4683:4695" ph="..." />
-            <marker date="1552400240188" expanded="true" signature="4846:4858" ph="..." />
-            <marker date="1552400240188" expanded="true" signature="5485:5497" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.mix.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="191" column="74" lean-forward="false" selection-start-line="191" selection-start-column="74" selection-end-line="191" selection-end-column="74" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/teste.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="964">
-          <caret line="102" column="6" lean-forward="false" selection-start-line="102" selection-start-column="6" selection-end-line="102" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1404">
-          <caret line="78" column="61" lean-forward="false" selection-start-line="78" selection-start-column="61" selection-end-line="78" selection-end-column="61" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/products/form-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="18">
-          <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/products/tabs-hexa.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1321,16 +1028,6 @@
             <marker date="1559052966616" expanded="true" signature="15373:15460" ph="..." />
             <marker date="1559052966616" expanded="true" signature="15734:15826" ph="..." />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-kits.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="2" column="28" lean-forward="false" selection-start-line="2" selection-start-column="23" selection-end-line="2" selection-end-column="28" />
-          <caret line="2" column="49" lean-forward="false" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="49" />
-          <caret line="4" column="44" lean-forward="false" selection-start-line="4" selection-start-column="39" selection-end-line="4" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1382,76 +1079,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-groups/group_hexa.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="29" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="34" column="91" lean-forward="false" selection-start-line="34" selection-start-column="85" selection-end-line="34" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="576">
-          <caret line="32" column="103" lean-forward="false" selection-start-line="32" selection-start-column="96" selection-end-line="32" selection-end-column="103" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-324">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-26">
-          <caret line="22" column="116" lean-forward="false" selection-start-line="22" selection-start-column="116" selection-end-line="22" selection-end-column="116" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1134">
-          <caret line="63" column="0" lean-forward="false" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3726">
-          <caret line="522" column="6" lean-forward="false" selection-start-line="522" selection-start-column="6" selection-end-line="522" selection-end-column="6" />
-          <folding>
-            <element signature="e#52#118#0#PHP" expanded="false" />
-            <element signature="e#2594#3588#0#PHP" expanded="false" />
-            <element signature="e#11098#12361#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-88">
-          <caret line="261" column="0" lean-forward="false" selection-start-line="261" selection-start-column="0" selection-end-line="265" selection-end-column="0" />
-          <folding>
-            <element signature="e#978#6741#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/products2/modal/forms/edit/positions.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1465,18 +1092,6 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/products/index.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1584">
-          <caret line="88" column="29" lean-forward="false" selection-start-line="88" selection-start-column="29" selection-end-line="88" selection-end-column="29" />
-          <folding>
-            <marker date="1559110609104" expanded="true" signature="1889:3020" ph="..." />
-            <marker date="1559110609104" expanded="true" signature="1902:3018" ph="..." />
-            <marker date="1559110609104" expanded="true" signature="1903:3017" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1501,7 +1116,7 @@
         <state relative-caret-position="229">
           <caret line="67" column="0" lean-forward="false" selection-start-line="67" selection-start-column="0" selection-end-line="67" selection-end-column="0" />
           <folding>
-            <element signature="e#52#121#0#PHP" expanded="true" />
+            <element signature="e#52#121#0#PHP" expanded="false" />
             <element signature="e#1052#1727#0#PHP" expanded="false" />
             <element signature="e#3291#3722#0#PHP" expanded="false" />
             <element signature="e#3942#4973#0#PHP" expanded="false" />
@@ -1518,37 +1133,280 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/modules.php">
+    <entry file="file://$PROJECT_DIR$/database/seeds/ConfigProductTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="226">
-          <caret line="166" column="97" lean-forward="false" selection-start-line="166" selection-start-column="97" selection-end-line="166" selection-end-column="97" />
+        <state relative-caret-position="378">
+          <caret line="28" column="26" lean-forward="false" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php">
+    <entry file="file://$PROJECT_DIR$/database/seeds/ConfigFreightsTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-504">
-          <caret line="59" column="26" lean-forward="false" selection-start-line="59" selection-start-column="26" selection-end-line="59" selection-end-column="26" />
+        <state relative-caret-position="360">
+          <caret line="21" column="26" lean-forward="true" selection-start-line="21" selection-start-column="26" selection-end-line="21" selection-end-column="26" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env.example">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="325">
+          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="349">
+          <caret line="46" column="0" lean-forward="false" selection-start-line="46" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/seeds/ConfigFormPaymentTableSeeder.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="20" column="16" lean-forward="false" selection-start-line="20" selection-start-column="16" selection-end-line="20" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="169" column="54" lean-forward="false" selection-start-line="169" selection-start-column="54" selection-end-line="169" selection-end-column="54" />
+          <folding>
+            <marker date="1559144908631" expanded="true" signature="7144:7150" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7150:7156" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7221:7227" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7227:7233" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7236:7242" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7242:7248" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7591:7597" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7597:7603" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7672:7678" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7678:7684" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7687:7693" ph=" " />
+            <marker date="1559144908631" expanded="true" signature="7693:7699" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/products/index.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="28" column="11" lean-forward="false" selection-start-line="28" selection-start-column="11" selection-end-line="28" selection-end-column="11" />
+          <folding>
+            <marker date="1559141229576" expanded="true" signature="1885:3016" ph="..." />
+            <marker date="1559141229576" expanded="true" signature="1898:3014" ph="..." />
+            <marker date="1559141229576" expanded="true" signature="1899:3013" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-groups/group_hexa.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4">
+          <caret line="5" column="29" lean-forward="false" selection-start-line="5" selection-start-column="17" selection-end-line="5" selection-end-column="29" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/products/form-edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1502">
+          <caret line="185" column="31" lean-forward="true" selection-start-line="185" selection-start-column="31" selection-end-line="185" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/products/form-create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1538">
+          <caret line="136" column="0" lean-forward="true" selection-start-line="136" selection-start-column="0" selection-end-line="136" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/assets/scripts/products/products.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-49">
+          <caret line="543" column="21" lean-forward="false" selection-start-line="543" selection-start-column="21" selection-end-line="543" selection-end-column="21" />
+          <folding>
+            <element signature="e#3904#9201#0" expanded="false" />
+            <element signature="e#9257#10355#0" expanded="false" />
+            <element signature="e#10557#11566#0" expanded="false" />
+            <element signature="e#11830#12797#0" expanded="false" />
+            <element signature="e#12942#14875#0" expanded="false" />
+            <element signature="e#15120#17721#0" expanded="false" />
+            <element signature="e#17934#18174#0" expanded="false" />
+            <element signature="e#18376#18560#0" expanded="false" />
+            <element signature="e#18721#19022#0" expanded="false" />
+            <element signature="e#25203#26140#0" expanded="false" />
+            <element signature="e#26301#27388#0" expanded="false" />
+            <element signature="e#27625#28400#0" expanded="false" />
+            <element signature="e#28567#29243#0" expanded="false" />
+            <element signature="e#29301#29378#0" expanded="false" />
+            <element signature="e#33550#33633#0" expanded="false" />
+            <element signature="e#33669#35114#0" expanded="false" />
+            <marker date="1559160078908" expanded="true" signature="22179:22191" ph="..." />
+            <marker date="1559160078908" expanded="true" signature="22402:22414" ph="..." />
+            <marker date="1559160078908" expanded="true" signature="23129:23141" ph="..." />
+            <marker date="1559160078908" expanded="true" signature="23352:23364" ph="..." />
+            <marker date="1559160078908" expanded="true" signature="23556:23568" ph="..." />
+            <marker date="1559160078908" expanded="true" signature="24272:24284" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="864">
+          <caret line="48" column="18" lean-forward="true" selection-start-line="48" selection-start-column="18" selection-end-line="48" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="576">
+          <caret line="32" column="103" lean-forward="false" selection-start-line="32" selection-start-column="96" selection-end-line="32" selection-end-column="103" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="48" column="34" lean-forward="false" selection-start-line="48" selection-start-column="34" selection-end-line="48" selection-end-column="34" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_043252_create_products_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-108">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_111439_create_image_colors_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="360">
+          <caret line="28" column="14" lean-forward="false" selection-start-line="28" selection-start-column="14" selection-end-line="28" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Admin/ImageColor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="18" column="16" lean-forward="false" selection-start-line="18" selection-start-column="15" selection-end-line="18" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3981">
+          <caret line="272" column="35" lean-forward="true" selection-start-line="272" selection-start-column="35" selection-end-line="272" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="350" column="26" lean-forward="true" selection-start-line="350" selection-start-column="26" selection-end-line="350" selection-end-column="26" />
+          <folding>
+            <element signature="e#1035#5500#0#PHP" expanded="false" />
+            <element signature="e#5588#9672#0#PHP" expanded="false" />
+            <element signature="e#9991#10496#0#PHP" expanded="false" />
+            <element signature="e#10614#11053#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/teste_create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="22" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="70" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="410">
+          <caret line="31" column="6" lean-forward="true" selection-start-line="31" selection-start-column="6" selection-end-line="31" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/teste-edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="72">
+          <caret line="4" column="26" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="62" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+        <state relative-caret-position="162">
+          <caret line="9" column="53" lean-forward="true" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/products2/modal/modules/create/hexa.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="32" column="20" lean-forward="true" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
-          <folding>
-            <marker date="1552400240000" expanded="true" signature="60:151" ph="..." />
-          </folding>
+        <state relative-caret-position="-1516">
+          <caret line="21" column="41" lean-forward="false" selection-start-line="21" selection-start-column="33" selection-end-line="21" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/products2/modal/forms/create/product.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2794">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1228">
+          <caret line="4" column="8" lean-forward="false" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="432">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="396">
+          <caret line="25" column="15" lean-forward="true" selection-start-line="25" selection-start-column="15" selection-end-line="25" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/admin/modules.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="226">
+          <caret line="166" column="97" lean-forward="false" selection-start-line="166" selection-start-column="97" selection-end-line="166" selection-end-column="97" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1560,42 +1418,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
-          <caret line="47" column="60" lean-forward="false" selection-start-line="47" selection-start-column="60" selection-end-line="47" selection-end-column="60" />
+        <state relative-caret-position="-800">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/assets/scripts/products/products.js">
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-kits.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1564">
-          <caret line="635" column="8" lean-forward="false" selection-start-line="635" selection-start-column="8" selection-end-line="635" selection-end-column="8" />
+        <state relative-caret-position="36">
+          <caret line="2" column="33" lean-forward="false" selection-start-line="2" selection-start-column="33" selection-end-line="2" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="61" lean-forward="false" selection-start-line="8" selection-start-column="61" selection-end-line="8" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="540">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
           <folding>
-            <element signature="e#3904#9201#0" expanded="false" />
-            <element signature="e#9257#10355#0" expanded="false" />
-            <element signature="e#10557#11566#0" expanded="false" />
-            <element signature="e#11830#12797#0" expanded="false" />
-            <element signature="e#15120#17721#0" expanded="false" />
-            <element signature="e#17934#18174#0" expanded="false" />
-            <element signature="e#18376#18560#0" expanded="false" />
-            <element signature="e#18721#19022#0" expanded="false" />
-            <element signature="e#24790#24844#0" expanded="false" />
-            <element signature="e#25122#26059#0" expanded="false" />
-            <element signature="e#26220#27307#0" expanded="false" />
-            <element signature="e#27544#28319#0" expanded="false" />
-            <element signature="e#28486#29162#0" expanded="false" />
-            <element signature="e#29220#29297#0" expanded="false" />
-            <element signature="e#33469#33552#0" expanded="false" />
-            <element signature="e#33588#35033#0" expanded="false" />
-            <marker date="1559132110151" expanded="true" signature="22098:22110" ph="..." />
-            <marker date="1559132110151" expanded="true" signature="22321:22333" ph="..." />
-            <marker date="1559132110151" expanded="true" signature="23048:23060" ph="..." />
-            <marker date="1559132110151" expanded="true" signature="23271:23283" ph="..." />
-            <marker date="1559132110151" expanded="true" signature="23475:23487" ph="..." />
-            <marker date="1559132110151" expanded="true" signature="24191:24203" ph="..." />
+            <marker date="1559182033204" expanded="true" signature="60:151" ph="..." />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="226" column="19" lean-forward="false" selection-start-line="226" selection-start-column="19" selection-end-line="226" selection-end-column="19" />
+          <folding>
+            <element signature="e#1903#2505#0#PHP" expanded="false" />
+            <element signature="e#2616#3611#0#PHP" expanded="false" />
+            <element signature="e#3772#6500#0#PHP" expanded="false" />
+            <element signature="e#11123#12386#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ConfigColorPositionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-422">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ConfigColorPositionRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="178" column="0" lean-forward="false" selection-start-line="178" selection-start-column="0" selection-end-line="178" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
