@@ -466,7 +466,7 @@
          * @param int idcat
          * @param string url
          */
-        setKit = function(kit, idcat, url)
+        setKit = function(ac, kit, url)
         {
             if (kit == 1) {
                $("#kits").show(); 
@@ -474,12 +474,23 @@
                $("#kits").hide(); 
             }
             $("#grid_kit").val(kit);
+            $( ".grid_colors" ).children( ".select-value" ).text("Selecione Uma");
+            $( "#box-grids-colors" ).html( '' );
+
             /*
-            $("#select_grid .select-value").text("Selecione Uma");
-            $( "#box-grids-colors" ).html( '' );           
-            var id,
-            stock = $("input[name='prod[stock]']:checked").val();
-            opc = $('#grid_colors option:selected').val();
+
+            if (ac == 'create') {
+                var id,
+                    stock = $("input[name='prod[stock]']:checked").val(),
+                    opc = $('#grid_colors option:selected').val();
+            }
+
+            if (ac == 'edit') {
+                var id,
+                    stock = $("input[name='prod[stock]']:checked").val(),
+                    opc = $('#grid_colors option:selected').val();
+            }
+
             if (opc == 'brand') {
                 id  = $( "#brand_id option:selected" ).val();
             } else if (opc == 'section') {
@@ -487,12 +498,12 @@
             } else if (opc == 'category') {
                 id = $( 'input[name="prod[category_id]"]' ).val();
             }
-            if (opc != '') {
-                $.get( base+"/"+url+"/"+idcat+"/grids/"+opc+"/"+id+"/"+stock+"/"+kit, function( data ) {
+            $.get( url, { ac: ac, opc: opc, stock: stock, kit: kit, id: id } )
+                .done(function( data ) {
                     $( "#box-grids-colors" ).html( data );
-                }); 
-            };
-            */
+                });
+
+                */
         }
 
 
@@ -502,16 +513,25 @@
          * @param int idcat
          * @param string url
          */
-        setStock = function(stock, idcat, url)
+        setStock = function(ac, stock, url)
         {
 
             $("#grid_stock").val(stock);
+            $( ".grid_colors" ).children( ".select-value" ).text("Selecione Uma");
+            $( "#box-grids-colors" ).html( '' );
             /*
-            $("#select_grid .select-value").text("Selecione Uma");
-            $( "#box-grids-colors" ).html( '' );           
-            var id,
-            kit = $("input[name='prod[kit]']:checked").val();
-            opc = $('#grid_colors option:selected').val();
+            if (ac == 'create') {
+                var id,
+                    kit = $("input[name='prod[kit]']:checked").val(),
+                    opc = $('#grid_colors option:selected').val();
+            }
+
+            if (ac == 'edit') {
+                var id,
+                    kit = $("input[name='prod[kit]']:checked").val(),
+                    opc = $('#grid_colors option:selected').val();
+            }
+
             if (opc == 'brand') {
                 id  = $( "#brand_id option:selected" ).val();
             } else if (opc == 'section') {
@@ -519,11 +539,12 @@
             } else if (opc == 'category') {
                 id = $( 'input[name="prod[category_id]"]' ).val();
             }
-            if (opc != '') {
-                $.get( base+"/"+url+"/"+idcat+"/grids/"+opc+"/"+id+"/"+stock+"/"+kit, function( data ) {
+
+            $.get( url, { ac: ac,  opc: opc, stock: stock, kit: kit, id: id } )
+                .done(function( data ) {
                     $( "#box-grids-colors" ).html( data );
-                }); 
-            };
+                });
+
             */
         };
 

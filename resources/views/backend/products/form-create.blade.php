@@ -103,11 +103,11 @@
                         <label for="kit" class="label">Venda Caixa</label>
                         <span class="button-group">
                             <label for="kit_1" class="button green-active">
-                                <input type="radio" name="prod[kit]"  id="kit_1" onclick="setKit('1','{{$idpro}}','painel/produto')" value="1" checked >
+                                <input type="radio" name="prod[kit]"  id="kit_1" onclick="setKit('create','1','{{route('change-grids')}}')" value="1" checked >
                                 Ativo
                             </label>
                             <label for="kit_0" class="button red-active">
-                                <input type="radio" name="prod[kit]" id="kit_0" onclick="setKit('0','{{$idpro}}','painel/produto')" value="0" >
+                                <input type="radio" name="prod[kit]" id="kit_0" onclick="setKit('create','0','{{route('change-grids')}}')" value="0" >
                                 Inativo
                             </label>
                         </span>
@@ -119,11 +119,11 @@
                         <label for="stock" class="label">Estoque</label>
                         <span class="button-group">
                             <label for="stock_1" class="button green-active">
-                                <input type="radio" name="prod[stock]"  id="stock_1" onclick="setStock('1','{{$idpro}}','painel/produto')" value="1" checked >
+                                <input type="radio" name="prod[stock]"  id="stock_1" onclick="setStock('create','1','{{route('change-grids')}}')" value="1" checked >
                                 Ativo
                             </label>
                             <label for="stock_0" class="button red-active">
-                                <input type="radio" name="prod[stock]" id="stock_0" onclick="setStock('0','{{$idpro}}','painel/produto')" value="0" >
+                                <input type="radio" name="prod[stock]" id="stock_0" onclick="setStock('create','0','{{route('change-grids')}}')" value="0" >
                                 Inativo
                             </label>
                         </span>

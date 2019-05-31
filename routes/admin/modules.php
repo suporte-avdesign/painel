@@ -164,7 +164,6 @@ Route::post('product/{id}/catalog/data', 'Admin\ProductController@data')->name('
 Route::put('product/{id}/status', 'Admin\ProductController@status')->name('product.status');
 Route::get('product/{id}/details', 'Admin\ProductController@details');
 Route::post('product/change/categories', 'Admin\ProductController@change')->name('change.product');
-Route::get('product/{idpro}/grids/{module}/{id}/{stock}/{kit}', 'Admin\ProductController@grids');
 
 // Images Colors Products
 Route::resource('colors/{idpro}/colors-product', 'Admin\ImageColorController',['except' => ['show']]);
@@ -178,3 +177,7 @@ Route::put('position/{idpro}/status-position', 'Admin\ImagePositionController@st
 Route::get('produtos/cores', 'Admin\ImageColorController@products');
 Route::post('produtos/colors/data', 'Admin\ImageColorController@data')->name('colors.data');
 Route::put('produtos/{idpro}/colors-status/{id}', 'Admin\ImageColorController@colorsStatus')->name('colors-status');
+
+// Cotroller das Grades
+Route::get('grids/change-grids', 'Admin\GridsControlle@change')->name('change-grids');
+Route::get('grids/load-grids', 'Admin\GridsControlle@load')->name('load-grids');

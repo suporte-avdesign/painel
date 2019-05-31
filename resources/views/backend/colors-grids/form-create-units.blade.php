@@ -16,12 +16,17 @@
                 <span>    
                     <input type="checkbox" id="{{$val}}" name="grids[{{$val}}]" value="1" class="tick checkbox mid-margin-left">
                 </span>
-                <span class="input">
+                @if($stock == 1)
+                    <span class="input">
+                        <label for="tam-{{$val}}" class="button blue-gradient">{{$str}}</label>
+                        <input type="hidden" id="grid-{{$val}}" name="grid[]" class="input-unstyled" placeholder="Grade" value="" autocomplete="off" style="width: 30px;">
+                        <input type="text" id="qty-{{$val}}" name="entry[]" class="input-unstyled" placeholder="Qtd" value="" autocomplete="off" style="width: 30px;">
+                    </span>
+                @else
                     <label for="tam-{{$val}}" class="button blue-gradient">{{$str}}</label>
-                    @if($stock == 1)
-                        <input type="text" id="qty-{{$val}}" name="qty[]" class="input-unstyled" placeholder="Qtd" value="" autocomplete="off" style="width: 30px;">
-                    @endif
-                </span>
+                    <input type="hidden" id="grid-{{$val}}" name="grid[]" class="input-unstyled" placeholder="Grade" value="" autocomplete="off" style="width: 30px;">
+                @endif
+
                 <span id="tick-{{$val}}" style="display:none">&nbsp;&nbsp;<span class="icon-size2 icon-tick icon-green"></span></span>
             </p>
         @endforeach

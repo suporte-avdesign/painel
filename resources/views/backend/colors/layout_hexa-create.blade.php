@@ -41,9 +41,9 @@
     <div class="columns">
         <div class="four-columns twelve-columns-tablet">
             <!-- Form: colors -->
-        @include('backend.colors.form_hexa')
+            @include('backend.colors.form_hexa')
 
-        <!-- Form: grids create-->
+            <!-- Form: grids create-->
             @if($configProduct->grids == 1)
                 @include('backend.colors-grids.layout-create')
             @endif

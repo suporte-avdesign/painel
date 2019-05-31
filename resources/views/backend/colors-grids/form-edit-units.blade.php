@@ -1,19 +1,14 @@
 <ul id="grids-{{$data->id}}" class="list">
-    @if($stock == 1)
-        <li><label for="grid_colors" class="label">Grade | Entada | Saida </label></li>
-    @else
-        <li><label for="grid_colors" class="label">Grade</label></li>
-    @endif
     @foreach($grids as $grid)
         @if($stock == 1)
-            @php                 
+            @php
                 ($grid->stock >= 1 ? $col = 'blue' : $col = 'red');
             @endphp
             <li>
                 <span class="input">
-                    <input type="text" name="grids[{{$grid->id}}][grid]" id="grid_{{$grid->id}}" class="input-unstyled input-sep" value="{{$grid->grid}}" maxlength="4" style="width: 30px;">
-                    <input type="text" name="grids[{{$grid->id}}][entry]" id="entry_{{$grid->id}}" class="input-unstyled input-sep" value="{{$grid->entry}}" maxlength="4"  style="width: 30px;">
-                    <input type="text" name="grids[{{$grid->id}}][low]" id="exit_{{$grid->id}}" class="input-unstyled input-sep" value="{{$grid->low}}" maxlength="4"  style="width: 30px;">
+                    <label for="low" class="button compact {{$col}}-gradient">{{$grid->grid}}</label>
+                    <input type="hidden" name="grids[{{$grid->id}}][grid]" id="grid_{{$grid->id}}" value="{{$grid->grid}}">
+                    <input type="text" name="grids[{{$grid->id}}][entry]"  id="entry_{{$grid->id}}" value="" autocomplete="off" placeholder="Entrada" maxlength="4" class="input-unstyled" style="width: 50px;">
                     <label for="low" class="button compact {{$col}}-gradient">{{$grid->stock}}</label>
                 </span>
                 <div class="button-group absolute-right compact">

@@ -224,7 +224,6 @@ class ImageColorController extends Controller
         $conf           = $this->configImage->setName('default','N');
         $path           = 'storage/'.$conf->path;
 
-        dd($grids);
 
         if ($configProduct->mini_colors == 'hexa') {
             $groupColors = $this->interHexa->getAll();
@@ -483,47 +482,6 @@ class ImageColorController extends Controller
     */
 
 
-    /**
-     * Update grids stock or kit.
-     *
-     * @param  int  $id
-     * @param  int  $stock
-     * @param  int  $kit
-     * @return \Illuminate\Http\Response
-     */
-    /*
-    public function changeGrids($id, $stock, $kit)
-    {
-        if( Gate::denies("{$this->ability}-update") ) {
-            return view("backend.erros.message-401");
-        }
-
-        $data  = $this->interModel->setId($id);
-        $input = [
-            'kit' => $kit,
-            'stock' => $stock
-        ];
-        $change = $this->interModel->changeGrids($input, $id);
-        if ($change) {
-            $grids = $this->interGrid->change($data->id, $stock, $kit);
-            if ($kit == 1) {
-                return view("{$this->view}.modal.forms.grids-update-kits", compact(
-                    'stock',
-                    'grids',
-                    'data',
-                    'kit'
-                ));
-            } else {
-                return view("{$this->view}.modal.forms.grids-update", compact(
-                    'stock',
-                    'grids',
-                    'data',
-                    'kit'
-                ));
-            }
-        }
-    }
-    */
 
     /**
      * All Colors.

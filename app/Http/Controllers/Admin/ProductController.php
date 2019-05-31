@@ -445,52 +445,6 @@ class ProductController extends Controller
         );
     }
 
-    /**
-     * Loader grids.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function grids($idpro, $module, $idmod, $stock, $kit)
-    {
-        if( Gate::denies("{$this->ability}-create") ) {
-            return view("backend.erros.message-401");
-        }
-
-        if ($kit == 1 ? $type = 'kit' : $type = 'unit');
-
-        if ($module == 'category') {
-            $set   = $this->interCategory->setId($idmod);
-            $grids = $set->grids->where('type', $type);
-            if (count($grids) == 0) {
-                return '<p class="message icon-speech red-gradient">
-                            Não existe grade desta categoria!
-                        </p>';
-            }
-        } elseif ($module == 'section') {
-            $set   = $this->interSection->setId($idmod);
-            $grids = $set->grids->where('type', $type);
-            if (count($grids) == 0) {
-                return '<p class="message icon-speech red-gradient">
-                            Não existe grade desta seção!
-                        </p>';
-            }
-        } elseif ($module == 'brand') {
-            $set   = $this->interBrand->setId($idmod);
-            $grids = $set->grids->where('type', $type);
-            if (count($grids) == 0) {
-                return '<p class="message icon-speech red-gradient">
-                            Não existe grade deste fabricante!
-                        </p>';
-            }
-        }
-
-        if ($kit == 1) {
-            return view('backend.colors-grids.form-create-kits', compact('grids','module','idpro','stock'));
-        } else {
-            return view('backend.colors-grids.form-create', compact('grids','module','idpro','stock'));
-        }
-    }
 
     /**
      * Change select category.
@@ -509,5 +463,5 @@ class ProductController extends Controller
         return view('backend.products.change', compact('categories'));
     }
 
-    
+
 }
