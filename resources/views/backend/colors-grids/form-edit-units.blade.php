@@ -18,7 +18,8 @@
         @else
             <li>
                 <span class="input">
-                    <input type="text" name="grids[{{$grid->id}}][grid]" id="grid_{{$grid->id}}" class="input-unstyled input-sep" value="{{$grid->grid}}" maxlength="4" style="width: 30px;">
+                    <label for="low" class="button compact blue-gradient">{{$grid->grid}}</label>
+                    <input type="text" name="grids[{{$grid->id}}][grid]" id="grid_{{$grid->id}}" class="input-unstyled" value="{{$grid->grid}}" maxlength="4" style="width: 30px;">
                 </span>
                 <div class="button-group absolute-right compact">
                     <a class="button icon-trash with-tooltip red-gradient confirm" title="Excluir"></a>

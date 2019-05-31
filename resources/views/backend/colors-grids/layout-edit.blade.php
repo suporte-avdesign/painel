@@ -2,13 +2,13 @@
     <!-- Legends of input informations -->
     @if($stock == 1)
         @if($kit == 1)
-            <legend class="legend">Grade | Quantidade </legend>
+            <legend class="legend">Quantidade | Grade</legend>
         @else
             <legend class="legend">Grade | Entada | Estoque </legend>
         @endif
     @else
         @if($kit == 1)
-            <legend class="legend">Grade | Quantidade </legend>
+            <legend class="legend">Quantidade | Grade</legend>
         @else
             <legend class="legend">Grades  </legend>
         @endif
@@ -37,11 +37,20 @@
         if (stock == 1) {
 
             if (kit == 1) {
-
-            } else {
-
                 /**
                  *  stock=1 type grid=kit
+                 */
+                $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
+                    '<span class="input">'+
+                    '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
+                    '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
+                    '</span>'+
+                    '<div class="button-group absolute-right compact">'+
+                    '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
+                    '</div></li>');
+            } else {
+                /**
+                 *  stock=1 type grid=unit
                  */
                 $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
                     '<span class="input">'+
@@ -55,9 +64,19 @@
         } else {
 
             if (kit == 1) {
+                /**
+                 *  stock=0 type grid=unit
+                 */
+                $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
+                    '<span class="input">'+
+                    '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
+                    '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
+                    '</span>'+
+                    '<div class="button-group absolute-right compact">'+
+                    '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
+                    '</div></li>');
 
             } else {
-
                 /**
                  *  stock=0 type grid=unit
                  */
