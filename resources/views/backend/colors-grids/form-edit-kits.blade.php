@@ -28,15 +28,24 @@
                 <li>
                     <span class="input">
                         <label for="grid-{{$key}}" class="button blue-gradient">{{$grid}}</label>
-                        <input type="text" name="grids[qty]" id="entry-{{$key}}"  autocomplete="off" value="{{$qty}}" maxlength="4" class="input-unstyled input-sep" style="width: 50px;">
+                        <input type="text" name="grids[qty]" id="qty-{{$key}}"  autocomplete="off" value="{{$qty}}" maxlength="4" class="input-unstyled input-sep" style="width: 50px;">
                         <input type="text" name="grids[{{$key}}][grid]" id="grid-{{$key}}" autocomplete="off" class="input-unstyled"  value="{{$grd}}" style="width: 50px;">
                     </span>
                     <div class="button-group absolute-right compact">
-                        <a class="button icon-trash with-tooltip red-gradient confirm" title="{{$key}}"></a>
+                        <a class="button icon-trash with-tooltip red-gradient confirm" title="Excluir"></a>
                     </div>
                 </li>
             @else
-
+                <li>
+                    <span class="input">
+                        <label for="grid-{{$key}}" class="button blue-gradient">{{$grid}}</label>
+                        <input type="text" name="grids[qty]" id="qty-{{$key}}"  autocomplete="off" value="{{$qty}}" maxlength="4" class="input-unstyled input-sep" style="width: 50px;">
+                        <input type="text" name="grids[{{$key}}][grid]" id="grid-{{$key}}" autocomplete="off" class="input-unstyled"  value="{{$grd}}" style="width: 50px;">
+                    </span>
+                    <div class="button-group absolute-right compact">
+                        <a class="button icon-trash with-tooltip red-gradient confirm" title="Excluir"></a>
+                    </div>
+                </li>
             @endif
         @endforeach
     @endforeach

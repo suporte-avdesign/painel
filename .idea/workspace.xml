@@ -3,8 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -61,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout-edit.blade.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout-edit.blade.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -74,6 +72,36 @@
                 <marker date="1559271822425" expanded="true" signature="3381:3393" ph="..." />
                 <marker date="1559271822425" expanded="true" signature="3574:3586" ph="..." />
                 <marker date="1559271822425" expanded="true" signature="4290:4302" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="form-edit-kits.blade.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="45" column="101" lean-forward="false" selection-start-line="45" selection-start-column="101" selection-end-line="45" selection-end-column="101" />
+              <folding>
+                <marker date="1559272020393" expanded="true" signature="60:151" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="218:288" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="253:288" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="353:436" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="369:436" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="595:643" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="595:645" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="595:654" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="595:675" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="595:677" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="595:686" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="699:2602" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="719:2602" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="2401:2540" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="2401:2553" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="2401:2602" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="2416:2466" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="2474:2539" ph="..." />
+                <marker date="1559272020393" expanded="true" signature="2526:2539" ph="..." />
               </folding>
             </state>
           </provider>
@@ -169,9 +197,9 @@
         <option value="$PROJECT_DIR$/resources/assets/scripts/products/products.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/load-script.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
       </list>
     </option>
   </component>
@@ -681,17 +709,18 @@
       <workItem from="1558738168530" duration="47000" />
       <workItem from="1558738292131" duration="38258000" />
       <workItem from="1558810299912" duration="73981000" />
-      <workItem from="1558953999958" duration="183965000" />
+      <workItem from="1558953999958" duration="184127000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="552894000" />
+    <option name="totallyTimeSpent" value="553056000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.412749" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.412749" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1204,37 +1233,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="30" column="101" lean-forward="false" selection-start-line="30" selection-start-column="101" selection-end-line="30" selection-end-column="101" />
-          <folding>
-            <element signature="n#style#0;n#input#0;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#1;n#span#0;n#li#0;n#ul#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#span#0;n#li#1;n#ul#0;n#!!top" expanded="true" />
-            <marker date="1559270150629" expanded="true" signature="60:151" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="218:288" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="253:288" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="353:436" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="369:436" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="595:643" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="595:645" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="595:654" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="595:675" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="595:677" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="595:686" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="699:1833" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="719:1833" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="1632:1771" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="1632:1784" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="1632:1833" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="1647:1697" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="1705:1770" ph="..." />
-            <marker date="1559270150629" expanded="true" signature="1757:1770" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="378">
@@ -1255,6 +1253,34 @@
             <marker date="1559271822425" expanded="true" signature="3381:3393" ph="..." />
             <marker date="1559271822425" expanded="true" signature="3574:3586" ph="..." />
             <marker date="1559271822425" expanded="true" signature="4290:4302" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="45" column="101" lean-forward="false" selection-start-line="45" selection-start-column="101" selection-end-line="45" selection-end-column="101" />
+          <folding>
+            <marker date="1559272020393" expanded="true" signature="60:151" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="218:288" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="253:288" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="353:436" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="369:436" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="595:643" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="595:645" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="595:654" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="595:675" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="595:677" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="595:686" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="699:2602" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="719:2602" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="2401:2540" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="2401:2553" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="2401:2602" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="2416:2466" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="2474:2539" ph="..." />
+            <marker date="1559272020393" expanded="true" signature="2526:2539" ph="..." />
           </folding>
         </state>
       </provider>
