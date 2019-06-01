@@ -10,9 +10,12 @@ class GridProduct extends Model
         'product_id',
         'image_color_id',
         'kit',
+        'color',
+        'qty_min',
+        'qty_max',
         'grid',
-        'entry',
-        'low',
+        'input',
+        'output',
         'stock'
     ];
 

@@ -102,7 +102,7 @@ class ProductRepository implements ProductInterface
                 ))
                 ->with(array(
                     'grids' => function ($query) {
-                        $query->where('entry', '>', 0);
+                        $query->where('input', '>', 0);
                     }
                 ))
                 ->offset($start)

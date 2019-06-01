@@ -11,8 +11,8 @@ interface GridProductInterface
      */
     public function get($id);
     public function setId($id);
-    public function create($input, $id, $idpro, $stock, $kit);
-    public function update($input, $id, $idpro, $stock, $kit);
+    public function create($input, $image, $product, $stock, $kit);
+    public function update($input, $image, $product, $stock, $kit);
     public function delete($id);
     public function change($id, $stock, $kit);
 }

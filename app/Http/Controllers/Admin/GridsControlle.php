@@ -2,9 +2,11 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
+use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\BrandInterface as InterBrand;
 use AVDPainel\Interfaces\Admin\SectionInterface as InterSection;
 use AVDPainel\Interfaces\Admin\CategoryInterface as InterCategory;
+use AVDPainel\Interfaces\Admin\ProductInterface as InterProduct;
 
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -24,14 +26,18 @@ class GridsControlle extends Controller
      */
     public function __construct(
         InterBrand $interBrand,
+        InterProduct $interProduct,
         InterSection $interSection,
-        InterCategory $interCategory)
+        InterCategory $interCategory,
+        ConfigProduct $configProduct)
     {
         $this->middleware('auth:admin');
 
         $this->interBrand         = $interBrand;
+        $this->interProduct       = $interProduct;
         $this->interSection       = $interSection;
         $this->interCategory      = $interCategory;
+        $this->configProduct      = $configProduct;
     }
 
 
@@ -48,13 +54,14 @@ class GridsControlle extends Controller
         }
 
         $input = $request->all();
-
-
         $id    = $input['id'];
         $kit   = $input['kit'];
         $opc   = $input['opc'];
         $idpro = $input['idpro'];
         $stock = $input['stock'];
+
+        $product = $this->interProduct->setId($idpro);
+        $configProduct = $this->configProduct->setId(1);
 
         if ($kit == 1 ? $type = 'kit' : $type = 'unit');
 
@@ -85,7 +92,9 @@ class GridsControlle extends Controller
         }
 
         if ($kit == 1) {
-            return view("{$this->view}.form-create-kits", compact('grids','opc','idpro','stock'));
+            return view("{$this->view}.form-create-kits", compact(
+                'configProduct','product', 'grids','opc','stock')
+            );
         } else {
             return view("{$this->view}.form-create-units", compact('grids','opc','idpro','stock'));
         }

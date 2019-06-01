@@ -129,34 +129,31 @@ class ImageColorController extends Controller
             $file     = $request->file('file');
             $config   = $this->configImage->get();
             $product  = $this->interProduct->setId($dataForm['product_id']);
-            ($stock   == 0 ? $dataForm['stock'] = 0 : $dataForm['stock'] = $stock);
-            $dataForm['kit'] = $kit;
 
             //dd($request['grids']);
-            $data = $this->interModel->create($dataForm, $config, $file);
+            $image = $this->interModel->create($dataForm, $config, $file);
 
-            if ($data) {
+            if ($image) {
 
                 $configProduct = $this->configProduct->setId(1);
 
                 if ($configProduct->grids == 1) {
-                    $dataGrids = $request['grids'];
-                    $grids = $this->interGrid->create($dataGrids, $data->id, $data->product_id, $stock, $kit);
+                    $grids = $this->interGrid->create($request['grids'], $image, $product, $stock, $kit);
                 }
 
                 if ($configProduct->group_colors == 1) {
                     $dataGroups = $request['groups'];
-                    $groups = $this->interGroup->create($dataGroups, $data->product_id, $data->id);
+                    $groups = $this->interGroup->create($dataGroups, $image->product_id, $image->id);
                 }
 
-                $product_id = $data->product_id;
+                $product_id = $image->product_id;
                 $success    = true;
                 $message    = 'A imagem foi salva';
-                $color      =  $data->color;
-                $name       =  $data->slug;
-                $code       =  $data->code;
-                $html       =  $data->html;
-                $id         =  $data->id;
+                $color      =  $image->color;
+                $name       =  $image->slug;
+                $code       =  $image->code;
+                $html       =  $image->html;
+                $id         =  $image->id;
                 
                 DB::commit();
 

@@ -20,9 +20,8 @@ class ConfigFormPaymentTableSeeder extends Seeder
             'description' => '
                 -Banco: '.env('DEP_BANK').
                 '-Agência: '.env('DEP_AGENCY').'-'.env('DEP_AGENCY_DIG').
-                '-Conta Corrente:'.env('DEP_ACCOUNT').'-'.env('DEP_ACCOUNT_DIG'),
+                '-Conta Corrente:'.env('DEP_ACCOUNT').'-'.env('DEP_ACCOUNT_DIG').
                 '-Favorecido:'.env('DEP_NAME'),
-                '-'.env('DEP_DOCUMENT_NAME').':'.env('DEP_DOCUMENT_NUMBER'),
             'active' => constLang('active_true'),
             'created_at' => $date
         ]);

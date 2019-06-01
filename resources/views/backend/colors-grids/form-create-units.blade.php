@@ -20,7 +20,7 @@
                     <span class="input">
                         <label for="tam-{{$val}}" class="button blue-gradient">{{$str}}</label>
                         <input type="hidden" id="grid-{{$val}}" name="grid[]" class="input-unstyled" placeholder="Grade" value="" autocomplete="off" style="width: 30px;">
-                        <input type="text" id="qty-{{$val}}" name="entry[]" class="input-unstyled" placeholder="Qtd" value="" autocomplete="off" style="width: 30px;">
+                        <input type="text" id="qty-{{$val}}" name="input[]" class="input-unstyled" placeholder="Qtd" value="" autocomplete="off" style="width: 30px;">
                     </span>
                 @else
                     <label for="tam-{{$val}}" class="button blue-gradient">{{$str}}</label>

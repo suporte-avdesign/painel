@@ -4,13 +4,18 @@ namespace AVDPainel\Http\Requests\Admin;
 
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImages;
+use AVDPainel\Interfaces\Admin\ProductInterface as InterProduct;
 
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductColorRequest extends FormRequest
 {
-    public function __construct(ConfigProduct $configProduct, ConfigImages $configImages)
+    public function __construct(
+        ConfigProduct $configProduct,
+        ConfigImages $configImages,
+        InterProduct $interProduct)
     {
+        $this->interProduct  = $interProduct;
         $this->configImages  = $configImages;
         $this->configProduct = $configProduct;
         $this->size          = $this->configImages->setName('default', 'Z');
@@ -35,7 +40,9 @@ class ProductColorRequest extends FormRequest
     public function rules()
     {
 
-        $configProduct = $this->configProduct->setId(1); 
+        $configProduct = $this->configProduct->setId(1);
+        $img           = $this->request->get('img');
+        $product       = $this->interProduct->setId($img['product_id']);
 
         /*
         Multiplo uplod
@@ -65,18 +72,32 @@ class ProductColorRequest extends FormRequest
             $rules['img.html'] = 'required';
         }
 
-        if ($configProduct->grids == 1) { 
+        if ($configProduct->grids == 1) {
 
-            if ( empty($this->request->get('grids')) || is_string($this->request->get('grids')) ) {
+            $grids = $this->request->get('grids');
+
+            if ( empty($grids) || is_string($grids) ) {
                 $rules['grids'] = 'required';
-
             }
 
-            if ($configProduct->stock == 1) { 
-                if ( !empty($this->request->get('grids')) ){
-                    foreach ($this->request->get('grids') as $key => $value) {
-                        if ($value == '') {
-                            $rules['stock.'.$key] = 'required';
+
+            if ($configProduct->stock == 1) {
+                if ( !empty($grids) ){
+                    foreach ($grids as $key => $value) {
+                        if($key == 'input' && $value == "") {
+                            $rules['grids.input'] = 'required';
+                        }
+
+                        if ($product->qty_min == 1) {
+                            if($key == 'qty_min' && $value == "") {
+                                $rules['grids.qty_min'] = 'required';
+                            }
+                        }
+
+                        if ($product->qty_max == 1) {
+                            if($key == 'qty_max' && $value == "") {
+                                $rules['grids.qty_max'] = 'required';
+                            }
                         }
                     }
                 }
@@ -84,11 +105,11 @@ class ProductColorRequest extends FormRequest
 
         }
 
-        if ($configProduct->group_colors == 1) {                    
+        if ($configProduct->group_colors == 1) {
             if ( empty($this->request->get('groups')) ) {
+                //dd($this->request->get('groups'));
                 $rules['groups'] = 'required';
             }
-
         }
 
         return $rules;
@@ -100,35 +121,16 @@ class ProductColorRequest extends FormRequest
     {
         $msg = '';
         $messages = [];
-        foreach($this->request->get('img') as $key => $val){
-            if($key == 'product_id'){
-               $msg = "Adicione um produto.";
-            }
-            if($key == 'code'){
-               $msg = "O código é obrigatório.";
-            }
-            if($key == 'color'){
-               $msg = "A cor é obrigatória.";
-            }
-            if($key == 'order'){
-               $msg = "A ordem é obrigatória.";
-            }
-            if($key == 'html'){
-               $msg = "Clique na imagem para criar a miniatura.";
-            }
-            $messages['img.'.$key.'.required'] = $msg;
-        }
-        
-        if ( !empty($this->request->get('grids')) ){
-            foreach ($this->request->get('grids') as $key => $value) {
-                if ($value == '') {
-                    $messages['stock.'.$key.'.required'] = "A quantidade da grade {$key} é obrigatória.";
-                }
-            }
-        }
+        $messages['img.product_id.required'] = 'Adicione um produto.';
+        $messages['img.code.required'] = 'O código é obrigatório.';
+        $messages['img.color.required'] = 'A cor é obrigatória.';
+        $messages['img.order.required'] = 'A ordem é obrigatória.';
+        $messages['img.html.required'] = 'Clique na imagem para criar a miniatura.';
 
         $messages['grids.required'] = 'A grade é obrigatória.';
-        $messages['stock.required'] = 'A quantidade   é obrigatória.';
+        $messages['grids.input.required'] = 'A entrada de estoque é obrigatória.';
+        $messages['grids.qty_min.required'] = 'A quantidade mínima é obrigatória.';
+        $messages['grids.qty_max.required'] = 'A quantidade máxima é obrigatória.';
         $messages['groups.required'] = 'Selecione no mínimo um grupo de cores.';
 
         $messages['file.required'] = 'A imagem é obrigatória.';

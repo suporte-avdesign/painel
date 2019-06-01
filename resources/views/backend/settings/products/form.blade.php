@@ -75,6 +75,51 @@
 								</label>
 							</span>
 						</p>
+
+						<p class="button-height inline-label">
+							<label for="qty_min" class="label">Estoque Mínimo</label>
+							<span class="button-group">
+								<label for="qty_min-1" class="button green-active">
+									<input type="radio" onclick="formQtdStok('qty_min', '1')" name="qty_min" id="qty_min-1" value="1" @if($data->qty_min == 1) checked @endif>
+									Sim
+								</label>
+								<label for="qty_min-0" onclick="formQtdStok('qty_min', '0')" class="button red-active" >
+									<input type="radio" name="qty_min" id="qty_min-0" value="0" @if($data->qty_min == 0) checked @endif>
+									Não
+								</label>
+							</span>
+						</p>
+						<div id="qty_min" class="margin-bottom" style="display: @if($data->qty_min == 0) none @endif">
+							<p class="button-height">
+								<span class="input">
+									<label for="pseudo-input-2" class="button green-gradient">Und-Kit </label>
+									<input type="text" name="qty_min_unit" class="input-unstyled input-sep" placeholder="mínimo" value="{{$data->qty_min_unit}}"  maxlength="4" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 55px;">
+									<input type="text" name="qty_min_kit" class="input-unstyled" placeholder="máximo" value="{{$data->qty_min_kit}}"  maxlength="4" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 55px;">
+								</span>
+							</p>
+						</div>
+						<p class="button-height inline-label">
+							<label for="qty_max" class="label">Estoque Máximo</label>
+							<span class="button-group">
+								<label for="qty_max-1" class="button green-active">
+									<input type="radio" onclick="formQtdStok('qty_max', '1')" name="qty_max" id="qty_max-1" value="1" @if($data->qty_max == 1) checked @endif>
+									Sim
+								</label>
+								<label for="qty_max-0" class="button red-active" >
+									<input type="radio" onclick="formQtdStok('qty_max', '0')" name="qty_max" id="qty_max-0" value="0" @if($data->qty_max == 0) checked @endif>
+									Não
+								</label>
+							</span>
+						</p>
+						<div id="qty_max" class="margin-bottom" style="display: @if($data->qty_max == 0) none @endif">
+							<p class="button-height">
+								<span class="input">
+									<label for="pseudo-input-2" class="button green-gradient">Und-Kit </label>
+									<input type="text" name="qty_max_unit" class="input-unstyled input-sep" placeholder="mínimo" value="{{$data->qty_max_unit}}"  maxlength="4" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 55px;">
+									<input type="text" name="qty_max_kit" class="input-unstyled" placeholder="máximo" value="{{$data->qty_max_kit}}"  maxlength="4" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 55px;">
+								</span>
+							</p>
+						</div>
 						<p class="button-height inline-label">
 							<label for="freight" class="label">Frete</label>
 							<span class="button-group">
@@ -251,6 +296,8 @@
 						<li><b>Valores:</b> Os valores serão digitados manualmente ou pelo perfil do cliente.</li>
 						<li><b>Custo:</b> Habilita  o campo para informar o custo do produto.</li>
 						<li><b>Estoque:</b> Habilita  o modulo de controle de estoque.</li>
+						<li><b>Estoque Mínimo:</b> Alerta o administrador que já está no limite mínimo.</li>
+						<li><b>Estoque Máximo:</b> Alerta o administrador que já está no limite máximo.</li>
 						<li><b>Frete:</b>  Habilita  o modulo de frete.</li>
 						<li><b>Vender Kits:</b>  Habilita  o modulo de vendas por kits (caixa,kit,pacote etc.)</li>
 						<li><b>Grades:</b> Habilita  o modulo das grades dos produtos.</li>
@@ -284,3 +331,4 @@
 		</form>
 	</div>
 </div>
+<script>function formQtdStok(id, opc){if(opc == 1){$("#"+id).show();}else{$("#"+id).hide();}}</script>

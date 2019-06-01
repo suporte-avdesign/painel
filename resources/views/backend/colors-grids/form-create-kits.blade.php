@@ -1,8 +1,5 @@
 @foreach ($grids as $value)
-    @php 
-        ($stock == 1 ? $text = '/Estoque' : $text = '');
-    @endphp
-    <h4 class="green underline">Grade/{{$text}}: {{$value->name}}</h4>
+    <h4 class="green underline">{{$value->name}}</h4>
     <div class="columns">        
         @php
             $label = explode(",", $value->label);
@@ -21,12 +18,29 @@
 <input type="hidden" id="grid" name="grids[grid]" value="">
 
 @if($stock == 1)
-    <p class="button-height margin-top">
+    <p class="button-height block-label margin-top">
+        <label for="input" class="label">Entrada no estoque</label>
         <span class="input">
-            <label class="button green-gradient">Estoque</label>
-            <input type="text" id="entry" name="grids[entry]" class="input-unstyled" value="" placeholder="Qtd" style="width: 30px;">
+            <label class="button blue-gradient">Entrada</label>
+            <input type="text" name="grids[input]" class="input-unstyled" value="" placeholder="Qtd"  autocomplete="off" maxlength="4" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 50px;">
         </span>
     </p>
+
+    @if($product->qty_min == 1 || $product->qty_max == 1)
+        <p class="button-height block-label">
+            <label for="input" class="label">Estoque mínimo / máximo</label>
+            <span class="input">
+                <label for="qty_stock" class="button blue-gradient">Estoque</label>
+                @if($product->qty_min == 1)
+                    <input type="text" name="grids[qty_min]" value="{{$configProduct->qty_min_kit}}" placeholder="Mínimo" class="input-unstyled input-sep" autocomplete="off" maxlength="4" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 50px;">
+                @endif
+                @if($product->qty_max == 1)
+                    <input type="text" name="grids[qty_max]"  value="{{$configProduct->qty_max_kit}}" placeholder="Máximo" class="input-unstyled" autocomplete="off" maxlength="4" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 50px;">
+                @endif
+            </span>
+        </p>
+    @endif
+
 @endif
 
 <script>

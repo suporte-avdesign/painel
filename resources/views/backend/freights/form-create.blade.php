@@ -18,25 +18,25 @@
         @if($freight->weight == 1)
             <p class="button-height inline-small-label">
                 <label for="weight" class="label">Peso<span class="red">* </span></label>
-                <input type="text" name="prod[weight]" id="weight" value="" placeholder="Gramas" class="input" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+                <input type="text" name="prod[weight]" id="weight" value="" placeholder="Gramas" class="input" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
             </p>
         @endif
         @if($freight->width == 1)
             <p class="button-height inline-small-label">
                 <label for="width" class="label">Largura<span class="red">*</span></label>
-                <input type="text" name="prod[width]" id="width" value="" placeholder="Centímetros" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+                <input type="text" name="prod[width]" id="width" value="" placeholder="Centímetros" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
             </p>
         @endif
         @if($freight->height == 1)
             <p class="button-height inline-small-label">
                 <label for="height" class="label">Altura<span class="red">*</span></label>
-                <input type="text" name="prod[height]" id="height" value="" placeholder="Centímetros" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+                <input type="text" name="prod[height]" id="height" value="" placeholder="Centímetros" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
             </p>
         @endif
         @if($freight->length == 1)
             <p class="button-height inline-small-label">
                 <label for="length" class="label">Comprimento<span class="red">*</span></label>
-                <input type="text" name="prod[length]" id="length" value="" placeholder="Centímetros" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+                <input type="text" name="prod[length]" id="length" value="" placeholder="Centímetros" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
             </p>
         @endif
     </span>

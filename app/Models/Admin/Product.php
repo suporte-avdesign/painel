@@ -28,6 +28,8 @@ class Product extends Model
         'kit_name',
         'kit',
         'stock',
+        'qty_min',
+        'qty_max',
         'freight',
         'new',
         'featured',

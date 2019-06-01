@@ -54,36 +54,45 @@ class GridProductRepository implements GridProductInterface
      * @param  int $kit
      * @return array
      */
-    public function create($input, $id, $idpro, $stock, $kit)
+    public function create($input, $image, $product, $stock, $kit)
     {
+        (isset($input['qty_min']) ? $qty_min = $input['qty_min'] : 0);
+        (isset($input['qty_max']) ? $qty_max = $input['qty_max'] : 0);
+
         if ($kit == 1) {
 
             if ($stock == 1) {
                 $grid = [
-                    'product_id' => $idpro,
-                    'image_color_id' => $id,
+                    'product_id' => $product->id,
+                    'image_color_id' => $image->id,
                     'kit' => $kit,
+                    'color' => $image->color,
+                    'qty_min' => $qty_min,
+                    'qty_max' => $qty_max,
                     'grid' => str_replace('_', '/', $input['grid']),
-                    'entry' => $input['entry'],
-                    'low' => 0,
-                    'stock' => $input['entry']
+                    'input' => $input['input'],
+                    'output' => 0,
+                    'stock' => $input['input']
                 ];
                 $data = $this->model->create($grid);
                 if ($data) {
                     generateAccessesTxt(utf8_decode(
                         '- Grade:'.str_replace('_', '/', $input['grid']).
-                        '- Entrada:'.$input['entry'])
+                        '- Entrada:'.$input['input'])
                     );
                 }
 
             } else {
                 $grid = [
-                    'product_id' => $idpro,
-                    'image_color_id' => $id,
+                    'product_id' => $product->id,
+                    'image_color_id' => $image->id,
                     'kit' => $kit,
+                    'color' => $image->color,
+                    'qty_min' => $qty_min,
+                    'qty_max' => $qty_max,
                     'grid' => str_replace('_', '/', $input['grid']),
-                    'entry' => 0,
-                    'low' => 0,
+                    'input' => 0,
+                    'output' => 0,
                     'stock' => 0
                 ];
                 $data = $this->model->create($grid);
@@ -99,12 +108,15 @@ class GridProductRepository implements GridProductInterface
             foreach ($input as $key => $value) { 
                 if ($stock == 1) {
                     $grid = [
-                        'product_id' => $idpro,
-                        'image_color_id' => $id,
+                        'product_id' => $product->id,
+                        'image_color_id' => $image->id,
                         'kit' => $kit,
+                        'color' => $image->color,
+                        'qty_min' => $qty_min,
+                        'qty_max' => $qty_max,
                         'grid' => str_replace('_', '/', $key),
-                        'entry' => $value,
-                        'low' => 0,
+                        'input' => $value,
+                        'output' => 0,
                         'stock' => $value
                     ];
 
@@ -117,12 +129,15 @@ class GridProductRepository implements GridProductInterface
                     }
                 } else {
                     $grid = [
-                        'product_id' => $idpro,
-                        'image_color_id' => $id,
+                        'product_id' => $product->id,
+                        'image_color_id' => $image->id,
                         'kit' => $kit,
+                        'color' => $image->color,
+                        'qty_min' => $qty_min,
+                        'qty_max' => $qty_max,
                         'grid' => str_replace('_', '/', $key),
-                        'entry' => 0,
-                        'low' => 0,
+                        'input' => 0,
+                        'output' => 0,
                         'stock' => 0
                     ];
                     $data = $this->model->create($grid);
@@ -137,84 +152,6 @@ class GridProductRepository implements GridProductInterface
 
         }
 
-        /*
-        if ($kit == 1) {
-
-            foreach ($input as $key => $value) { 
-                if ($stock == 1) {
-                    $grid = [
-                        'product_id' => $idpro,
-                        'image_color_id' => $id,
-                        'kit' => $kit,
-                        'grid' => str_replace('_', '/', $key),
-                        'entry' => $value,
-                        'stock' => $value
-                    ];
-
-                    $data = $this->model->create($grid);
-                    if ($data) {
-                        generateAccessesTxt(utf8_decode(
-                            '- Grade:'.str_replace('_', '/', $key).
-                            '- Entrada:'.$value)
-                        );
-                    }
-                } else {
-                    $grid = [
-                        'product_id' => $idpro,
-                        'image_color_id' => $id,
-                        'kit' => $kit,
-                        'grid' => str_replace('_', '/', $key)
-                    ];
-                    $data = $this->model->create($grid);
-                    if ($data) {
-                        generateAccessesTxt(utf8_decode(
-                            '- Grade:'.str_replace('_', '/', $key))
-                        );
-                    }
-                }
-
-            }
-
-        } else {
-            foreach ($input as $key => $value) {
-                if ($value >= 1) {
-                    if ($stock == 1) {
-                        ($value == '' ? $entry = 0 : $entry = $value);
-                        $grid = [
-                            'product_id' => $idpro,
-                            'image_color_id' => $id,
-                            'grid' => str_replace('_', '/', $key),
-                            'kit' => $kit,
-                            'entry' => $entry,
-                            'stock' => $entry
-                        ];
-                    } else {
-                        $grid = [
-                            'product_id' => $idpro,
-                            'image_color_id' => $id,
-                            'kit' => $kit,
-                            'grid' => str_replace('_', '/', $key)
-                        ];
-                    }
-
-                    $data = $this->model->create($grid);
-                    if ($data) {
-                        if ($stock == 1) {
-                            generateAccessesTxt(utf8_decode(
-                                '- Grade:'.$key.
-                                '- Entrada:'.$entry)
-                            );
-                        } else {
-                            generateAccessesTxt(utf8_decode(
-                                '- Grade:'.$key)
-                            );
-                        }
-                    }
-                }
-            }
-        }
-        */
-
     }
 
 
@@ -228,17 +165,17 @@ class GridProductRepository implements GridProductInterface
      * @param  int $kit
      * @return array
      */
-    public function update($input, $id, $idpro, $stock, $kit)
+    public function update($input, $image, $product, $stock, $kit)
     {
         
 
         ($kit == 1 ? $kname = 'kit' : $kname = 'Und');
         if ($kit == 1) {
             if ($stock == 1) {
-                $low   = $input['low'];
-                $entry = $input['entry'];
-                unset($input['low']);
-                unset($input['entry']);
+                $output   = $input['output'];
+                $input = $input['input'];
+                unset($input['output']);
+                unset($input['input']);
             }
 
             foreach ($input as $value) {
@@ -252,37 +189,37 @@ class GridProductRepository implements GridProductInterface
 
             if ($stock == 1) {
 
-                ($entry == '' ? $entry = 0 : $entry = $entry);
-                ($low   == '' ? $low   = 0 : $low   = $low);
-                $total = $entry - $low;
+                ($input == '' ? $input = 0 : $input = $input);
+                ($output   == '' ? $output   = 0 : $output   = $output);
+                $total = $input - $output;
                 $update = [
-                    'product_id' => $idpro,
-                    'image_color_id' => $id,
+                    'product_id' => $product->id,
+                    'image_color_id' => $image->id,
                     'kit' => $kit,
                     'grid' => $grid,
-                    'entry' =>  $entry,
-                    'low' => $low,
+                    'input' =>  $input,
+                    'output' => $output,
                     'stock' => $total
                 ];
 
             } else {
                 $update = [
-                    'product_id' => $idpro,
-                    'image_color_id' => $id,
+                    'product_id' => $product->id,
+                    'image_color_id' => $image->id,
                     'kit' => $kit,
                     'grid' => $grid
                 ];
             }
 
-            $delete = $this->model->where('image_color_id', $id)->delete();
+            $delete = $this->model->where('image_color_id', $image->id)->delete();
             $data   = $this->model->create($update);
 
             if ($data) {
                 if ($stock == 1) {
                     generateAccessesTxt(utf8_decode(
                         '- Grade:'.$data->grid.
-                        ' - Entrada:'.$data->entry.
-                        ' - Saida:'.$data->low.
+                        ' - Entrada:'.$data->input.
+                        ' - Saida:'.$data->output.
                         ' - Estoque:'.$data->stock.
                         ' - Kit:'.$kname)
                     );
@@ -297,31 +234,31 @@ class GridProductRepository implements GridProductInterface
             }
 
         } else {
-            $delete = $this->model->where('image_color_id', $id)->delete();
+            $delete = $this->model->where('image_color_id', $image->id)->delete();
             if ($delete) {
                 foreach ($input as $value) {
                     if ($value['grid'] != '') {
                         if ($stock == 1) {
-                            ($value['entry'] == '' ? $entry = 0 : $entry = $value['entry']);
-                            ($value['low']   == '' ? $low   = 0 : $low   = $value['low']);
+                            ($value['input'] == '' ? $input = 0 : $input = $value['input']);
+                            ($value['output']   == '' ? $output   = 0 : $output   = $value['output']);
 
-                            $total = $entry - $low;
+                            $total = $input - $output;
 
                             $update = [
-                                'product_id' => $idpro,
-                                'image_color_id' => $id,
+                                'product_id' => $product->id,
+                                'image_color_id' => $image->id,
                                 'kit' => $kit,
                                 'grid' => str_replace('_', '/', $value['grid']),
-                                'entry' =>  $entry,
-                                'low' => $low,
+                                'input' =>  $input,
+                                'output' => $output,
                                 'stock' => $total
                             ];
 
                         } else {
 
                             $update = [
-                                'product_id' => $idpro,
-                                'image_color_id' => $id,
+                                'product_id' => $product->id,
+                                'image_color_id' => $image->id,
                                 'kit' => $kit,
                                 'grid' => str_replace('_', '/', $value['grid'])
                             ];
@@ -333,8 +270,8 @@ class GridProductRepository implements GridProductInterface
                             if ($stock == 1) {
                                 generateAccessesTxt(utf8_decode(
                                     '- Grade:'.$data->grid.
-                                    ' - Entrada:'.$data->entry.
-                                    ' - Saida:'.$data->low.
+                                    ' - Entrada:'.$data->input.
+                                    ' - Saida:'.$data->output.
                                     ' - Estoque:'.$data->stock.
                                     ' - Kit:'.$kname)
                                 );
@@ -383,12 +320,12 @@ class GridProductRepository implements GridProductInterface
         $current = $this->model->where('image_color_id', $id)->get();
 
         if ($kit == 1) {
-            $entry=0;
-            $low=0;
+            $input=0;
+            $output=0;
             foreach ($current as $value) {
                 $product_id = $value->product_id;
-                $entry += $value->entry;
-                $low += $value->low;
+                $input += $value->input;
+                $output += $value->output;
                 if ($value->kit == 0) {
                     $grids[] = $value->grid;
                 }
@@ -396,7 +333,7 @@ class GridProductRepository implements GridProductInterface
             if (isset($grids)) {
 
                 $grid   = implode(",", $grids);
-                $total  = $entry - $low;
+                $total  = $input - $output;
                 $delete = $this->model->where('image_color_id', $id)->delete();
 
                 if ($stock == 1) {
@@ -405,8 +342,8 @@ class GridProductRepository implements GridProductInterface
                         'image_color_id' => $id,
                         'grid' => $grid,
                         'kit' => $kit,
-                        'entry' => $entry,
-                        'low' => $low,
+                        'input' => $input,
+                        'output' => $output,
                         'stock' => $total
                     ];
                 } else {
@@ -434,8 +371,8 @@ class GridProductRepository implements GridProductInterface
                             'image_color_id' => $id,
                             'kit' => $kit,
                             'grid' => $val,
-                            'entry' => 0,
-                            'low' => 0,
+                            'input' => 0,
+                            'output' => 0,
                             'stock' => 0
                         ];
 

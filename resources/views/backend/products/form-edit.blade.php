@@ -124,42 +124,6 @@
                     </span>
                 </p>
 
-                @if($configProduct->kit == 1)
-                    <!--
-                    <p class="button-height inline-label">
-                        <label for="kit" class="label">Venda Caixa</label>
-                        <span class="button-group">
-                            <label for="kit_1" class="button green-active">
-                                <input type="radio" name="prod[kit]" id="kit_1" value="1" @if($data->kit == 1) checked @endif>
-                                Ativo
-                            </label>
-                            <label for="kit_2" class="button red-active">
-                                <input type="radio" name="prod[kit]" id="kit_2" value="0" @if($data->kit == 0) checked @endif>
-                                Inativo
-                            </label>
-                        </span>
-                    </p>
-                    -->
-                @endif
-
-                @if($configProduct->stock == 1)
-                    <!--
-                    <p class="button-height inline-label">
-                        <label for="stock" class="label">Estoque</label>
-                        <span class="button-group">
-                            <label for="stock_1" class="button green-active">
-                                <input type="radio" name="prod[stock]" id="stock_1" value="1" @if($data->stock == 1) checked @endif>
-                                Ativo
-                            </label>
-                            <label for="stock_2" class="button red-active">
-                                <input type="radio" name="prod[stock]" id="stock_2" value="0" @if($data->stock == 0) checked @endif>
-                                Inativo
-                            </label>
-                        </span>
-                    </p>
-                    -->
-                @endif
-
                 @if($configProduct->freight == 1)
                     @include('backend.freights.form-edit')
                 @endif
@@ -169,13 +133,25 @@
         <div class="seven-columns twelve-columns-tablet">
             <fieldset class="fieldset">
                 <legend class="legend">Valores do produto</legend>
-                <p class="button-height inline-small-label">
-                    <span class="label"><b>Und.</b><span class="red">*</span></span>
-                    <select id="unit_measure" name="prod[unit_measure]" class="select">
-                        @foreach($unit_measure as $key => $val)
-                            <option value="{{$key}}|{{$val}}" @if($data->unit == $key) selected @endif>{{$key}} {{$val}}</option>
-                        @endforeach
-                    </select>
+
+                @if($configProduct->cost == 1)
+                    <p class="button-height">
+                        <span class="input">
+                            <label for="pseudo-input-2" class="button blue-gradient">Custo</label>
+                            <input type="text" name="cost[value]" id="cost" value="{{$cost->value}}" class="input-unstyled" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 80px;">
+                        </span>
+                    </p>
+                @endif
+
+                <p class="button-height">
+                    <span class="input">
+                        <label for="unit_measure" class="button blue-gradient">Und</label>
+                        <select id="unit_measure" name="prod[unit_measure]" class="select compact expandable-list" style="width:100px">
+                            @foreach($unit_measure as $key => $val)
+                                <option value="{{$key}}|{{$val}}" @if($data->unit == $key) selected @endif>{{$key}} {{$val}}</option>
+                            @endforeach
+                        </select>
+                    </span>
                     @if($configProduct->kit == 1 && $data->kit == 1)
                         <span id="kits">
                             <select name="prod[kit_name]" class="select">
@@ -186,13 +162,6 @@
                         </span>
                     @endif
                 </p>
-
-                @if($configProduct->cost == 1)
-                    <p class="button-height inline-small-label">
-                        <label for="cost" class="label"><b>Custo</b><span class="red">*</span></label>
-                        <input type="text" name="cost[value]" id="cost" value="{{$cost->value}}" class="input" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8">
-                    </p>
-                @endif
 
                 <p class="button-height block-label">
                     <label for="info-calculate" class="label"><small>À Vista (clique em calcular)</small></label>

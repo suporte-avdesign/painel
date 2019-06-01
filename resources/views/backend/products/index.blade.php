@@ -2,7 +2,7 @@
     <h3><span class="icon-read"> </span><strong> {{$title}} {{$data->name}} / {{$data->section}}</strong></h3>
     <div class="button-group absolute-right">            
             @can('product-create')                        
-                <a href="javascript:void(0)" onclick="abreModal('{{$title_create}} {{$data->name}} / {{$data->section}}', '{{route('catalog.create', $data->id)}}', 'products', 2, 'true', 800, 780);" class="button margin-right with-tooltip" data-tooltip-options='{"classes":["anthracite-gradient"],"position":"bottom"}' title="{{$title_create}}">Adicionar
+                <a href="javascript:void(0)" onclick="abreModal('{{$title_create}} {{$data->name}} / {{$data->section}}', '{{route('catalog.create', $data->id)}}', 'products', 2, 'true', 820, 780);" class="button margin-right with-tooltip" data-tooltip-options='{"classes":["anthracite-gradient"],"position":"bottom"}' title="{{$title_create}}">Adicionar
                 <span class="button-icon right-side"><span class="icon-plus-round"></span></span></a>
             @endcan
 

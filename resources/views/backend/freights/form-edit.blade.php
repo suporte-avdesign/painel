@@ -16,25 +16,25 @@
     @if($freight->weight == 1)
         <p class="button-height inline-small-label">
             <label for="weight" class="label">Peso<span class="red">*</span></label>
-            <input type="text" name="prod[weight]" id="weight" value="{{$data->weight}}" class="input" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+            <input type="number" name="prod[weight]" id="weight" value="{{$data->weight}}" class="input" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
         </p>
     @endif
     @if($freight->width == 1)
         <p class="button-height inline-small-label">
             <label for="width" class="label">Largura<span class="red">*</span></label>
-            <input type="text" name="prod[width]" id="width" value="{{$data->width}}" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+            <input type="number" name="prod[width]" id="width" value="{{$data->width}}" class="input" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
         </p>
     @endif
     @if($freight->height == 1)
         <p class="button-height inline-small-label">
             <label for="height" class="label">Altura<span class="red">*</span></label>
-            <input type="text" name="prod[height]" id="height" value="{{$data->height}}" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+            <input type="number" name="prod[height]" id="height" value="{{$data->height}}" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
         </p>
     @endif
     @if($freight->length == 1)
         <p class="button-height inline-small-label">
             <label for="length" class="label">Comprimento<span class="red">*</span></label>
-            <input type="text" name="prod[length]" id="length" value="{{$data->length}}" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,8);" maxlength="8">
+            <input type="number" name="prod[length]" id="length" value="{{$data->length}}" autocomplete="off" class="input" onKeyDown="javascript: return maskValor(this,event,5);" maxlength="5">
         </p>
     @endif
 </span>

@@ -35,6 +35,8 @@ class CreateProductsTable extends Migration
             $table->string('kit_name', 30)->nullable();
             $table->tinyInteger('kit')->default(0);
             $table->tinyInteger('stock')->default(0);
+            $table->tinyInteger('qty_min')->default(1);
+            $table->tinyInteger('qty_max')->default(1);
             $table->tinyInteger('freight')->default(0);
             $table->tinyInteger('new')->default(0);
             $table->tinyInteger('featured')->default(0);

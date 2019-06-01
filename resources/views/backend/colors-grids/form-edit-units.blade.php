@@ -8,7 +8,7 @@
                 <span class="input">
                     <label for="low" class="button compact {{$col}}-gradient">{{$grid->grid}}</label>
                     <input type="hidden" name="grids[{{$grid->id}}][grid]" id="grid_{{$grid->id}}" value="{{$grid->grid}}">
-                    <input type="text" name="grids[{{$grid->id}}][entry]"  id="entry_{{$grid->id}}" value="" autocomplete="off" placeholder="Entrada" maxlength="4" class="input-unstyled" style="width: 50px;">
+                    <input type="text" name="grids[{{$grid->id}}][input]"  id="input_{{$grid->id}}" value="" autocomplete="off" placeholder="Entrada" maxlength="4" class="input-unstyled" style="width: 50px;">
                     <label for="low" class="button compact {{$col}}-gradient">{{$grid->stock}}</label>
                 </span>
                 <div class="button-group absolute-right compact">

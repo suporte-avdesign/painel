@@ -21,6 +21,12 @@ class CreateConfigProductsTable extends Migration
             $table->tinyInteger('price_profile');
             $table->tinyInteger('cost');
             $table->tinyInteger('stock');
+            $table->tinyInteger('qty_min')->default(1);
+            $table->smallInteger('qty_min_unit')->nullable();
+            $table->smallInteger('qty_min_kit')->nullable();
+            $table->tinyInteger('qty_max')->default(1);
+            $table->smallInteger('qty_max_unit')->nullable();
+            $table->smallInteger('qty_max_kit')->nullable();
             $table->tinyInteger('freight');
             $table->tinyInteger('kit');
             $table->tinyInteger('colors');

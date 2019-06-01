@@ -58,6 +58,10 @@ return [
     'title.required' => 'O nome do titulo é obrigatório.',
     'title.unique' => 'Este titulo já se encontra utilizado.',
     'title_update' => 'Alterar',
+    'type_movement' => [
+        'input' => 'Entrada',
+        'output' => 'Saida'
+    ],
     'update_false' => 'Não foi possível alterar o registro',
     'update_true' => 'O registro foi alterado',
     'yes' => 'Sim',

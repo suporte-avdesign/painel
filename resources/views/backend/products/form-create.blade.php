@@ -19,7 +19,7 @@
                 </p>
                 <p class="button-height inline-label">
                     <label for="description" class="label">Descrição</label>
-                    <textarea name="prod[description]" id="description" class="input full-width" cols="10" rows="2"></textarea>
+                    <textarea name="prod[description]" id="description" autocomplete="off" class="input full-width" cols="10" rows="2"></textarea>
                 </p>
                 @if($configProduct->video == 1)
                     <p class="button-height inline-label">
@@ -129,42 +129,76 @@
                         </span>
                     </p>
                 @endif
+                @if($configProduct->qty_min == 1)
+                    <p class="button-height inline-label">
+                        <label for="qty_min" class="label">Estoque Mínimo</label>
+                        <span class="button-group">
+                            <label for="qty_min_1" class="button green-active">
+                                <input type="radio" name="prod[qty_min]"  id="qty_min_1" value="1" checked >
+                                Ativo
+                            </label>
+                            <label for="qty_min_0" class="button red-active">
+                                <input type="radio" name="prod[qty_min]" id="qty_min_0" value="0" >
+                                Inativo
+                            </label>
+                        </span>
+                    </p>
+                @endif
+                @if($configProduct->qty_max == 1)
+                    <p class="button-height inline-label">
+                        <label for="qty_max" class="label">Estoque Máximo</label>
+                        <span class="button-group">
+                            <label for="qty_max_1" class="button green-active">
+                                <input type="radio" name="prod[qty_max]"  id="qty_max_1" value="1" checked >
+                                Ativo
+                            </label>
+                            <label for="qty_max_0" class="button red-active">
+                                <input type="radio" name="prod[qty_max]" id="qty_max_0" value="0" >
+                                Inativo
+                            </label>
+                        </span>
+                    </p>
+                @endif
             </fieldset>
 
             @if($configProduct->freight == 1)
                 @include('backend.freights.form-create')
             @endif
 
-
         </div>
+
         <div class="seven-columns twelve-columns-tablet">
             <fieldset class="fieldset">
                 <legend class="legend">Valores do produto</legend>
-                <p class="button-height inline-small-label">
-                    <span class="label"><b>Und.</b><span class="red">*</span></span>
-                    <select id="unit_measure" name="prod[unit_measure]" class="select">
-                        @foreach($unit_measure as $key => $val)
-                            <option value="{{$key}}|{{$val}}">{{$key}} {{$val}}</option>
-                        @endforeach
-                    </select>
-                    @if($configProduct->kit == 1)
-                        <span id="kits">
-                        <select name="prod[kit_name]" class="select">
-                            @foreach($kits as $key => $val)
-                                <option value="{{$val}}">{{$val}}</option>
+
+                @if($configProduct->cost == 1)
+                    <p class="button-height">
+                        <span class="input">
+                            <label for="cost" class="button blue-gradient">Custo</label>
+                            <input type="text" name="cost[value]" id="cost" value="" class="input-unstyled" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 80px;">
+                        </span>
+                    </p>
+                @endif
+
+                <p class="button-height">
+                    <span class="input">
+                        <label for="unit_measure" class="button blue-gradient">Und</label>
+                        <select id="unit_measure" name="prod[unit_measure]" class="select compact expandable-list" style="width:100px">
+                            @foreach($unit_measure as $key => $val)
+                               <option value="{{$key}}|{{$val}}">{{$key}} {{$val}}</option>
                             @endforeach
+                        </select>
+                    </span>
+                    @if($configProduct->kit == 1)
+                    <span id="kits">
+                        <select name="prod[kit_name]" class="select">
+                           @foreach($kits as $key => $val)
+                               <option value="{{$val}}">{{$val}}</option>
+                           @endforeach
                         </select>
                     </span>
                     @endif
                 </p>
-
-                @if($configProduct->cost == 1)
-                    <p class="button-height inline-small-label">
-                        <label for="cost" class="label"><b>Custo</b><span class="red">*</span></label>
-                        <input type="text" name="cost[value]" id="cost" value="" class="input" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8">
-                    </p>
-                @endif
-
                 <p class="button-height block-label">
                     <label for="info-calculate" class="label"><small>À Vista (clique em calcular)</small></label>
                 </p>
@@ -174,11 +208,11 @@
                         <label for="price_card_percent_1" class="button blue-gradient">{{$configProduct->price_default}} %</label>
                         <select id="price_card_percent_1" name="price[1][price_cash_percent]" class="select compact" style="width:50px">
                             @foreach($percentage as $key => $val)
-                                <option value="{{$val}}">{{$val}}</option>
+                               <option value="{{$val}}">{{$val}}</option>
                             @endforeach
                         </select>
-                        <input type="text" name="price[1][price_card]"   class="input-unstyled input-sep" placeholder="Cartão" value="" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 60px;">
-                        <input type="text" name="price[1][price_cash]" onKeyDown="javascript: return maskValor(this,event,8,2);" class="input-unstyled" placeholder="À Vista" value="" style="width: 80px;">
+                        <input type="text" name="price[1][price_card]" autocomplete="off"   class="input-unstyled input-sep" placeholder="Cartão" value="" onKeyDown="javascript: return maskValor(this,event,8,2);" maxlength="8" style="width: 60px;">
+                        <input type="text" name="price[1][price_cash]" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,8,2);" class="input-unstyled" placeholder="À Vista" value="" style="width: 80px;">
                         <a id="get_prices" href="javascript:get_prices('{{route('profile.client.get.prices')}}', '{{$configProduct->price_profile}}')" class="button compact">Calcular</a>
                     </span>
                     <input type="hidden" name="price[1][profile]" value="{{$configProduct->price_default}}">
@@ -191,7 +225,6 @@
                 <p class="button-height">
                     <span class="input">
                         <label for="label-offer" class="button blue-gradient">Oferta / Dias</label>
-
                         <label for="offer_1" class="button green-active compact">
                             <input type="radio" onclick="get_offers('{{route('profile.client.get.offers')}}', '1', '{{$configProduct->price_profile}}')" name="prod[offer]" id="offer_1" value="1">
                             Sim
@@ -242,7 +275,6 @@
                     <span  id="btn-product" class="button-icon right-side"><span class="icon-forward"></span></span>
                 </button>
             </div>
-
         </div>
     </div>
 </form>

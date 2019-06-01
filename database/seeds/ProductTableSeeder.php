@@ -147,9 +147,6 @@ class ProductTableSeeder extends Seeder
         ImageColor::create([
             'id' => $id_color,
             'product_id' => $id_product,
-            'brand' => 'Marca 1',
-            'section' => 'Seção 1',
-            'category' => 'Categoria 1',
             'color' => 'Branco',
             'code' => '132442',
             'image' => 'image.jpg',

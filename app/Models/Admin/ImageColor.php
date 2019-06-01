@@ -12,17 +12,11 @@ class ImageColor extends Model
 
     protected $fillable = [
         'product_id',
-        //'brand',
-        //'section',
-        //'category',
         'code',
         'color',
         'image',
         'slug',
         'html',
-        //'kit',
-        //'stock',
-        //'kit_name',
         'description',
         'cover',
         'order',
