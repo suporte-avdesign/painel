@@ -38,7 +38,7 @@ return [
     'code' => 'Código',
     'color' => 'Cor',
     'cost' => 'Custo',
-    'cover' => 'Capa',
+    'cover' => 'capa',
     'categories.required' => 'As categorias são obrigatórias.',
     'delete_false' => 'Não foi possível excluir o registro',
     'delete_true' => 'O registro foi excluido',

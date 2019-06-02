@@ -26,7 +26,7 @@
 					<div class="controls">
 						@php
 							($color->active == constLang('active_true') ? $col = 'green' : $col = 'red');
-							($color->cover == 1 ? $title = 'capa' : $title = '');
+							($color->cover == 1 ? $title = constLang('cover') : $title = '');
 							($color->cover == 1 ? $option = '{"classes":["red-gradient"],"position":"top"}' : $option = ''); 
 						@endphp
 						<span id="btns-{{$color->id}}" class="button-group compact children-tooltip" data-tooltip-options='{{$option}}'>
