@@ -58,6 +58,24 @@ class ProductColorRequest extends FormRequest
                 $rules['file'] = 'image|mimes:jpeg,gif,png|dimensions:min_width='.$this->size->img_width;
             }
 
+            if ($product->stock == 1) {
+                if ($product->kit == 1) {
+
+                    $filter_qty = array_filter($this->request->get('qty'));
+                    $unique_des = array_unique($this->request->get('des'));
+                    $filter_des = array_filter($unique_des);
+
+                    $count_qty = count($filter_qty);
+                    $count_des = count($filter_des);
+
+                    if ($count_qty != $count_des) {
+
+                        $rules['grids.grid'] = 'required';
+                    }
+
+                }
+            }
+
         } else {
             $rules['img.product_id'] = 'required';
             $rules['file'] = 'required|image|mimes:jpeg,gif,png|dimensions:min_width='.$this->size->img_width;
@@ -80,23 +98,25 @@ class ProductColorRequest extends FormRequest
                 $rules['grids'] = 'required';
             }
 
+            if ($this->method() == 'POST') {
+                if ($configProduct->stock == 1) {
+                    if ( !empty($grids) ){
 
-            if ($configProduct->stock == 1) {
-                if ( !empty($grids) ){
-                    foreach ($grids as $key => $value) {
-                        if($key == 'input' && $value == "") {
-                            $rules['grids.input'] = 'required';
-                        }
-
-                        if ($product->qty_min == 1) {
-                            if($key == 'qty_min' && $value == "") {
-                                $rules['grids.qty_min'] = 'required';
+                        foreach ($grids as $key => $value) {
+                            if($key == 'input' && $value == "") {
+                                $rules['grids.input'] = 'required';
                             }
-                        }
 
-                        if ($product->qty_max == 1) {
-                            if($key == 'qty_max' && $value == "") {
-                                $rules['grids.qty_max'] = 'required';
+                            if ($product->qty_min == 1) {
+                                if($key == 'qty_min' && $value == "") {
+                                    $rules['grids.qty_min'] = 'required';
+                                }
+                            }
+
+                            if ($product->qty_max == 1) {
+                                if($key == 'qty_max' && $value == "") {
+                                    $rules['grids.qty_max'] = 'required';
+                                }
                             }
                         }
                     }
@@ -131,6 +151,7 @@ class ProductColorRequest extends FormRequest
         $messages['grids.input.required'] = 'A entrada de estoque é obrigatória.';
         $messages['grids.qty_min.required'] = 'A quantidade mínima é obrigatória.';
         $messages['grids.qty_max.required'] = 'A quantidade máxima é obrigatória.';
+        $messages['grids.grid.required'] = 'Os camos da grade não podem ser iguais ou vazio.';
         $messages['groups.required'] = 'Selecione no mínimo um grupo de cores.';
 
         $messages['file.required'] = 'A imagem é obrigatória.';

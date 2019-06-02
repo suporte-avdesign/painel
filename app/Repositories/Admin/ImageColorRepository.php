@@ -315,9 +315,9 @@ class ImageColorRepository implements ImageColorInterface
         $update = $data->update($input);
         if ($update) {
             ($data->kit == 1 ? $kit = 'Kit' : $kit = 'Unidade');
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(' Alterou o Produto:'.$data->slug.  
-                ' Para:'.$kit)
+            generateAccessesTxt(date('H:i:s').
+                ' Alterou o Produto:'.$data->slug.
+                ' Para:'.$kit
             );
             return true;
         }
@@ -405,7 +405,7 @@ class ImageColorRepository implements ImageColorInterface
                 if ($update) {
                     ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
                     ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
-                    generateAccessesTxt(date('H:i:s').utf8_decode(
+                    generateAccessesTxt(date('H:i:s').
                         ' Adicionou a imagem do Produto:'.Str::slug($product.
                         '-'.$category.
                         '-'.$section.
@@ -413,7 +413,7 @@ class ImageColorRepository implements ImageColorInterface
                         ', Código:'.$data->code.
                         ', Cor:'.$data->color.
                         ', Status:'.$status.
-                        ', Capa:'.$cover)
+                        ', Capa:'.$cover
                     );
 
                     foreach ($config as $value) {
@@ -466,6 +466,7 @@ class ImageColorRepository implements ImageColorInterface
      */
     public function update($input, $id, $config, $file)
     {
+
         // if < 10 add 0 in front
         $count = strlen($input['order']);
         if ($count == 1) {
@@ -480,14 +481,8 @@ class ImageColorRepository implements ImageColorInterface
             $input['kit_name'] = null;
         }
 
-        $data     = $this->model->find($id);
-        
-        $code     = $input['code'];
-        $color    = $input['color'];
-        $brand    = $input['brand'];
-        $section  = $input['section'];
-        $product  = $input['product_name'];
-        $category = $input['category'];
+        $data    = $this->model->find($id);
+        $product = $data->product;
 
         if (!empty($file)) {
 
@@ -498,14 +493,14 @@ class ImageColorRepository implements ImageColorInterface
                 }
             }
 
-            $words    = $this->keywords->rand();
+            $words = $this->keywords->rand();
             $ext  = $file->getClientOriginalExtension();
             $name = Str::slug($words['description'].
-                '-'.$product.
-                '-'.$category.
-                '-'.$section.
-                '-'.str_replace("/", "-", $color).
-                '-'.$brand.
+                '-'.$product->name.
+                '-'.$product->category.
+                '-'.$product->section.
+                '-'.str_replace("/", "-", $input['color']).
+                '-'.$product->brand.
                 '-'.config('app.name').
                 '-'.numLetter(date('Ymdhs'),'letter')).'.'.$ext;        
 
@@ -521,30 +516,31 @@ class ImageColorRepository implements ImageColorInterface
             if ($upload) {
                 $input['image'] = $name;
                 $input['slug'] = Str::slug($product.
-                    '-'.$category.
-                    '-'.$section.
-                    '-'.str_replace("/", "-", $color).
-                    '-'.$brand.                        
+                    '-'.$product->category.
+                    '-'.$product->section.
+                    '-'.str_replace("/", "-", $input['color']).
+                    '-'.$product->brand.
                     '-'.numLetter($data->id, 'letter').
-                    '-'.$code);
+                    '-'.$input['code']);
             }
 
         }
 
         $update = $data->update($input);
+
         if ($update) {
             (!empty($file) ? $text = ', Alterou a imagem' : $text = ', Alterou os dados da imagem');
             ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
             ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
-            generateAccessesTxt(date('H:i:s').utf8_decode($text.
-                ' do Produto:'.Str::slug($input['product_name'].
-                '-'.$category.
-                '-'.$section.
-                '-'.$brand).
+            generateAccessesTxt(date('H:i:s').$text.
+                ' do Produto:'.Str::slug($product->name.
+                ' - '.$product->category.
+                ' - '.$product->section.
+                ' - '.$product->brand).
                 ', Código:'.$data->code.
                 ', Cor:'.$data->color.
                 ', Status:'.$status.
-                ', Capa:'.$cover)
+                ', Capa:'.$cover
             );
 
             foreach ($config as $value) {
@@ -605,9 +601,12 @@ class ImageColorRepository implements ImageColorInterface
             }
 
             if ($value->type == 'C') {
-                $color = $this->disk.$value->path.$data->image;
-                if (file_exists($color)) {
-                    $remove = unlink($color);
+                /* Copiar  a thumb */
+                if ($value->default != 'T') {
+                    $color = $this->disk.$value->path.$data->image;
+                    if (file_exists($color)) {
+                        $remove = unlink($color);
+                    }
                 }
             }
         }
@@ -618,16 +617,15 @@ class ImageColorRepository implements ImageColorInterface
 
         if ($delete) {
 
-            ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
-            ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
+            ($data->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
 
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(' Excluiu a imagem do Produto:'.Str::slug($product->name.
+            generateAccessesTxt(date('H:i:s').
+                ' Excluiu a imagem do Produto:'.Str::slug($product->name.
                 '-'.$product->category.'-'.$product->section.'-'.$product->brand).  
                 ', Código:'.$data->code.
                 ', Cor:'.$data->color.
-                ', Status:'.$status.
-                ', Capa:'.$cover)
+                ', Status:'.$data->active.
+                ', Capa:'.$cover
             );
 
             return true;
@@ -651,12 +649,12 @@ class ImageColorRepository implements ImageColorInterface
         $update = $data->update($input);
         if ($update) {
             $alert = null;
-            if( $data->active == 1 ) {
+            if( $data->active == constLang('active_true') ) {
                 $col = 'green-gradient';
-                $status = 'Ativo';
+                $status = constLang('active_true');
             } else {
                 $col = 'red-gradient';
-                $status = 'Inativo';
+                $status = constLang('active_false');
             }
 
             if ($data->cover == 1) {
@@ -671,11 +669,9 @@ class ImageColorRepository implements ImageColorInterface
             }
 
 
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                " Alterou o status da cor do Produto:".
+            generateAccessesTxt(date('H:i:s'). " Alterou o status da cor do Produto:".
                 Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
-                ', para Status:'.$status)
+                ', para Status:'.$status
             );
 
             $click_status = "statusColor('{$data->id}', '".route('status-color', ['idpro' => $data->product_id,'id' => $data->id])."', '{$data->active}','{$data->cover}','".csrf_token()."')";
@@ -716,22 +712,21 @@ class ImageColorRepository implements ImageColorInterface
         $update = $data->update($input);
         if ($update) {
 
-            if ($data->active == 1) {
+            if ($data->active == constLang('active_true')) {
                 $alert        = null;
-                $status       = 'Ativo';
-                $color_status = 'icon-tick green-gradient">Ativo';
+                $status       = constLang('active_true');
+                $color_status = 'icon-tick green-gradient">'.constLang('active_true');
 
             } else {
-                $status       = 'Inativo';
-                $color_status = 'grey-gradient">Inativo';
+                $status       = constLang('active_false');
+                $color_status = 'grey-gradient">'.constLang('active_false');
                 ($data->cover == 1 ? $alert = 'Esta imagem era capa!<br>Coloque outra imagem como capa com o status: Ativo.' : $alert = null);
             }
 
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
+            generateAccessesTxt(date('H:i:s').
                 " Alterou o status da cor do Produto:".
                 Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
-                ', para Status:'.$status)
+                ', para Status:'.$status
             );
 
             $clickStatus = "statusColors('{$data->id}','".route('colors-status', ['idpro' => $data->product_id,'id' => $data->id])."','{$data->active}','{$data->cover}','".csrf_token()."')";

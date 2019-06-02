@@ -580,9 +580,11 @@ class ProductRepository implements ProductInterface
 
             foreach ($colors as $color) {
                 if ($value->type == 'C') {
-                    $image = $this->disk.$value->path.$color->image;
-                    if (file_exists($image)) {
-                        $remove = unlink($image);
+                    if ($value->default != 'T') {
+                        $image = $this->disk . $value->path . $color->image;
+                        if (file_exists($image)) {
+                            $remove = unlink($image);
+                        }
                     }
                 }
                 if ($value->type == 'P') {

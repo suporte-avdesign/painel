@@ -50,6 +50,10 @@ return [
     'order_true' => 'A ordem foi alterada',
     'payment_card' => 'Cartão de Crédito',
     'payment_cash' => 'Pagamento à Vista',
+    'profile_name' => [
+        'admin' => 'Admin',
+        'user' => 'Cliente'
+    ],
     'reminder' => 'Lebre-me',
     'status_true' => 'O status foi alterado',
     'status_false' => 'Não foi possível alterar o status',

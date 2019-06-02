@@ -68,6 +68,7 @@ class AppServiceProvider extends ServiceProvider
             'ImagePosition',
             'ImageSection',
             'ImageSlider',
+            'Inventary',
             'Order',
             'OrderItem',
             'OrderNote',

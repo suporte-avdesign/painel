@@ -1,5 +1,6 @@
 <form id="form-colors" method="post" action="{{route('colors-product.update', ['idpro' => $data->product_id, 'id' => $data->id])}}" enctype="multipart/form-data">
     <input type="hidden" name="img[kit]" value="{{$kit}}" checked>
+    <input type="hidden" name="img[product_id]" value="{{$data->product_id}}">
     @method("PUT")
     @csrf
     <!-- Modules: hexa -->

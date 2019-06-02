@@ -7,17 +7,36 @@ use Illuminate\Database\Eloquent\Model;
 class Inventary extends Model
 {
     protected $fillable = [
-        'grid_product_id',
-        'brand_id',
-        'section_id',
-        'category_id',
-        'product_id',
+        'admin_id',
+        'user_id',
+        'profile_name',
         'type_movement',
+        'note',
+        'brand',
+        'section',
+        'category',
+        'product',
+        'image',
+        'code',
+        'color',
+        'grid',
         'amount',
         'kit',
+        'kit_name',
+        'units',
+        'offer',
         'cost_unit',
         'cost_total',
-        'stok'
+        'price_profile',
+        'price_unit',
+        'price_total',
+        'form_payment',
+        'stock'
     ];
+
+
+
+
+
 
 }

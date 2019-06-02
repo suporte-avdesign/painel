@@ -42,7 +42,7 @@
 
 		</div>
 		<div class="seven-columns twelve-columns-tablet">
-			<h4 class="green underline">Upload da imagem:</h4>
+			<h4 class="green underline">Tamanho {{$pixel->width}}x{{$pixel->height}} pixels</h4>
 			<fieldset class="fieldset">
 				<p class="button-height  block-label">
 					<input type="file" name="file" id="upload_position" value="" class="file" onchange="preview_image('upload_position', 'preview_position', 200);"/>

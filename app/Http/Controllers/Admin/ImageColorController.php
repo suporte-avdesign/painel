@@ -9,6 +9,7 @@ use AVDPainel\Interfaces\Admin\ProductInterface as InterProduct;
 use AVDPainel\Interfaces\Admin\GridProductInterface as InterGrid;
 use AVDPainel\Interfaces\Admin\GroupColorInterface as InterGroup;
 use AVDPainel\Interfaces\Admin\ImageColorInterface as InterModel;
+use AVDPainel\Interfaces\Admin\InventaryInterface as InterInventary;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
 use AVDPainel\Interfaces\Admin\ConfigColorGroupInterface as InterHexa;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
@@ -31,22 +32,24 @@ class ImageColorController extends Controller
         InterHexa $interHexa,
         ConfigSystem $confUser,
         InterGroup $interGroup,
-        InterModel $interModel,        
+        InterModel $interModel,
         ConfigImage $configImage,
         InterProduct $interProduct,
-        ConfigProduct $configProduct)
+        ConfigProduct $configProduct,
+        InterInventary $interInventary)
     {
         $this->middleware('auth:admin');
 
-        $this->confUser      = $confUser;
-        $this->configKit     = $configKit;
-        $this->interHexa     = $interHexa;
-        $this->interGrid     = $interGrid;
-        $this->interGroup    = $interGroup;
-        $this->interModel    = $interModel;
-        $this->configImage   = $configImage;
-        $this->interProduct  = $interProduct;
-        $this->configProduct = $configProduct;
+        $this->confUser       = $confUser;
+        $this->configKit      = $configKit;
+        $this->interHexa      = $interHexa;
+        $this->interGrid      = $interGrid;
+        $this->interGroup     = $interGroup;
+        $this->interModel     = $interModel;
+        $this->configImage    = $configImage;
+        $this->interProduct   = $interProduct;
+        $this->configProduct  = $configProduct;
+        $this->interInventary = $interInventary;
     }
 
 
@@ -139,6 +142,7 @@ class ImageColorController extends Controller
 
                 if ($configProduct->grids == 1) {
                     $grids = $this->interGrid->create($request['grids'], $image, $product, $stock, $kit);
+                    $inventary = $this->interInventary->create($grids, $image, $product, $kit);
                 }
 
                 if ($configProduct->group_colors == 1) {
@@ -212,6 +216,7 @@ class ImageColorController extends Controller
         }
 
         $data           = $this->interModel->setId($id);
+        $idpro          = $data->product_id;
         $product        = $data->product;
         $grids          = $data->grids;
         $stock          = $product->stock;
@@ -221,7 +226,6 @@ class ImageColorController extends Controller
         $conf           = $this->configImage->setName('default','N');
         $path           = 'storage/'.$conf->path;
 
-
         if ($configProduct->mini_colors == 'hexa') {
             $groupColors = $this->interHexa->getAll();
 
@@ -229,6 +233,7 @@ class ImageColorController extends Controller
                 'configProduct',
                 'groupColors',
                 'pixel',
+                'product',
                 'idpro',
                 'grids',
                 'stock',
@@ -257,31 +262,28 @@ class ImageColorController extends Controller
         try{
             DB::beginTransaction();
 
-            $file                     = $request->file('file');
-            $config                   = $this->configImage->get();
-            $product                  = $this->interProduct->setId($idpro);
-            $dataForm                 = $request['img'];
-            $dataForm['brand']        = $product->brand;
-            $dataForm['section']      = $product->section;
-            $dataForm['category']     = $product->category;
-            $dataForm['product_id']   = $product->id;
-            $dataForm['product_name'] = $product->name;
-
-
-
-
-            $data = $this->interModel->update($dataForm, $id, $config, $file);
-           
-            if ($data) {
+            $file     = $request->file('file');
+            $config   = $this->configImage->get();
+            $data     = $this->interModel->setId($id);
+            $product  = $data->product;
+            $dataForm = $request['img'];
+            $update = $this->interModel->update($dataForm, $id, $config, $file);
+            if ($update) {
                 $configProduct = $this->configProduct->setId(1);
                 if ($configProduct->grids == 1) {
-                    $dataGrids = $request['grids'];                
-                    $grids = $this->interGrid->update(
-                        $dataGrids,
-                        $data->id,
-                        $data->product_id,
-                        $product->stock,
-                        $product->kit);
+
+                    $dataGrids = $request['grids'];
+                    /** Grids type kit */
+                    if ($product->kit == 1) {
+                        $qty = $request['qty'];
+                        $des = $request['des'];
+                        $updGrids = $this->interGrid->updateKit($dataGrids, $data, $product, $qty, $des);
+                        if($updGrids){
+                            $inventary = $this->interInventary->create($updGrids, $data, $product, $product->kit);
+                        }
+                    } else {
+                        $updGrids = $this->interGrid->updateUnit($dataGrids, $data, $product);
+                    }
                 }
 
                 if ($configProduct->group_colors == 1) {
@@ -291,12 +293,12 @@ class ImageColorController extends Controller
 
                 $success = true;
                 $message = 'O produto foi alterado';
-                $id      =  $data->id;
-                $name    =  $data->slug;
-                $color   =  $data->color;
-                $code    =  $data->code;
-                $image   =  $data->image;
-                $html    =  $data->html;
+                $id      =  $update->id;
+                $name    =  $update->slug;
+                $color   =  $update->color;
+                $code    =  $update->code;
+                $image   =  $update->image;
+                $html    =  $update->html;
 
                  DB::commit();
 

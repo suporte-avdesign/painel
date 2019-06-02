@@ -80,6 +80,7 @@ class GridProductRepository implements GridProductInterface
                         '- Grade:'.str_replace('_', '/', $input['grid']).
                         '- Entrada:'.$input['input'])
                     );
+                    return $grid;
                 }
 
             } else {
@@ -101,6 +102,7 @@ class GridProductRepository implements GridProductInterface
                         '- Grade:'.str_replace('_', '/', $input['grid']))
                     );
                 }
+                return $grid;
             }
 
         } else {
@@ -126,6 +128,8 @@ class GridProductRepository implements GridProductInterface
                             '- Grade:'.str_replace('_', '/', $key).
                             '- Entrada:'.$value)
                         );
+
+                        return $grid;
                     }
                 } else {
                     $grid = [
@@ -145,6 +149,7 @@ class GridProductRepository implements GridProductInterface
                         generateAccessesTxt(utf8_decode(
                             '- Grade:'.str_replace('_', '/', $key))
                         );
+                        return $grid;
                     }
                 }
 
@@ -155,144 +160,75 @@ class GridProductRepository implements GridProductInterface
     }
 
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  array $input
-     * @param  int $id
-     * @param  int $idpro
-     * @param  int $stock
-     * @param  int $kit
-     * @return array
-     */
-    public function update($input, $image, $product, $stock, $kit)
+    public function updateUnit($input, $image, $product, $qty, $des)
     {
-        
 
-        ($kit == 1 ? $kname = 'kit' : $kname = 'Und');
-        if ($kit == 1) {
-            if ($stock == 1) {
-                $output   = $input['output'];
-                $input = $input['input'];
-                unset($input['output']);
-                unset($input['input']);
-            }
+    }
 
-            foreach ($input as $value) {
-                foreach ($value as $val) {
-                    $grids[] = $val;
+    /**
+     * Uplodes product kit
+     *
+     * @param $input
+     * @param $image
+     * @param $product
+     * @param $qty
+     * @param $des
+     */
+    public function updateKit($input, $image, $product, $qty, $des)
+    {
+        $data   = $this->setId($input['id']);
+        $change = '';
+        if ($product->stock == 1) {
+            $entry = $input['input'];
+            if (!empty($entry)) {
+                if ($data->input != $entry) {
+                    $previousInput = $data->input;
+                    $currentInput = $previousInput + $entry;
+                    $previousStock = $data->stock;
+                    $currentStock = ($previousStock + $entry) - $data->output;
+                    $dataForm['input'] = $currentInput;
+                    $dataForm['stock'] = $currentStock;
+                    $change .= ' Entrada:'.$currentInput.' Estoque:'.$currentStock;
                 }
             }
-
-            $grid = implode(",", $grids);
-
-
-            if ($stock == 1) {
-
-                ($input == '' ? $input = 0 : $input = $input);
-                ($output   == '' ? $output   = 0 : $output   = $output);
-                $total = $input - $output;
-                $update = [
-                    'product_id' => $product->id,
-                    'image_color_id' => $image->id,
-                    'kit' => $kit,
-                    'grid' => $grid,
-                    'input' =>  $input,
-                    'output' => $output,
-                    'stock' => $total
-                ];
-
-            } else {
-                $update = [
-                    'product_id' => $product->id,
-                    'image_color_id' => $image->id,
-                    'kit' => $kit,
-                    'grid' => $grid
-                ];
+            if ($data->qty_min != $input['qty_min']) {
+                $dataForm['qty_min'] = $input['qty_min'];
+                $change = ' Qtd Min:'.$input['qty_min'];
             }
-
-            $delete = $this->model->where('image_color_id', $image->id)->delete();
-            $data   = $this->model->create($update);
-
-            if ($data) {
-                if ($stock == 1) {
-                    generateAccessesTxt(utf8_decode(
-                        '- Grade:'.$data->grid.
-                        ' - Entrada:'.$data->input.
-                        ' - Saida:'.$data->output.
-                        ' - Estoque:'.$data->stock.
-                        ' - Kit:'.$kname)
-                    );
-                } else {
-                    generateAccessesTxt(utf8_decode(
-                        '- Grade:'.$data->grid.
-                        ' - Kit:'.$kname)
-                    );
-                }
-
-                return true;                         
+            if ($data->qty_max != $input['qty_max']) {
+                $dataForm['qty_max'] = $input['qty_max'];
+                $change = ' Qtd Max:'.$input['qty_max'];
             }
-
-        } else {
-            $delete = $this->model->where('image_color_id', $image->id)->delete();
-            if ($delete) {
-                foreach ($input as $value) {
-                    if ($value['grid'] != '') {
-                        if ($stock == 1) {
-                            ($value['input'] == '' ? $input = 0 : $input = $value['input']);
-                            ($value['output']   == '' ? $output   = 0 : $output   = $value['output']);
-
-                            $total = $input - $output;
-
-                            $update = [
-                                'product_id' => $product->id,
-                                'image_color_id' => $image->id,
-                                'kit' => $kit,
-                                'grid' => str_replace('_', '/', $value['grid']),
-                                'input' =>  $input,
-                                'output' => $output,
-                                'stock' => $total
-                            ];
-
-                        } else {
-
-                            $update = [
-                                'product_id' => $product->id,
-                                'image_color_id' => $image->id,
-                                'kit' => $kit,
-                                'grid' => str_replace('_', '/', $value['grid'])
-                            ];
-                        }
-
-                        $data   = $this->model->create($update);
-
-                        if ($data) {
-                            if ($stock == 1) {
-                                generateAccessesTxt(utf8_decode(
-                                    '- Grade:'.$data->grid.
-                                    ' - Entrada:'.$data->input.
-                                    ' - Saida:'.$data->output.
-                                    ' - Estoque:'.$data->stock.
-                                    ' - Kit:'.$kname)
-                                );
-                            } else {
-                                generateAccessesTxt(utf8_decode(
-                                    '- Grade:'.$data->grid.
-                                    ' - Kit:'.$kname)
-                                );
-                            }
-
-                        }
-                        
-                    }
-                }
-            }
-
-
-
-            
         }
-               
+        $count_qty = count($qty);
+        for ($i = 0; $i < $count_qty; $i++) {
+            $array[] = array(
+                $qty[$i] => $des[$i]
+            );
+        }
+        $str = '';
+        foreach ($array as $keys => $values) {
+            foreach ($values as $key => $value) {
+                $str .= $key . '/' . $value . ',';
+            }
+        }
+        $grid = substr($str, 0, -1);
+
+        if ($data->grid != $grid) {
+            $dataForm['grid'] = $grid;
+            $change = ' Grid:'.$grid;
+        }
+        if ($data->color != $image->color) {
+            $dataForm['color'] = $input['color'];
+            $change .= ' Cor:'.$input['color'];
+        }
+        if ($change){
+            $update = $data->update($dataForm);
+            if ($update) {
+                generateAccessesTxt($change);
+                return $dataForm;
+            }
+        }
     }
 
     /**
@@ -384,5 +320,9 @@ class GridProductRepository implements GridProductInterface
 
         return $this->model->where('image_color_id', $id)->get();
     }
+
+
+
+
 
 }

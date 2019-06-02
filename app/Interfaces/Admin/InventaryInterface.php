@@ -11,9 +11,7 @@ interface InventaryInterface
      */
     public function getAll();
     public function setId($id);
-    public function create($input);
-    public function update($input, $id);
-    public function delete($id);
+    public function create($grids, $image, $product, $kit);
     public function rules($input, $messages, $id);
 
 }
