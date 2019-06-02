@@ -1,6 +1,6 @@
 <form id="form-colors" method="post" action="{{route('colors-product.store', $idpro)}}" enctype="multipart/form-data">
+    <input type="hidden" name="thumbnails" value="hexa">
     @csrf
-
     @if($configProduct->stock == 1)
         <!-- Altera o value ao clicar no btn stock -->
         @if(isset($product))

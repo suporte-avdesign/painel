@@ -60,40 +60,46 @@ class InventaryRepository implements InventaryInterface
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  array $input
-     * @return boolean true or false
+     * @param $grids
+     * @param $image
+     * @param $product
+     * @return mixed
      */
-    public function create($grids, $image, $product, $kit)
+    public function createKit($grids, $image, $product)
     {
-        if ($kit == 1) {
-            $input['admin_id'] = auth()->user()->id;
-            $input['profile_name'] = constLang('profile_name.admin');
-            $input['type_movement'] = constLang('type_movement.input');
-            $input['brand'] = $product->brand;
-            $input['section'] = $product->section;
-            $input['category'] = $product->category;
-            $input['product'] = $product->name;
-            $input['image'] = $image->image;
-            $input['code'] = $image->code;
-            $input['color'] = $image->color;
-            $input['grid'] = $grids['grid'];
-            $input['amount'] = $grids['input'];
-            $input['kit'] = $kit;
-            $input['kit_name'] = $product->kit_name;
-            $input['units'] = $product->unit;
-            $input['offer'] = $product->offer;
-            $input['cost_unit'] = $product->cost->value;
-            $input['cost_total'] = $grids['input'] * $product->cost->value;
-            $input['stock'] = $grids['input'];
+        $dataForm['admin_id'] = auth()->user()->id;
+        $dataForm['profile_name'] = constLang('profile_name.admin');
+        $dataForm['type_movement'] = constLang('type_movement.input');
+        $dataForm['brand'] = $product->brand;
+        $dataForm['section'] = $product->section;
+        $dataForm['category'] = $product->category;
+        $dataForm['product'] = $product->name;
+        $dataForm['image'] = $image->image;
+        $dataForm['code'] = $image->code;
+        $dataForm['color'] = $image->color;
+        $dataForm['grid'] = $grids->grid;
+        $dataForm['amount'] = $grids->input;
+        $dataForm['kit'] = $product->kit;
+        $dataForm['kit_name'] = $product->kit_name;
+        $dataForm['units'] = $product->unit;
+        $dataForm['offer'] = $product->offer;
+        $dataForm['cost_unit'] = $product->cost->value;
+        $dataForm['cost_total'] = $grids->input * $product->cost->value;
+        $dataForm['stock'] = $grids->input;
 
-            $data = $this->model->create($input);
-            if ($data) {
-                return $data;
-            }
+        $data = $this->model->create($dataForm);
+        //dd($data);
+        if ($data) {
+            return $data;
         }
     }
+
+    public function createUnit($grids, $image, $product)
+    {
+        dd("Vamos fazer ainda");
+
+    }
+
 
 
 

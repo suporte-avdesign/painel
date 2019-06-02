@@ -60,7 +60,7 @@ class PainelController extends Controller
 
     {
 
-        $this->last_url   = array("last_url" => "admin");
+        $this->last_url   = array("last_url" => "");
 
 
         $photos = auth()->user()->photo;

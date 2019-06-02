@@ -54,35 +54,70 @@ class GridProductRepository implements GridProductInterface
      * @param  int $kit
      * @return array
      */
-    public function create($input, $image, $product, $stock, $kit)
+    public function createKit($input, $image, $product)
     {
-        (isset($input['qty_min']) ? $qty_min = $input['qty_min'] : 0);
-        (isset($input['qty_max']) ? $qty_max = $input['qty_max'] : 0);
+        $dataForm['product_id'] = $product->id;
+        $dataForm['image_color_id'] = $image->id;
+        $dataForm['color'] = $image->color;
+        $dataForm['kit'] = $product->kit;
+        $dataForm['grid'] = $input['grid'];
+        $dataForm['stock'] = $input['input'];
 
-        if ($kit == 1) {
+        $access = '- '.$product->kit_name;
+        $access .= ', Grade:'.$input['grid'];
 
-            if ($stock == 1) {
+        if ($product->stock == 1) {
+
+            $dataForm['input'] = $input['qty_min'];
+            $access .= ', Entrada:'.$input['input'];
+            $access .= ', Estoque:'.$input['input'];
+
+            if ($product->qty_min == 1) {
+                $dataForm['qty_min'] = $input['qty_min'];
+                $access .= ', qtd-min:'.$input['qty_min'];
+            }
+
+            if ($product->qty_max == 1) {
+                $dataForm['qty_max'] = $input['qty_max'];
+                $access .= ', qtd-max:'.$input['qty_max'];
+            }
+        }
+
+        $data = $this->model->create($dataForm);
+        if ($data) {
+            generateAccessesTxt($access);
+        }
+        return $data;
+    }
+
+
+    public function createUnit($input, $image, $product)
+    {
+
+        foreach ($input as $key => $value) {
+            if ($product->stock == 1) {
                 $grid = [
                     'product_id' => $product->id,
                     'image_color_id' => $image->id,
-                    'kit' => $kit,
+                    'kit' => $product->kit,
                     'color' => $image->color,
                     'qty_min' => $qty_min,
                     'qty_max' => $qty_max,
-                    'grid' => str_replace('_', '/', $input['grid']),
-                    'input' => $input['input'],
+                    'grid' => str_replace('_', '/', $key),
+                    'input' => $value,
                     'output' => 0,
-                    'stock' => $input['input']
+                    'stock' => $value
                 ];
+
                 $data = $this->model->create($grid);
                 if ($data) {
                     generateAccessesTxt(utf8_decode(
-                        '- Grade:'.str_replace('_', '/', $input['grid']).
-                        '- Entrada:'.$input['input'])
+                            '- Grade:'.str_replace('_', '/', $key).
+                            '- Entrada:'.$value)
                     );
+
                     return $grid;
                 }
-
             } else {
                 $grid = [
                     'product_id' => $product->id,
@@ -91,7 +126,7 @@ class GridProductRepository implements GridProductInterface
                     'color' => $image->color,
                     'qty_min' => $qty_min,
                     'qty_max' => $qty_max,
-                    'grid' => str_replace('_', '/', $input['grid']),
+                    'grid' => str_replace('_', '/', $key),
                     'input' => 0,
                     'output' => 0,
                     'stock' => 0
@@ -99,74 +134,18 @@ class GridProductRepository implements GridProductInterface
                 $data = $this->model->create($grid);
                 if ($data) {
                     generateAccessesTxt(utf8_decode(
-                        '- Grade:'.str_replace('_', '/', $input['grid']))
-                    );
-                }
-                return $grid;
-            }
-
-        } else {
-
-            foreach ($input as $key => $value) { 
-                if ($stock == 1) {
-                    $grid = [
-                        'product_id' => $product->id,
-                        'image_color_id' => $image->id,
-                        'kit' => $kit,
-                        'color' => $image->color,
-                        'qty_min' => $qty_min,
-                        'qty_max' => $qty_max,
-                        'grid' => str_replace('_', '/', $key),
-                        'input' => $value,
-                        'output' => 0,
-                        'stock' => $value
-                    ];
-
-                    $data = $this->model->create($grid);
-                    if ($data) {
-                        generateAccessesTxt(utf8_decode(
-                            '- Grade:'.str_replace('_', '/', $key).
-                            '- Entrada:'.$value)
-                        );
-
-                        return $grid;
-                    }
-                } else {
-                    $grid = [
-                        'product_id' => $product->id,
-                        'image_color_id' => $image->id,
-                        'kit' => $kit,
-                        'color' => $image->color,
-                        'qty_min' => $qty_min,
-                        'qty_max' => $qty_max,
-                        'grid' => str_replace('_', '/', $key),
-                        'input' => 0,
-                        'output' => 0,
-                        'stock' => 0
-                    ];
-                    $data = $this->model->create($grid);
-                    if ($data) {
-                        generateAccessesTxt(utf8_decode(
                             '- Grade:'.str_replace('_', '/', $key))
-                        );
-                        return $grid;
-                    }
+                    );
+                    return $grid;
                 }
-
             }
 
         }
 
     }
 
-
-    public function updateUnit($input, $image, $product, $qty, $des)
-    {
-
-    }
-
     /**
-     * Uplodes product kit
+     * upload kit
      *
      * @param $input
      * @param $image
@@ -230,6 +209,20 @@ class GridProductRepository implements GridProductInterface
             }
         }
     }
+
+
+    /**
+     * @param $input
+     * @param $image
+     * @param $product
+     * @param $qty
+     * @param $des
+     */
+    public function updateUnit($input, $image, $product, $qty, $des)
+    {
+
+    }
+
 
     /**
      * Remove

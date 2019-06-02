@@ -16,7 +16,7 @@ class ImageColorRepository implements ImageColorInterface
 
     public $model;
     public $keywords;
-    private $photoUrl;
+    private $j;
     private $disk;
 
     /**
@@ -32,7 +32,7 @@ class ImageColorRepository implements ImageColorInterface
         $this->model         = $model;
         $this->keywords      = $keywords;
         $this->configImage   = $configImage;
-        $this->photoUrl      = 'storage/';
+        $this->j      = 'storage/';
         $this->disk          = storage_path('app/public/');
     }
 
@@ -98,7 +98,7 @@ class ImageColorRepository implements ImageColorInterface
             foreach ($query as $val){
 
                 if ($val->image != '') {
-                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->photoUrl.$path.$val->image).'" width="80" /></a>';
+                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->j.$path.$val->image).'" width="80" /></a>';
                 } else {
                     $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'"  src="'.url('assets/imagens/padrao/product-no-image.png').'" /></a>'; 
                 }
@@ -232,7 +232,7 @@ class ImageColorRepository implements ImageColorInterface
                 }
 
                 if ($val->image != '') {
-                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->photoUrl.$path.$val->image).'" width="80" /></a>';
+                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->j.$path.$val->image).'" width="80" /></a>';
                 } else {
                     $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'"  src="'.url('assets/imagens/padrao/product-no-image.png').'" /></a>';
                 }
@@ -337,121 +337,46 @@ class ImageColorRepository implements ImageColorInterface
     }
 
     /**
-     * Create
+     * Date 06/02/2019
+     * Falta definir $input['html'] hexa,crop,thumb
      *
-     * @param  array $input
-     * @param  array $config
-     * @param  file $file
-     * @return array
+     * @param $input
+     * @param $config
+     * @return mixed
      */
-    public function create($input, $config, $file)
+    public function create($input, $config)
     {
-        // if < 10 add 0 in front
         $count = strlen($input['order']);
         if ($count == 1) {
-            $input['order'] = '0'.$input['order'];
+            $dataForm['order'] = '0'.$input['order'];
         }
-
         if ($input['cover'] == 1) {
             $change = $this->changeCover($input['product_id']);
         }
 
-        $words    = $this->keywords->rand();
-        $code     = $input['code'];
-        $color    = $input['color'];
-        $brand    = $input['brand'];
-        $section  = $input['section'];
-        $product  = $input['product_name'];
-        $category = $input['category'];
+        $dataForm['html']  = $input['html'];
+        $dataForm['code']        = $input['code'];
+        $dataForm['color']       = $input['color'];
+        $dataForm['active']      = $input['active'];
+        $dataForm['cover']       = $input['cover'];
+        $dataForm['product_id']  = $input['product_id'];
+        $dataForm['description'] = $input['description'];
 
+         /* facknews*/
+        $dataForm['slug']        = numLetter(time());
+        $dataForm['image']       = url('backend/img/default/no_image.png');
 
-
-        $ext  = $file->getClientOriginalExtension();
-        $name = Str::slug($words['description'].
-            '-'.$product.
-            '-'.$category.
-            '-'.$section.
-            '-'.str_replace("/", "-", $color).
-            '-'.$brand.
-            '-'.config('app.name').
-            '-'.numLetter(date('Ymdhs'),'letter')).'.'.$ext;        
-
-        foreach ($config as $value) {
-
-            if ($value->type == 'C') {
-                $width    = $value->width;
-                $height   = $value->height;
-                $path     = $this->disk . $value->path;
-                $upload = Image::make($file)->resize($width, $height)->save($path.$name);
-            }
+        $data = $this->model->create($dataForm);
+        //dd($data);
+        if ($data) {
+            generateAccessesTxt(date('H:i:s').
+                ' '.constLang('code').':'.$dataForm['code'].
+                ' '.constLang('color').':'.$dataForm['color'].
+                ' '.constLang('status').':'.$dataForm['active'].
+                ' '.constLang('cover').':'.$dataForm['cover']
+            );
+            return $data;
         }
-
-        if ($upload) {
-            $input['image'] = $name;
-            $input['slug']  = date('Ymdhs');
-            $data = $this->model->create($input);
-            if ($data) {
-                $slug = [
-                    'slug' => Str::slug($product.
-                        '-'.$category.
-                        '-'.$section.
-                        '-'.str_replace("/", "-", $data->color).
-                        '-'.$brand.                        
-                        '-'.numLetter($data->id, 'letter').
-                        '-'.$data->code)
-                ];
-                $update = $data->update($slug);
-
-                if ($update) {
-                    ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
-                    ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
-                    generateAccessesTxt(date('H:i:s').
-                        ' Adicionou a imagem do Produto:'.Str::slug($product.
-                        '-'.$category.
-                        '-'.$section.
-                        '-'.$brand).
-                        ', Código:'.$data->code.
-                        ', Cor:'.$data->color.
-                        ', Status:'.$status.
-                        ', Capa:'.$cover
-                    );
-
-                    foreach ($config as $value) {
-                        if ($value->default == 'N') {
-                            $src = $this->photoUrl . $value->path;
-                        }
-                    }
-
-                    ($data->active == 1 ? $col = 'green-gradient' : $col = 'red-gradient');
-                    ($data->cover == 1 ? $title = 'capa' : $title = '');
-                    ($data->cover == 1 ? $option = '{"classes":["red-gradient"],"position":"top"}' : $option = '');
-
-                    $click_status = "statusColor('{$data->id}', '".route('status-color', ['idpro' => $data->product_id,'id' => $data->id])."', '{$data->active}','{$data->cover}','".csrf_token()."')";
-                    $click_edit   = "abreModal('Editar: Cor {$data->color}', '".route('colors-product.edit', ['idpro' => $data->product_id,'id' => $data->id])."', 'form-colors', 2, 'true',800,780)";
-                    $click_delete = "deleteColor('$data->id', '".route('colors-product.destroy', ['idpro' => $data->product_id, 'id' =>$data->id])."')";
-                    
-                    $html = '<li id="img-colors-'.$data->id.'">';
-                        $html .= '<img src="'.url($src.$data->image).'" class="framed">';
-                        $html .= '<div class="controls">';
-                            $html .= '<span id="btns-'.$data->id.'" class="button-group compact children-tooltip" data-tooltip-options='.$option.'>';
-                                $html .= '<button onclick="'.$click_status.'" class="button icon-tick '.$col.'" title="Alterar status "'.$title.'"></button>';
-                                $html .= '<button onclick="'.$click_edit.'" class="button" title="Editar imagem '.$title.'">Editar</button>';
-                                $html .= '<button onclick="'.$click_delete.'" class="button icon-trash red-gradient" title="Excluir imagem '.$title.'"></button>';
-                            $html .= '</span>';
-                        $html .= '</div>';
-                    $html .= '</li>';
-
-                    $data['html'] = $html;
-
-                    return $data;
-
-                } else {
-                    return  false;
-                }
-            }
-        }
-
-        return false;
     }
 
 
@@ -484,47 +409,6 @@ class ImageColorRepository implements ImageColorInterface
         $data    = $this->model->find($id);
         $product = $data->product;
 
-        if (!empty($file)) {
-
-            foreach ($config as $value) {
-                $image = $this->disk.$value->path.$data->image;
-                if (file_exists($image)) {
-                    $delete = unlink($image);
-                }
-            }
-
-            $words = $this->keywords->rand();
-            $ext  = $file->getClientOriginalExtension();
-            $name = Str::slug($words['description'].
-                '-'.$product->name.
-                '-'.$product->category.
-                '-'.$product->section.
-                '-'.str_replace("/", "-", $input['color']).
-                '-'.$product->brand.
-                '-'.config('app.name').
-                '-'.numLetter(date('Ymdhs'),'letter')).'.'.$ext;        
-
-            foreach ($config as $value) {
-                if ($value->type == 'C') {
-                    $width    = $value->width;
-                    $height   = $value->height;
-                    $path     = $this->disk . $value->path;
-                    $upload = Image::make($file)->resize($width, $height)->save($path.$name);
-                }
-            }
-
-            if ($upload) {
-                $input['image'] = $name;
-                $input['slug'] = Str::slug($product.
-                    '-'.$product->category.
-                    '-'.$product->section.
-                    '-'.str_replace("/", "-", $input['color']).
-                    '-'.$product->brand.
-                    '-'.numLetter($data->id, 'letter').
-                    '-'.$input['code']);
-            }
-
-        }
 
         $update = $data->update($input);
 
@@ -746,5 +630,113 @@ class ImageColorRepository implements ImageColorInterface
             'success' => false,
             'message' => "Não foi possível alterar o status.");
     }
+
+
+    /**
+     * Date: 02/06/2019
+     *
+     * @param $input
+     * @param $id
+     * @param $config
+     * @param $file
+     */
+    public function uploadImages($input, $image, $config, $file)
+    {
+        if ($input['ac'] == 'ceate') {
+
+            $cover = $input['cover'];
+
+            if (count($image) == 1) {
+                $dataForm['cover'] = 1;
+            } else {
+                if ($cover == 0) {
+                    $this->changeCover($image->product_id, true);
+                }
+            }
+
+        }
+
+        if ($input['ac'] == 'update') {
+
+            foreach ($config as $value) {
+                $image = $this->disk . $value->path . $image->image;
+                if (file_exists($image)) {
+                    $delete = unlink($image);
+                }
+            }
+        }
+
+        $words = $this->keywords->rand();
+        $ext  = $file->getClientOriginalExtension();
+        $color = preg_replace("/[^A-Za-z]/", "-", $image->color);
+        $name = Str::slug($words['description'].
+                '-'.$image->product->name.
+                '-'.$image->product->category.
+                '-'.$image->product->section.
+                '-'.$color.
+                '-'.$image->product->brand.
+                '-'.config('app.name').
+                '-'.numLetter(date('Ymdhs'),'letter')).'.'.$ext;
+
+        foreach ($config as $value) {
+            if ($value->type == 'C') {
+                $width    = $value->width;
+                $height   = $value->height;
+                $path     = $this->disk . $value->path;
+                $upload = Image::make($file)->resize($width, $height)->save($path.$name);
+            }
+        }
+
+
+        if ($upload) {
+            $dataForm['image'] = $name;
+            $dataForm['slug'] = Str::slug($image->product->name.
+                '-'.$image->product->category.
+                '-'.$image->product->section.
+                '-'.$color.
+                '-'.$image->product->brand.
+                '-'.numLetter($image->id, 'letter').
+                '-'.$image->code);
+        }
+
+
+
+        $update = $image->update($dataForm);
+
+
+        if ($input['ac'] == 'create'){
+
+            ($image->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
+            foreach ($config as $value) {
+                if ($value->default == 'N') {
+                    $src = $this->j . $value->path;
+                }
+            }
+            ($image->active == constLang('active_true') ? $col = 'green-gradient' : $col = 'red-gradient');
+            ($image->cover == 1 ? $title = constLang('cover') : $title = '');
+            ($image->cover == 1 ? $option = '{"classes":["red-gradient"],"position":"top"}' : $option = '');
+            $click_status = "statusColor('{$image->id}', '".route('status-color', ['idpro' => $image->product_id,'id' => $image->id])."', '{$image->active}','{$image->cover}','".csrf_token()."')";
+            $click_edit   = "abreModal('Editar: Cor {$image->color}', '".route('colors-product.edit', ['idpro' => $image->product_id,'id' => $image->id])."', 'form-colors', 2, 'true',800,780)";
+            $click_delete = "deleteColor('$image->id', '".route('colors-product.destroy', ['idpro' => $image->product_id, 'id' =>$image->id])."')";
+
+            $html = '<li id="img-colors-'.$image->id.'">';
+                $html .= '<img src="'.url($src.$image->image).'" class="framed">';
+                $html .= '<div class="controls">';
+                $html .= '<span id="btns-'.$image->id.'" class="button-group compact children-tooltip" data-tooltip-options='.$option.'>';
+                $html .= '<button onclick="'.$click_status.'" class="button icon-tick '.$col.'" title="Alterar status "'.$title.'"></button>';
+                $html .= '<button onclick="'.$click_edit.'" class="button" title="Editar imagem '.$title.'">Editar</button>';
+                $html .= '<button onclick="'.$click_delete.'" class="button icon-trash red-gradient" title="Excluir imagem '.$title.'"></button>';
+                $html .= '</span>';
+                $html .= '</div>';
+            $html .= '</li>';
+            $data['html'] = $html;
+            return $data;
+
+
+        }
+
+    }
+
+
 
 }

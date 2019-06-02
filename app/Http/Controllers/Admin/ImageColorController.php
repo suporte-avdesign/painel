@@ -127,28 +127,35 @@ class ImageColorController extends Controller
 
             $dataForm = $request['img'];
             $action   = $dataForm['ac'];
-            $kit      = intval($request['kit']); //onclick()
-            $stock    = $request['stock']; //onclick()
             $file     = $request->file('file');
             $config   = $this->configImage->get();
             $product  = $this->interProduct->setId($dataForm['product_id']);
 
-            //dd($request['grids']);
-            $image = $this->interModel->create($dataForm, $config, $file);
+            $image    = $this->interModel->create($dataForm, $config);
 
             if ($image) {
 
                 $configProduct = $this->configProduct->setId(1);
 
                 if ($configProduct->grids == 1) {
-                    $grids = $this->interGrid->create($request['grids'], $image, $product, $stock, $kit);
-                    $inventary = $this->interInventary->create($grids, $image, $product, $kit);
+                    if ($product->kit == 1) {
+                        $grids = $this->interGrid->createKit($request['grids'], $image, $product);
+                        $inventary = $this->interInventary->createKit($grids, $image, $product);
+                    } else {
+                        $grids = $this->interGrid->createUnit($request['grids'], $image, $product);
+                        $inventary = $this->interInventary->createUnit($grids, $image, $product);
+                    }
                 }
 
                 if ($configProduct->group_colors == 1) {
                     $dataGroups = $request['groups'];
                     $groups = $this->interGroup->create($dataGroups, $image->product_id, $image->id);
                 }
+
+                if (!empty($file)) {
+                    $upload = $this->interModel->uploadImages($dataForm, $image, $config, $file);
+                }
+
 
                 $product_id = $image->product_id;
                 $success    = true;
@@ -158,7 +165,7 @@ class ImageColorController extends Controller
                 $code       =  $image->code;
                 $html       =  $image->html;
                 $id         =  $image->id;
-                
+
                 DB::commit();
 
             } else {
@@ -184,7 +191,6 @@ class ImageColorController extends Controller
                 'ac'         => $action,
                 'id'         => $id
             );
-
             return response()->json($out);
 
         } catch(\Exception $e){
@@ -277,9 +283,9 @@ class ImageColorController extends Controller
                     if ($product->kit == 1) {
                         $qty = $request['qty'];
                         $des = $request['des'];
-                        $updGrids = $this->interGrid->updateKit($dataGrids, $data, $product, $qty, $des);
-                        if($updGrids){
-                            $inventary = $this->interInventary->create($updGrids, $data, $product, $product->kit);
+                        $grids = $this->interGrid->updateKit($dataGrids, $data, $product, $qty, $des);
+                        if($grids){
+                           $inventary = $this->interInventary->updateKit($grids, $data, $product, $product->kit);
                         }
                     } else {
                         $updGrids = $this->interGrid->updateUnit($dataGrids, $data, $product);
@@ -539,6 +545,8 @@ class ImageColorController extends Controller
 
         return response()->json($status);
     }
+
+
 
 
 

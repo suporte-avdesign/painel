@@ -2,23 +2,23 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/resources/assets/img/padrao/default.png" afterPath="$PROJECT_DIR$/resources/assets/img/default/no_image.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/PainelController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/PainelController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/Inventary.php" afterPath="$PROJECT_DIR$/app/Models/Admin/Inventary.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Providers/Admin/AppServiceProvider.php" afterPath="$PROJECT_DIR$/app/Providers/Admin/AppServiceProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/GridProduct.php" afterPath="$PROJECT_DIR$/app/Models/Admin/GridProduct.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ProductCostRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ProductCostRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ProductPriceRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ProductPriceRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/lang_pt-BR.php" afterPath="$PROJECT_DIR$/config/lang_pt-BR.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_05_31_111154_create_inventaries_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_05_31_111154_create_inventaries_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/positions/form-create.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/positions/form-create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -30,39 +30,87 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GridProduct.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Models/Admin/GridProduct.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="ImageColorController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1878">
-              <caret line="279" column="33" lean-forward="false" selection-start-line="279" selection-start-column="24" selection-end-line="279" selection-end-column="33" />
+            <state relative-caret-position="293">
+              <caret line="156" column="17" lean-forward="false" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
               <folding>
                 <element signature="e#52#118#0#PHP" expanded="true" />
                 <element signature="e#2062#2664#0#PHP" expanded="false" />
-                <element signature="e#6743#8094#0#PHP" expanded="false" />
-                <element signature="e#11297#12560#0#PHP" expanded="false" />
-                <element signature="e#12751#13360#0#PHP" expanded="false" />
+                <element signature="e#2775#3770#0#PHP" expanded="false" />
+                <element signature="e#7013#8364#0#PHP" expanded="false" />
+                <element signature="e#8589#11452#0#PHP" expanded="false" />
+                <element signature="e#11560#12823#0#PHP" expanded="false" />
+                <element signature="e#13014#13623#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="GridProductRepository.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php">
+      <file leaf-file-name="ImageColorRepository.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1801">
-              <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+            <state relative-caret-position="-754">
+              <caret line="654" column="13" lean-forward="false" selection-start-line="654" selection-start-column="13" selection-end-line="654" selection-end-column="13" />
               <folding>
-                <element signature="e#7344#9737#0#PHP" expanded="false" />
+                <element signature="e#10586#11010#0#PHP" expanded="false" />
+                <element signature="e#17729#20169#0#PHP" expanded="false" />
+                <element signature="e#20285#21998#0#PHP" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="2019_05_21_111441_create_grid_products_table.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="54">
+              <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="02-06-2019.txt" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/storage/app/Accesses/94332301/02-06-2019.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1386">
+              <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ImageColorInterface.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="144">
+              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="lang_pt-BR.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="9" />
+              <folding>
+                <element signature="e#6#268#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="InventaryRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="280">
+              <caret line="90" column="10" lean-forward="false" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+              <folding>
+                <element signature="e#49#95#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,8 +120,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>clientes</find>
-      <find>create</find>
       <find>deleteGrid</find>
       <find>applySetup</find>
       <find>open-</find>
@@ -102,6 +148,8 @@
       <find>generateAccessesTxt</find>
       <find>kn</find>
       <find>qty</find>
+      <find>uploadImages</find>
+      <find>create</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,12 +158,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/teste_kits.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/teste_create_kits.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/create_teste_kit.blade.php" />
-        <option value="$PROJECT_DIR$/routes/admin/modules.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/assets/scripts/products/products.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/load-script.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
         <option value="$PROJECT_DIR$/app/Models/Admin/ImageColor.php" />
@@ -140,27 +182,33 @@
         <option value="$PROJECT_DIR$/resources/views/backend/settings/products/form.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/GridsControlle.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-kits.blade.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php" />
-        <option value="$PROJECT_DIR$/app/Models/Admin/GridProduct.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
-        <option value="$PROJECT_DIR$/config/lang_pt-BR.php" />
         <option value="$PROJECT_DIR$/app/Providers/Admin/AppServiceProvider.php" />
-        <option value="$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_31_111154_create_inventaries_table.php" />
         <option value="$PROJECT_DIR$/app/Models/Admin/Inventary.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/positions/form-create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" />
         <option value="$PROJECT_DIR$/storage/app/Accesses/43029545/31-05-2019.txt" />
         <option value="$PROJECT_DIR$/storage/app/Accesses/43029545/01-06-2019.txt" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
+        <option value="$PROJECT_DIR$/app/Models/Admin/GridProduct.php" />
         <option value="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" />
+        <option value="$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/PainelController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_05_21_111439_create_image_colors_table.php" />
+        <option value="$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php" />
+        <option value="$PROJECT_DIR$/config/lang_pt-BR.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductCostRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductPriceRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php" />
+        <option value="$PROJECT_DIR$/storage/app/Accesses/94332301/02-06-2019.txt" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
       </list>
     </option>
   </component>
@@ -263,6 +311,10 @@
               <option name="myItemId" value="Accesses" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="94332301" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -285,10 +337,6 @@
               <option name="myItemId" value="Accesses" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="43029545" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -352,59 +400,7 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="products" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="positions" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="backend" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="colors-grids" />
+              <option name="myItemId" value="colors" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -486,6 +482,24 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="database" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="migrations" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="painel" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="painel" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="config" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -501,90 +515,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Providers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="painel" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Http" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controllers" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -719,25 +649,25 @@
       <workItem from="1558738292131" duration="38258000" />
       <workItem from="1558810299912" duration="73981000" />
       <workItem from="1558953999958" duration="184127000" />
-      <workItem from="1559308038199" duration="104282000" />
+      <workItem from="1559308038199" duration="134666000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="657338000" />
+    <option name="totallyTimeSpent" value="687722000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15219124" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18486056" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
@@ -749,26 +679,6 @@
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32970452" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18486056" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -778,71 +688,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="27" />
+      <option name="time" value="28" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ConfigProductController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Admin/ConfigProduct.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="23" lean-forward="false" selection-start-line="19" selection-start-column="23" selection-end-line="19" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_034850_create_config_products_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="24" column="46" lean-forward="false" selection-start-line="24" selection-start-column="34" selection-end-line="24" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/settings/products/form.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="121" column="30" lean-forward="true" selection-start-line="121" selection-start-column="30" selection-end-line="121" selection-end-column="30" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#fieldset#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#span#0;n#p#0;n#div#0;n#fieldset#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#1;n#span#0;n#p#0;n#div#0;n#fieldset#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#div#1;n#fieldset#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#0;n#span#0;n#p#0;n#div#1;n#fieldset#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-            <element signature="n#style#0;n#input#1;n#span#0;n#p#0;n#div#1;n#fieldset#0;n#div#0;n#div#0;n#form#0;n#div#0;n#div#1;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/GridsControlle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="54">
-          <caret line="60" column="33" lean-forward="true" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
-          <folding>
-            <element signature="e#52#123#0#PHP" expanded="true" />
-            <marker date="1559349677529" expanded="true" signature="2131:2222" ph="..." />
-            <marker date="1559349677529" expanded="true" signature="2494:2581" ph="..." />
-            <marker date="1559349677529" expanded="true" signature="2849:2941" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/ProductRequest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="40" column="53" lean-forward="true" selection-start-line="40" selection-start-column="25" selection-end-line="40" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_114453_create_newsletters_table.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -909,57 +759,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="575" column="39" lean-forward="true" selection-start-line="575" selection-start-column="39" selection-end-line="575" selection-end-column="39" />
-          <folding>
-            <element signature="e#1161#14804#0#PHP" expanded="false" />
-            <element signature="e#15206#18300#0#PHP" expanded="false" />
-            <element signature="e#18433#24312#0#PHP" expanded="false" />
-            <marker date="1559396964470" expanded="true" signature="7144:7150" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7150:7156" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7221:7227" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7227:7233" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7236:7242" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7242:7248" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7591:7597" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7597:7603" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7672:7678" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7678:7684" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7687:7693" ph=" " />
-            <marker date="1559396964470" expanded="true" signature="7693:7699" ph=" " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/ProductInterface.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" column="48" lean-forward="false" selection-start-line="9" selection-start-column="48" selection-end-line="9" selection-end-column="48" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1440">
-          <caret line="10" column="37" lean-forward="false" selection-start-line="10" selection-start-column="37" selection-end-line="10" selection-end-column="37" />
-          <folding>
-            <element signature="e#6525#8118#0#PHP" expanded="false" />
-            <element signature="e#8297#9891#0#PHP" expanded="false" />
-            <element signature="e#10049#11992#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="52" column="17" lean-forward="false" selection-start-line="52" selection-start-column="5" selection-end-line="52" selection-end-column="17" />
-          <folding>
-            <element signature="e#6#268#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -971,36 +775,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/LoginController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="810">
-          <caret line="93" column="25" lean-forward="false" selection-start-line="93" selection-start-column="17" selection-end-line="93" selection-end-column="25" />
-          <folding>
-            <element signature="e#57#99#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/RegisterController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3402">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="487">
-          <caret line="92" column="29" lean-forward="false" selection-start-line="92" selection-start-column="29" selection-end-line="92" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1093,14 +871,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="54" lean-forward="true" selection-start-line="4" selection-start-column="54" selection-end-line="4" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="144">
@@ -1113,14 +883,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="93" column="18" lean-forward="true" selection-start-line="93" selection-start-column="18" selection-end-line="93" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="53" lean-forward="true" selection-start-line="9" selection-start-column="53" selection-end-line="9" selection-end-column="53" />
           <folding />
         </state>
       </provider>
@@ -1149,31 +911,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="21" column="56" lean-forward="true" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="471" column="26" lean-forward="true" selection-start-line="471" selection-start-column="26" selection-end-line="471" selection-end-column="26" />
-          <folding>
-            <element signature="e#1035#5500#0#PHP" expanded="false" />
-            <element signature="e#5588#9672#0#PHP" expanded="false" />
-            <element signature="e#9991#10496#0#PHP" expanded="false" />
-            <element signature="e#10614#11038#0#PHP" expanded="false" />
-            <element signature="e#11377#16194#0#PHP" expanded="false" />
-            <element signature="e#21219#22721#0#PHP" expanded="false" />
-            <element signature="e#22837#25277#0#PHP" expanded="false" />
-            <element signature="e#25393#27106#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridCategoryRepository.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="262">
@@ -1187,16 +924,8 @@
         <state relative-caret-position="898">
           <caret line="74" column="0" lean-forward="true" selection-start-line="74" selection-start-column="0" selection-end-line="74" selection-end-column="0" />
           <folding>
-            <element signature="e#49#120#0#PHP" expanded="true" />
+            <element signature="e#49#120#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Models/Admin/GridProduct.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="18" lean-forward="true" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1243,34 +972,200 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Models/Admin/GridProduct.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="414">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="15" column="68" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="68" />
+        <state relative-caret-position="90">
+          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="766">
+          <caret line="145" column="0" lean-forward="false" selection-start-line="145" selection-start-column="0" selection-end-line="145" selection-end-column="0" />
+          <folding>
+            <element signature="e#48#96#0#PHP" expanded="false" />
+            <element signature="e#4034#6057#0#PHP" expanded="false" />
+            <element signature="e#6550#8943#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/AdminController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2430">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/LoginController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-54">
+          <caret line="86" column="0" lean-forward="false" selection-start-line="86" selection-start-column="0" selection-end-line="86" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/PainelController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="302">
+          <caret line="58" column="27" lean-forward="false" selection-start-line="58" selection-start-column="27" selection-end-line="58" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_111439_create_image_colors_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="23" column="40" lean-forward="true" selection-start-line="23" selection-start-column="39" selection-end-line="23" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="39" column="9" lean-forward="false" selection-start-line="39" selection-start-column="5" selection-end-line="39" selection-end-column="9" />
+          <folding>
+            <element signature="e#6#268#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ProductCostRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="666">
+          <caret line="62" column="9" lean-forward="false" selection-start-line="62" selection-start-column="9" selection-end-line="62" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="205" column="45" lean-forward="false" selection-start-line="205" selection-start-column="33" selection-end-line="205" selection-end-column="45" />
+          <folding>
+            <element signature="e#52#94#0#PHP" expanded="false" />
+            <element signature="e#8297#9891#0#PHP" expanded="false" />
+            <element signature="e#10049#11992#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ProductPriceRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="61" column="0" lean-forward="true" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="185">
+          <caret line="197" column="33" lean-forward="false" selection-start-line="197" selection-start-column="29" selection-end-line="197" selection-end-column="33" />
+          <folding>
+            <element signature="e#18435#24314#0#PHP" expanded="false" />
+            <marker date="1559501121118" expanded="true" signature="7146:7152" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7152:7158" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7223:7229" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7229:7235" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7238:7244" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7244:7250" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7593:7599" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7599:7605" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7674:7680" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7680:7686" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7689:7695" ph=" " />
+            <marker date="1559501121118" expanded="true" signature="7695:7701" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="90" column="10" lean-forward="false" selection-start-line="90" selection-start-column="10" selection-end-line="90" selection-end-column="10" />
+          <folding>
+            <element signature="e#49#95#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="18">
+          <caret line="1" column="41" lean-forward="false" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/storage/app/Accesses/94332301/02-06-2019.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1386">
+          <caret line="77" column="21" lean-forward="false" selection-start-line="77" selection-start-column="21" selection-end-line="77" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/database/migrations/2019_05_21_111441_create_grid_products_table.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="54">
+          <caret line="11" column="19" lean-forward="false" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1878">
-          <caret line="279" column="33" lean-forward="false" selection-start-line="279" selection-start-column="24" selection-end-line="279" selection-end-column="33" />
+        <state relative-caret-position="293">
+          <caret line="156" column="17" lean-forward="false" selection-start-line="156" selection-start-column="17" selection-end-line="156" selection-end-column="17" />
           <folding>
             <element signature="e#52#118#0#PHP" expanded="true" />
             <element signature="e#2062#2664#0#PHP" expanded="false" />
-            <element signature="e#6743#8094#0#PHP" expanded="false" />
-            <element signature="e#11297#12560#0#PHP" expanded="false" />
-            <element signature="e#12751#13360#0#PHP" expanded="false" />
+            <element signature="e#2775#3770#0#PHP" expanded="false" />
+            <element signature="e#7013#8364#0#PHP" expanded="false" />
+            <element signature="e#8589#11452#0#PHP" expanded="false" />
+            <element signature="e#11560#12823#0#PHP" expanded="false" />
+            <element signature="e#13014#13623#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php">
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1801">
-          <caret line="225" column="0" lean-forward="false" selection-start-line="225" selection-start-column="0" selection-end-line="225" selection-end-column="0" />
+        <state relative-caret-position="-754">
+          <caret line="654" column="13" lean-forward="false" selection-start-line="654" selection-start-column="13" selection-end-line="654" selection-end-column="13" />
           <folding>
-            <element signature="e#7344#9737#0#PHP" expanded="false" />
+            <element signature="e#10586#11010#0#PHP" expanded="false" />
+            <element signature="e#17729#20169#0#PHP" expanded="false" />
+            <element signature="e#20285#21998#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

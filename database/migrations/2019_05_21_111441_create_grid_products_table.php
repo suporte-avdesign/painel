@@ -17,11 +17,11 @@ class CreateGridProductsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('product_id');
             $table->unsignedBigInteger('image_color_id');
+            $table->string('color', 100);
             $table->smallInteger('kit')->default(0);
             $table->smallInteger('qty_min')->default(0);
             $table->smallInteger('qty_max')->default(0);
-            $table->string('color', 100);
-            $table->string('grid', 100);
+            $table->string('grid', 100)->nullable();
             $table->smallInteger('input')->default(0);
             $table->smallInteger('output')->default(0);
             $table->smallInteger('stock')->default(0);

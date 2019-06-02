@@ -11,7 +11,10 @@ interface InventaryInterface
      */
     public function getAll();
     public function setId($id);
-    public function create($grids, $image, $product, $kit);
+
+    public function createKit($grids, $image, $product);
+    public function createUnit($grids, $image, $product);
+
     public function rules($input, $messages, $id);
 
 }

@@ -21,24 +21,34 @@ class ProductCostRepository implements ProductCostInterface
         $this->model = $model;
     }
 
+    /**
+     * Date: 06/02/2019
+     *
+     * @param $input
+     * @param $product
+     * @return mixed
+     */
     public function create($input, $product)
     {
         $input['product_id'] = $product->id;
 
         $data = $this->model->create($input);
         if ($data) {
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                    ' Custo do Produto: '.$product->name.
-                    ', Valor:'.setReal($data->value))
+            generateAccessesTxt(date('H:i:s').
+            ' '.constLang('cost').':'.setReal($data->value)
             );
-
         }
 
         return $data;        
     }
 
-
+    /**
+     * Date: 06/02/2019
+     *
+     * @param $input
+     * @param $product
+     * @return mixed
+     */
     public function update($input, $product)
     {
         $cost   = $product->cost;
@@ -47,13 +57,10 @@ class ProductCostRepository implements ProductCostInterface
         $update = $data->update($input);
 
         if ($update) {
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                    ' Alterou Custo do Produto'.$product->name.
-                    ' de '.$input['value'].' para '.setReal($data->value))
+            generateAccessesTxt(date('H:i:s').
+                ' '.constLang('cost').':'.setReal($input['value'])
             );
         }
-
         return $update;     
     }
 

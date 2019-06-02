@@ -35,6 +35,10 @@ return [
     'active_true' => 'Ativo',
     'active_false' => 'Inativo',
     'back' => 'Voltar',
+    'code' => 'Código',
+    'color' => 'Cor',
+    'cost' => 'Custo',
+    'cover' => 'Capa',
     'categories.required' => 'As categorias são obrigatórias.',
     'delete_false' => 'Não foi possível excluir o registro',
     'delete_true' => 'O registro foi excluido',
@@ -46,6 +50,7 @@ return [
     'keywords.required' => 'As tags são obrigatórias.',
     'login' => 'Login',
     'not' => 'Não',
+    'order' => 'Ordem',
     'order_false' => 'Não foi possível alterar a ordem',
     'order_true' => 'A ordem foi alterada',
     'payment_card' => 'Cartão de Crédito',
@@ -55,6 +60,7 @@ return [
         'user' => 'Cliente'
     ],
     'reminder' => 'Lebre-me',
+    'status' => 'Status',
     'status_true' => 'O status foi alterado',
     'status_false' => 'Não foi possível alterar o status',
     'title_create' => 'Adicionar',
@@ -68,6 +74,7 @@ return [
     ],
     'update_false' => 'Não foi possível alterar o registro',
     'update_true' => 'O registro foi alterado',
+    'value' => 'Valor',
     'yes' => 'Sim',
 
 

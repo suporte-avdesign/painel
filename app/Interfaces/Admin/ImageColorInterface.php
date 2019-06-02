@@ -12,8 +12,9 @@ interface ImageColorInterface
     public function get($id);
     public function setId($id);
     public function getAll($request);
-    public function create($input, $config, $file);
+    public function create($input, $config);
     public function update($input, $id, $config, $file);
+    public function uploadImages($input, $image, $config, $file);
     public function delete($id, $product, $config);
     public function status($input, $product, $id);
     public function changeGrids($input, $id);

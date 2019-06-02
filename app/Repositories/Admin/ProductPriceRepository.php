@@ -52,7 +52,7 @@ class ProductPriceRepository implements ProductPriceInterface
                     $price_card_percent = round($data->price_card_percent, 2);
                     $price_cash_percent = round($data->price_cash_percent, 2);
                 } 
-                generateAccessesTxt(utf8_decode('Perfil:'.$data->profile.
+                generateAccessesTxt(utf8_decode('Valor:'.$data->profile.
                     ', Parcelado:'.$price_card_percent.'% '.setReal($data->price_card).
                     ', À Vista:'.$price_cash_percent.'% '.setReal($data->price_cash).
                     ' '.$text_offer_card . $text_offer_cash));

@@ -9,8 +9,8 @@ class GridProduct extends Model
     protected $fillable = [
         'product_id',
         'image_color_id',
-        'kit',
         'color',
+        'kit',
         'qty_min',
         'qty_max',
         'grid',

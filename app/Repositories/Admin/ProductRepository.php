@@ -178,7 +178,7 @@ class ProductRepository implements ProductInterface
                     }
 
                 } else {
-                    $image = '<img src="'.url('backend/img/padrao/default.png').'" />';
+                    $image = '<img src="'.url('backend/img/default/no_image.png').'" />';
                 }
                 // Stock
                 $grids = count($val->grids);
@@ -406,7 +406,7 @@ class ProductRepository implements ProductInterface
                 ($data->active == 1 ? $active = "Ativo"  : $active = "Inativo");
 
                 generateAccessesTxt(
-                    date('H:i:s').utf8_decode(' Adicionou o Produto: '.$data->name.'/'.$category.'/'.$section.'/'.$brand.
+                    date('H:i:s').utf8_decode(' Adicionou o produto: '.$data->name.'/'.$category.'/'.$section.'/'.$brand.
                     ', Status:'.$active.
                     ', Und Medida:'.$data->unit.' '.$data->measure.
                     $stock.
