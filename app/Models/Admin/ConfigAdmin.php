@@ -12,6 +12,12 @@ class ConfigAdmin extends Model
         'height_photo'
     ];
 
+    const BASE_PATH = 'app/public/images';
+    const DIR_IMAGES = 'admins';
+
+    const IMAGES_PATH = self::BASE_PATH . '/' . self::DIR_IMAGES;
+
+
     /**
      * Validação
      * @return array

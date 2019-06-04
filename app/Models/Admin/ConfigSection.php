@@ -21,6 +21,11 @@ class ConfigSection extends Model
         'height_modal'
     ];
 
+    const BASE_PATH = 'app/public/images';
+    const DIR_IMAGES = 'sections';
+
+    const IMAGES_PATH = self::BASE_PATH . '/' . self::DIR_IMAGES;
+
     /**
      * Validação
      * @return array

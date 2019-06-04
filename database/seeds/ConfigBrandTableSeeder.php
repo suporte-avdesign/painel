@@ -13,12 +13,14 @@ class ConfigBrandTableSeeder extends Seeder
     public function run()
     {
         $date = date('Y-m-d H:i:s');
+        $this->deleteAllPhotosInProductPath();
+
         ConfigBrand::create([
             'info' => 1,
             'grids' => 1,
             'description' => 1,
             'img_default' => 'D',
-            'path' => 'imagens/marcas/',
+            'path' => 'images/brands/',
             'img_logo' => 1,
             'width_logo' => 250,
             'height_logo' => 70,
@@ -30,4 +32,11 @@ class ConfigBrandTableSeeder extends Seeder
             'created_at' => $date
         ]);
     }
+
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = ConfigBrand::IMAGES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
+    }
+
 }

@@ -13,13 +13,22 @@ class ConfigBannerTableSeeder extends Seeder
     public function run()
     {
         $date = date('Y-m-d H:i:s');
+        $this->deleteAllPhotosInProductPath();
+
         ConfigBanner::create([
             'type' => 'four',
             'active' => constLang('active_true'),
-            'path' => 'imagens/banners/',
+            'path' => 'images/banners/',
             'width' => '262',
             'height' => '256',
             'created_at' => $date
         ]);
     }
+
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = ConfigBanner::IMAGES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
+    }
+
 }

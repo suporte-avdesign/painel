@@ -45,30 +45,28 @@ class GridProductRepository implements GridProductInterface
     }
 
     /**
-     * Create
+     * Date 02/06/2019
      *
-     * @param  array $input
-     * @param  int $id color
-     * @param  int $idpro
-     * @param  int $stock
-     * @param  int $kit
-     * @return array
+     * @param $input
+     * @param $image
+     * @param $product
+     * @return mixed
      */
     public function createKit($input, $image, $product)
     {
-        $dataForm['product_id'] = $product->id;
+        $dataForm['color']          = $image->color;
+        $dataForm['kit']            = $product->kit;
+        $dataForm['grid']           = $input['grid'];
+        $dataForm['stock']          = $input['input'];
+        $dataForm['product_id']     = $product->id;
         $dataForm['image_color_id'] = $image->id;
-        $dataForm['color'] = $image->color;
-        $dataForm['kit'] = $product->kit;
-        $dataForm['grid'] = $input['grid'];
-        $dataForm['stock'] = $input['input'];
 
         $access = '- '.$product->kit_name;
         $access .= ', Grade:'.$input['grid'];
 
         if ($product->stock == 1) {
 
-            $dataForm['input'] = $input['qty_min'];
+            $dataForm['input'] = $input['input'];
             $access .= ', Entrada:'.$input['input'];
             $access .= ', Estoque:'.$input['input'];
 
@@ -93,6 +91,8 @@ class GridProductRepository implements GridProductInterface
 
     public function createUnit($input, $image, $product)
     {
+
+        dd('Em contrução o invetário');
 
         foreach ($input as $key => $value) {
             if ($product->stock == 1) {
@@ -145,7 +145,8 @@ class GridProductRepository implements GridProductInterface
     }
 
     /**
-     * upload kit
+     * Date: 06/02/2019
+     * Note: return empty -> invetary(empty)
      *
      * @param $input
      * @param $image
@@ -155,19 +156,30 @@ class GridProductRepository implements GridProductInterface
      */
     public function updateKit($input, $image, $product, $qty, $des)
     {
-        $data   = $this->setId($input['id']);
+
+        $data = $this->setId($input['id']);
+
+        if ($data->color != $image->color) {
+            $dataForm['color'] = $image->color;
+        }
+
         $change = '';
         if ($product->stock == 1) {
             $entry = $input['input'];
             if (!empty($entry)) {
+
                 if ($data->input != $entry) {
+                    $dataForm['entry'] = $entry; // inventary -> ammount
+                    $dataForm['grid'] = $data->grid; // inventary -> grid
+                    $dataForm['grid_id'] = $data->id; // inventary -> grid_id
+                    $dataForm['previous_stock'] = $data->stock; // inventary -> grid
                     $previousInput = $data->input;
                     $currentInput = $previousInput + $entry;
                     $previousStock = $data->stock;
                     $currentStock = ($previousStock + $entry) - $data->output;
                     $dataForm['input'] = $currentInput;
                     $dataForm['stock'] = $currentStock;
-                    $change .= ' Entrada:'.$currentInput.' Estoque:'.$currentStock;
+                    $change .= ' Entrada:'.$entry.' Estoque:'.$currentStock;
                 }
             }
             if ($data->qty_min != $input['qty_min']) {
@@ -178,36 +190,40 @@ class GridProductRepository implements GridProductInterface
                 $dataForm['qty_max'] = $input['qty_max'];
                 $change = ' Qtd Max:'.$input['qty_max'];
             }
-        }
-        $count_qty = count($qty);
-        for ($i = 0; $i < $count_qty; $i++) {
-            $array[] = array(
-                $qty[$i] => $des[$i]
-            );
-        }
-        $str = '';
-        foreach ($array as $keys => $values) {
-            foreach ($values as $key => $value) {
-                $str .= $key . '/' . $value . ',';
+
+        } else {
+
+            $count_qty = count($qty);
+            for ($i = 0; $i < $count_qty; $i++) {
+                $array[] = array(
+                    $qty[$i] => $des[$i]
+                );
+            }
+            $str = '';
+            foreach ($array as $keys => $values) {
+                foreach ($values as $key => $value) {
+                    $str .= $key . '/' . $value . ',';
+                }
+            }
+            $grid = substr($str, 0, -1);
+
+            if ($data->grid != $grid) {
+                $dataForm['grid'] = $grid;
+                $change = ' Grid:' . $grid;
             }
         }
-        $grid = substr($str, 0, -1);
 
-        if ($data->grid != $grid) {
-            $dataForm['grid'] = $grid;
-            $change = ' Grid:'.$grid;
-        }
-        if ($data->color != $image->color) {
-            $dataForm['color'] = $input['color'];
-            $change .= ' Cor:'.$input['color'];
-        }
+
         if ($change){
             $update = $data->update($dataForm);
             if ($update) {
-                generateAccessesTxt($change);
-                return $dataForm;
+                generateAccessesTxt(constLang('accesses.update').''.constLang('grid').$change);
+                $data['entry'] = $input['input'];
+                $data['previous_stock'] = $data->id;
+                return $data;
             }
         }
+        // Note: return empty -> invetary(empty)
     }
 
 

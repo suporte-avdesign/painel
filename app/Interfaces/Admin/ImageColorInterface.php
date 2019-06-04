@@ -5,7 +5,8 @@ namespace AVDPainel\Interfaces\Admin;
 interface ImageColorInterface
 {
     /**
-     * Interface model ImageColor
+     * Date: 03/06/2019
+     * uploadImages
      *
      * @return \AVDPainel\Repositories\Admin\ImageColorRepository
      */
@@ -13,10 +14,11 @@ interface ImageColorInterface
     public function setId($id);
     public function getAll($request);
     public function create($input, $config);
-    public function update($input, $id, $config, $file);
-    public function uploadImages($input, $image, $config, $file);
+    public function update($input, $config, $image);
     public function delete($id, $product, $config);
     public function status($input, $product, $id);
+    public function uploadImages($config, $input, $image, $product, $file);
+    public function uploadRender($config, $image, $action);
     public function changeGrids($input, $id);
     // All Colors
     public function colorsStatus($input, $product, $id);

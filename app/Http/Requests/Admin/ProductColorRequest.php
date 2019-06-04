@@ -58,7 +58,7 @@ class ProductColorRequest extends FormRequest
                 $rules['file'] = 'image|mimes:jpeg,gif,png|dimensions:min_width='.$this->size->img_width;
             }
 
-            if ($product->stock == 1) {
+            if ($product->stock == 0) {
                 if ($product->kit == 1) {
 
                     $filter_qty = array_filter($this->request->get('qty'));

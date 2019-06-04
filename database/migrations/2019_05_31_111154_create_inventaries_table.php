@@ -15,6 +15,7 @@ class CreateInventariesTable extends Migration
     {
         Schema::create('inventaries', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->bigInteger('grid_id')->nullable();
             $table->integer('admin_id')->nullable();
             $table->integer('user_id')->nullable();
             $table->enum('profile_name', [
@@ -34,7 +35,7 @@ class CreateInventariesTable extends Migration
             $table->string('code', 20);
             $table->string('color', 20)->nullable();
             $table->string('grid')->nullable();
-            $table->tinyInteger('amount')->default(0);
+            $table->integer('amount')->default(0);
             $table->tinyInteger('kit');
             $table->string('kit_name', 30)->nullable();
             $table->tinyInteger('units')->default(0);
@@ -44,7 +45,7 @@ class CreateInventariesTable extends Migration
             $table->string('price_profile')->nullable();
             $table->decimal('price_unit', 8, 2)->default(0);
             $table->decimal('price_total', 8, 2)->default(0);
-            $table->tinyInteger('stock')->default(0);
+            $table->integer('stock')->default(0);
             $table->timestamps();
         });
 

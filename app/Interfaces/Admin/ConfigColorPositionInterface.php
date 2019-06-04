@@ -16,5 +16,6 @@ interface ConfigColorPositionInterface
     public function create($input);
     public function update($input, $id);
     public function delete($id);
+
     public function rules($input, $messages, $id);
 }

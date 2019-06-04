@@ -17,11 +17,11 @@
         <span class="button-group">
             <label for="active_img_{{$data->product_id}}_1" class="button green-active">
                 <input type="radio" name="img[active]" id="active_img_{{$data->product_id}}_1" value="{{constLang('active_true')}}" @if($data->active == constLang('active_true')) checked @endif>
-                Ativo
+                {{constLang('active_true')}}
             </label>
             <label for="active_img_{{$data->product_id}}_2" class="button red-active" >
                 <input type="radio" name="img[active]" id="active_img_{{$data->product_id}}_2" value="{{constLang('active_false')}}" @if($data->active == constLang('active_false')) checked @endif>
-                Inativo
+                {{constLang('active_false')}}
             </label>
         </span>
     </p>

@@ -406,7 +406,7 @@ class ProductRepository implements ProductInterface
                 ($data->active == 1 ? $active = "Ativo"  : $active = "Inativo");
 
                 generateAccessesTxt(
-                    date('H:i:s').utf8_decode(' Adicionou o produto: '.$data->name.'/'.$category.'/'.$section.'/'.$brand.
+                    date('H:i:s').utf8_decode(' Adicionou o produto Nome:'.$data->name.
                     ', Status:'.$active.
                     ', Und Medida:'.$data->unit.' '.$data->measure.
                     $stock.

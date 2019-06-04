@@ -16,12 +16,12 @@
         <label for="active_img_{{$idpro}}" class="label">Status <span class="red">*</span></label>
         <span class="button-group">
             <label for="active_img_{{$idpro}}_1" class="button green-active">
-                <input type="radio" name="img[active]" id="active_img_{{$idpro}}_1" value="1" checked>
-                Ativo
+                <input type="radio" name="img[active]" id="active_img_{{$idpro}}_1" value="{{constLang('active_true')}}" checked>
+                {{constLang('active_true')}}
             </label>
             <label for="active_img_{{$idpro}}_2" class="button red-active" >
-                <input type="radio" name="img[active]" id="active_img_{{$idpro}}_2" value="0">
-                Inativo
+                <input type="radio" name="img[active]" id="active_img_{{$idpro}}_2" value="{{constLang('active_false')}}">
+                {{constLang('active_false')}}
             </label>
         </span>
     </p>
@@ -46,7 +46,7 @@
         <label for="order_img_{{$idpro}}" class="label">Ordem <span class="red">*</span></label>
         <span class="number input margin-right">
             <button type="button" class="button number-down">-</button>
-            <input type="text" name="img[order]" value="" size="2" class="input-unstyled order">
+            <input type="text" name="img[order]" value="2" size="2" class="input-unstyled order">
             <button type="button" class="button number-up">+</button>
         </span>
     </p>

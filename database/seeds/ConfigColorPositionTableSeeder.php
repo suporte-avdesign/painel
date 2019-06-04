@@ -3,6 +3,8 @@
 use Illuminate\Database\Seeder;
 use AVDPainel\Models\Admin\ConfigColorPosition;
 
+use Illuminate\Support\Facades\Storage;
+
 
 class ConfigColorPositionTableSeeder extends Seeder
 {
@@ -13,9 +15,11 @@ class ConfigColorPositionTableSeeder extends Seeder
      */
     public function run()
     {
+        $this->deleteAllPhotosInProductPath();
+
         ConfigColorPosition::create([
             'type' => 'C',
-            'path' => 'imagens/produtos/100x100/',
+            'path' => 'images/products/100x100/',
             'width' => '100',
             'height' => '100',
             'default' => 'T'
@@ -23,7 +27,7 @@ class ConfigColorPositionTableSeeder extends Seeder
 
         ConfigColorPosition::create([
             'type' => 'C',
-            'path' => 'imagens/produtos/370x370/',
+            'path' => 'images/products/370x370/',
             'width' => '370',
             'height' => '370',
             'default' => 'N'
@@ -32,7 +36,7 @@ class ConfigColorPositionTableSeeder extends Seeder
 
         ConfigColorPosition::create([
             'type' => 'C',
-            'path' => 'imagens/produtos/800x800/',
+            'path' => 'images/products/800x800/',
             'width' => '800',
             'height' => '800',
             'default' => 'G'
@@ -41,7 +45,7 @@ class ConfigColorPositionTableSeeder extends Seeder
 
         ConfigColorPosition::create([
             'type' => 'C',
-            'path' => 'imagens/produtos/1000x1000/',
+            'path' => 'images/products/1000x1000/',
             'width' => '1000',
             'height' => '1000',
             'default' => 'Z'
@@ -49,7 +53,7 @@ class ConfigColorPositionTableSeeder extends Seeder
 
         ConfigColorPosition::create([
             'type' => 'P',
-            'path' => 'imagens/produtos/100x100/',
+            'path' => 'images/products/100x100/',
             'width' => '100',
             'height' => '100',
             'default' => 'T'
@@ -57,7 +61,7 @@ class ConfigColorPositionTableSeeder extends Seeder
 
         ConfigColorPosition::create([
             'type' => 'P',
-            'path' => 'imagens/produtos/370x370/',
+            'path' => 'images/products/370x370/',
             'width' => '370',
             'height' => '370',
             'default' => 'N'
@@ -66,7 +70,7 @@ class ConfigColorPositionTableSeeder extends Seeder
 
         ConfigColorPosition::create([
             'type' => 'P',
-            'path' => 'imagens/produtos/800x800/',
+            'path' => 'images/products/800x800/',
             'width' => '800',
             'height' => '800',
             'default' => 'G'
@@ -75,10 +79,18 @@ class ConfigColorPositionTableSeeder extends Seeder
 
         ConfigColorPosition::create([
             'type' => 'P',
-            'path' => 'imagens/produtos/1000x1000/',
+            'path' => 'images/products/1000x1000/',
             'width' => '1000',
             'height' => '1000',
             'default' => 'Z'
         ]);
     }
+
+
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = ConfigColorPosition::IMAGES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
+    }
+
 }

@@ -18,6 +18,11 @@ class ConfigSlider extends Model
         'height_modal'
     ];
 
+    const BASE_PATH = 'app/public/images';
+    const DIR_IMAGES = 'slider';
+
+    const IMAGES_PATH = self::BASE_PATH . '/' . self::DIR_IMAGES;
+
     /**
      * Validação
      * @return array

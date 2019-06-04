@@ -14,11 +14,22 @@ class ConfigAdminTableSeeder extends Seeder
     public function run()
     {
         $date = date('Y-m-d H:i:s');
+        $this->deleteAllPhotosInProductPath();
+
+
         ConfigAdmin::create([
-            'path' => 'imagens/users/',
+            'path' => 'images/admins/',
             'width_photo' => 300,
             'height_photo' => 300,
             'created_at' => $date
         ]);
     }
+
+
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = ConfigAdmin::IMAGES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
+    }
+
 }

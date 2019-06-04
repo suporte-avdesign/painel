@@ -29,9 +29,10 @@ class ImageColorRepository implements ImageColorInterface
         Keywords $keywords,
         ConfigImage $configImage)
     {
-        $this->model         = $model;
-        $this->keywords      = $keywords;
-        $this->configImage   = $configImage;
+        $this->model          = $model;
+        $this->keywords       = $keywords;
+        $this->configImage    = $configImage;
+
         $this->photoUrl      = 'storage/';
         $this->disk          = storage_path('app/public/');
     }
@@ -315,9 +316,9 @@ class ImageColorRepository implements ImageColorInterface
         $update = $data->update($input);
         if ($update) {
             ($data->kit == 1 ? $kit = 'Kit' : $kit = 'Unidade');
-            generateAccessesTxt(date('H:i:s').
+            generateAccessesTxt(date('H:i:s').utf8_decode(
                 ' Alterou o Produto:'.$data->slug.
-                ' Para:'.$kit
+                ' Para:'.$kit)
             );
             return true;
         }
@@ -369,101 +370,175 @@ class ImageColorRepository implements ImageColorInterface
         $data = $this->model->create($dataForm);
         //dd($data);
         if ($data) {
-            generateAccessesTxt(date('H:i:s').
-                ' '.constLang('code').':'.$dataForm['code'].
-                ' '.constLang('color').':'.$dataForm['color'].
-                ' '.constLang('status').':'.$dataForm['active'].
-                ' '.constLang('cover').':'.$dataForm['cover']
+            ($data->cover == 1 ? $cover = constLang('active_true') : $cover = constLang('active_false'));
+            generateAccessesTxt(utf8_decode('- Upload Foto:'.
+                ' '.constLang('code').':'.$data->code.
+                ', '.constLang('color').':'.$data->color.
+                ', '.constLang('status').':'.$data->active.
+                ', '.constLang('cover').':'.$data->cover)
             );
             return $data;
         }
+    }
+
+
+    public function update($input, $config, $image)
+    {
+        $access   = constLang('accesses.update').' '.constLang('product');
+        $dataForm = [];
+        $count = strlen($input['order']);
+        if ($count == 1) {
+           $input['order'] = '0' .$input['order'];
+        }
+        if ($image->code != $input['code']) {
+            $dataForm['code'] = $input['code'];
+            $access .= ' '.constLang('code').':'.$image->code.'/'.$input['code'];
+        }
+        if ($image->color != $input['color']) {
+            $dataForm['color'] = $input['color'];
+            $access .= ' '.constLang('color').':'.$image->color.'/'.$input['color'];
+        }
+        if ($image->description != $input['description']) {
+            $dataForm['description'] = $input['description'];
+            $access .= ' '.constLang('description').':'.$image->description.'/'.$input['description'];
+        }
+        if ($image->active != $input['active']) {
+            $dataForm['active'] = $input['active'];
+            $access .= ' '.constLang('status').':'.$image->active.'/'.$input['active'];
+        }
+        if ($image->cover != $input['cover']) {
+            if ($input['cover'] == 1) {
+                $change = $this->changeCover($image->product_id);
+            }
+            $access .= ' '.constLang('cover').':'.$image->cover.'/'.$input['cover'];
+        }
+        if ($image->order != $input['order']) {
+            $dataForm['order'] = $input['order'];
+            $access .= ' '.constLang('order').':'.$image->order.'/'.$input['order'];
+        }
+
+        if(!empty($dataForm)){
+            $update = $image->update($dataForm);
+            generateAccessesTxt(
+                date('H:i:s').utf8_decode(' '.$access)
+            );
+            return $update;
+        }
+
+        return true;
+
+    }
+
+    /**
+     * Date: 06/03/2019
+     *
+     * @param $config
+     * @param $input
+     * @param $image
+     * @param $product
+     * @param $file
+     * @return bool|string
+     */
+    public function uploadImages($config, $input, $image, $product, $file)
+    {
+        if ($input['ac'] == 'ceate') {
+            $cover = $input['cover'];
+            if (count($image) == 1) {
+                $dataForm['cover'] = 1;
+            } else {
+                if ($cover == 0) {
+                    $this->changeCover($product->id, true);
+                }
+            }
+        }
+        if ($input['ac'] == 'update') {
+            foreach ($config as $value) {
+                $photo = $this->disk . $value->path . $image->image;
+                if (file_exists($photo)) {
+                    $delete = unlink($photo);
+                }
+            }
+        }
+
+        $words = $this->keywords->rand();
+        $ext  = $file->getClientOriginalExtension();
+        $color = preg_replace("/[^A-Za-z]/", "-", $image->color);
+        $name = Str::slug($words['description'].
+                '-'.$product->name.
+                '-'.$product->category.
+                '-'.$product->section.
+                '-'.$color.
+                '-'.$product->brand.
+                '-'.config('app.name').
+                '-'.numLetter(date('Ymdhs'),'letter')).'.'.$ext;
+
+        foreach ($config as $value) {
+            if ($value->type == 'C') {
+                $width    = $value->width;
+                $height   = $value->height;
+                $path     = $this->disk . $value->path;
+                $upload = Image::make($file)->resize($width, $height)->save($path.$name);
+            }
+        }
+        if ($upload) {
+            $dataForm['image'] = $name;
+            $dataForm['slug'] = Str::slug($product->name.
+                '-'.$product->category.
+                '-'.$product->section.
+                '-'.$color.
+                '-'.$product->brand.
+                '-'.numLetter($image->id, 'letter').
+                '-'.$image->code);
+        }
+        $update = $image->update($dataForm);
+        if($update) {
+            return $dataForm['image'];
+        }
+
+        return false;
     }
 
 
     /**
-     * Update the specified resource in storage.
+     * Date: 06/03/2019
      *
-     * @param  array $input
-     * @param  int $id
-     * @param  array $config 
-     * @param  file $file
+     * @param $config
+     * @param $image
      * @return array
      */
-    public function update($input, $id, $config, $file)
+    public function uploadRender($config, $image, $action)
     {
-
-        // if < 10 add 0 in front
-        $count = strlen($input['order']);
-        if ($count == 1) {
-            $input['order'] = '0'.$input['order'];
-        }
-
-        if ($input['cover'] == 1) {
-            $change = $this->changeCover($input['product_id']);
-        }
-
-        if ($input['kit'] == 0) {
-            $input['kit_name'] = null;
-        }
-
-        $data    = $this->model->find($id);
-        $product = $data->product;
-
-
-        $update = $data->update($input);
-
-        if ($update) {
-            (!empty($file) ? $text = ', Alterou a imagem' : $text = ', Alterou os dados da imagem');
-            ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
-            ($data->cover == 1 ? $cover = 'Sim' : $cover = 'Não');
-            generateAccessesTxt(date('H:i:s').$text.
-                ' do Produto:'.Str::slug($product->name.
-                ' - '.$product->category.
-                ' - '.$product->section.
-                ' - '.$product->brand).
-                ', Código:'.$data->code.
-                ', Cor:'.$data->color.
-                ', Status:'.$status.
-                ', Capa:'.$cover
-            );
-
-            foreach ($config as $value) {
-                if ($value->default == 'N') {
-                    $path = $this->photoUrl.$value->path;
-                }
+        foreach ($config as $value) {
+            if ($value->default == 'T') {
+                $path = $this->photoUrl.$value->path;
             }
-
-
-
-
-
-            ($data->active == 1 ? $col = 'green-gradient' : $col = 'red-gradient');
-            ($data->cover == 1 ? $title = 'capa' : $title = '');
-            ($data->cover == 1 ? $option = '{"classes":["red-gradient"],"position":"top"}' : $option = '');
-
-            $click_status = "statusColor('{$data->id}', '".route('status-color', ['idpro' => $data->product_id,'id' => $data->id])."', '{$data->active}','{$data->cover}','".csrf_token()."')";
-            $click_edit   = "abreModal('Editar: Cor {$data->color}', '".route('colors-product.edit', ['idpro' => $data->product_id,'id' => $data->id])."', 'form-colors', 2, 'true',800,780)";
-            $click_delete = "deleteColor('$data->id', '".route('colors-product.destroy', ['idpro' => $data->product_id, 'id' =>$data->id])."')";
-            
-            $html = '<img src="'.url($src.$data->image).'" class="framed">';
-            $html .= '<div class="controls">';
-                $html .= '<span id="btns-'.$data->id.'" class="button-group compact children-tooltip" data-tooltip-options='.$option.'>';
-                    $html .= '<button onclick="'.$click_status.'" class="button icon-tick '.$col.'" title="Alterar status "'.$title.'"></button>';
-                    $html .= '<button onclick="'.$click_edit.'" class="button" title="Editar imagem '.$title.'">Editar</button>';
-                    $html .= '<button onclick="'.$click_delete.'" class="button icon-trash red-gradient" title="Excluir imagem '.$title.'"></button>';
-                $html .= '</span>';
-            $html .= '</div>';
-
-            $data['html']   = $html;
-            // Module All Colors
-            $data['image']  = url($src.$data->image);
-
-            return $data;
         }
 
-
-        return false;
+        if ($action == 'create') {
+            $out = array(
+                "ac"         => $action,
+                "success"    => true,
+                "message"    => constLang('upload_true.image'),
+                "id"         => $image->id,
+                "name"       => $image->slug,
+                "color"      => $image->color,
+                "code"       => $image->code
+            );
+        } else {
+            $render = view('backend.colors.gallery-render', compact('image', 'path'))->render();
+            $out = array(
+                "success"    => true,
+                "message"    => constLang('upload_true.image'),
+                "ac"         => $action,
+                "html"       => $render,
+                "id"         => $image->id,
+                "product_id" => $image->product_id
+            );
+        }
+        return $out;
     }
+
+
 
     /**
      * Remove
@@ -501,19 +576,19 @@ class ImageColorRepository implements ImageColorInterface
 
         $this->changeCover($data->product_id, true);
 
-        $delete = $data->delete();            
+        $delete = $data->delete();
 
         if ($delete) {
 
             ($data->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
 
-            generateAccessesTxt(date('H:i:s').
-                ' Excluiu a imagem do Produto:'.Str::slug($product->name.
-                '-'.$product->category.'-'.$product->section.'-'.$product->brand).  
-                ', Código:'.$data->code.
-                ', Cor:'.$data->color.
-                ', Status:'.$data->active.
-                ', Capa:'.$cover
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ' Excluiu a imagem do Produto:'.Str::slug($product->name.
+                        '-'.$product->category.'-'.$product->section.'-'.$product->brand).
+                    ', Código:'.$data->code.
+                    ', Cor:'.$data->color.
+                    ', Status:'.$data->active.
+                    ', Capa:'.$cover)
             );
 
             return true;
@@ -527,7 +602,7 @@ class ImageColorRepository implements ImageColorInterface
      * Status
      *
      * @param  array $input
-     * @param  int $id 
+     * @param  int $id
      * @return json
      */
     public function status($input, $product, $id)
@@ -557,9 +632,9 @@ class ImageColorRepository implements ImageColorInterface
             }
 
 
-            generateAccessesTxt(date('H:i:s'). " Alterou o status da cor do Produto:".
-                Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
-                ', para Status:'.$status
+            generateAccessesTxt(date('H:i:s'). utf8_decode(" Alterou o status da cor do Produto:".
+                    Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
+                    ', para Status:'.$status)
             );
 
             $click_status = "statusColor('{$data->id}', '".route('status-color', ['idpro' => $data->product_id,'id' => $data->id])."', '{$data->active}','{$data->cover}','".csrf_token()."')";
@@ -575,7 +650,7 @@ class ImageColorRepository implements ImageColorInterface
                 "message" => "A status foi alterado.",
                 "html"  => $html,
                 'alert' => $alert
-            );               
+            );
 
             return $out;
         }
@@ -590,7 +665,7 @@ class ImageColorRepository implements ImageColorInterface
      * Status
      *
      * @param  array $input
-     * @param  int $id 
+     * @param  int $id
      * @return json
      */
     public function colorsStatus($input, $product, $id)
@@ -611,10 +686,10 @@ class ImageColorRepository implements ImageColorInterface
                 ($data->cover == 1 ? $alert = 'Esta imagem era capa!<br>Coloque outra imagem como capa com o status: Ativo.' : $alert = null);
             }
 
-            generateAccessesTxt(date('H:i:s').
-                " Alterou o status da cor do Produto:".
-                Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
-                ', para Status:'.$status
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    " Alterou o status da cor do Produto:".
+                    Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
+                    ', para Status:'.$status)
             );
 
             $clickStatus = "statusColors('{$data->id}','".route('colors-status', ['idpro' => $data->product_id,'id' => $data->id])."','{$data->active}','{$data->cover}','".csrf_token()."')";
@@ -625,7 +700,7 @@ class ImageColorRepository implements ImageColorInterface
                 "message" => "A status foi alterado.",
                 "html"  => $html,
                 'alert' => $alert
-            );               
+            );
 
             return $out;
         }
@@ -635,78 +710,5 @@ class ImageColorRepository implements ImageColorInterface
             'message' => "Não foi possível alterar o status.");
     }
 
-
-    /**
-     * Date: 02/06/2019
-     *
-     * @param $input
-     * @param $id
-     * @param $config
-     * @param $file
-     */
-    public function uploadImages($input, $image, $config, $file)
-    {
-        if ($input['ac'] == 'ceate') {
-            $cover = $input['cover'];
-            if (count($image) == 1) {
-                $dataForm['cover'] = 1;
-            } else {
-                if ($cover == 0) {
-                    $this->changeCover($image->product_id, true);
-                }
-            }
-        }
-        if ($input['ac'] == 'update') {
-            foreach ($config as $value) {
-                $image = $this->disk . $value->path . $image->image;
-                if (file_exists($image)) {
-                    $delete = unlink($image);
-                }
-            }
-        }
-        $words = $this->keywords->rand();
-        $ext  = $file->getClientOriginalExtension();
-        $color = preg_replace("/[^A-Za-z]/", "-", $image->color);
-        $name = Str::slug($words['description'].
-                '-'.$image->product->name.
-                '-'.$image->product->category.
-                '-'.$image->product->section.
-                '-'.$color.
-                '-'.$image->product->brand.
-                '-'.config('app.name').
-                '-'.numLetter(date('Ymdhs'),'letter')).'.'.$ext;
-
-        foreach ($config as $value) {
-            if ($value->type == 'C') {
-                $width    = $value->width;
-                $height   = $value->height;
-                $path     = $this->disk . $value->path;
-                $upload = Image::make($file)->resize($width, $height)->save($path.$name);
-            }
-        }
-        if ($upload) {
-            $dataForm['image'] = $name;
-            $dataForm['slug'] = Str::slug($image->product->name.
-                '-'.$image->product->category.
-                '-'.$image->product->section.
-                '-'.$color.
-                '-'.$image->product->brand.
-                '-'.numLetter($image->id, 'letter').
-                '-'.$image->code);
-        }
-        $update = $image->update($dataForm);
-        if($update) {
-            foreach ($config as $value) {
-                if ($value->default == 'T') {
-                    $path = $this->photoUrl.$value->path;
-                }
-            }
-            $render = view('backend.colors.gallery-render', compact('image', 'path'))->render();
-            $out    = array(
-                "html" => $render
-            );
-            return $out;
-        }
-    }
 
 }

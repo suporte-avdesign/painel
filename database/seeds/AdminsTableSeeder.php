@@ -17,6 +17,8 @@ class AdminsTableSeeder extends Seeder
 
         $id   = mt_rand(1, '123456789');
         $date = date('Y-m-d H:i:s');
+        $this->deleteAllPhotosInProductPath();
+
 
         Admin::create([
             'id' => $id,
@@ -50,4 +52,14 @@ class AdminsTableSeeder extends Seeder
         ]);
 
     }
+
+    /**
+     * Accesses.user/files txt
+     */
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = AdminAccess::FILES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
+    }
+
 }

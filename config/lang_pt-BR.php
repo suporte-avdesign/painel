@@ -26,7 +26,6 @@ return [
 
 
 
-
     /*
     |--------------------------------------------------------------------------
     | Field texts
@@ -42,11 +41,16 @@ return [
     'categories.required' => 'As categorias são obrigatórias.',
     'delete_false' => 'Não foi possível excluir o registro',
     'delete_true' => 'O registro foi excluido',
+    'description' => 'Descrição',
     'description_painel' => 'Painel Administrativo',
     'description.required'  => 'A descrição é obrigatória.',
-    'genders.required' => 'Os gêneros são obrigatórios.',
+    'edit' => 'Editar',
     'error_server' => 'Houve um erro no servidor!',
     'error_404' => 'Página não encontrada',
+    'grid'  => 'Grade',
+    'group'  => 'Grupo',
+    'genders.required' => 'Os gêneros são obrigatórios.',
+    'image' => 'Imagem',
     'keywords.required' => 'As tags são obrigatórias.',
     'login' => 'Login',
     'not' => 'Não',
@@ -55,6 +59,7 @@ return [
     'order_true' => 'A ordem foi alterada',
     'payment_card' => 'Cartão de Crédito',
     'payment_cash' => 'Pagamento à Vista',
+    'product' => 'Produto',
     'profile_name' => [
         'admin' => 'Admin',
         'user' => 'Cliente'
@@ -74,6 +79,12 @@ return [
     ],
     'update_false' => 'Não foi possível alterar o registro',
     'update_true' => 'O registro foi alterado',
+    'upload_true' => [
+        'file' => 'O arquivo foi salvo',
+        'image' => 'A imagem foi salva',
+        'pdf' => 'O PDF foi salvo',
+        'photo' => 'A foto foi salva',
+    ],
     'value' => 'Valor',
     'yes' => 'Sim',
 

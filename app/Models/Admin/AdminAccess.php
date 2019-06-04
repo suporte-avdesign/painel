@@ -13,4 +13,10 @@ class AdminAccess extends Model
         'last_logout',
         'qty_visits'
     ];
+
+    const BASE_PATH = 'app';
+    const DIR_FILES = 'Accesses';
+
+    const FILES_PATH = self::BASE_PATH . '/' . self::DIR_FILES;
+
 }

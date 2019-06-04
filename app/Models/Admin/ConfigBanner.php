@@ -14,6 +14,11 @@ class ConfigBanner extends Model
         'height',
     ];
 
+    const BASE_PATH = 'app/public/images';
+    const DIR_IMAGES = 'banners';
+
+    const IMAGES_PATH = self::BASE_PATH . '/' . self::DIR_IMAGES;
+
     /**
      * Validação
      * @return array

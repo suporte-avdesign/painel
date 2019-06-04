@@ -65,6 +65,8 @@ class GroupColorRepository implements GroupColorInterface
 
             if($data) {
                 generateAccessesTxt(utf8_decode('- Grupo:'.$label));
+
+                return $data;
             }
         }
 

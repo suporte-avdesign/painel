@@ -13,12 +13,14 @@ class ConfigSectionTableSeeder extends Seeder
     public function run()
     {
         $date = date('Y-m-d H:i:s');
+        $this->deleteAllPhotosInProductPath();
+
 
         ConfigSection::create([
             'grids' => 1,
             'description' => 1,
             'img_default' => 'D',
-            'path' => 'imagens/secoes/',
+            'path' => 'images/sections/',
             'img_featured' => 1,
             'width_featured' => 220,
             'height_featured' => 300,
@@ -30,4 +32,11 @@ class ConfigSectionTableSeeder extends Seeder
             'created_at' => $date
         ]);
     }
+
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = ConfigSection::IMAGES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
+    }
+
 }

@@ -5,8 +5,10 @@ use AVDPainel\Models\Admin\Brand;
 use AVDPainel\Models\Admin\Product;
 use AVDPainel\Models\Admin\Section;
 use AVDPainel\Models\Admin\Category;
-use AVDPainel\Models\Admin\GridBrand;
 use AVDPainel\Models\Admin\ImageColor;
+use AVDPainel\Models\Admin\GridBrand;
+use AVDPainel\Models\Admin\GridSection;
+use AVDPainel\Models\Admin\GridCategory;
 
 
 class ProductTableSeeder extends Seeder
@@ -19,14 +21,18 @@ class ProductTableSeeder extends Seeder
     public function run()
     {
 
-        $id_brand      = mt_rand(1, '16789');
-        $id_grid_brand = mt_rand(1, '22346');
+        $id_brand          = mt_rand(1, '16789');
+        $id_grid_brand     = mt_rand(1, '22346');
+        $id_grid_section   = mt_rand(1, '33336');
+        $id_grid_category  = mt_rand(1, '76536');
+
         $id_section    = mt_rand(1, '34680');
         $id_category   = mt_rand(1, '43579');
         $id_product    = mt_rand(1, '57531');
         $id_color      = mt_rand(1, '66420');
 
         $date = date('Y-m-d H:i:s');
+
 
         //brand 1
         Brand::create([
@@ -75,7 +81,7 @@ class ProductTableSeeder extends Seeder
             'created_at' => $date
         ]);
 
-        // grids brand 1
+        // grids brand 1 unit
         GridBrand::create([
             'id' => $id_grid_brand,
             'brand_id' => $id_brand,
@@ -84,10 +90,29 @@ class ProductTableSeeder extends Seeder
             'label' => '33,34,35,36,37,38',
             'created_at' => $date
         ]);
-
-        // gris brand 2
+        // gris brand 1 kit
         GridBrand::create([
             'id' => $id_grid_brand+1,
+            'brand_id' => $id_brand,
+            'type' => 'kit',
+            'name' => 'Kit',
+            'label' => '1/33,2/34,3/35,3/36,2/37,1/38',
+            'created_at' => $date
+        ]);
+
+        // grids brand 2 unit
+        GridBrand::create([
+            'id' => $id_grid_brand+2,
+            'brand_id' => $id_brand+1,
+            'type' => 'unit',
+            'name' => 'Unidade',
+            'label' => '33,34,35,36,37,38',
+            'created_at' => $date
+        ]);
+
+        // gris brand 2 kit
+        GridBrand::create([
+            'id' => $id_grid_brand+3,
             'brand_id' => $id_brand+1,
             'type' => 'kit',
             'name' => 'Kit',
@@ -111,6 +136,25 @@ class ProductTableSeeder extends Seeder
             'created_at' => $date
         ]);
 
+        // grids section 1 unit
+        GridSection::create([
+            'id' => $id_grid_section,
+            'section_id' => $id_section,
+            'type' => 'unit',
+            'name' => 'Unidade',
+            'label' => 'P,M,G,GG',
+            'created_at' => $date
+        ]);
+        // gris section 1 kit
+        GridSection::create([
+            'id' => $id_grid_section+1,
+            'section_id' => $id_section,
+            'type' => 'kit',
+            'name' => 'Kit',
+            'label' => '2/P,4/M,2/G,1/GG',
+            'created_at' => $date
+        ]);
+
         // Category Section 1
         Category::create([
             'id' => $id_category,
@@ -127,6 +171,26 @@ class ProductTableSeeder extends Seeder
             'active_banner' => constLang('active_true'),
             'created_at' => $date
         ]);
+
+        // grids category 1 unit
+        GridCategory::create([
+            'id' => $id_grid_category,
+            'category_id' => $id_category,
+            'type' => 'unit',
+            'name' => 'Unidade',
+            'label' => 'P,M,G,GG',
+            'created_at' => $date
+        ]);
+        // gris category 1 kit
+        GridCategory::create([
+            'id' => $id_grid_category+1,
+            'category_id' => $id_category,
+            'type' => 'kit',
+            'name' => 'Kit',
+            'label' => '2/33,1/34,2/35,4/36,1/37,2/38',
+            'created_at' => $date
+        ]);
+
 
         Product::create([
             'id' => $id_product,

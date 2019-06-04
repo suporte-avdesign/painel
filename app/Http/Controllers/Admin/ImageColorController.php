@@ -15,6 +15,7 @@ use AVDPainel\Interfaces\Admin\ConfigColorGroupInterface as InterHexa;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
 
+
 use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -50,6 +51,7 @@ class ImageColorController extends Controller
         $this->interProduct   = $interProduct;
         $this->configProduct  = $configProduct;
         $this->interInventary = $interInventary;
+
     }
 
 
@@ -111,10 +113,12 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Store 
+     * Date 03/06/2019
+     * uploadImages - create inventory to get the image
      *
-     * @param  \AVDPainel\Http\Requests\Admin\ProductColorsRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param ReqModel $request
+     * @param $idpro
+     * @return joson
      */
     public function store(ReqModel $request, $idpro)
     {
@@ -133,76 +137,47 @@ class ImageColorController extends Controller
 
             $image    = $this->interModel->create($dataForm, $config);
 
-            if ($image) {
+            $configProduct = $this->configProduct->setId(1);
 
-                $configProduct = $this->configProduct->setId(1);
-
-                if ($configProduct->grids == 1) {
-                    if ($product->kit == 1) {
-                        $grids = $this->interGrid->createKit($request['grids'], $image, $product);
-                        $inventary = $this->interInventary->createKit($grids, $image, $product);
-                    } else {
-                        $grids = $this->interGrid->createUnit($request['grids'], $image, $product);
-                        $inventary = $this->interInventary->createUnit($grids, $image, $product);
-                    }
+            if ($configProduct->grids == 1) {
+                if ($product->kit == 1) {
+                    $grids = $this->interGrid->createKit($request['grids'], $image, $product);
+                } else {
+                    $grids = $this->interGrid->createUnit($request['grids'], $image, $product);
                 }
-
-                if ($configProduct->group_colors == 1) {
-                    $dataGroups = $request['groups'];
-                    $groups = $this->interGroup->create($dataGroups, $image->product_id, $image->id);
-                }
-
-                if (!empty($file)) {
-                    $upload = $this->interModel->uploadImages($dataForm, $image, $config, $file);
-                }
-
-
-                $product_id = $image->product_id;
-                $success    = true;
-                $message    = 'A imagem foi salva';
-                $color      =  $image->color;
-                $name       =  $image->slug;
-                $code       =  $image->code;
-                $html       =  $image->html;
-                $id         =  $image->id;
-
-                DB::commit();
-
-            } else {
-
-                $product_id = false;
-                $success    = false;
-                $message    = 'Não foi possível salvar a imagem';
-                $id         =  null;
-                $name       =  null;
-                $color      =  null;
-                $code       =  null;
-                $html       =  null;
             }
 
-            $out = array(
-                'product_id' => $product_id,
-                'success'    => $success,
-                'message'    => $message,
-                'color'      => $color,
-                'name'       => $name,
-                'code'       => $code,
-                'html'       => $html,
-                'ac'         => $action,
-                'id'         => $id
-            );
-            return response()->json($out);
+            if ($configProduct->group_colors == 1) {
+                $dataGroups = $request['groups'];
+                $groups = $this->interGroup->create($dataGroups, $image->product_id, $image->id);
+            }
+
+            $photo = $this->interModel->uploadImages($config, $dataForm, $image, $product, $file);
+            if ($photo) {
+                if ($product->kit == 1) {
+                    $inventary = $this->interInventary->createKit($configProduct, $grids, $image, $product, $photo);
+                } else {
+                    $inventary = $this->interInventary->createUnit($configProduct, $grids, $image, $product, $photo);
+                }
+                if ($inventary) {
+
+                    $out = $this->interModel->uploadRender($config, $image, $action);
+
+                    DB::commit();
+
+                    return response()->json($out);
+                }
+            }
 
         } catch(\Exception $e){
-
             DB::rollback();
             return $e->getMessage();
-        }            
+        }
     }
 
 
     /**
-     * Editar as cores do produto
+     * Date: 06/02/2019
      *
      * @param  int  $idpro
      * @param  int  $id
@@ -252,12 +227,11 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Update Colors.
-     *
-     * @param  \AVDPainel\Http\Requests\Admin\ProductColorsRequest  $request
-     * @param  int  $idpro
-     * @param  int  $id     
-     * @return \Illuminate\Http\Response
+     * Date 06/03/2019
+     * @param ReqModel $request
+     * @param $idpro
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View|string
      */
     public function update(ReqModel $request, $idpro, $id)
     {
@@ -270,76 +244,55 @@ class ImageColorController extends Controller
 
             $file     = $request->file('file');
             $config   = $this->configImage->get();
-            $data     = $this->interModel->setId($id);
-            $product  = $data->product;
+            $image    = $this->interModel->setId($id);
+            $product  = $image->product;
             $dataForm = $request['img'];
-            $update = $this->interModel->update($dataForm, $id, $config, $file);
+            $action   = $dataForm['ac'];
+            $update = $this->interModel->update($dataForm, $config, $image);
             if ($update) {
                 $configProduct = $this->configProduct->setId(1);
                 if ($configProduct->grids == 1) {
-
-                    $dataGrids = $request['grids'];
                     /** Grids type kit */
                     if ($product->kit == 1) {
                         $qty = $request['qty'];
                         $des = $request['des'];
-                        $grids = $this->interGrid->updateKit($dataGrids, $data, $product, $qty, $des);
-                        if($grids){
-                           $inventary = $this->interInventary->updateKit($grids, $data, $product, $product->kit);
-                        }
+                        $grids = $this->interGrid->updateKit($request['grids'], $image, $product, $qty, $des);
                     } else {
-                        $updGrids = $this->interGrid->updateUnit($dataGrids, $data, $product);
+                        $grids = $this->interGrid->updateUnit($request['grids'], $image, $product);
                     }
                 }
 
+
                 if ($configProduct->group_colors == 1) {
-                    $dataGroups = $request['groups'];
-                    $groups = $this->interGroup->update($dataGroups, $data->product_id, $data->id);
+                    $groups = $this->interGroup->update($request['groups'], $image->product_id, $image->id);
                 }
-
-                $success = true;
-                $message = 'O produto foi alterado';
-                $id      =  $update->id;
-                $name    =  $update->slug;
-                $color   =  $update->color;
-                $code    =  $update->code;
-                $image   =  $update->image;
-                $html    =  $update->html;
-
-                 DB::commit();
-
-            } else {
-
-                $success = false;
-                $message = 'Não foi possível alterar o produto';
-                $id      =  null;
-                $name    =  null;
-                $color   =  null;
-                $code    =  null;
-                $image   =  null;
-                $html    =  null;
             }
 
-            $out = array(
-                'success' => $success,
-                'message' => $message,
-                'ac'      => 'update',
-                'id'      => $id,
-                'name'    => $name,
-                'color'   => $color,
-                'code'    => $code,
-                'image'   => $image,
-                'html'    => $html
+            if ($file) {
+                $photo = $this->interModel->uploadImages($config, $dataForm, $image, $product, $file);
+            } else {
+                $photo = $image->image;
+            }
 
-            );
+            if ($product->kit == 1) {
+                $inventary = $this->interInventary->updateKit($configProduct, $grids, $image, $product, $photo);
+            } else {
+                $inventary = $this->interInventary->updateUnit($configProduct, $grids, $image, $product, $photo);
+            }
 
-            return response()->json($out);
+            if ($inventary) {
+
+                $out = $this->interModel->uploadRender($config, $image, $action);
+
+                DB::commit();
+
+                return response()->json($out);
+            }
 
         } catch(\Exception $e){
-
             DB::rollback();
             return $e->getMessage();
-        }            
+        }
 
     }
 
@@ -362,6 +315,13 @@ class ImageColorController extends Controller
             $product = $this->interProduct->setId($idpro);
             $total   = count($product->images);
             if ($total >= 2) {
+
+                if ($product->kit == 1) {
+                    $inventary = $this->interInventary->deleteKit($product, $id);
+                } else {
+                    $inventary = $this->interInventary->deleteUnit($product, $id);
+                }
+
                 $delete  = $this->interModel->delete($id, $product, $config);
                 $reload  = false;
 
@@ -369,6 +329,7 @@ class ImageColorController extends Controller
                 $delete  = $this->interProduct->delete($idpro, $config);
                 $reload  = true;
             }
+
             if ($delete) {
                 $success = true;
                 $message = 'O produto foi excluido.';

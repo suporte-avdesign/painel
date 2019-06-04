@@ -14,11 +14,14 @@ class ConfigSliderTableSeeder extends Seeder
     public function run()
     {
         $date = date('Y-m-d H:i:s');
+        $this->deleteAllPhotosInProductPath();
+
+
         ConfigSlider::create([
             'type' => 'banner',
             'active' => constLang('active_true'),
             'delay' => 3000,
-            'path' => 'imagens/slider/',
+            'path' => 'images/slider/',
             'width' => '1260',
             'height' => '1200',
             'width_thumb' => '100',
@@ -27,5 +30,11 @@ class ConfigSliderTableSeeder extends Seeder
             'height_modal' => '800',
             'created_at' => $date
         ]);
+    }
+
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = ConfigSlider::IMAGES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
     }
 }

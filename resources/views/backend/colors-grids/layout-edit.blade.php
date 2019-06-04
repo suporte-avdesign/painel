@@ -13,12 +13,18 @@
             <legend class="legend">Grades  </legend>
         @endif
     @endif
-    <div class="align-right compact">
-        <a href="javascript:createGrid('{{$data->id}}','{{$stock}}','{{$kit}}');" class="button icon-plus blue-gradient" title="Adicionar"></a>
-    </div>
+    @if($stock == 0)
+        <div class="align-right compact">
+            <a href="javascript:createGrid('{{$data->id}}','{{$stock}}','{{$kit}}');" class="button icon-plus blue-gradient" title="Adicionar"></a>
+        </div>
+    @endif
     <div id="update-grids">
         @if($kit == 1)
-            @include('backend.colors-grids.form-edit-kits')
+            @if($stock == 1)
+                @include('backend.colors-grids.form-edit-kits-stock')
+            @else
+                @include('backend.colors-grids.form-edit-kits')
+            @endif
         @else
             @include('backend.colors-grids.form-edit-units')
         @endif

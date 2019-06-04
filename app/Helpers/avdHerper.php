@@ -1,6 +1,10 @@
 <?php
 
 
+
+/**
+ * Return config language
+ */
 if ( !function_exists('constLang'))
 {
     function constLang($key)

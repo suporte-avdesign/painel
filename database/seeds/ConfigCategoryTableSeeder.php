@@ -13,12 +13,13 @@ class ConfigCategoryTableSeeder extends Seeder
     public function run()
     {
         $date = date('Y-m-d H:i:s');
+        $this->deleteAllPhotosInProductPath();
 
         ConfigCategory::create([
             'grids' => 1,
             'description' => 1,
             'img_default' => 'D',
-            'path' => 'imagens/categorias/',
+            'path' => 'images/categories/',
             'img_featured' => 1,
             'width_featured' => 220,
             'height_featured' => 300,
@@ -30,4 +31,11 @@ class ConfigCategoryTableSeeder extends Seeder
             'created_at' => $date
         ]);
     }
+
+    private function deleteAllPhotosInProductPath()
+    {
+        $path = ConfigCategory::IMAGES_PATH;
+        \File::deleteDirectory(storage_path($path), true);
+    }
+
 }

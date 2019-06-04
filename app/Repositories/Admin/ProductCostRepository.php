@@ -34,9 +34,7 @@ class ProductCostRepository implements ProductCostInterface
 
         $data = $this->model->create($input);
         if ($data) {
-            generateAccessesTxt(date('H:i:s').
-            ' '.constLang('cost').':'.setReal($data->value)
-            );
+            generateAccessesTxt('- '.constLang('cost').':'.setReal($data->value));
         }
 
         return $data;        
@@ -57,9 +55,7 @@ class ProductCostRepository implements ProductCostInterface
         $update = $data->update($input);
 
         if ($update) {
-            generateAccessesTxt(date('H:i:s').
-                ' '.constLang('cost').':'.setReal($input['value'])
-            );
+            generateAccessesTxt('- '.constLang('cost').':'.setReal($input['value']));
         }
         return $update;     
     }
