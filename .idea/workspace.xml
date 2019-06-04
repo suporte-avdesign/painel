@@ -5,46 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits-stock.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Helpers/avdHerper.php" afterPath="$PROJECT_DIR$/app/Helpers/avdHerper.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/ConfigColorPositionInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/ConfigColorPositionInterface.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/AdminAccess.php" afterPath="$PROJECT_DIR$/app/Models/Admin/AdminAccess.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ConfigAdmin.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ConfigAdmin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ConfigBanner.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ConfigBanner.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ConfigBrand.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ConfigBrand.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ConfigCategory.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ConfigCategory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ConfigColorPosition.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ConfigColorPosition.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ConfigSection.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ConfigSection.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/ConfigSlider.php" afterPath="$PROJECT_DIR$/app/Models/Admin/ConfigSlider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Models/Admin/Inventary.php" afterPath="$PROJECT_DIR$/app/Models/Admin/Inventary.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ProductCostRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ProductCostRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/lang_pt-BR.php" afterPath="$PROJECT_DIR$/config/lang_pt-BR.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_05_31_111154_create_inventaries_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_05_31_111154_create_inventaries_table.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/AdminsTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/AdminsTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigAdminTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigAdminTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigBannerTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigBannerTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigBrandTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigBrandTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigCategoryTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigCategoryTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigColorPositionTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigColorPositionTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigSectionTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigSectionTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ConfigSliderTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ConfigSliderTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/seeds/ProductTableSeeder.php" afterPath="$PROJECT_DIR$/database/seeds/ProductTableSeeder.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/gallery-render.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/gallery-render.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -116,11 +77,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Inventary.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Inventary.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Models/Admin/Inventary.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="162">
               <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="216">
+              <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -168,7 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/storage/app/Accesses/43029545/01-06-2019.txt" />
         <option value="$PROJECT_DIR$/app/Models/Admin/GridProduct.php" />
         <option value="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/PainelController.php" />
@@ -219,6 +189,7 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" />
         <option value="$PROJECT_DIR$/app/Models/Admin/Inventary.php" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -581,12 +552,12 @@
       <workItem from="1558738292131" duration="38258000" />
       <workItem from="1558810299912" duration="73981000" />
       <workItem from="1558953999958" duration="184127000" />
-      <workItem from="1559308038199" duration="214960000" />
+      <workItem from="1559308038199" duration="215293000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="768016000" />
+    <option name="totallyTimeSpent" value="768349000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -645,14 +616,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ConfigColorPositionRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="181" column="54" lean-forward="true" selection-start-line="181" selection-start-column="12" selection-end-line="181" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/database/seeds/ConfigPagesTableSeeder.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1109,6 +1072,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="162">
           <caret line="9" column="9" lean-forward="true" selection-start-line="9" selection-start-column="9" selection-end-line="9" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="0" lean-forward="false" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
           <folding />
         </state>
       </provider>
