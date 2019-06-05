@@ -182,7 +182,7 @@ return [
     ],
     'messages' => [
         'products' => [
-            'delete_true' => 'O produto foi excluido',
+            'delete_true' => 'Excluiu o Produto',
             'delete_false' => 'Não foi possível excuir o produto',
             'total_colors' => 'Total de Cores'
         ],

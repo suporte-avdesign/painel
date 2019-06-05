@@ -24,10 +24,7 @@ class CreateInventariesTable extends Migration
                 constLang('profile_name.admin'),
                 constLang('profile_name.user')
             ]);
-            $table->enum('type_movement', [
-                constLang('type_movement.input'),
-                constLang('type_movement.output')
-            ]);
+            $table->string('type_movement', 100)->nullable();
             $table->text('note')->nullable();
             $table->string('brand', 30);
             $table->string('section', 30);

@@ -280,7 +280,6 @@ class ImageColorRepository implements ImageColorInterface
     }
 
 
-
     /**
      * Date 06/02/2019
      *
@@ -391,6 +390,60 @@ class ImageColorRepository implements ImageColorInterface
 
     }
 
+
+    /**
+     * Date: 06/04/2019
+     *
+     * @param $image
+     * @param $product
+     * @param $config
+     * @return bool
+     */
+    public function delete($image, $product, $config)
+    {
+        $positions = $image->positions;
+
+        foreach ($config as $value) {
+
+            if (!empty($positions)) {
+
+                if ($value->type == 'P') {
+                    foreach ($positions as $position) {
+                        $pos = $this->disk.$value->path.$position->image;
+                        if (file_exists($pos)) {
+                            $remove = unlink($pos);
+                        }
+                    }
+                }
+            }
+
+            if ($value->type == 'C') {
+                /* Copiar  a thumb */
+                if ($value->default != 'T') {
+                    $color = $this->disk.$value->path.$image->image;
+                    if (file_exists($color)) {
+                        $remove = unlink($color);
+                    }
+                }
+            }
+        }
+
+        $delete = $image->delete();
+
+        if ($delete) {
+            ($image->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ' '.constLang('messages.products.delete_true').
+                    ':'.$product->name.
+                    ', '.constLang('code').':'.$image->code.
+                    ', '.constLang('color').':'.$image->color.
+                    ', '.constLang('status').':'.$image->active.
+                    ', '.constLang('cover').':'.$cover)
+            );
+            return true;
+        }
+    }
+
     /**
      * Date: 06/03/2019
      *
@@ -498,55 +551,6 @@ class ImageColorRepository implements ImageColorInterface
             );
         }
         return $out;
-    }
-
-    /**
-     * Date: 06/04/2019
-     *
-     * @param $image
-     * @param $product
-     * @param $config
-     * @return bool
-     */
-    public function delete($image, $product, $config)
-    {
-        $positions = $image->positions;
-
-        foreach ($config as $value) {
-            if ($value->type == 'P') {
-                foreach ($positions as $position) {
-                    $image = $this->disk.$value->path.$position->image;
-                    if (file_exists($image)) {
-                        $remove = unlink($image);
-                    }
-                }
-            }
-
-            if ($value->type == 'C') {
-                /* Copiar  a thumb */
-                if ($value->default != 'T') {
-                    $color = $this->disk.$value->path.$image->image;
-                    if (file_exists($color)) {
-                        $remove = unlink($color);
-                    }
-                }
-            }
-        }
-
-        $delete = $image->delete();
-
-        if ($delete) {
-            ($image->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
-            generateAccessesTxt(date('H:i:s').utf8_decode(constLang('messages.product.delete_true').
-                    ':'.Str::slug($product->name.
-                    ' - '.$product->category.' - '.$product->section.' - '.$product->brand).
-                    ', '.constLang('code').':'.$image->code.
-                    ', '.constLang('color').':'.$image->color.
-                    ', '.constLang('status').':'.$image->active.
-                    ', '.constLang('cover').':'.$cover)
-            );
-            return true;
-        }
     }
 
 

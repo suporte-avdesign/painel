@@ -180,14 +180,13 @@ class InventaryRepository implements InventaryInterface
      */
     public function deleteKit($product, $image, $grids)
     {
-
         $dataForm['product_id'] = $product->id;
         $dataForm['image_color_id'] = $image->id;
         $dataForm['grid_id'] = $grids->id;
         $dataForm['admin_id'] = auth()->user()->id;
         $dataForm['profile_name'] = constLang('profile_name.admin');
         $dataForm['type_movement'] = constLang('type_movement.delete');
-        $dataForm['note'] = constLang('messages.products.delete_true').auth()->user()->name;
+        $dataForm['note'] = constLang('messages.products.delete_true').' '.auth()->user()->name;
         $dataForm['brand'] = $product->brand;
         $dataForm['section'] = $product->section;
         $dataForm['category'] = $product->category;

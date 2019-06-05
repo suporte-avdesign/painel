@@ -584,11 +584,15 @@ class ProductRepository implements ProductInterface
                         }
                     }
                 }
-                if ($value->type == 'P') {
-                    foreach ($image->positions as $position) {
-                        $image = $this->disk.$value->path.$position->image;
-                        if (file_exists($image)) {
-                            $remove = unlink($image);
+
+                $positions = $image->positions;
+                if (!empty($positions)) {
+                    if ($value->type == 'P') {
+                        foreach ($positions as $position) {
+                            $image = $this->disk.$value->path.$position->image;
+                            if (file_exists($image)) {
+                                $remove = unlink($image);
+                            }
                         }
                     }
                 }
@@ -613,6 +617,7 @@ class ProductRepository implements ProductInterface
 
     /**
      * Date 06/04/2019
+     * Excludes if the image is unique
      *
      * @param $config
      * @param $product
@@ -621,25 +626,6 @@ class ProductRepository implements ProductInterface
      */
     public function deleteUnique($config, $product, $image)
     {
-        foreach ($config as $value) {
-            if ($value->type == 'C') {
-                if ($value->default != 'T') {
-                    $image = $this->disk . $value->path . $image->image;
-                    if (file_exists($image)) {
-                        $remove = unlink($image);
-                    }
-                }
-            }
-            if ($value->type == 'P') {
-                foreach ($image->positions as $position) {
-                    $image = $this->disk.$value->path.$position->image;
-                    if (file_exists($image)) {
-                        $remove = unlink($image);
-                    }
-                }
-            }
-        }
-
         $delete = $product->delete();
         if ($delete) {
             return true;

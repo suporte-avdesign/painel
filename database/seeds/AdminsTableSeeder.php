@@ -46,7 +46,7 @@ class AdminsTableSeeder extends Seeder
         AdminAccess::create([
             'admin_id' => $id,
             'last_ip' => '',
-            'last_url' => 'config/sistema',
+            'last_url' => 'config/system',
             'last_logout' => '',
             'qty_visits' => 0
         ]);

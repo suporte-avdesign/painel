@@ -77,9 +77,10 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Adicionar uma nova cor ao produto
+     * Date: 06/05/2019
      *
-     * @return \Illuminate\Http\Response
+     * @param $idpro
+     * @return View
      */
     public function create($idpro)
     {
@@ -325,8 +326,8 @@ class ImageColorController extends Controller
 
             $total = $product->images->count();
             if ($total >= 2) {
-                $delete = $this->interModel->delete($image, $product, $config);
                 $cover  = $this->interModel->changeCover($product->id, true);
+                $delete = $this->interModel->delete($image, $product, $config);
                 $reload  = false;
             } else {
                 $delete  = $this->interProduct->deleteUnique($config, $product, $image);
