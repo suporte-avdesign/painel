@@ -136,7 +136,7 @@ class ImageColorController extends Controller
             $config   = $this->configImage->get();
             $product  = $this->interProduct->setId($dataForm['product_id']);
 
-            $image    = $this->interModel->create($dataForm, $config);
+            $image    = $this->interModel->create($dataForm, $product, $config);
 
             $configProduct = $this->configProduct->setId(1);
 
@@ -249,7 +249,7 @@ class ImageColorController extends Controller
             $product  = $image->product;
             $dataForm = $request['img'];
             $action   = $dataForm['ac'];
-            $update = $this->interModel->update($dataForm, $config, $image);
+            $update = $this->interModel->update($dataForm, $config, $product, $image);
             if ($update) {
                 $configProduct = $this->configProduct->setId(1);
                 if ($configProduct->grids == 1) {
@@ -326,7 +326,6 @@ class ImageColorController extends Controller
 
             $total = $product->images->count();
             if ($total >= 2) {
-                $cover  = $this->interModel->changeCover($product->id, true);
                 $delete = $this->interModel->delete($image, $product, $config);
                 $reload  = false;
             } else {
@@ -376,9 +375,9 @@ class ImageColorController extends Controller
         try{
             DB::beginTransaction();
 
-            $dataForm = $request->all();
+            $input    = $request->all();
             $product  = $this->interProduct->setId($idpro);
-            $status   = $this->interModel->status($dataForm, $product, $id);
+            $status   = $this->interModel->status($input, $product, $this->view, $id);
 
             DB::commit();
 

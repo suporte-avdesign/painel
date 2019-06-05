@@ -17,17 +17,17 @@
 		</div>	
 		<div id="load_form_colors_{{$idpro}}"></div>
 
-		<h4 class="blue underline"><strong>{{$title_count}}</strong></h4>	
+		<h4 class="blue underline"><strong>{{$title_count}}</strong></h4>
 
 		<ul id="gallery-colors-{{$idpro}}" class="gallery">
 		    @forelse($colors->sortBy('ordem') as $color)
-				<li id="img-colors-{{$color->id}}">					
+				<li id="img-colors-{{$color->id}}">
 					<img src="{{url($path.$color->image)}}" class="framed">
 					<div class="controls">
 						@php
 							($color->active == constLang('active_true') ? $col = 'green' : $col = 'red');
 							($color->cover == 1 ? $title = constLang('cover') : $title = '');
-							($color->cover == 1 ? $option = '{"classes":["red-gradient"],"position":"top"}' : $option = ''); 
+							($color->cover == 1 ? $option = '{"classes":["red-gradient"],"position":"top"}' : $option = '');
 						@endphp
 						<span id="btns-{{$color->id}}" class="button-group compact children-tooltip" data-tooltip-options='{{$option}}'>
 							<button onclick="statusColor('{{$color->id}}','{{route('status-color', ['idpro' => $idpro,'id' => $color->id])}}','{{$color->active}}','{{$color->capa}}','{{csrf_token()}}');" class="button icon-tick {{$col}}-gradient" title="Alterar status {{$title}}"></button>

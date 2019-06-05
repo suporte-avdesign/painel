@@ -154,8 +154,8 @@ class ImagePositionRepository implements ImagePositionInterface
         if ($count == 1) {
             $order = '0'.$input['order'];
             if ($order != $image->order) {
-                $dataForm['order'] = $input['order'];
-                $change .= ', '.constLang('order').':'.$input['order'];
+                $dataForm['order'] = $order;
+                $change .= ', '.constLang('order').':'.$order;
             }
         }
         if ($change) {

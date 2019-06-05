@@ -299,14 +299,11 @@ class ImageColorRepository implements ImageColorInterface
      * @param $config
      * @return mixed
      */
-    public function create($input, $config)
+    public function create($input, $product, $config)
     {
         $count = strlen($input['order']);
         if ($count == 1) {
             $dataForm['order'] = '0'.$input['order'];
-        }
-        if ($input['cover'] == 1) {
-            $change = $this->changeCover($input['product_id']);
         }
 
         $dataForm['html']        = $input['html'];
@@ -324,6 +321,9 @@ class ImageColorRepository implements ImageColorInterface
         $data = $this->model->create($dataForm);
         //dd($data);
         if ($data) {
+
+            $change = $this->changeCover($product, $data);
+
             ($data->cover == 1 ? $cover = constLang('active_true') : $cover = constLang('active_false'));
             generateAccessesTxt(utf8_decode('- Upload Foto:'.
                 ' '.constLang('code').':'.$data->code.
@@ -343,7 +343,7 @@ class ImageColorRepository implements ImageColorInterface
      * @param $image
      * @return bool
      */
-    public function update($input, $config, $image)
+    public function update($input, $config, $product, $image)
     {
         $access   = constLang('updated').' '.constLang('product');
         $dataForm = [];
@@ -368,9 +368,8 @@ class ImageColorRepository implements ImageColorInterface
             $access .= ' '.constLang('status').':'.$image->active.'/'.$input['active'];
         }
         if ($image->cover != $input['cover']) {
-            if ($input['cover'] == 1) {
-                $change = $this->changeCover($image->product_id);
-            }
+            $dataForm['cover'] = $input['cover'];
+            $change = $this->changeCover($product, $image);
             $access .= ' '.constLang('cover').':'.$image->cover.'/'.$input['cover'];
         }
         if ($image->order != $input['order']) {
@@ -403,10 +402,10 @@ class ImageColorRepository implements ImageColorInterface
     {
         $positions = $image->positions;
 
+        $change = $this->changeCover($product, $image, 'delete');
+
         foreach ($config as $value) {
-
             if (!empty($positions)) {
-
                 if ($value->type == 'P') {
                     foreach ($positions as $position) {
                         $pos = $this->disk.$value->path.$position->image;
@@ -456,16 +455,6 @@ class ImageColorRepository implements ImageColorInterface
      */
     public function uploadImages($config, $input, $image, $product, $file)
     {
-        if ($input['ac'] == 'ceate') {
-            $cover = $input['cover'];
-            if (count($image) == 1) {
-                $dataForm['cover'] = 1;
-            } else {
-                if ($cover == 0) {
-                    $this->changeCover($product->id, true);
-                }
-            }
-        }
         if ($input['ac'] == 'update') {
             foreach ($config as $value) {
                 $photo = $this->disk . $value->path . $image->image;
@@ -553,67 +542,86 @@ class ImageColorRepository implements ImageColorInterface
         return $out;
     }
 
-
     /**
-     * Status
+     * Date: 06/05/2019
      *
-     * @param  array $input
-     * @param  int $id
-     * @return json
+     * @param $input
+     * @param $product
+     * @param $view
+     * @param $id
+     * @return array
      */
-    public function status($input, $product, $id)
+    public function status($input, $product, $view, $id)
     {
-        $data = $this->model->find($id);
+        $html  = null;
+        $alert = null;
+        $image = $this->model->find($id);
 
-        $update = $data->update($input);
-        if ($update) {
-            $alert = null;
-            if( $data->active == constLang('active_true') ) {
-                $col = 'green-gradient';
-                $status = constLang('active_true');
-            } else {
-                $col = 'red-gradient';
-                $status = constLang('active_false');
-            }
+        ($input['active'] == constLang('active_true') ?
+            $dataForm['active'] = constLang('active_false') :
+            $dataForm['active'] = constLang('active_true'));
 
-            if ($data->cover == 1) {
-                $title  = 'capa';
-                $option = '{"classes":["red-gradient"],"position":"top"}';
-                if ($data->active == 0) {
-                    $alert = 'Esta imagem era capa!<br>Coloque outra imagem como capa com o status: Ativo.';
-                }
-            } else {
-                $title  = '';
-                $option = '';
-            }
+        $cover = $this->changeCover($product, $image, 'status');
 
-
-            generateAccessesTxt(date('H:i:s'). utf8_decode(" Alterou o status da cor do Produto:".
-                    Str::slug($product->name.'-'.$product->category.'-'.$product->section.'-'.$product->brand).
-                    ', para Status:'.$status)
-            );
-
-            $click_status = "statusColor('{$data->id}', '".route('status-color', ['idpro' => $data->product_id,'id' => $data->id])."', '{$data->active}','{$data->cover}','".csrf_token()."')";
-            $click_edit   = "abreModal('Editar: Cor {$data->color}', '".route('colors-product.edit', ['idpro' => $data->product_id,'id' => $data->id])."', 'form-colors', 2, 'true',800,780)";
-            $click_delete = "deleteColor('$data->id', '".route('colors-product.destroy', ['idpro' => $data->product_id, 'id' =>$data->id])."')";
-
-            $html  = '<button onclick="'.$click_status.'" class="button icon-tick '.$col.'" title="Alterar status "'.$title.'"></button>';
-            $html .= '<button onclick="'.$click_edit.'" class="button" title="Editar imagem '.$title.'">Editar</button>';
-            $html .= '<button onclick="'.$click_delete.'" class="button icon-trash red-gradient" title="Excluir imagem '.$title.'"></button>';
-
-            $out = array(
-                "success" => true,
-                "message" => "A status foi alterado.",
-                "html"  => $html,
-                'alert' => $alert
-            );
-
-            return $out;
+        if ($cover == 'alert') {
+            $alert = 'Esta imagem era capa!<br>Coloque outra imagem como capa com o status: Ativo.';
         }
 
-        return array(
-            'success' => false,
-            'message' => "Não foi possível alterar o status.");
+        $update = $image->update($dataForm);
+        if ($update) {
+            $success = true;
+            $message = constLang('status_true').' '.$image->active;
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                ' '.constLang('updated').
+                ' '.constLang('status').
+                ' '.constLang('product').
+                ':'.$product->name.
+                ', '.constLang('code').':'.$image->code.
+                ' - '.$image->active)
+            );
+
+            $html = view("{$view}.status-render", compact('image'))->render();
+        } else {
+            $success = false;
+            $message = constLang('status_lase');
+        }
+
+        $out = array(
+            "success" => $success,
+            "message" => $message,
+            "html"  => $html,
+            'alert' => $alert
+        );
+
+        return $out;
+    }
+
+    /**
+     * Date: 06/05/2019
+     * Actions (delete,status)
+     * product > 1
+     * status != active
+     *
+     * @param $product
+     * @param $id
+     * @param string $change
+     */
+    public function changeCover($product, $image, $action=null)
+    {
+        /*
+        $count = $product->count();
+        foreach ($product as $image) {
+            $input = ['cover' => 0];
+            $this->model->find($image->id)->update($input);
+        }
+
+        /*
+        if ($change) {
+            $update = $this->model->where('product_id', $id)
+                ->first()->update(['cover' => 1]);
+        }
+        */
+
     }
 
 
@@ -668,29 +676,6 @@ class ImageColorRepository implements ImageColorInterface
 
 
 
-    /**
-     * Change image cover
-     *
-     * @param  int $idpro
-     * @param  int $id
-     * @return void
-     */
-    public function changeCover($id, $change ='')
-    {
-        $data = $this->model->where('product_id', $id)->get();
-        if (count($data) >= 1) {
-            foreach ($data as $value) {
-                $input = ['cover' => 0];
-                $this->model->find($value->id)->update($input);
-            }
-
-            if ($change) {
-                $update = $this->model->where('product_id', $id)
-                    ->first()->update(['cover' => 1]);
-            }
-
-        }
-    }
 
 
 

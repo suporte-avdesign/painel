@@ -7,17 +7,20 @@
 	</div>
 	<div class="with-padding silver-gradient">
 		@foreach($images as $image)
-			<ul class="list spaced">
-				<li>
-					<h4 class="big-text blue underline"><span class="icon-blue icon-size1 icon-camera"></span><strong> {{constLang('color')}}: {{$image->color}}</strong></h4>
-					<div class="button-group absolute-right compact">
+			<div class="list spaced">
+				<div class="float-right">
+					<span class="button-group compact align-right">
 						<a href="javascript:void(0)"
-							onclick="abreModal('{{constLang('images.create')}}', '{{route('positions-product.create', $image->id)}}', 'form-positions', 2, 'true',800,780);"
-							class="button icon-camera blue-gradient glossy">{{constLang('add')}}
+						   onclick="abreModal('{{constLang('images.create')}}', '{{route('positions-product.create', $image->id)}}', 'form-positions', 2, 'true',800,780);"
+						   class="button icon-camera blue-gradient glossy">{{constLang('add')}}
 						</a>
-					</div>
-				</li>
-			</ul>
+					</span>
+				</div>
+				<h4 class="big-text blue underline">
+					<strong> {{constLang('color')}}: {{$image->color}}</strong>
+
+				</h4>
+			</div>
 			<ul id="gallery-positions-{{$image->id}}" class="gallery">
 				@foreach($image->positions->sortBy('order') as $position)
 					<li id="img-positions-{{$position->id}}">					
