@@ -54,11 +54,11 @@ class ImageColorController extends Controller
 
     }
 
-
     /**
-     * Mostar as imagens referentes as cores do produto
+     * Date: 06/05/2019
      *
-     * @return \Illuminate\Http\Response
+     * @param $idpro
+     * @return View
      */
     public function index($idpro)
     {
@@ -70,8 +70,8 @@ class ImageColorController extends Controller
         $colors       = $this->interModel->get($idpro);
         $path         = 'storage/'.$configImage->path;
 
-        (count($colors) >= 1 ? $title_count = 'Clique na imagem para editar' :
-                               $title_count = 'Não existe imagem para este produto');
+        (count($colors) >= 1 ? $title_count = constLang('images.count_true') :
+                               $title_count = constLang('images.count_false'));
 
         return view("{$this->view}.gallery", compact('colors','path','idpro', 'title_count'));
     }
@@ -297,7 +297,7 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Remove
+     * Date 06/04/2019
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -312,33 +312,36 @@ class ImageColorController extends Controller
             DB::beginTransaction();
 
             $config  = $this->configImage->get();
-            $product = $this->interProduct->setId($idpro);
-            $total   = count($product->images);
-            if ($total >= 2) {
+            $image   = $this->interModel->setId($id);
+            $product = $image->product;
 
-                if ($product->kit == 1) {
-                    $inventary = $this->interInventary->deleteKit($product, $id);
-                } else {
-                    $inventary = $this->interInventary->deleteUnit($product, $id);
-                }
-
-                $delete  = $this->interModel->delete($id, $product, $config);
-                $reload  = false;
-
+            if ($product->kit == 1) {
+                $grids = $this->interGrid->getKit($image->id);
+                $inventary = $this->interInventary->deleteKit($product, $image, $grids);
             } else {
-                $delete  = $this->interProduct->delete($idpro, $config);
+                $grids = $this->interGrid->getUnit($image->id);
+                $inventary = $this->interInventary->deleteUnit($product, $image, $grids);
+            }
+
+            $total = $product->images->count();
+            if ($total >= 2) {
+                $delete = $this->interModel->delete($image, $product, $config);
+                $cover  = $this->interModel->changeCover($product->id, true);
+                $reload  = false;
+            } else {
+                $delete  = $this->interProduct->deleteUnique($config, $product, $image);
                 $reload  = true;
             }
 
             if ($delete) {
                 $success = true;
-                $message = 'O produto foi excluido.';
+                $message = constLang('messages.products.delete_true');
 
                 DB::commit();
 
             } else {
                 $success = false;
-                $message = 'Não foi possível excuir o produto.';
+                $message = constLang('messages.products.delete_false');
             }
 
             $out = array(
@@ -387,67 +390,6 @@ class ImageColorController extends Controller
         }            
 
     }
-
-
-    /**
-     * Add Grid
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-    public function addGrid($id)
-    {
-        if( Gate::denies("{$this->ability}-update") ) {
-            return view("backend.erros.message-401");
-        }
-
-        $data = $this->interModel->setId($id);
-
-        return view("{$this->view}.modal.add-grid", compact('data'));
-    }
-     *
-     *
-     */
-
-    /**
-     * Update grids stock or kit.
-     *
-     * @param  int  $id
-     * @param  int  $stock
-     * @param  int  $kit
-     * @return \Illuminate\Http\Response
-     */
-    /*
-    public function grids($id, $stock, $kit)
-    {
-        if( Gate::denies("{$this->ability}-update") ) {
-            return view("backend.erros.message-401");
-        }
-
-        if ($kit == 1 ? $type = 'kit' : $type = 'unit');
-
-        $data  = $this->interModel->setId($id);
-        $grids = $data->grids->where('type', $type);
-
-
-        if ($kit == 1) {
-            return view("{$this->view}.modal.forms.grids-update-kits", compact(
-                'stock',
-                'grids',
-                'data',
-                'kit'
-            ));
-        } else {
-            return view("{$this->view}.modal.forms.grids-update", compact(
-                'stock',
-                'grids',
-                'data',
-                'kit'
-            ));
-        }
-    }
-    */
-
-
 
     /**
      * All Colors.
@@ -506,10 +448,5 @@ class ImageColorController extends Controller
 
         return response()->json($status);
     }
-
-
-
-
-
 
 }

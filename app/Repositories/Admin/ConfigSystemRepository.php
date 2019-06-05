@@ -58,8 +58,9 @@ class ConfigSystemRepository implements ConfigSystemInterface
             );
 
             generateAccessesTxt(
-                date('H:i:s ').constLang('accesses.update').
-                    constLang('ConfigSystem.tables')
+                date('H:i:s ').
+                ' '.constLang('updated').
+                ' '.constLang('tables_preference')
             );
 
             $success = true;

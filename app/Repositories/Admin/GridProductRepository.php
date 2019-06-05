@@ -22,15 +22,29 @@ class GridProductRepository implements GridProductInterface
     }
 
     /**
-     * Init Model
+     * Date: 04/06/2019
      *
-     * @return array
+     * @param $id
+     * @return mixed
      */
-    public function get($id)
+    public function getUnit($id)
     {
         $data  = $this->model->where('image_color_id', $id)->get();
         return $data;    
     }
+
+    /**
+     * Date: 04/06/2019
+     *
+     * @param $id
+     * @return mixed
+     */
+    public function getKit($id)
+    {
+        $data  = $this->model->where('image_color_id', $id)->first();
+        return $data;
+    }
+
 
 
     /**
@@ -217,7 +231,7 @@ class GridProductRepository implements GridProductInterface
         if ($change){
             $update = $data->update($dataForm);
             if ($update) {
-                generateAccessesTxt(constLang('accesses.update').''.constLang('grid').$change);
+                generateAccessesTxt(constLang('updated').''.constLang('grid').$change);
                 $data['entry'] = $input['input'];
                 $data['previous_stock'] = $data->id;
                 return $data;

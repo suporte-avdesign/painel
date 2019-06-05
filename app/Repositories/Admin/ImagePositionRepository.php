@@ -63,173 +63,134 @@ class ImagePositionRepository implements ImagePositionInterface
      * @param  file $file
      * @return array
      */
-    public function create($input, $config, $file)
+    public function create($input, $config, $file, $wiew, $action)
     {
-        // if < 10 add 0 in front
         $count = strlen($input['order']);
         if ($count == 1) {
-            $input['order'] = '0'.$input['order'];
+            $dataForm['order'] = '0'.$input['order'];
         }
-
-        $ext      = $file->getClientOriginalExtension();
-        $name     = $input['name'].'-'.numLetter(date('Ymdhs'), 'letter').'.'.$ext;
-
-        foreach ($config as $value) {
-            if ($value->type == 'P') {
-                $width    = $value->width;
-                $height   = $value->height;
-                $path     = $this->disk . $value->path;
-                $upload = Image::make($file)->resize($width, $height)->save($path.$name);
-
-            }
-        }          
-           
+        $dataForm['image_color_id'] = $input['image_color_id'];
+        $dataForm['active'] = $input['active'];
+        $name = substr($input['name'], 0, -4);
+        $upload = $this->uploadImagem($config, $file, $name, $action);
+        $dataForm['image'] = $upload;
         if ($upload) {
-
             $input['image'] = $name;
-            
-            $data = $this->model->create($input);
-            if ($data) {
-
-                if ( $data->active == 1 ) {
-                    $status = 'Ativo';
-                    $col    = 'green';
-
-                } else {
-                    $status = 'Inativo';
-                    $col    = 'red';
-                }
+            $image = $this->model->create($dataForm);
+            if ($image) {
+                generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ', '.constLang('upload_true.position').' '.$upload.
+                    ', '.constLang('status').':'.$image->active.
+                    ', '.constLang('order').':'.$image->order)
+                );
+                $success  = true;
+                $message  = constLang('upload_true.image');
+                $color_id = $image->image_color_id;
 
                 foreach ($config as $value) {
-                    if ($value->default == 'N') {
-                        $src = $this->photoUrl . $value->path;
+                    if ($value->default == 'T') {
+                        $path = $this->photoUrl.$value->path;
                     }
                 }
-
-                $click_status = "statusPosition('{$data->id}', '".route('status-position', $data->id)."', '{$data->active}', '".csrf_token()."')";
-                $click_edit   = "abreModal('Editar: Posição', '".route('positions-product.edit', ['idimg' => $data->image_color_id,'id' => $data->id])."', 'form-positions', 2, 'true',800,780)";
-                $click_delete = "deletePosition('{$data->id}', '".route('positions-product.destroy', ['idimg' => $data->image_color_id, 'id' => $data->id])."')";
-
-                $html = '<li id="img-positions-'.$data->id.'">';
-                    $html .= '<img src="'.url($src.$data->image).'" class="framed"/>';
-                    $html .= '<div class="controls">';
-                        $html .= '<span id="btns-'.$data->id.'" class="button-group compact children-tooltip">';
-
-                            $html .= '<button id onclick="'.$click_status.'" class="button icon-tick '.$col.'-gradient" title="Alterar status"></button>';
-                            $html .= '<button onclick="'.$click_edit.'" class="button" title="Editar imagem">Editar</button>';
-                            $html .= '<button onclick="'.$click_delete.'" class="button icon-trash red-gradient" title="Excluir imagem"></button>';
-                        
-                        $html .= '</span>';
-                    $html .= '</div>';
-                $html .= '</li>';
-
-                $data['html'] = $html;
-
-                $color = $this->model->find($data->id)->color;
-
-                generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ', Adicionou a imagem posição do Produto:'.$color->slug.
-                    ', Código:'.$color->code.
-                    ', Cor:'.$color->code.
-                    ', Status:'.$status)
-                );
-                return $data;
+                $html = view("{$wiew}.gallery-render", compact('path','image', 'action'))->render();
+            } else {
+                $success  = false;
+                $message  = constLang('upload_false.image');
+                $color_id = null;
+                $html     = null;
             }
+        } else {
+            $success  = false;
+            $message  = constLang('error.server');
+            $color_id = null;
+            $html     = null;
         }
-
-        return false;
+        $out = array(
+            'success' => $success,
+            'message' => $message,
+            'ac' => $action,
+            'html' => $html,
+            'color_id' => $color_id
+        );
+        return $out;
     }
 
-
     /**
-     * Update the specified resource in storage.
+     * Date 06/05/2019
      *
-     * @param  array $input
-     * @param  int $id
-     * @param  array $config 
-     * @param  file $file
-     * @return array
+     * @param $input
+     * @param $image
+     * @param $config
+     * @param $file
+     * @param $action
+     * @return mixed
      */
-    public function update($input, $id, $config, $file)
+    public function update($input, $image, $config, $file, $wiew, $action)
     {
-        // if < 10 add 0 in front
-        $count = strlen($input['order']);
-        if ($count == 1) {
-            $input['order'] = '0'.$input['order'];
-        }
-
-        $data = $this->model->find($id);
-        $corrent_name = substr($data->image, 0, -4);
-
+        $change  = null;
+        $message = constLang('update_true');
+        $corrent_name = substr($image->image, 0, -4);
         if (!empty($file)) {
-
-            foreach ($config as $value) {
-                $image = $this->disk.$value->path.$data->image;
-                if (file_exists($image)) {
-                    $delete = unlink($image);
-                }
-            }
-
-            $ext  = $file->getClientOriginalExtension();
-            $name = $corrent_name.numLetter(date('Ymdhs'),'letter').'.'.$ext;        
-            foreach ($config as $value) {
-                if ($value->type == 'P') {
-                    $width    = $value->width;
-                    $height   = $value->height;
-                    $path     = $this->disk . $value->path;
-                    $upload = Image::make($file)->resize($width, $height)->save($path.$name);
-                }
-            }
-
+            $upload = $this->uploadImagem($config, $file, $corrent_name, $action);
             if ($upload) {
-                $input['image'] = $name;
-            }
-        }
 
-        $update = $data->update($input);
-        if ($update) {
-
-            if ( $data->active == 1 ) {
-                $status = 'Ativo';
-                $col    = 'green';
+                $dataForm['image'] = $upload;
+                $change  = ' '.constLang('upload_true.position').' '.$upload;
+                $success = true;
+                $message = constLang('upload_true.image');
 
             } else {
-                $status = 'Inativo';
-                $col    = 'red';
+                $success = true;
+                $message = constLang('upload_false');
             }
-
-            foreach ($config as $value) {
-                if ($value->default == 'N') {
-                    $src = $this->photoUrl.$value->path;
-                }
-            }
-
-            $click_status = "statusPosition('{$data->id}', '".route('status-position', $data->id)."', '{$data->active}', '".csrf_token()."')";
-            $click_edit   = "abreModal('Editar: Posição', '".route('positions-product.edit', ['idimg' => $data->image_color_id,'id' => $data->id])."', 'form-positions', 2, 'true',800,780)";
-            $click_delete = "deletePosition('{$data->id}', '".route('positions-product.destroy', ['idimg' => $data->image_color_id, 'id' => $data->id])."')";
-
-            $html  = '<img src="'.url($src.$data->image).'" class="framed"/>';
-            $html .= '<div class="controls">';
-                $html .= '<span id="btns-'.$data->id.'" class="button-group compact children-tooltip">';
-                    $html .= '<button id onclick="'.$click_status.'" class="button icon-tick '.$col.'-gradient" title="Alterar status"></button>';
-                    $html .= '<button onclick="'.$click_edit.'" class="button" title="Editar imagem">Editar</button>';
-                    $html .= '<button onclick="'.$click_delete.'" class="button icon-trash red-gradient" title="Excluir imagem"></button>';
-                $html .= '</span>';
-            $html .= '</div>';
-
-            $data['html'] = $html;
-
-            (!empty($file) ? $text = ', Alterou a imagem' : $text = ', Alterou os dados da imagem');
-            ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
-            generateAccessesTxt(date('H:i:s').utf8_decode($text.
-                ' da Posição:'.$corrent_name.
-                ', Status:'.$status)
-            );
-
-            return $data;
+        } else {
+            $success = true;
         }
+        if ($input['active'] != $image->active) {
+            $dataForm['active'] = $input['active'];
+            $change .= ', '.constLang('status').':'.$input['active'];
+        }
+        $count = strlen($input['order']);
+        if ($count == 1) {
+            $order = '0'.$input['order'];
+            if ($order != $image->order) {
+                $dataForm['order'] = $input['order'];
+                $change .= ', '.constLang('order').':'.$input['order'];
+            }
+        }
+        if ($change) {
+            $update = $image->update($dataForm);
+            if ($update) {
+                $success = true;
+                if (!empty($file)) {
+                    generateAccessesTxt(date('H:i:s').utf8_decode($change));
+                } else {
+                    generateAccessesTxt(date('H:i:s').utf8_decode(
+                        ' '.constLang('updated').
+                        ' '.constLang('image').
+                        ' '.constLang('position').$change)
+                    );
+                }
 
-        return false;        
+            } else {
+                $success = false;
+                $message = constLang('upload_false');
+            }
+        }
+        foreach ($config as $value) {
+            if ($value->default == 'T') {
+                $path = $this->photoUrl.$value->path;
+            }
+        }
+        $html = view("{$wiew}.gallery-render", compact('path','image', 'action'))->render();
+        $out = array(
+            'success' => $success,
+            'message' => $message,
+            'ac'      => $action,
+            'id'      => $image->id,
+            'html'    => $html
+        );
+        return $out;
     }
 
     /**
@@ -240,34 +201,44 @@ class ImagePositionRepository implements ImagePositionInterface
      */
     public function delete($id, $config)
     {
-
         $data  = $this->model->find($id);
-        $color = $data->color;
-
         foreach ($config as $value) {
             if ($value->type == 'P') {
                 $image = $this->disk.$value->path.$data->image;
 
                 if (file_exists($image)) {
                     $remove = unlink($image);
+                } else {
+                    return array(
+                        'success' => false,
+                        'message' => constLang('images.deleted_false')
+                    );
                 }
             }
         }
-
-        $delete = $data->delete();            
-
+        $delete = $data->delete();
         if ($delete) {
-
-            ($data->active == 1 ? $status = 'Ativo' : $status = 'Inativo');
-
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(' Excluiu a imagem Posicao:'.$color->slug)
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                ' '.constLang('deleted').
+                ' '.constLang('image').
+                ' '.constLang('position').
+                ' '.$data->image)
             );
 
-            return true;
+            $success = true;
+            $message = constLang('images.deleted_true');
+        } else {
+            $success = false;
+            $message = constLang('error.server');
         }
 
-        return false;
+        $out = array(
+            'success' => $success,
+            'message' => $message
+        );
+
+        return $out;
+
     }
 
 
@@ -278,47 +249,84 @@ class ImagePositionRepository implements ImagePositionInterface
      * @param  int $id 
      * @return json
      */
-    public function status($input, $id)
+    public function status($config, $input, $wiew, $id)
     {
-        $data   = $this->model->find($id);
-        $update = $data->update($input);
-        $html   = '';
-
+        $html   = null;
+        $action = 'status';
+        if ($input['active'] == constLang('active_true')) {
+            $dataForm['active'] = constLang('active_false');
+        } else {
+            $dataForm['active'] = constLang('active_true');
+        }
+        $image  = $this->model->find($id);
+        $update = $image->update($dataForm);
         if ($update) {
-
-            if ( $data->active == 1 ) {
-                $status = 'Ativo';
-                $col    = 'green';
-
-            } else {
-                $status = 'Inativo';
-                $col    = 'red';
+            $success = true;
+            $message = constLang('status_true');
+            foreach ($config as $value) {
+                if ($value->default == 'T') {
+                    $path = $this->photoUrl.$value->path;
+                }
             }
+            $html = view("{$wiew}.gallery-render", compact('path','image', 'action'))->render();
 
-            $click_status = "statusPosition('{$data->id}', '".route('status-position', $data->id)."', '{$data->active}', '".csrf_token()."')";
-            $click_edit   = "abreModal('Editar: Posição', '".route('positions-product.edit', ['idimg' => $data->image_color_id,'id' => $data->id])."', 'form-positions', 2, 'true',800,780)";
-            $click_delete = "deletePosition('{$data->id}', '".route('positions-product.destroy', ['idimg' => $data->image_color_id, 'id' => $data->id])."')";
-
-            $html .= '<button id onclick="'.$click_status.'" class="button icon-tick '.$col.'-gradient" title="Alterar status"></button>';
-            $html .= '<button onclick="'.$click_status.'" class="button" title="Editar imagem">Editar</button>';
-            $html .= '<button onclick="'.$click_status.'" class="button icon-trash red-gradient" title="Excluir imagem"></button>';
-            
             generateAccessesTxt(
-                date('H:i:s').utf8_decode(' Alterou o status da imagem posição para '.$status)
+                date('H:i:s').utf8_decode(
+                    ' '.constLang('updated').
+                    ' '.constLang('status').
+                    ' '.constLang('image').
+                    ' '.constLang('position').
+                    ':'.$image->active)
             );
 
-            $out = array(
-                "success"    => true,
-                "message"    => "A status foi alterado.",
-                "html"      => $html
-            );               
-
-            return $out;
+        } else {
+            $success = false;
+            $message = constLang('status_false');
         }
 
-        return array(
-            'success' => false,
-            'message' => "Não foi possível alterar o status.");
+        $out = array(
+            "success"    => $success,
+            "message"    => $message,
+            "html"      => $html
+        );
+
+        return $out;
+    }
+
+
+    /**
+     * Date: 06/04/2019
+     *
+     * @param $config
+     * @param $file
+     * @param $name
+     * @return string
+     */
+    public function uploadImagem($config, $file, $name, $action){
+
+        if ($action == 'upload') {
+            foreach ($config as $value) {
+                $image = $this->disk.$value->path.$name;
+                if (file_exists($image)) {
+                    $delete = unlink($image);
+                }
+            }
+        }
+
+        $ext   = $file->getClientOriginalExtension();
+        $image = $name.numLetter(date('Ymdhs'),'letter').'.'.$ext;
+        foreach ($config as $value) {
+            if ($value->type == 'P') {
+                $width    = $value->width;
+                $height   = $value->height;
+                $path     = $this->disk . $value->path;
+                $upload = Image::make($file)->resize($width, $height)->save($path.$image);
+            }
+        }
+
+        if ($upload) {
+            return $image;
+        }
 
     }
 

@@ -15,11 +15,10 @@ interface ImageColorInterface
     public function getAll($request);
     public function create($input, $config);
     public function update($input, $config, $image);
-    public function delete($id, $product, $config);
+    public function delete($image, $product, $config);
     public function status($input, $product, $id);
     public function uploadImages($config, $input, $image, $product, $file);
     public function uploadRender($config, $image, $action);
-    public function changeGrids($input, $id);
     // All Colors
     public function colorsStatus($input, $product, $id);
     // Search Products Wishlist/Orders

@@ -6,6 +6,24 @@
 */
 
 return [
+    /*
+    |--------------------------------------------------------------------------
+    | Corrigir
+    |--------------------------------------------------------------------------
+    */
+
+    // add
+    'title_create' => 'Adicionar ',
+    // edit
+    'title_edit' => 'Editar ',
+
+
+
+    /*
+    |--------------------------------------------------------------------------
+    | Corrigir
+    |--------------------------------------------------------------------------
+    */
 
     'company' => 'AV Design',
     'author_name' => 'Anselmo Velame',
@@ -20,10 +38,6 @@ return [
     'ConfigAdmin' => [
        'title' => 'Configuração dos Usuários'
     ],
-    'ConfigSystem' => [
-        'tables' => 'a configuração das tabelas por uma de sua preferência'
-    ],
-
 
 
     /*
@@ -33,50 +47,66 @@ return [
     */
     'active_true' => 'Ativo',
     'active_false' => 'Inativo',
-    'back' => 'Voltar',
+    'add' => 'Adicionar',
+    'back' => 'Voltar ',
     'code' => 'Código',
     'color' => 'Cor',
     'cost' => 'Custo',
     'cover' => 'capa',
-    'categories.required' => 'As categorias são obrigatórias.',
+    'created' => 'Criou',
+    'delete' => 'Excluir ',
     'delete_false' => 'Não foi possível excluir o registro',
     'delete_true' => 'O registro foi excluido',
+    'deleted' => 'Excluiu',
     'description' => 'Descrição',
     'description_painel' => 'Painel Administrativo',
-    'description.required'  => 'A descrição é obrigatória.',
     'edit' => 'Editar',
-    'error_server' => 'Houve um erro no servidor!',
-    'error_404' => 'Página não encontrada',
+    'error' => [
+        'server' => 'Houve um erro no servidor!',
+        '404'  => 'Página não encontrada',
+    ],
     'grid'  => 'Grade',
     'group'  => 'Grupo',
-    'genders.required' => 'Os gêneros são obrigatórios.',
+    'genders.required' => 'Os gêneros são obrigatórios',
     'image' => 'Imagem',
-    'keywords.required' => 'As tags são obrigatórias.',
+    'images' => [
+        'add' => 'Adicionar Imagem',
+        'delete' => 'Excluir Imagem',
+        'edit' => 'Editar Imagem',
+        'count_true' => 'Clique na imagem para editar',
+        'count_false' => 'Não existe imagem para este produto',
+        'deleted_true' => 'A imagem foi excluida',
+        'deleted_false' => 'Não foi possível excluir a imagem'
+    ],
+    'keywords.required' => 'As tags são obrigatórias',
     'login' => 'Login',
+    'login_entry' => 'Fez login no sistema.',
     'not' => 'Não',
     'order' => 'Ordem',
     'order_false' => 'Não foi possível alterar a ordem',
     'order_true' => 'A ordem foi alterada',
     'payment_card' => 'Cartão de Crédito',
     'payment_cash' => 'Pagamento à Vista',
+    'position' => 'Posição',
     'product' => 'Produto',
     'profile_name' => [
         'admin' => 'Admin',
         'user' => 'Cliente'
     ],
     'reminder' => 'Lebre-me',
+    'save' => 'Salvar',
     'status' => 'Status',
+    'status_change' => 'Alterar Status',
     'status_true' => 'O status foi alterado',
     'status_false' => 'Não foi possível alterar o status',
-    'title_create' => 'Adicionar',
-    'title_edit' => 'Editar',
-    'title.required' => 'O nome do titulo é obrigatório.',
-    'title.unique' => 'Este titulo já se encontra utilizado.',
+    'tables_preference' => 'a configuração das cores das tabelas por uma de sua preferência',
     'title_update' => 'Alterar',
     'type_movement' => [
         'input' => 'Entrada',
-        'output' => 'Saida'
+        'output' => 'Saida',
+        'delete' => 'Exclusão'
     ],
+    'updated' => 'Alterou',
     'update_false' => 'Não foi possível alterar o registro',
     'update_true' => 'O registro foi alterado',
     'upload_true' => [
@@ -84,6 +114,13 @@ return [
         'image' => 'A imagem foi salva',
         'pdf' => 'O PDF foi salvo',
         'photo' => 'A foto foi salva',
+        'position' => 'Upload foto posição',
+    ],
+    'upload_false' => [
+        'file' => 'Não foi possível fazer o upload do arquivo',
+        'image' => 'Não foi possível fazer o upload da imagem',
+        'pdf' => 'Não foi possível salvar o PDF',
+        'photo' => 'Não foi possível fazer o upload da foto'
     ],
     'value' => 'Valor',
     'yes' => 'Sim',
@@ -96,9 +133,10 @@ return [
     */
 
     'validation' => [
-
+        'categories.required' => 'As categorias são obrigatórias',
         'commission' => [
             'required' => 'Comissionado: Sim ou Não?'],
+        'description.required' => 'A descrição é obrigatória',
         'email' => [
             'email' => 'Digite um endereço de email válido.',
             'required' => 'O email é obrigatório.',
@@ -129,6 +167,11 @@ return [
             'required' => 'O telefone é obrigatório.'],
         'profile_id' => [
             'required' => 'O perfil é obrigatório.'],
+        'title' => [
+            'required' => 'O nome do titulo é obrigatório',
+            'unique' => 'Este titulo já se encontra utilizado'
+        ],
+
         'width_photo' => [
             'required' => 'A largura da foto é obrigatória.',
             'numeric' => 'Digite apenas números na largura da foto.'],
@@ -137,16 +180,11 @@ return [
         'verifying_credentials' => 'Verificando credenciais',
 
     ],
-
-    'accesses' => [
-        'login_entry' => 'Fez login no sistema.',
-        'create' => 'Adicionou ',
-        'update' => 'Alterou ',
-        'delete' => 'Excluiu ',
+    'messages' => [
+        'products' => [
+            'delete_true' => 'O produto foi excluido',
+            'delete_false' => 'Não foi possível excuir o produto',
+            'total_colors' => 'Total de Cores'
+        ],
     ]
-
-
-
-
-
 ];

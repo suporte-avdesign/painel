@@ -72,6 +72,8 @@ class InventaryRepository implements InventaryInterface
     public function createKit($configProduct, $grids, $image, $product, $photo)
     {
         if ($configProduct->grids == 1) {
+            $dataForm['product_id'] = $product->id;
+            $dataForm['image_color_id'] = $image->id;
             $dataForm['grid_id'] = $grids->id;
             $dataForm['admin_id'] = auth()->user()->id;
             $dataForm['profile_name'] = constLang('profile_name.admin');
@@ -128,6 +130,8 @@ class InventaryRepository implements InventaryInterface
         if ($configProduct->grids == 1) {
             if($grids) {
 
+                $dataForm['product_id'] = $product->id;
+                $dataForm['image_color_id'] = $image->id;
                 $dataForm['grid_id'] = $grids->id;
                 $dataForm['admin_id'] = auth()->user()->id;
                 $dataForm['profile_name'] = constLang('profile_name.admin');
@@ -168,13 +172,47 @@ class InventaryRepository implements InventaryInterface
         }
     }
 
-
-    public function deleteKit($product, $id)
+    /**
+     * @param $product
+     * @param $image
+     * @param $grids
+     * @return mixed
+     */
+    public function deleteKit($product, $image, $grids)
     {
-        dd("Em construção, o inventário");
+
+        $dataForm['product_id'] = $product->id;
+        $dataForm['image_color_id'] = $image->id;
+        $dataForm['grid_id'] = $grids->id;
+        $dataForm['admin_id'] = auth()->user()->id;
+        $dataForm['profile_name'] = constLang('profile_name.admin');
+        $dataForm['type_movement'] = constLang('type_movement.delete');
+        $dataForm['note'] = constLang('messages.products.delete_true').auth()->user()->name;
+        $dataForm['brand'] = $product->brand;
+        $dataForm['section'] = $product->section;
+        $dataForm['category'] = $product->category;
+        $dataForm['product'] = $product->name;
+        $dataForm['image'] = $image->image;
+        $dataForm['code'] = $image->code;
+        $dataForm['color'] = $image->color;
+        $dataForm['grid'] = $grids->grid;
+        $dataForm['amount'] = $grids->stock;
+        $dataForm['kit'] = $product->kit;
+        $dataForm['kit_name'] = $product->kit_name;
+        $dataForm['units'] = $product->unit;
+        $dataForm['offer'] = $product->offer;
+        $dataForm['cost_unit'] = $product->cost->value;
+        $dataForm['cost_total'] = $grids->stock * $product->cost->value;
+        $dataForm['stock'] = 0;
+
+        $data = $this->model->create($dataForm);
+        if ($data) {
+            return $data;
+        }
+
     }
 
-    public function deleteUnit($product, $id)
+    public function deleteUnit($product, $image, $grids)
     {
         dd("Em construção, o inventário");
     }

@@ -99,7 +99,7 @@
         'password_min' => constLang('validation.password.min'),
         'password_max' => constLang('validation.password.max'),
         'verifying_credentials' => constLang('validation.verifying_credentials'),
-        'error_server' => constLang('validation.error_server'),
+        'error_server' => constLang('error.server'),
     ]) !!};
 </script>
 

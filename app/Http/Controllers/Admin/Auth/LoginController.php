@@ -99,7 +99,7 @@ class LoginController extends Controller
                 $ip = $_SERVER['REMOTE_ADDR'];
                 $register = ["login" => true,"last_ip" => $ip];
                 $this->access->update($register, $ac->id);
-                generateAccessesTxt(date('H:i:s').' '.constLang('accesses.login_entry').' IP:'.$ip);
+                generateAccessesTxt(date('H:i:s').' '.constLang('login_entry').' IP:'.$ip);
 
 
                 return response()

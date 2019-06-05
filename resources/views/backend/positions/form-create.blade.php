@@ -2,11 +2,11 @@
 	@csrf
 	<span id="insert_color">
 		<!-- Jquery: Ao salvar uma cor adiciona o id da cor -->
-		@if(isset($color))
-			<input name="pos[image_color_id]" type="hidden" value="{{$color->id}}">
-			<input name="pos[name]" type="hidden" value="{{$color->slug}}">
-			<input name="pos[color]" type="hidden" value="{{$color->color}}">
-			<input name="pos[code]" type="hidden" value="{{$color->code}}">
+		@isset($image)
+			<input name="pos[image_color_id]" type="hidden" value="{{$image->id}}">
+			<input name="pos[name]" type="hidden" value="{{$image->slug}}">
+			<input name="pos[color]" type="hidden" value="{{$image->color}}">
+			<input name="pos[code]" type="hidden" value="{{$image->code}}">
 			<input name="ac" type="hidden" value="add">
 		@else
 			<input name="ac" type="hidden" value="create">

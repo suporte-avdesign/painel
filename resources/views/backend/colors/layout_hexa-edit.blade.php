@@ -11,7 +11,7 @@
             <!-- Form: colors -->
             @include('backend.colors.form_hexa-edit')
             <!-- Modulo: grids -->
-            @if($configProduct->grids == 1)
+            @if($configProduct->grids === 1)
                 @include('backend.colors-grids.layout-edit')
             @endif
 

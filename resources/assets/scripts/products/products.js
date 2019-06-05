@@ -549,69 +549,68 @@
         };
 
 
-        /**
-         * Add grid Image
-         * @param int id
-        */
-        addGrid = function(id)
-        {
-            kit   = $("input[name='img[kit]']:checked").val();
-            stock = $("input[name='img[stock]']:checked").val();
-
-            console.log('KIT: '+kit);
-            console.log('STOCK: '+stock);
-            //Number Random
-            var num = Math.random(),
-                html;
+        createGrid = function(id, stock, kit) {
             if (stock == 1) {
+
                 if (kit == 1) {
-                    html = '<li class="new_grid">';
-                        html += '<span class="input">';
-                            html += '<input type="text" name="grids['+num+'][grid]" id="grid_'+id+'" placeholder="'+tableProduct.txtGrid+'" class="input-unstyled input-sep" value="" maxlength="4" style="width: 50px;">';
-                            html += '<input type="text" name="grids['+num+'][entry]" id="entry_'+id+'" placeholder="'+tableProduct.txtEntry+'" class="input-unstyled input-sep" value="" maxlength="4" style="width: 50px;">';
-                        html += '</span>';
-                        html += '<div class="button-group absolute-right compact">';
-                            html += '<button onclick="removeThis(this,\'.new_grid\');" class="button icon-trash red-gradient with-tooltip" title="Excluir"></button>';
-                        html += '</div>';
-                    html += '</li>';
+                    /**
+                     *  stock=1 type grid=kit
+                     */
+                    $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
+                        '<span class="input">'+
+                        '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
+                        '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
+                        '</span>'+
+                        '<div class="button-group absolute-right compact">'+
+                        '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
+                        '</div></li>');
                 } else {
-                    html = '<li class="new_grid">';
-                        html += '<span class="input">';
-                            html += '<input type="text" name="grids['+num+'][grid]" id="grid_'+id+'" placeholder="'+tableProduct.txtGrid+'" class="input-unstyled input-sep" value="" maxlength="4" style="width: 50px;">';
-                            html += '<input type="text" name="grids['+num+'][entry]" id="entry_'+id+'" placeholder="'+tableProduct.txtEntry+'" class="input-unstyled input-sep" value="" maxlength="4" style="width: 50px;">';
-                            html += '<input type="text" name="grids['+num+'][low]" id="exit_'+id+'" placeholder="'+tableProduct.txtLow+'" class="input-unstyled input-sep" value="" style="width: 50px;">';
-                        html += '</span>';
-                        html += '<div class="button-group absolute-right compact">';
-                            html += '<button onclick="removeThis(this,\'.new_grid\');" class="button icon-trash red-gradient with-tooltip" title="Excluir"></button>';
-                        html += '</div>';
-                    html += '</li>';
+                    /**
+                     *  stock=1 type grid=unit
+                     */
+                    $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
+                        '<span class="input">'+
+                        '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled input-sep" style="width: 50px;">'+
+                        '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Entrada" maxlength="4" class="input-unstyled" style="width: 50px;">'+
+                        '</span>'+
+                        '<div class="button-group absolute-right compact">'+
+                        '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
+                        '</div></li>');
                 }
             } else {
 
-                html = '<li class="new_grid">';
-                    html += '<span class="input">';
-                        html += '<input type="text" name="grids['+num+'][grid]" id="grid_'+id+'" placeholder="'+tableProduct.txtGrid+'" class="input-unstyled input-sep" value="" style="width: 50px;">';
-                    html += '</span>';
-                    html += '<div class="button-group absolute-right compact">';
-                        html += '<button onclick="removeThis(this,\'.new_grid\');" class="button icon-trash red-gradient with-tooltip" title="Excluir"></button>';
-                    html += '</div>';
-                html += '</li>';
-            }   
+                if (kit == 1) {
+                    /**
+                     *  stock=0 type grid=unit
+                     */
+                    $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
+                        '<span class="input">'+
+                        '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
+                        '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
+                        '</span>'+
+                        '<div class="button-group absolute-right compact">'+
+                        '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
+                        '</div></li>');
 
-            $("#grids-"+id).append(html);
+                } else {
+                    /**
+                     *  stock=0 type grid=unit
+                     */
+                    $("#grids-" + id).prepend('<li id="new-grid-' + id + '">' +
+                        '<span class="input">' +
+                        '<input type="text" name="grids[' + id + '][grid]" id="grid_' + id + '" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled input-sep" style="width: 50px;">' +
+                        '</span>' +
+                        '<div class="button-group absolute-right compact">' +
+                        '<button onclick="destroyGrid(' + id + ')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>' +
+                        '</div></li>');
+                }
+            }
+
         }
 
-
-        /**
-         * Remove this grid
-         * @param object _this
-         * @param int id
-        */
-        removeThis = function(_this, id)
-        {
-            $(_this).parents(id).remove();
+        destroyGrid = function(id) {
+            $("#new-grid-"+id).remove();
         }
-
 
 
         /**
@@ -625,17 +624,15 @@
          */
         statusColor = function(id, url, sta, cover, token)
         {
-            var status;
-            (sta == 1 ? status = 0 : status = 1);
             $.ajax({
                 type: 'POST',
                 headers: {'X-CSRF-TOKEN':token},
                 dataType: "json",
                 url: url,
-                data: {_method:'put', 'active':status},
+                data: {_method:'put', 'active':sta},
                 success: function(data){
                     if(data.success == true){
-                        if (cover == 1 && status == 0) {
+                        if (cover == 1 && sta == tableProduct.active_false) {
                             $.modal.alert('<span class="red">'+data.alert+'</span>');
                         };
                         $("#btns-"+id).html(data.html);
@@ -688,8 +685,6 @@
 
         };
 
-
-
         /**
          * Update status posição.
          * @param int id
@@ -699,14 +694,12 @@
          */
         statusPosition = function(id, url, sta, token)
         {
-            var status;
-            (sta == 1 ? status = 0 : status = 1);         
             $.ajax({
                 type: 'POST',
                 headers: {'X-CSRF-TOKEN':token},
                 dataType: "json",
                 url: url,
-                data: {_method:'put','active':status},
+                data: {_method:'put','active':sta},
                 success: function(data){
                     if(data.success == true){
                         $("#btns-"+id).html(data.html);
@@ -747,7 +740,6 @@
                 }
             });
         };
-
 
         $("body").on("click","#btn-colors",function(e){
             $(this).parents("#form-colors").ajaxForm(opc_colors);

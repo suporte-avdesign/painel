@@ -269,7 +269,7 @@ class ImageColorRepository implements ImageColorInterface
 
 
     /**
-     * Init Model
+     * Date 06/02/2019
      *
      * @return array
      */
@@ -279,55 +279,10 @@ class ImageColorRepository implements ImageColorInterface
         return $data;    
     }
 
-    /**
-     * Change image cover
-     *
-     * @param  int $idpro
-     * @param  int $id
-     * @return void
-     */
-    public function changeCover($id, $change ='')
-    {
-        $data = $this->model->where('product_id', $id)->get();
-        if (count($data) >= 1) {
-            foreach ($data as $value) {
-                $input = ['cover' => 0];
-                $this->model->find($value->id)->update($input);
-            }
-
-            if ($change) {
-                $update = $this->model->where('product_id', $id)
-                            ->first()->update(['cover' => 1]);
-            }            
-
-        }
-    }
-
-    /**
-     * Change Grids
-     *
-     * @param  int $input
-     * @param  int $id
-     * @return void
-     */
-    public function changeGrids($input, $id)
-    {
-        $data   = $this->model->find($id);
-        $update = $data->update($input);
-        if ($update) {
-            ($data->kit == 1 ? $kit = 'Kit' : $kit = 'Unidade');
-            generateAccessesTxt(date('H:i:s').utf8_decode(
-                ' Alterou o Produto:'.$data->slug.
-                ' Para:'.$kit)
-            );
-            return true;
-        }
-        return false;
-    }
 
 
     /**
-     * Display the specified resource.
+     * Date 06/02/2019
      *
      * @param  int  $id
      * @return array
@@ -381,10 +336,17 @@ class ImageColorRepository implements ImageColorInterface
         }
     }
 
-
+    /**
+     * 06/02/2019
+     *
+     * @param $input
+     * @param $config
+     * @param $image
+     * @return bool
+     */
     public function update($input, $config, $image)
     {
-        $access   = constLang('accesses.update').' '.constLang('product');
+        $access   = constLang('updated').' '.constLang('product');
         $dataForm = [];
         $count = strlen($input['order']);
         if ($count == 1) {
@@ -525,7 +487,7 @@ class ImageColorRepository implements ImageColorInterface
                 "code"       => $image->code
             );
         } else {
-            $render = view('backend.colors.gallery-render', compact('image', 'path'))->render();
+            $render = view('backend.colors.gallery-render', compact('action','image', 'path'))->render();
             $out = array(
                 "success"    => true,
                 "message"    => constLang('upload_true.image'),
@@ -538,20 +500,17 @@ class ImageColorRepository implements ImageColorInterface
         return $out;
     }
 
-
-
     /**
-     * Remove
+     * Date: 06/04/2019
      *
-     * @param  int $id
-     * @param  int $product
-     * @param  array $config
-     * @return json
+     * @param $image
+     * @param $product
+     * @param $config
+     * @return bool
      */
-    public function delete($id, $product, $config)
+    public function delete($image, $product, $config)
     {
-        $data      = $this->model->find($id);
-        $positions = $data->positions;
+        $positions = $image->positions;
 
         foreach ($config as $value) {
             if ($value->type == 'P') {
@@ -566,7 +525,7 @@ class ImageColorRepository implements ImageColorInterface
             if ($value->type == 'C') {
                 /* Copiar  a thumb */
                 if ($value->default != 'T') {
-                    $color = $this->disk.$value->path.$data->image;
+                    $color = $this->disk.$value->path.$image->image;
                     if (file_exists($color)) {
                         $remove = unlink($color);
                     }
@@ -574,27 +533,20 @@ class ImageColorRepository implements ImageColorInterface
             }
         }
 
-        $this->changeCover($data->product_id, true);
-
-        $delete = $data->delete();
+        $delete = $image->delete();
 
         if ($delete) {
-
-            ($data->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
-
-            generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ' Excluiu a imagem do Produto:'.Str::slug($product->name.
-                        '-'.$product->category.'-'.$product->section.'-'.$product->brand).
-                    ', Código:'.$data->code.
-                    ', Cor:'.$data->color.
-                    ', Status:'.$data->active.
-                    ', Capa:'.$cover)
+            ($image->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
+            generateAccessesTxt(date('H:i:s').utf8_decode(constLang('messages.product.delete_true').
+                    ':'.Str::slug($product->name.
+                    ' - '.$product->category.' - '.$product->section.' - '.$product->brand).
+                    ', '.constLang('code').':'.$image->code.
+                    ', '.constLang('color').':'.$image->color.
+                    ', '.constLang('status').':'.$image->active.
+                    ', '.constLang('cover').':'.$cover)
             );
-
             return true;
         }
-
-        return false;
     }
 
 
@@ -709,6 +661,35 @@ class ImageColorRepository implements ImageColorInterface
             'success' => false,
             'message' => "Não foi possível alterar o status.");
     }
+
+
+
+    /**
+     * Change image cover
+     *
+     * @param  int $idpro
+     * @param  int $id
+     * @return void
+     */
+    public function changeCover($id, $change ='')
+    {
+        $data = $this->model->where('product_id', $id)->get();
+        if (count($data) >= 1) {
+            foreach ($data as $value) {
+                $input = ['cover' => 0];
+                $this->model->find($value->id)->update($input);
+            }
+
+            if ($change) {
+                $update = $this->model->where('product_id', $id)
+                    ->first()->update(['cover' => 1]);
+            }
+
+        }
+    }
+
+
+
 
 
 }

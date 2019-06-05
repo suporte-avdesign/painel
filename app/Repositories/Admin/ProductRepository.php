@@ -563,32 +563,29 @@ class ProductRepository implements ProductInterface
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Date 06/04/2019
      *
-     * @param  int  $id
-     * @return boolean true or false
+     * @param $config
+     * @param $product
+     * @return bool
      */
-    public function delete($id, $config)
+    public function delete($config, $product)
     {
-        //Remover Images
-        $data         = $this->model->find($id);
-        $colors       = $data->images;
-        $total_colors = count($colors);
-
+        $images = $product->images;
+        $total_colors = count($images);
 
         foreach ($config as $value) {
-
-            foreach ($colors as $color) {
+            foreach ($images as $image) {
                 if ($value->type == 'C') {
                     if ($value->default != 'T') {
-                        $image = $this->disk . $value->path . $color->image;
+                        $image = $this->disk . $value->path . $image->image;
                         if (file_exists($image)) {
                             $remove = unlink($image);
                         }
                     }
                 }
                 if ($value->type == 'P') {
-                    foreach ($color->positions as $position) {
+                    foreach ($image->positions as $position) {
                         $image = $this->disk.$value->path.$position->image;
                         if (file_exists($image)) {
                             $remove = unlink($image);
@@ -598,21 +595,57 @@ class ProductRepository implements ProductInterface
             }
         }
 
-        $delete = $data->delete();
+        $delete = $product->delete();
 
         if ($delete) {
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                ' Excluiu o Produto:'.Str::slug($data->name.
-                '-'.$data->category.'-'.$data->section.'-'.$data->brand).
-                ', Total Cores:'.$total_colors)
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                constLang('deleted').
+                constLang('product').':'.Str::slug($product->name.
+                '/'.$product->category.'/'.$product->section.'/'.$product->brand).
+                ', '.constLang('messages.products.total_colors').$total_colors)
             );
-            $data['total_colors'] = $total_colors;
-            return $data;
+            $product['total_colors'] = $total_colors;
+            return $product;
         }
 
         return false;
     }
+
+    /**
+     * Date 06/04/2019
+     *
+     * @param $config
+     * @param $product
+     * @param $image
+     * @return bool
+     */
+    public function deleteUnique($config, $product, $image)
+    {
+        foreach ($config as $value) {
+            if ($value->type == 'C') {
+                if ($value->default != 'T') {
+                    $image = $this->disk . $value->path . $image->image;
+                    if (file_exists($image)) {
+                        $remove = unlink($image);
+                    }
+                }
+            }
+            if ($value->type == 'P') {
+                foreach ($image->positions as $position) {
+                    $image = $this->disk.$value->path.$position->image;
+                    if (file_exists($image)) {
+                        $remove = unlink($image);
+                    }
+                }
+            }
+        }
+
+        $delete = $product->delete();
+        if ($delete) {
+            return true;
+        }
+    }
+
 
     /**
      * Status Fields

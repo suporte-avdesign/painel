@@ -55,6 +55,8 @@
         "txtKit" => "Caixa",
         "txtUnit" => "Unidade",
         "txtLoader" => "Aguarde",
+        "avtive_true" => "Ativo",
+        "avtive_false" => "Inativo",
         "token" => csrf_token(),
         "color" => $confUser->table_color,
         "colorSel" => $confUser->table_color_sel." glossy",

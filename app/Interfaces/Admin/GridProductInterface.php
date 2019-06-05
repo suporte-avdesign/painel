@@ -9,8 +9,9 @@ interface GridProductInterface
      *
      * @return \AVDPainel\Repositories\Admin\GridProductRepository
      */
-    public function get($id);
     public function setId($id);
+    public function getKit($id);
+    public function getUnit($id);
     public function createKit($input, $image, $product);
     public function createUnit($input, $image, $product);
     public function updateKit($input, $image, $product, $qty, $des);

@@ -32,11 +32,12 @@ class ImagePositionController extends Controller
         $this->interModel    = $interModel;
     }
 
-
     /**
-     * Display a listing of the resource.
+     * Date 06/04/2019
      *
-     * @return \Illuminate\Http\Response
+     * @param InterProduct $interProduct
+     * @param $idpro
+     * @return View
      */
     public function index(InterProduct $interProduct, $idpro)
     {
@@ -46,19 +47,21 @@ class ImagePositionController extends Controller
 
         $configImage  = $this->configImage->setName('default', 'N');
         $product      = $interProduct->setId($idpro);
-        $colors       = $product->images;
+        $images       = $product->images;
         $path         = $this->photoUrl.$configImage->path;
 
-        (count($colors) >= 1 ? $title_count = 'Clique na imagem para editar' :
-                               $title_count = 'Não existe imagem para este produto');
+        (count($images) >= 1 ? $title_count = constLang('images.count_true') :
+                               $title_count = constLang('images.count_false'));
 
-        return view("{$this->view}.gallery", compact('colors','path','idpro', 'title_count'));
+        return view("{$this->view}.gallery", compact('images','path','idpro', 'title_count'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Date 06/05/2019
      *
-     * @return \Illuminate\Http\Response
+     * @param InterColor $interColor
+     * @param $idpro
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create(InterColor $interColor, $idpro)
     {
@@ -66,120 +69,84 @@ class ImagePositionController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $color = $interColor->setId($idpro);
+        $image = $interColor->setId($idpro);
+        $pixel = $this->configImage->setName('default','Z');
 
-        return view("{$this->view}.form-create", compact('color', 'idpro'));
+        return view("{$this->view}.form-create", compact('idpro', 'image', 'pixel'));
     }
 
     /**
-     * Store 
+     * Date: 06/05/2019
      *
-     * @param  \AVDPainel\Http\Requests\Admin\ProductColorsRequest  $request
-     * @return \Illuminate\Http\Response
+     * @param ReqModel $request
+     * @param $idpro
+     * @return Json
      */
     public function store(ReqModel $request, $idpro)
     {
-
-        $dataForm = $request['pos'];
-        $action   = $request['ac'];
-        $file     = $request->file('file');
-        $config   = $this->configImage->get();
-        $data     = $this->interModel->create($dataForm, $config, $file);
-        
-        if ($data) {
-            $success  = true;
-            $message  = 'Posição foi adicionada.';
-            $color_id = $data->image_color_id;
-            $html     = $data->html;
-        
-        } else {
-            $success  = true;
-            $message  = 'Posição foi adicionada.';
-            $color_id = null;
-            $html     = null;
+        if( Gate::denies("{$this->ability}-create") ) {
+            return view("backend.erros.message-401");
         }
-
-        $out = array(
-            'success' => $success,
-            'message' => $message,
-            'ac' => $action,
-            'html' => $html,
-            'color_id' => $color_id
-        );
-
+        $config = $this->configImage->get();
+        $action = $request['ac'];
+        $input  = $request['pos'];
+        $file   = $request->file('file');
+        $out    = $this->interModel->create($input, $config, $file, $this->view, $action);
 
         return response()->json($out);
-
-
     }
 
     /**
-     * view modal.forms.edit.positions
+     * Date 06/05/2019
+     *
+     * @param $idimg
+     * @param $id
+     * @return View
      */
     public function edit($idimg, $id)
     {
         if( Gate::denies("{$this->ability}-update") ) {
             return view("backend.erros.message-401");
         }
-
         $configImage = $this->configImage->setName('default', 'N');
+        $position    = $this->interModel->setId($id);
+        $pixel       = $this->configImage->setName('default','Z');
         $path        = $this->photoUrl.$configImage->path;
-        $data        = $this->interModel->setId($id);
 
 
-        return view("{$this->view}.form-edit", compact('data', 'idimg', 'path'));
+        return view("{$this->view}.form-edit", compact('position', 'idimg', 'path', 'pixel'));
     }
 
+
     /**
-     * Update the specified resource in storage.
+     * Date: 06/05/2019
      *
-     * @param  \AVDPainel\Http\Requests\Admin\ProductColorsRequest  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param Request $request
+     * @param $idimg
+     * @param $id
+     * @return Json
      */
     public function update(Request $request, $idimg, $id)
     {
         if( Gate::denies("{$this->ability}-update") ) {
             return view("backend.erros.message-401");
         }
+        $file   = $request->file('file');
+        $input  = $request['pos'];
+        $image  = $this->interModel->setId($id);
+        $config = $this->configImage->get();
+        $action = $request['ac'];
 
-        $file      = $request->file('file');
-        $config    = $this->configImage->get();
-        $action    = $request['ac'];
-        $dataForm  = $request['pos'];
-
-        $data = $this->interModel->update($dataForm, $id, $config, $file);
-       
-        if ($data) {
-
-            $success = true;
-            $message = 'A posição foi alterada.';
-            $id      =  $data->id;
-            $html    =  $data->html;
-
-        } else {
-
-            $success = false;
-            $message = 'Não foi possível alterar a permissão.';
-            $id      = null;
-            $html    = null;
-        }
-
-        $out = array(
-            'success' => $success,
-            'message' => $message,
-            'ac'      => $action,
-            'id'      => $id,
-            'html'    => $html
-        );
-
+        $out = $this->interModel->update($input, $image, $config, $file, $this->view, $action);
         return response()->json($out);
     }
 
     /**
-     * Remover imagem posição.
+     * Date 06/05/2019
      *
-     * @param  int  $id
+     * @param $idimg
+     * @param $id
+     * @return json
      */
     public function destroy($idimg, $id)
     {
@@ -188,28 +155,18 @@ class ImagePositionController extends Controller
         }
 
         $config = $this->configImage->get();
-
         $delete = $this->interModel->delete($id, $config);
-        if ($delete) {
-            $success = true;
-            $message = 'A imagem foi excluida';
-        } else {
-            $success = false;
-            $message = 'Não foi possível excluir a imagem';
-        }
 
-        $out = array(
-            'success' => $success,
-            'message' => $message
-        );
-
-        return response()->json($out);
+        return response()->json($delete);
     }
 
 
-
     /**
-     * Alterar status da imagem
+     * date 06/05/2019
+     *
+     * @param Request $request
+     * @param $id
+     * @return json
      */
     public function status(Request $request, $id)
     {
@@ -217,8 +174,9 @@ class ImagePositionController extends Controller
             return view("backend.erros.message-401");
         }
 
-        $dataForm = $request->all();
-        $status   = $this->interModel->status($dataForm, $id);
+        $input  = $request->all();
+        $config = $this->configImage->get();
+        $status = $this->interModel->status($config, $input, $this->view, $id);
 
         return response()->json($status);
     }   

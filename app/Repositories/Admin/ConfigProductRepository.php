@@ -52,10 +52,14 @@ class ConfigProductRepository implements ConfigProductInterface
                 ', Grades:'.($data->grids == 1 ? 'Ativo' : 'Inativo').
                 ', Frete:'.($data->freight == 1 ? 'Ativo' : 'Inativo').
                 ', Kit:'.($data->kit == 1 ? 'Ativo' : 'Inativo').
+                ', Estoque mínimo dos kits:'.$data->qty_min_kit.
+                ', Estoque máximo dos kits:'.$data->qty_max_kit.
+                ', Estoque mínimo das unidades:'.$data->qty_min_unit.
+                ', Estoque máximo das unidade:'.$data->qty_max_unit.
                 ', Grupo de cores:'.($data->group_colors == 1 ? 'Ativo' : 'Inativo').
                 ', Posições:'.($data->positions == 1 ? 'Ativo' : 'Inativo').
                 ', Video:'.($data->video == 1 ? 'Ativo' : 'Inativo').
-                ', Mini cores:'.$data->mini_colors)
+                ', Miniaturas:'.$data->mini_colors)
             );
             return true;
         }

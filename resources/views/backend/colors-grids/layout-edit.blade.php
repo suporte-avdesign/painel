@@ -11,9 +11,8 @@
             <legend class="legend">Quantidade | Grade</legend>
         @else
             <legend class="legend">Grades  </legend>
+
         @endif
-    @endif
-    @if($stock == 0)
         <div class="align-right compact">
             <a href="javascript:createGrid('{{$data->id}}','{{$stock}}','{{$kit}}');" class="button icon-plus blue-gradient" title="Adicionar"></a>
         </div>
@@ -38,67 +37,4 @@
 
 @include('backend.colors-grids.load-script')
 
-<script>
-    function createGrid(id, stock, kit) {
-        if (stock == 1) {
 
-            if (kit == 1) {
-                /**
-                 *  stock=1 type grid=kit
-                 */
-                $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
-                    '<span class="input">'+
-                    '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
-                    '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
-                    '</span>'+
-                    '<div class="button-group absolute-right compact">'+
-                    '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
-                    '</div></li>');
-            } else {
-                /**
-                 *  stock=1 type grid=unit
-                 */
-                $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
-                    '<span class="input">'+
-                    '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled input-sep" style="width: 50px;">'+
-                    '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Entrada" maxlength="4" class="input-unstyled" style="width: 50px;">'+
-                    '</span>'+
-                    '<div class="button-group absolute-right compact">'+
-                    '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
-                    '</div></li>');
-            }
-        } else {
-
-            if (kit == 1) {
-                /**
-                 *  stock=0 type grid=unit
-                 */
-                $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
-                    '<span class="input">'+
-                    '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
-                    '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
-                    '</span>'+
-                    '<div class="button-group absolute-right compact">'+
-                    '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
-                    '</div></li>');
-
-            } else {
-                /**
-                 *  stock=0 type grid=unit
-                 */
-                $("#grids-" + id).prepend('<li id="new-grid-' + id + '">' +
-                    '<span class="input">' +
-                    '<input type="text" name="grids[' + id + '][grid]" id="grid_' + id + '" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled input-sep" style="width: 50px;">' +
-                    '</span>' +
-                    '<div class="button-group absolute-right compact">' +
-                    '<button onclick="destroyGrid(' + id + ')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>' +
-                    '</div></li>');
-            }
-        }
-
-    }
-
-    function destroyGrid(id) {
-        $("#new-grid-"+id).remove();
-    }
-</script>

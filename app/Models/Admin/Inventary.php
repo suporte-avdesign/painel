@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class Inventary extends Model
 {
     protected $fillable = [
+        'product_id',
+        'image_color_id',
         'grid_id',
         'admin_id',
         'user_id',

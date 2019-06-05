@@ -16,12 +16,8 @@ interface InventaryInterface
     public function createUnit($configProduct,$grids, $image, $product, $photo);
     public function updateKit($configProduct, $grids, $image, $product, $photo);
     public function updateUnit($configProduct,$grids, $image, $product, $photo);
-
-
-
-    public function deleteKit($product, $id);
-    public function deleteUnit($product, $id);
-
+    public function deleteKit($product, $image, $grids);
+    public function deleteUnit($product, $image, $grids);
 
     public function rules($input, $messages, $id);
 

@@ -364,20 +364,20 @@ class ProductController extends Controller
         try{
             DB::beginTransaction();
 
-            $data   = $this->interModel->setId($id);
-            $config = $this->configImageProduct->get();
+            $config  = $this->configImageProduct->get();
+            $product = $this->interModel->setId($id);
 
-            $delete = $this->interModel->delete($id, $config);
+            $delete = $this->interModel->delete($config, $product);
             if ($delete) {
                 $success = true;
-                $message = 'O produto foi removido.';
+                $message = constLang('messages.products.delete_true');
                 $prduct  = $delete;
 
                 DB::commit();
 
             } else {
                 $success = false;
-                $message = 'Não foi possível remover o produto.';
+                $message = constLang('messages.products.delete_false');
                 $prduct  = false;
             }
 
