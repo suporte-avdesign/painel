@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/lang_pt-BR.php" afterPath="$PROJECT_DIR$/config/lang_pt-BR.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,8 +22,8 @@
       <file leaf-file-name="lang_pt-BR.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="185">
-              <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="20" />
+            <state relative-caret-position="239">
+              <caret line="55" column="27" lean-forward="false" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -32,49 +32,29 @@
       <file leaf-file-name="ImageColorController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+            <state relative-caret-position="448">
+              <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
               <folding>
                 <element signature="e#2721#3716#0#PHP" expanded="false" />
                 <element signature="e#3898#5878#0#PHP" expanded="false" />
                 <element signature="e#6024#7375#0#PHP" expanded="false" />
-                <element signature="e#9915#11198#0#PHP" expanded="false" />
-                <element signature="e#11389#12008#0#PHP" expanded="false" />
-                <element signature="e#12097#12568#0#PHP" expanded="false" />
-                <element signature="e#12671#12930#0#PHP" expanded="false" />
-                <element signature="e#13138#13545#0#PHP" expanded="false" />
+                <element signature="e#9876#11159#0#PHP" expanded="false" />
+                <element signature="e#11350#11969#0#PHP" expanded="false" />
+                <element signature="e#12058#12529#0#PHP" expanded="false" />
+                <element signature="e#12632#12891#0#PHP" expanded="false" />
+                <element signature="e#13099#13506#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ImageColorRepository.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ImageColorRepository.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="673" column="17" lean-forward="true" selection-start-line="673" selection-start-column="17" selection-end-line="673" selection-end-column="17" />
+            <state relative-caret-position="-70">
+              <caret line="729" column="0" lean-forward="false" selection-start-line="729" selection-start-column="0" selection-end-line="729" selection-end-column="0" />
               <folding>
                 <element signature="e#48#84#0#PHP" expanded="true" />
-                <element signature="e#1039#5497#0#PHP" expanded="false" />
-                <element signature="e#5585#9662#0#PHP" expanded="false" />
-                <element signature="e#10206#11639#0#PHP" expanded="false" />
-                <element signature="e#14165#16205#0#PHP" expanded="false" />
-                <element signature="e#16392#18089#0#PHP" expanded="false" />
-                <element signature="e#18207#19307#0#PHP" expanded="false" />
-                <element signature="e#19463#20944#0#PHP" expanded="false" />
-                <element signature="e#26022#27745#0#PHP" expanded="false" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Handler.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Exceptions/Handler.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="51" column="49" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
-              <folding>
-                <element signature="e#40#54#0#PHP" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -146,8 +126,8 @@
       <find>deleteUnic</find>
       <find>dd</find>
       <find>$image_diff</find>
-      <find>changeCover</find>
       <find>to</find>
+      <find>changeCover</find>
       <find>status</find>
     </findStrings>
   </component>
@@ -204,10 +184,10 @@
         <option value="$PROJECT_DIR$/app/Interfaces/Admin/ProductInterface.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
         <option value="$PROJECT_DIR$/resources/assets/scripts/products/products.js" />
-        <option value="$PROJECT_DIR$/config/lang_pt-BR.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
+        <option value="$PROJECT_DIR$/config/lang_pt-BR.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
       </list>
     </option>
   </component>
@@ -724,18 +704,18 @@
       <workItem from="1558810299912" duration="73981000" />
       <workItem from="1558953999958" duration="184127000" />
       <workItem from="1559308038199" duration="276749000" />
-      <workItem from="1559747188253" duration="110655000" />
+      <workItem from="1559747188253" duration="132209000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="940460000" />
+    <option name="totallyTimeSpent" value="962014000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1303" height="780" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16414343" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.074900396" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -763,7 +743,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="51" />
+      <option name="time" value="58" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1182,49 +1162,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="185">
-          <caret line="52" column="20" lean-forward="false" selection-start-line="52" selection-start-column="9" selection-end-line="52" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="252" column="0" lean-forward="false" selection-start-line="252" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-          <folding>
-            <element signature="e#2721#3716#0#PHP" expanded="false" />
-            <element signature="e#3898#5878#0#PHP" expanded="false" />
-            <element signature="e#6024#7375#0#PHP" expanded="false" />
-            <element signature="e#9915#11198#0#PHP" expanded="false" />
-            <element signature="e#11389#12008#0#PHP" expanded="false" />
-            <element signature="e#12097#12568#0#PHP" expanded="false" />
-            <element signature="e#12671#12930#0#PHP" expanded="false" />
-            <element signature="e#13138#13545#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="673" column="17" lean-forward="true" selection-start-line="673" selection-start-column="17" selection-end-line="673" selection-end-column="17" />
-          <folding>
-            <element signature="e#48#84#0#PHP" expanded="true" />
-            <element signature="e#1039#5497#0#PHP" expanded="false" />
-            <element signature="e#5585#9662#0#PHP" expanded="false" />
-            <element signature="e#10206#11639#0#PHP" expanded="false" />
-            <element signature="e#14165#16205#0#PHP" expanded="false" />
-            <element signature="e#16392#18089#0#PHP" expanded="false" />
-            <element signature="e#18207#19307#0#PHP" expanded="false" />
-            <element signature="e#19463#20944#0#PHP" expanded="false" />
-            <element signature="e#26022#27745#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.env">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -1246,7 +1183,42 @@
         <state relative-caret-position="126">
           <caret line="51" column="49" lean-forward="true" selection-start-line="51" selection-start-column="49" selection-end-line="51" selection-end-column="49" />
           <folding>
-            <element signature="e#40#54#0#PHP" expanded="true" />
+            <element signature="e#40#54#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="448">
+          <caret line="253" column="0" lean-forward="false" selection-start-line="253" selection-start-column="0" selection-end-line="253" selection-end-column="0" />
+          <folding>
+            <element signature="e#2721#3716#0#PHP" expanded="false" />
+            <element signature="e#3898#5878#0#PHP" expanded="false" />
+            <element signature="e#6024#7375#0#PHP" expanded="false" />
+            <element signature="e#9876#11159#0#PHP" expanded="false" />
+            <element signature="e#11350#11969#0#PHP" expanded="false" />
+            <element signature="e#12058#12529#0#PHP" expanded="false" />
+            <element signature="e#12632#12891#0#PHP" expanded="false" />
+            <element signature="e#13099#13506#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="55" column="27" lean-forward="false" selection-start-line="55" selection-start-column="27" selection-end-line="55" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-70">
+          <caret line="729" column="0" lean-forward="false" selection-start-line="729" selection-start-column="0" selection-end-line="729" selection-end-column="0" />
+          <folding>
+            <element signature="e#48#84#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

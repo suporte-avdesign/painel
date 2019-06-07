@@ -249,11 +249,10 @@ class ImageColorController extends Controller
             $product  = $image->product;
             $dataForm = $request['img'];
             $action   = $dataForm['ac'];
-            $update = $this->interModel->update($dataForm, $config, $product, $image);
+            $update   = $this->interModel->update($dataForm, $config, $product, $image);
             if ($update) {
                 $configProduct = $this->configProduct->setId(1);
                 if ($configProduct->grids == 1) {
-                    /** Grids type kit */
                     if ($product->kit == 1) {
                         $qty = $request['qty'];
                         $des = $request['des'];
@@ -289,6 +288,7 @@ class ImageColorController extends Controller
 
                 return response()->json($out);
             }
+
 
         } catch(\Exception $e){
             DB::rollback();

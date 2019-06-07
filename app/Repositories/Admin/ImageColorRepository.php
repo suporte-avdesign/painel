@@ -25,7 +25,7 @@ class ImageColorRepository implements ImageColorInterface
      * @return void
      */
     public function __construct(
-        Model $model, 
+        Model $model,
         Keywords $keywords,
         ConfigImage $configImage)
     {
@@ -44,7 +44,7 @@ class ImageColorRepository implements ImageColorInterface
      */
     public function getAll($request)
     {
-        $columns = array( 
+        $columns = array(
             0 => 'id',
             1 => 'code',
             2 => 'color',
@@ -55,44 +55,44 @@ class ImageColorRepository implements ImageColorInterface
             7 => 'active',
             8 => 'actions'
         );
-  
+
         $totalData = $this->model->count();
-            
-        $totalFiltered = $totalData; 
+
+        $totalFiltered = $totalData;
 
         $limit = $request->input('length');
         $start = $request->input('start');
         $order = $columns[$request->input('order.0.column')];
         $dir   = $request->input('order.0.dir');
-            
+
         if (empty($request->input('search.value'))) {
 
-            $query = $this->model    
+            $query = $this->model
                 ->offset($start)
                 ->limit($limit)
                 ->orderBy($order,$dir)
                 ->get();
 
         } else {
-            $search = $request->input('search.value'); 
+            $search = $request->input('search.value');
 
             $query =  $this->model->where('slug','LIKE',"%{$search}%")
-                            ->orWhere('description', 'LIKE',"%{$search}%")
-                            ->offset($start)
-                            ->limit($limit)
-                            ->orderBy($order,$dir)
-                            ->get();
+                ->orWhere('description', 'LIKE',"%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order,$dir)
+                ->get();
 
             $totalFiltered = $this->model->where('slug','LIKE',"%{$search}%")
-                            ->orWhere('description', 'LIKE',"%{$search}%")
-                            ->count();
+                ->orWhere('description', 'LIKE',"%{$search}%")
+                ->count();
         }
 
         // Configurações
         $configImage   = $this->configImage->setName('default', 'T');
 
-        $path    = $configImage->path;        
-        $data    = array(); 
+        $path    = $configImage->path;
+        $data    = array();
 
         if(!empty($query))
         {
@@ -101,7 +101,7 @@ class ImageColorRepository implements ImageColorInterface
                 if ($val->image != '') {
                     $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->j.$path.$val->image).'" width="80" /></a>';
                 } else {
-                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'"  src="'.url('assets/imagens/padrao/product-no-image.png').'" /></a>'; 
+                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'"  src="'.url('assets/imagens/padrao/product-no-image.png').'" /></a>';
                 }
 
                 ($val->cover == 1 ? $cover   = '<p><small class="tag">Capa</small></p>' : $cover = '');
@@ -136,11 +136,11 @@ class ImageColorRepository implements ImageColorInterface
             }
 
         }
-          
+
         $out = array(
-            "draw" => intval($request->input('draw')),  
-            "recordsTotal" => intval($totalData),  
-            "recordsFiltered" => intval($totalFiltered), 
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
             "data" => $data
         );
 
@@ -224,10 +224,10 @@ class ImageColorRepository implements ImageColorInterface
 
                 foreach ($val->sizes as $size) {
                     $grids .= '<p class="button-height">';
-                        $grids .= '<span class="input">';
-                            $grids .= $kits.'<label for="size-'.$size->grid.'" class="button blue-gradient">'.$size->grid.'</label>';
-                            $grids .= '<input type="text" id="qty-'.$size->grid.'" name="grid['.$size->id.']" class="input-unstyled" placeholder="Qtd" value="" autocomplete="off" style="width: 30px;">';
-                        $grids .= '</span>';
+                    $grids .= '<span class="input">';
+                    $grids .= $kits.'<label for="size-'.$size->grid.'" class="button blue-gradient">'.$size->grid.'</label>';
+                    $grids .= '<input type="text" id="qty-'.$size->grid.'" name="grid['.$size->id.']" class="input-unstyled" placeholder="Qtd" value="" autocomplete="off" style="width: 30px;">';
+                    $grids .= '</span>';
                     $grids .= '</p>';
                     $i++;
                 }
@@ -276,7 +276,7 @@ class ImageColorRepository implements ImageColorInterface
     public function get($id)
     {
         $data  = $this->model->where('product_id', $id)->get();
-        return $data;    
+        return $data;
     }
 
 
@@ -314,7 +314,7 @@ class ImageColorRepository implements ImageColorInterface
         $dataForm['product_id']  = $input['product_id'];
         $dataForm['description'] = $input['description'];
 
-         /* facknews*/
+        /* facknews*/
         $dataForm['slug']        = numLetter(time());
         $dataForm['image']       = url('backend/img/default/no_image.png');
 
@@ -326,10 +326,10 @@ class ImageColorRepository implements ImageColorInterface
         if ($data) {
             ($data->cover == 1 ? $cover = constLang('active_true') : $cover = constLang('active_false'));
             generateAccessesTxt(utf8_decode('- Upload Foto:'.
-                ' '.constLang('code').':'.$data->code.
-                ', '.constLang('color').':'.$data->color.
-                ', '.constLang('status').':'.$data->active.
-                ', '.constLang('cover').':'.$data->cover)
+                    ' '.constLang('code').':'.$data->code.
+                    ', '.constLang('color').':'.$data->color.
+                    ', '.constLang('status').':'.$data->active.
+                    ', '.constLang('cover').':'.$data->cover)
             );
             return $data;
         }
@@ -349,7 +349,7 @@ class ImageColorRepository implements ImageColorInterface
         $dataForm = [];
         $count = strlen($input['order']);
         if ($count == 1) {
-           $input['order'] = '0' .$input['order'];
+            $input['order'] = '0' .$input['order'];
         }
         if ($image->code != $input['code']) {
             $dataForm['code'] = $input['code'];
@@ -383,6 +383,9 @@ class ImageColorRepository implements ImageColorInterface
                 if ($img->cover == 1) {
                     $up = $this->model->find($id)->update(['cover' => 0]);
                 }
+            }
+            if ($product->active == 0){
+                $data = $product->update(['active' => 1]);
             }
         }
 
@@ -600,12 +603,12 @@ class ImageColorRepository implements ImageColorInterface
             $success = true;
             $message = constLang('status_true').' '.$image->active;
             generateAccessesTxt(date('H:i:s').utf8_decode(
-                ' '.constLang('updated').
-                ' '.constLang('status').
-                ' '.constLang('product').
-                ':'.$product->name.
-                ', '.constLang('code').':'.$image->code.
-                ' - '.$image->active)
+                    ' '.constLang('updated').
+                    ' '.constLang('status').
+                    ' '.constLang('product').
+                    ':'.$product->name.
+                    ', '.constLang('code').':'.$image->code.
+                    ' - '.$image->active)
             );
 
             $html = view("{$view}.status-render", compact('image'))->render();
@@ -658,24 +661,28 @@ class ImageColorRepository implements ImageColorInterface
                 }
             }
         } else if ($action == 'update_'.constLang('active_false').'_0') {
-            $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
-            $last_active = collect($collection)->where('active', $true)->last();
-            if ($first_active) {
-                if ($first_active->id != $image->id) {
-                    $data  = $first_active->update($input);
+            if ($count_active >= 1) {
+                $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
+                $last_active = collect($collection)->where('active', $true)->last();
+                if ($first_active) {
+                    if ($first_active->id != $image->id) {
+                        $data = $first_active->update($input);
+                    }
+                } else if ($last_active) {
+                    if ($last_active->id != $image->id) {
+                        $data = $last_active->update($input);
+                    }
+                } else if ($first_inactive) {
+                    if ($first_inactive->id != $image->id) {
+                        $data = $first_inactive->update($input);
+                    }
+                } else if ($first_inactive) {
+                    if ($first_inactive->id != $image->id) {
+                        $data = $first_inactive->update($input);
+                    }
                 }
-            } else if ($last_active) {
-                if ($last_active->id != $image->id) {
-                    $data  = $last_active->update($input);
-                }
-            } else if ($first_inactive) {
-                if ($first_inactive->id != $image->id) {
-                    $data = $first_inactive->update($input);
-                }
-            } else if ($first_inactive) {
-                if ($first_inactive->id != $image->id) {
-                    $data = $first_inactive->update($input);
-                }
+            } else {
+                $data = $product->update(['active' => 0]);
             }
 
         } else if ($action == 'delete') {
@@ -718,6 +725,9 @@ class ImageColorRepository implements ImageColorInterface
             if ($count >= 1) {
                 if ($count_active >= 1) {
                     $image->update($output);
+                    if ($product->active == 0) {
+                        $data = $product->update(['active' => 1]);
+                    }
                     if ($first_active) {
                         if ($first_active->id != $image->id) {
                             $data  = $first_active->update($input);
@@ -731,11 +741,19 @@ class ImageColorRepository implements ImageColorInterface
                             $color = $last_active->color;
                         }
                     }
-                    $alert = '<span class="silver">' .
-                        constLang('alert.cover_new').'<br>' .
-                        constLang('code').':'.$code .'<br>' .
-                        constLang('color').':'.$color .'</span>';
+                } else {
+                    $data  = $product->update(['active' => 0]);
+                    $alert = '<span class="red">'.constLang('alert.cover_product_false').'</span>';
+                    $code  = $product->name.'<br>';
+                    $code .= $image->code.'<br>';
+                    $color = $image->color;
                 }
+
+                $alert = '<span class="silver">' .
+                    constLang('alert.cover_new').'<br>' .
+                    constLang('code').':'.$code .'<br>' .
+                    constLang('color').':'.$color .'</span>';
+
             } else {
                 $alert = '<span class="red">'.constLang('alert.cover_false').'</span>';
             }
@@ -794,12 +812,5 @@ class ImageColorRepository implements ImageColorInterface
             'success' => false,
             'message' => "Não foi possível alterar o status.");
     }
-
-
-
-
-
-
-
 
 }

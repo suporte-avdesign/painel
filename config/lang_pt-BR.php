@@ -51,7 +51,9 @@ return [
     'alert' => [
         'cover_new' => 'O sistema criou uma nova imagem capa.',
         'cover_false' => 'Você não tem nehuma imagem capa com o status ativo!',
-        'cover_inactive' => 'A imagem não pode ser capa com o status inativo'
+        'cover_inactive' => 'A imagem não pode ser capa com o status inativo',
+        'cover_product_false' => 'Como não existe nenhuma imagem ativa o produto foi desativado.',
+        'cover_product_true' => 'O status do produto também já esta ativo, Boas vendas!'
     ],
     'back' => 'Voltar ',
     'code' => 'Código',
