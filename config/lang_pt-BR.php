@@ -48,6 +48,11 @@ return [
     'active_true' => 'Ativo',
     'active_false' => 'Inativo',
     'add' => 'Adicionar',
+    'alert' => [
+        'cover_new' => 'O sistema criou uma nova imagem capa.',
+        'cover_false' => 'Você não tem nehuma imagem capa com o status ativo!',
+        'cover_inactive' => 'A imagem não pode ser capa com o status inativo'
+    ],
     'back' => 'Voltar ',
     'code' => 'Código',
     'color' => 'Cor',

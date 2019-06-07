@@ -614,7 +614,7 @@
 
 
         /**
-         * Update Status collor.
+         * Date: 06/06/2019
          *
          * @param int id
          * @param string url
@@ -632,8 +632,8 @@
                 data: {_method:'put', 'active':sta},
                 success: function(data){
                     if(data.success == true){
-                        if (cover == 1 && sta == tableProduct.active_false) {
-                            $.modal.alert('<span class="red">'+data.alert+'</span>');
+                        if ( typeof data.alert !== "undefined" && data.alert ) {
+                            $.modal.alert(data.alert);
                         };
                         $("#btns-"+id).html(data.html);
                         msgNotifica(true, data.message, true, false);
@@ -664,6 +664,9 @@
                     headers: {'X-CSRF-TOKEN': tableProduct.token},
                     success: function (data) {
                         if (data.success == true) {
+                            if ( typeof data.alert !== "undefined" && data.alert ) {
+                                $.modal.alert(data.alert);
+                            };
                             if (data.reload == true) {
                                 table.ajax.reload();
                             } else {
@@ -694,6 +697,7 @@
          */
         statusPosition = function(id, url, sta, token)
         {
+            var status;
             $.ajax({
                 type: 'POST',
                 headers: {'X-CSRF-TOKEN':token},
@@ -803,7 +807,7 @@
                     }
 
                     if (data.ac == 'update') {
-                           $("#img-colors-"+data.id).html(data.html);
+                        $("#img-colors-"+data.id).html(data.html);
                         fechaModal();
                     }
 

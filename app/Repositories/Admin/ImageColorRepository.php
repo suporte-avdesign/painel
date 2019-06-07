@@ -318,12 +318,12 @@ class ImageColorRepository implements ImageColorInterface
         $dataForm['slug']        = numLetter(time());
         $dataForm['image']       = url('backend/img/default/no_image.png');
 
+        if ($dataForm['cover'] == 1 && $dataForm['active'] == constLang('active_true')) {
+            $cover = $this->changeCover($product, false, 'create');
+        }
         $data = $this->model->create($dataForm);
         //dd($data);
         if ($data) {
-
-            $change = $this->changeCover($product, $data);
-
             ($data->cover == 1 ? $cover = constLang('active_true') : $cover = constLang('active_false'));
             generateAccessesTxt(utf8_decode('- Upload Foto:'.
                 ' '.constLang('code').':'.$data->code.
@@ -367,17 +367,34 @@ class ImageColorRepository implements ImageColorInterface
             $dataForm['active'] = $input['active'];
             $access .= ' '.constLang('status').':'.$image->active.'/'.$input['active'];
         }
-        if ($image->cover != $input['cover']) {
-            $dataForm['cover'] = $input['cover'];
-            $change = $this->changeCover($product, $image);
-            $access .= ' '.constLang('cover').':'.$image->cover.'/'.$input['cover'];
-        }
+
         if ($image->order != $input['order']) {
             $dataForm['order'] = $input['order'];
             $access .= ' '.constLang('order').':'.$image->order.'/'.$input['order'];
         }
 
+        if ($image->cover != $input['cover'] && $input['active'] == constLang('active_true')) {
+            $dataForm['cover'] = $input['cover'];
+            $access .= ' '.constLang('cover').':'.$image->cover.'/'.$input['cover'];
+        }
+        if ($input['cover'] == 1 && $input['active'] == constLang('active_true')){
+            foreach ($product->images as $img) {
+                $id = $img->id;
+                if ($img->cover == 1) {
+                    $up = $this->model->find($id)->update(['cover' => 0]);
+                }
+            }
+        }
+
+        if ($input['cover'] == 1 && $input['active'] == constLang('active_false')){
+            $cover = $this->changeCover($product, $image, 'delete');
+        }
+
+        dd($cover);
+
         if(!empty($dataForm)){
+
+
             $update = $image->update($dataForm);
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(' '.$access)
@@ -398,11 +415,10 @@ class ImageColorRepository implements ImageColorInterface
      * @param $config
      * @return bool
      */
-    public function delete($image, $product, $config)
+    public function delete($image, $product, $config, $reload)
     {
+        $cover = null;
         $positions = $image->positions;
-
-        $change = $this->changeCover($product, $image, 'delete');
 
         foreach ($config as $value) {
             if (!empty($positions)) {
@@ -417,7 +433,6 @@ class ImageColorRepository implements ImageColorInterface
             }
 
             if ($value->type == 'C') {
-                /* Copiar  a thumb */
                 if ($value->default != 'T') {
                     $color = $this->disk.$value->path.$image->image;
                     if (file_exists($color)) {
@@ -428,19 +443,37 @@ class ImageColorRepository implements ImageColorInterface
         }
 
         $delete = $image->delete();
-
         if ($delete) {
-            ($image->cover == 1 ? $cover = constLang('yes') : $cover = constLang('not'));
-            generateAccessesTxt(date('H:i:s').utf8_decode(
-                    ' '.constLang('messages.products.delete_true').
-                    ':'.$product->name.
-                    ', '.constLang('code').':'.$image->code.
-                    ', '.constLang('color').':'.$image->color.
-                    ', '.constLang('status').':'.$image->active.
-                    ', '.constLang('cover').':'.$cover)
+            if ($image->cover == 1) {
+                $cover = $this->changeCover($product, $image, 'delete');
+            }
+            ($image->cover == 1 ? $txtCover = constLang('yes') : $txtCover = constLang('not'));
+            generateAccessesTxt(date('H:i:s') . utf8_decode(
+                    ' ' . constLang('messages.products.delete_true') .
+                    ':' . $product->name .
+                    ', ' . constLang('code') . ':' . $image->code .
+                    ', ' . constLang('color') . ':' . $image->color .
+                    ', ' . constLang('status') . ':' . $image->active .
+                    ', ' . constLang('cover') . ':' . $txtCover)
             );
-            return true;
+
+            $success = true;
+            $message = constLang('messages.products.delete_true');
+
+        } else {
+            $success = false;
+            $message = constLang('messages.products.delete_false');
         }
+
+        $out = array(
+            'success' => $success,
+            'message' => $message,
+            'alert' => $cover,
+            'reload'  => $reload
+        );
+
+        return $out;
+
     }
 
     /**
@@ -543,7 +576,7 @@ class ImageColorRepository implements ImageColorInterface
     }
 
     /**
-     * Date: 06/05/2019
+     * Date: 06/06/2019
      *
      * @param $input
      * @param $product
@@ -554,20 +587,21 @@ class ImageColorRepository implements ImageColorInterface
     public function status($input, $product, $view, $id)
     {
         $html  = null;
-        $alert = null;
+        $cover = null;
         $image = $this->model->find($id);
 
         ($input['active'] == constLang('active_true') ?
             $dataForm['active'] = constLang('active_false') :
             $dataForm['active'] = constLang('active_true'));
 
-        $cover = $this->changeCover($product, $image, 'status');
-
-        if ($cover == 'alert') {
-            $alert = 'Esta imagem era capa!<br>Coloque outra imagem como capa com o status: Ativo.';
+        if ($image->cover == 1 && $dataForm['active'] == constLang('active_false')){
+            $update = $image->update($dataForm);
+            if ($update) {
+                $cover  = $this->changeCover($product, $image, 'status');
+            }
+        } else {
+            $update = $image->update($dataForm);
         }
-
-        $update = $image->update($dataForm);
         if ($update) {
             $success = true;
             $message = constLang('status_true').' '.$image->active;
@@ -583,14 +617,14 @@ class ImageColorRepository implements ImageColorInterface
             $html = view("{$view}.status-render", compact('image'))->render();
         } else {
             $success = false;
-            $message = constLang('status_lase');
+            $message = constLang('status_false');
         }
 
         $out = array(
             "success" => $success,
             "message" => $message,
-            "html"  => $html,
-            'alert' => $alert
+            'alert' => $cover,
+            "html"  => $html
         );
 
         return $out;
@@ -598,31 +632,116 @@ class ImageColorRepository implements ImageColorInterface
 
     /**
      * Date: 06/05/2019
-     * Actions (delete,status)
-     * product > 1
-     * status != active
-     *
+     * Create cover=1 - active=true
+     * Status cover=1 - active=true
+     * Delete cover=1 - active=true
+     * Update cover=1 - active=true
      * @param $product
      * @param $id
      * @param string $change
      */
     public function changeCover($product, $image, $action=null)
     {
-        /*
-        $count = $product->count();
-        foreach ($product as $image) {
-            $input = ['cover' => 0];
-            $this->model->find($image->id)->update($input);
-        }
+        $collection = $product->images;
 
-        /*
-        if ($change) {
-            $update = $this->model->where('product_id', $id)
-                ->first()->update(['cover' => 1]);
+        $output = ['cover' => 0];
+        $input  = ['cover' => 1];
+        $alert  = null;
+        $count  = $collection->count();
+        $true   = constLang('active_true');
+        $false  = constLang('active_false');
+        $count_active = collect($collection)->where('active', $true)->count();
+        $first_active = collect($collection)->where('active', $true)->first();
+        $first_inactive = collect($collection)->where('active', $false)->first();
+        $cover_active = collect($collection)->where('cover', 1)->first();
+
+        if ($action == 'create') {
+            if ($count >= 1) {
+                if ($count_active >= 1) {
+                    if ($cover_active) {
+                        $data = $cover_active->update($output);
+                    }
+                }
+            }
+        } else if ($action == 'update') {
+            $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
+            $last_active = collect($collection)->where('active', $true)->last();
+            if ($count >= 2) {
+                if ($count_active >= 1) {
+                    if($cover_active) {
+                        $data = $cover_active->update($output);
+                    }
+                }
+            }
+        } else if ($action == 'delete') {
+            $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
+            $last_active = collect($collection)->where('active', $true)->last();
+            if ($count == 2) {
+                $data = $image_diff->update($input);
+                $code = $image_diff->code;
+                $color = $image_diff->color;
+            }
+            if ($first_active) {
+                if ($first_active->id != $image->id) {
+                    $data  = $first_active->update($input);
+                    $code  = $first_active->code;
+                    $color = $first_active->color;
+                }
+            }
+            if ($last_active) {
+                if ($last_active->id != $image->id) {
+                    $data  = $last_active->update($input);
+                    $code  = $last_active->code;
+                    $color = $last_active->color;
+                }
+            }
+            if ($first_inactive) {
+                if ($first_inactive->id != $image->id) {
+                    $data = $first_inactive->update($input);
+                    $code = $first_inactive->code;
+                    $color = $first_inactive->color;
+                }
+            }
+            if ($data) {
+                $alert = '<span class="silver">' .
+                    constLang('alert.cover_new').'<br>' .
+                    constLang('code').':'.$code .'<br>' .
+                    constLang('color').':'.$color .'</span>';
+            }
+            return $alert;
+
+        } else if ($action == 'status'){
+            $last_active = collect($collection)->where('active', $true)->last();
+            if ($count >= 1) {
+                if ($count_active >= 1) {
+                    $image->update($output);
+                    if ($first_active) {
+                        if ($first_active->id != $image->id) {
+                            $data  = $first_active->update($input);
+                            $code  = $first_active->code;
+                            $color = $first_active->color;
+                        }
+                    }
+                    if ($last_active) {
+                        if ($last_active->id != $image->id) {
+                            $data  = $last_active->update($input);
+                            $code  = $last_active->code;
+                            $color = $last_active->color;
+                        }
+                    }
+                    $alert = '<span class="silver">' .
+                        constLang('alert.cover_new').'<br>' .
+                        constLang('code').':'.$code .'<br>' .
+                        constLang('color').':'.$color .'</span>';
+                }
+            } else {
+                $alert = '<span class="red">'.constLang('alert.cover_false').'</span>';
+            }
+            return $alert;
         }
-        */
 
     }
+
 
 
     /**

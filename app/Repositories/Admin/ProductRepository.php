@@ -624,12 +624,25 @@ class ProductRepository implements ProductInterface
      * @param $image
      * @return bool
      */
-    public function deleteUnique($config, $product, $image)
+    public function deleteUnique($config, $product, $image, $reload)
     {
         $delete = $product->delete();
         if ($delete) {
-            return true;
+            $success = true;
+            $message = constLang('messages.products.delete_true');
+
+        } else {
+            $success = false;
+            $message = constLang('messages.products.delete_false');
         }
+
+        $out = array(
+            'success' => $success,
+            'message' => $message,
+            'reload'  => $reload
+        );
+
+        return $out;
     }
 
 

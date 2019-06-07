@@ -326,31 +326,15 @@ class ImageColorController extends Controller
 
             $total = $product->images->count();
             if ($total >= 2) {
-                $delete = $this->interModel->delete($image, $product, $config);
-                $reload  = false;
+                $delete = $this->interModel->delete($image, $product, $config, false);
             } else {
-                $delete  = $this->interProduct->deleteUnique($config, $product, $image);
-                $reload  = true;
+                $delete  = $this->interProduct->deleteUnique($config, $product, $image, true);
             }
 
             if ($delete) {
-                $success = true;
-                $message = constLang('messages.products.delete_true');
-
                 DB::commit();
-
-            } else {
-                $success = false;
-                $message = constLang('messages.products.delete_false');
+                return response()->json($delete);
             }
-
-            $out = array(
-                'success' => $success,
-                'message' => $message,
-                'reload'  => $reload
-            );
-
-            return response()->json($out);
 
         } catch(\Exception $e){
 
