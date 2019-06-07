@@ -20,6 +20,18 @@ class Handler extends ExceptionHandler
     ];
 
     /**
+     * Essas informações serão incluídas na mensagem de log de todas as exceções
+     *
+     * @return array
+     */
+    protected function context()
+    {
+        return array_merge(parent::context(), [
+            'foo' => 'bar',
+        ]);
+    }
+
+    /**
      * A list of the inputs that are never flashed for validation exceptions.
      *
      * @var array
@@ -42,13 +54,18 @@ class Handler extends ExceptionHandler
         $message = $e->getMessage();
         $previous = $e->getPrevious();
         $traces = $e->getTrace();
-        $redirect = route('login');
+        $redirect = route('painel');
+        $url = env('APP_URL');
+
 
         foreach ($traces as $trace) {
             if ($trace['function'] == 'authenticate') {
                 return "<script>window.location.href = {$redirect}</script>";
             }
         }
+
+
+
 
         parent::report($exception);
     }
@@ -60,14 +77,51 @@ class Handler extends ExceptionHandler
      * @param  \Exception  $exception
      * @return \Illuminate\Http\Response
      */
-    public function render($request, Exception $exception)
+    public function render($request, Exception $e)
     {
-        if ($this->isHttpException($exception)) {
+
+        $e = $this->prepareException($e);
+        $message = $e->getMessage();
+
+        if ($this->isHttpException($e)) {
 
             return redirect()->route('painel');
         }
 
-        return parent::render($request, $exception);
+        if ($message == "CSRF token mismatch."){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Token has expired'
+            ], $e->getStatusCode());
+        }
+
+
+        /*
+        if ($e instanceof \Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException) {
+            switch (get_class($e->getPrevious())) {
+                case \Tymon\JWTAuth\Exceptions\TokenExpiredException::class:
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Token has expired'
+                    ], $e->getStatusCode());
+                case \Tymon\JWTAuth\Exceptions\TokenInvalidException::class:
+                case \Tymon\JWTAuth\Exceptions\TokenBlacklistedException::class:
+                    return response()->json([
+                        'status' => 'error',
+                        'message' => 'Token is invalid'
+                    ], $e->getStatusCode());
+                default:
+                    break;
+            }
+        }
+
+        */
+
+
+
+
+
+        return parent::render($request, $e);
     }
 
     /**

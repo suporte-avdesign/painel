@@ -386,22 +386,16 @@ class ImageColorRepository implements ImageColorInterface
             }
         }
 
-        if ($input['cover'] == 1 && $input['active'] == constLang('active_false')){
-            $cover = $this->changeCover($product, $image, 'delete');
-        }
-
-        dd($cover);
-
         if(!empty($dataForm)){
-
-
             $update = $image->update($dataForm);
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(' '.$access)
             );
+            // important get active_cover
+            $cover = $this->changeCover($product, $image, 'update_'.$input['active'].'_'.$input['cover']);
+
             return $update;
         }
-
         return true;
 
     }
@@ -663,16 +657,27 @@ class ImageColorRepository implements ImageColorInterface
                     }
                 }
             }
-        } else if ($action == 'update') {
+        } else if ($action == 'update_'.constLang('active_false').'_0') {
             $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
             $last_active = collect($collection)->where('active', $true)->last();
-            if ($count >= 2) {
-                if ($count_active >= 1) {
-                    if($cover_active) {
-                        $data = $cover_active->update($output);
-                    }
+            if ($first_active) {
+                if ($first_active->id != $image->id) {
+                    $data  = $first_active->update($input);
+                }
+            } else if ($last_active) {
+                if ($last_active->id != $image->id) {
+                    $data  = $last_active->update($input);
+                }
+            } else if ($first_inactive) {
+                if ($first_inactive->id != $image->id) {
+                    $data = $first_inactive->update($input);
+                }
+            } else if ($first_inactive) {
+                if ($first_inactive->id != $image->id) {
+                    $data = $first_inactive->update($input);
                 }
             }
+
         } else if ($action == 'delete') {
             $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
             $last_active = collect($collection)->where('active', $true)->last();
@@ -680,28 +685,26 @@ class ImageColorRepository implements ImageColorInterface
                 $data = $image_diff->update($input);
                 $code = $image_diff->code;
                 $color = $image_diff->color;
-            }
-            if ($first_active) {
+            } else if ($first_active) {
                 if ($first_active->id != $image->id) {
                     $data  = $first_active->update($input);
                     $code  = $first_active->code;
                     $color = $first_active->color;
                 }
-            }
-            if ($last_active) {
+            } else if ($last_active) {
                 if ($last_active->id != $image->id) {
                     $data  = $last_active->update($input);
                     $code  = $last_active->code;
                     $color = $last_active->color;
                 }
-            }
-            if ($first_inactive) {
+            } else if ($first_inactive) {
                 if ($first_inactive->id != $image->id) {
                     $data = $first_inactive->update($input);
                     $code = $first_inactive->code;
                     $color = $first_inactive->color;
                 }
             }
+
             if ($data) {
                 $alert = '<span class="silver">' .
                     constLang('alert.cover_new').'<br>' .
@@ -721,8 +724,7 @@ class ImageColorRepository implements ImageColorInterface
                             $code  = $first_active->code;
                             $color = $first_active->color;
                         }
-                    }
-                    if ($last_active) {
+                    } else if ($last_active) {
                         if ($last_active->id != $image->id) {
                             $data  = $last_active->update($input);
                             $code  = $last_active->code;
