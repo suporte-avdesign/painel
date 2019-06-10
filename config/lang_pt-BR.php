@@ -58,6 +58,7 @@ return [
     'back' => 'Voltar ',
     'code' => 'Código',
     'color' => 'Cor',
+    'colors' => 'Cores',
     'cost' => 'Custo',
     'cover' => 'capa',
     'created' => 'Criou',

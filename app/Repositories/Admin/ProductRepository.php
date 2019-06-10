@@ -78,8 +78,7 @@ class ProductRepository implements ProductInterface
             'images' => function ($query) {
                 $query->orderBy('cover', 'asc');
             }
-        ))
-            ->count();
+        )) ->count();
 
         $totalFiltered = $totalData;
 
@@ -572,7 +571,7 @@ class ProductRepository implements ProductInterface
     public function delete($config, $product)
     {
         $images = $product->images;
-        $total_colors = count($images);
+        $total =  count($images);
 
         foreach ($config as $value) {
             foreach ($images as $image) {
@@ -608,7 +607,7 @@ class ProductRepository implements ProductInterface
                 '/'.$product->category.'/'.$product->section.'/'.$product->brand).
                 ', '.constLang('messages.products.total_colors').$total_colors)
             );
-            $product['total_colors'] = $total_colors;
+            $product['total_colors'] = $total;
             return $product;
         }
 

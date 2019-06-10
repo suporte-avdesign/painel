@@ -54,16 +54,14 @@ class Handler extends ExceptionHandler
         $message = $e->getMessage();
         $previous = $e->getPrevious();
         $traces = $e->getTrace();
-        $redirect = route('painel');
+        $redirect = route('login');
         $url = env('APP_URL');
-
 
         foreach ($traces as $trace) {
             if ($trace['function'] == 'authenticate') {
-                return "<script>window.location.href = {$redirect}</script>";
+                return "<script>var url = '{$redirect}'; $('#main').load(url); window.location.href = {$redirect}</script>";
             }
         }
-
 
 
 
@@ -94,6 +92,10 @@ class Handler extends ExceptionHandler
                 'message' => 'Token has expired'
             ], $e->getStatusCode());
         }
+
+
+
+
 
 
         /*

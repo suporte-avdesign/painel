@@ -84,5 +84,42 @@ if (! function_exists('strInArray')) {
 	}
 }
 
+if (! function_exists('ary_diff')) {
+    function ary_diff( $ary_1, $ary_2 ) {
+        // compare the value of 2 array
+        // get differences that in ary_1 but not in ary_2
+        // get difference that in ary_2 but not in ary_1
+        // return the unique difference between value of 2 array
+        $diff = array();
+
+        // get differences that in ary_1 but not in ary_2
+        foreach ( $ary_1 as $v1 ) {
+            $flag = 0;
+            foreach ( $ary_2 as $v2 ) {
+                $flag |= ( $v1 == $v2 );
+                if ( $flag ) break;
+            }
+            if ( !$flag ) array_push( $diff, $v1 );
+        }
+
+        // get difference that in ary_2 but not in ary_1
+        foreach ( $ary_2 as $v2 ) {
+            $flag = 0;
+            foreach ( $ary_1 as $v1 ) {
+                $flag |= ( $v1 == $v2 );
+                if ( $flag ) break;
+            }
+            if ( !$flag && !in_array( $v2, $diff ) ) array_push( $diff, $v2 );
+        }
+
+        return $diff;
+    }
+
+}
+
+
+
+
+
 
 

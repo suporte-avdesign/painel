@@ -59,4 +59,15 @@ class ImageColor extends Model
     {
         return $this->hasMany(ImagePosition::class);
     }
+
+
+    /**
+     * Groups
+     * @return array
+     **/
+    public function groups()
+    {
+        return $this->hasMany(GroupColor::class);
+    }
+
 }

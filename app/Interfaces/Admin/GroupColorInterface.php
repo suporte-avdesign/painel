@@ -11,5 +11,5 @@ interface GroupColorInterface
      */
     public function get($field, $id);
     public function create($input, $idpro, $id);
-    public function update($input, $idpro, $id);
+    public function update($input, $idpro, $image);
 }

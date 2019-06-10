@@ -243,13 +243,13 @@ class ImageColorController extends Controller
         try{
             DB::beginTransaction();
 
-            $file     = $request->file('file');
-            $config   = $this->configImage->get();
-            $image    = $this->interModel->setId($id);
-            $product  = $image->product;
-            $dataForm = $request['img'];
-            $action   = $dataForm['ac'];
-            $update   = $this->interModel->update($dataForm, $config, $product, $image);
+            $file    = $request->file('file');
+            $config  = $this->configImage->get();
+            $image   = $this->interModel->setId($id);
+            $product = $image->product;
+            $input   = $request['img'];
+            $action   = $input['ac'];
+            $update   = $this->interModel->update($input, $config, $product, $image);
             if ($update) {
                 $configProduct = $this->configProduct->setId(1);
                 if ($configProduct->grids == 1) {
@@ -262,14 +262,13 @@ class ImageColorController extends Controller
                     }
                 }
 
-
                 if ($configProduct->group_colors == 1) {
-                    $groups = $this->interGroup->update($request['groups'], $image->product_id, $image->id);
+                    $groups = $this->interGroup->update($request['groups'], $image->product_id, $image);
                 }
             }
 
             if ($file) {
-                $photo = $this->interModel->uploadImages($config, $dataForm, $image, $product, $file);
+                $photo = $this->interModel->uploadImages($config, $input, $image, $product, $file);
             } else {
                 $photo = $image->image;
             }

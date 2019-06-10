@@ -587,9 +587,14 @@ class ImageColorRepository implements ImageColorInterface
         $cover = null;
         $image = $this->model->find($id);
 
-        ($input['active'] == constLang('active_true') ?
-            $dataForm['active'] = constLang('active_false') :
-            $dataForm['active'] = constLang('active_true'));
+        if ($input['active'] == constLang('active_true')) {
+            $dataForm['active'] = constLang('active_false');
+        } else {
+            $dataForm['active'] = constLang('active_true');
+        }
+        $active = ', '.constLang('status').':'.$dataForm['active'];
+
+
 
         if ($image->cover == 1 && $dataForm['active'] == constLang('active_false')){
             $update = $image->update($dataForm);
@@ -606,9 +611,8 @@ class ImageColorRepository implements ImageColorInterface
                     ' '.constLang('updated').
                     ' '.constLang('status').
                     ' '.constLang('product').
-                    ':'.$product->name.
                     ', '.constLang('code').':'.$image->code.
-                    ' - '.$image->active)
+                    $active)
             );
 
             $html = view("{$view}.status-render", compact('image'))->render();
@@ -662,6 +666,9 @@ class ImageColorRepository implements ImageColorInterface
             }
         } else if ($action == 'update_'.constLang('active_false').'_0') {
             if ($count_active >= 1) {
+                if ($product->active == 0) {
+                    $upd = $product->update(['active' => 1]);
+                }
                 $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
                 $last_active = collect($collection)->where('active', $true)->last();
                 if ($first_active) {
@@ -682,37 +689,41 @@ class ImageColorRepository implements ImageColorInterface
                     }
                 }
             } else {
-                $data = $product->update(['active' => 0]);
+                $upd = $product->update(['active' => 0]);
             }
 
         } else if ($action == 'delete') {
-            $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
-            $last_active = collect($collection)->where('active', $true)->last();
-            if ($count == 2) {
-                $data = $image_diff->update($input);
-                $code = $image_diff->code;
-                $color = $image_diff->color;
-            } else if ($first_active) {
-                if ($first_active->id != $image->id) {
-                    $data  = $first_active->update($input);
-                    $code  = $first_active->code;
-                    $color = $first_active->color;
+                $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
+                $last_active = collect($collection)->where('active', $true)->last();
+                if ($count == 2) {
+                    $data = $image_diff->update($input);
+                    $code = $image_diff->code;
+                    $color = $image_diff->color;
+                } else if ($first_active) {
+                    if ($first_active->id != $image->id) {
+                        $data  = $first_active->update($input);
+                        $code  = $first_active->code;
+                        $color = $first_active->color;
+                    }
+                } else if ($last_active) {
+                    if ($last_active->id != $image->id) {
+                        $data  = $last_active->update($input);
+                        $code  = $last_active->code;
+                        $color = $last_active->color;
+                    }
+                } else if ($first_inactive) {
+                    if ($first_inactive->id != $image->id) {
+                        $data = $first_inactive->update($input);
+                        $code = $first_inactive->code;
+                        $color = $first_inactive->color;
+                    }
                 }
-            } else if ($last_active) {
-                if ($last_active->id != $image->id) {
-                    $data  = $last_active->update($input);
-                    $code  = $last_active->code;
-                    $color = $last_active->color;
-                }
-            } else if ($first_inactive) {
-                if ($first_inactive->id != $image->id) {
-                    $data = $first_inactive->update($input);
-                    $code = $first_inactive->code;
-                    $color = $first_inactive->color;
-                }
-            }
 
             if ($data) {
+                if ($count_active <= 0){
+                    $upd = $product->update(['active' => 0]);
+                }
+
                 $alert = '<span class="silver">' .
                     constLang('alert.cover_new').'<br>' .
                     constLang('code').':'.$code .'<br>' .
@@ -725,9 +736,6 @@ class ImageColorRepository implements ImageColorInterface
             if ($count >= 1) {
                 if ($count_active >= 1) {
                     $image->update($output);
-                    if ($product->active == 0) {
-                        $data = $product->update(['active' => 1]);
-                    }
                     if ($first_active) {
                         if ($first_active->id != $image->id) {
                             $data  = $first_active->update($input);
@@ -741,18 +749,22 @@ class ImageColorRepository implements ImageColorInterface
                             $color = $last_active->color;
                         }
                     }
-                } else {
-                    $data  = $product->update(['active' => 0]);
-                    $alert = '<span class="red">'.constLang('alert.cover_product_false').'</span>';
-                    $code  = $product->name.'<br>';
-                    $code .= $image->code.'<br>';
-                    $color = $image->color;
+                }
+                if (isset($data)) {
+                    if ($count_active <= 0){
+                        $upd = $product->update(['active' => 0]);
+                    } else {
+                        if ($product->active == 0) {
+                            $upd = $product->update(['active' => 1]);
+                        }
+                    }
+
+                    $alert = '<span class="silver">' .
+                        constLang('alert.cover_new').'<br>' .
+                        constLang('code').':'.$code .'<br>' .
+                        constLang('color').':'.$color .'</span>';
                 }
 
-                $alert = '<span class="silver">' .
-                    constLang('alert.cover_new').'<br>' .
-                    constLang('code').':'.$code .'<br>' .
-                    constLang('color').':'.$color .'</span>';
 
             } else {
                 $alert = '<span class="red">'.constLang('alert.cover_false').'</span>';

@@ -1,4 +1,3 @@
-<!--Modulo: group_colors -->
 <div align="center">
     <p class="margin-top">Grupo de Cores</p>
     <span id="miniature-{{$idpro}}" class="display-none"></span>
