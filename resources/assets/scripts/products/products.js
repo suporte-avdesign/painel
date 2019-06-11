@@ -764,11 +764,11 @@
                         // change radio cover
                         var idpro = $("#cover_id").val();
                         $("#load_cover_"+idpro).html('<label for="img_cover_'+idpro+'_1" class="button green-active">'+
-                                                        '<input type="radio" name="img[cover]" id="img_cover_'+idpro+'_1" value="1">'+
+                                                        '<input type="radio" name="img[cover]" id="img_cover_'+idpro+'_1" value="1" checked>'+
                                                         'Sim'+
                                                      '</label>'+
                                                         '<label for="img_cover_'+idpro+'_2" class="button red-active active">'+
-                                                        '<input type="radio" name="img[cover]" id="img_cover_'+idpro+'_2" value="0" checked>'+
+                                                        '<input type="radio" name="img[cover]" id="img_cover_'+idpro+'_2" value="0">'+
                                                         'Não'+
                                                       '</label>');
 

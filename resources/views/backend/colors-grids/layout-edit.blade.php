@@ -13,9 +13,11 @@
             <legend class="legend">Grades  </legend>
 
         @endif
+        <!-- Add Grid
         <div class="align-right compact">
             <a href="javascript:createGrid('{{$data->id}}','{{$stock}}','{{$kit}}');" class="button icon-plus blue-gradient" title="Adicionar"></a>
         </div>
+        -->
     @endif
     <div id="update-grids">
         @if($kit == 1)

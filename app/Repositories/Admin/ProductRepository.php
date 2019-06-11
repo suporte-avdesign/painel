@@ -5,10 +5,15 @@ namespace AVDPainel\Repositories\Admin;
 
 use AVDPainel\Models\Admin\Product as Model;
 use AVDPainel\Interfaces\Admin\ProductInterface;
+use AVDPainel\Interfaces\Admin\GridProductInterface as InterGrid;
 use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
+use AVDPainel\Interfaces\Admin\InventaryInterface as InterInventary;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as ConfigFreight;
 use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
+
+
+
 
 use DB;
 
@@ -30,16 +35,21 @@ class ProductRepository implements ProductInterface
     public function __construct(
         Model $model, 
         Keywords $keywords,
+        InterGrid $interGrid,
         ConfigImage $configImage,
         ConfigProduct $configProduct,
-        ConfigFreight $configFreight)
+        ConfigFreight $configFreight,
+        InterInventary $interInventary)
     {
-        $this->model         = $model;
-        $this->keywords      = $keywords;
-        $this->configImage   = $configImage;
-        $this->configProduct = $configProduct;
-        $this->configFreight = $configFreight;
-        $this->disk          = storage_path('app/public/');
+
+        $this->disk           = storage_path('app/public/');
+        $this->model          = $model;
+        $this->keywords       = $keywords;
+        $this->interGrid      = $interGrid;
+        $this->configImage    = $configImage;
+        $this->configProduct  = $configProduct;
+        $this->configFreight  = $configFreight;
+        $this->interInventary = $interInventary;
     }
 
 
@@ -571,47 +581,27 @@ class ProductRepository implements ProductInterface
     public function delete($config, $product)
     {
         $images = $product->images;
-        $total =  count($images);
+        $total  =  count($images);
 
-        foreach ($config as $value) {
-            foreach ($images as $image) {
-                if ($value->type == 'C') {
-                    if ($value->default != 'T') {
-                        $image = $this->disk . $value->path . $image->image;
-                        if (file_exists($image)) {
-                            $remove = unlink($image);
-                        }
-                    }
-                }
+        $deleteGrids = $this->deleteKits($images, $product);
+        if ($deleteGrids) {
 
-                $positions = $image->positions;
-                if (!empty($positions)) {
-                    if ($value->type == 'P') {
-                        foreach ($positions as $position) {
-                            $image = $this->disk.$value->path.$position->image;
-                            if (file_exists($image)) {
-                                $remove = unlink($image);
-                            }
-                        }
-                    }
+            $deleteImages = $this->deleteImages($config, $images, $total);
+            if ($deleteImages) {
+                $delete = $product->delete();
+                if ($delete) {
+                    generateAccessesTxt(date('H:i:s').utf8_decode(
+                            constLang('deleted').
+                            constLang('product').':'.Str::slug($product->name.
+                                '/'.$product->category.'/'.$product->section.'/'.$product->brand).
+                            ', '.constLang('messages.products.total_colors').$total)
+                    );
+                    $product['total_colors'] = $total;
+
+                    return true;
                 }
             }
         }
-
-        $delete = $product->delete();
-
-        if ($delete) {
-            generateAccessesTxt(date('H:i:s').utf8_decode(
-                constLang('deleted').
-                constLang('product').':'.Str::slug($product->name.
-                '/'.$product->category.'/'.$product->section.'/'.$product->brand).
-                ', '.constLang('messages.products.total_colors').$total_colors)
-            );
-            $product['total_colors'] = $total;
-            return $product;
-        }
-
-        return false;
     }
 
     /**
@@ -646,7 +636,7 @@ class ProductRepository implements ProductInterface
 
 
     /**
-     * Status Fields
+     * Date: 06/10/2019
      *
      * @param  int  $id
      * @param  array $input
@@ -665,19 +655,19 @@ class ProductRepository implements ProductInterface
 
             switch ($field) {
                 case 'offer':
-                    $name = 'oferta';
+                    $name = constLang('offer');
                     break;
                 case 'new':
-                    $name = 'novo';
+                    $name = constLang('new');
                     break;
                 case 'featured':
-                    $name = 'destaque';
+                    $name = constLang('featured');
                     break;
                 case 'trend':
-                    $name = 'tendência';
+                    $name = constLang('trend');
                     break;
                 case 'black_friday':
-                    $name = 'black friday';
+                    $name = constLang('black_friday');
                     break;
                 default:
                     $name = ' ';
@@ -689,25 +679,27 @@ class ProductRepository implements ProductInterface
             $onclick = "statusFields('{$field}','{$id}','{$route}','{$status}','{$token}')";
 
             if ($status == 1) {
-                $txt_status = ' para ativo';
-                $btn = '<button onclick="'.$onclick.'" class="button compact icon-tick green-gradient">Ativo</button>';
+                $cls = 'green-gradient';
+                $active = constLang('active_true');
             } else {
-                $txt_status = ' para inativo';
-                $btn = '<button onclick="'.$onclick.'" class="button compact grey-gradient">Inativo</button>';
+                $cls = 'grey-gradient';
+                $active = constLang('active_false');
             }
 
-            $success = true;
-            $message = " Alterou o status {$name} {$txt_status}";
+            $btn = '<button onclick="'.$onclick.'" class="button compact '.$cls.'">'.$active.'</button>';
 
-            generateAccessesTxt(
-                date('H:i:s').utf8_decode(
-                    ' '.$message.' do Produto:'.Str::slug($data->name.
-                        '-'.$data->category.'-'.$data->section.'-'.$data->brand))
+            $success = true;
+            $message = constLang('updated').' '.constLang('status').' '.$name.':'.$active;
+
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ' '.$message. ', '.constLang('product').':'.$data->name.
+                    ', '.constLang('category').':'.$data->category.
+                    ', '.constLang('section').':'.$data->section)
             );
 
         } else {
             $success = false;
-            $message = 'Não foi possível alterar o status.';
+            $message = constLang('status_false');
             $click   = null;
         }
 
@@ -720,4 +712,58 @@ class ProductRepository implements ProductInterface
         return $out;
     }
 
+    /**
+     * Date: 06/10/2019
+     *
+     * @param $images
+     * @param $product
+     * @return mixed
+     */
+    protected function deleteKits($images, $product)
+    {
+        if ($product->kit == 1) {
+            foreach ($images as $image) {
+                $grids = $this->interGrid->getKit($image->id);
+                $inventary = $this->interInventary->deleteKit($product, $image, $grids);
+            }
+            return true;
+        }
+
+    }
+
+
+    /**
+     * Date: 06/10/2019
+     *
+     * @param $config
+     * @param $images
+     * @return bool
+     */
+    protected function deleteImages($config, $images)
+    {
+        foreach ($config as $value) {
+            foreach ($images as $image) {
+                if ($value->type == 'C') {
+                    if ($value->default != 'T') {
+                        $file = $this->disk . $value->path . $image->image;
+                        if (file_exists($file)) {
+                            $remove = unlink($file);
+                        }
+                    }
+                }
+                $positions = $image->positions;
+                if (!empty($positions)) {
+                    if ($value->type == 'P') {
+                        foreach ($positions as $position) {
+                            $file = $this->disk.$value->path.$position->image;
+                            if (file_exists($file)) {
+                                $remove = unlink($file);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return true;
+    }
 }

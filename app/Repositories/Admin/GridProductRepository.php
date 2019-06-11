@@ -71,18 +71,18 @@ class GridProductRepository implements GridProductInterface
         $dataForm['color']          = $image->color;
         $dataForm['kit']            = $product->kit;
         $dataForm['grid']           = $input['grid'];
-        $dataForm['stock']          = $input['input'];
         $dataForm['product_id']     = $product->id;
         $dataForm['image_color_id'] = $image->id;
 
+
         $access = '- '.$product->kit_name;
-        $access .= ', Grade:'.$input['grid'];
+        $access .= ', '.constLang('grid').':'.$input['grid'];
 
         if ($product->stock == 1) {
 
             $dataForm['input'] = $input['input'];
-            $access .= ', Entrada:'.$input['input'];
-            $access .= ', Estoque:'.$input['input'];
+            $access .= ', '.constLang('entry').' '.$input['input'];
+            $access .= ', '.constLang('stock').' '.$input['input'];
 
             if ($product->qty_min == 1) {
                 $dataForm['qty_min'] = $input['qty_min'];
@@ -170,7 +170,6 @@ class GridProductRepository implements GridProductInterface
      */
     public function updateKit($input, $image, $product, $qty, $des)
     {
-
         $data = $this->setId($input['id']);
 
         if ($data->color != $image->color) {
@@ -193,7 +192,7 @@ class GridProductRepository implements GridProductInterface
                     $currentStock = ($previousStock + $entry) - $data->output;
                     $dataForm['input'] = $currentInput;
                     $dataForm['stock'] = $currentStock;
-                    $change .= ' Entrada:'.$entry.' Estoque:'.$currentStock;
+                    $change .= ' '.constLang('entry').':'.$entry.' '.constLang('stock').':'.$currentStock;
                 }
             }
             if ($data->qty_min != $input['qty_min']) {
@@ -205,26 +204,6 @@ class GridProductRepository implements GridProductInterface
                 $change = ' Qtd Max:'.$input['qty_max'];
             }
 
-        } else {
-
-            $count_qty = count($qty);
-            for ($i = 0; $i < $count_qty; $i++) {
-                $array[] = array(
-                    $qty[$i] => $des[$i]
-                );
-            }
-            $str = '';
-            foreach ($array as $keys => $values) {
-                foreach ($values as $key => $value) {
-                    $str .= $key . '/' . $value . ',';
-                }
-            }
-            $grid = substr($str, 0, -1);
-
-            if ($data->grid != $grid) {
-                $dataForm['grid'] = $grid;
-                $change = ' Grid:' . $grid;
-            }
         }
 
 
@@ -232,8 +211,10 @@ class GridProductRepository implements GridProductInterface
             $update = $data->update($dataForm);
             if ($update) {
                 generateAccessesTxt(constLang('updated').''.constLang('grid').$change);
-                $data['entry'] = $input['input'];
-                $data['previous_stock'] = $data->id;
+                if ($product->stock == 1) {
+                    $data['entry'] = $input['input'];
+                    $data['previous_stock'] = $data->id;
+                }
                 return $data;
             }
         }
