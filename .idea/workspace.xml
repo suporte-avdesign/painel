@@ -5,15 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/RegisterController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/RegisterController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/GridsControlle.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/GridsControlle.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" afterPath="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/lang_pt-BR.php" afterPath="$PROJECT_DIR$/config/lang_pt-BR.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -59,7 +53,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="214">
-              <caret line="132" column="37" lean-forward="true" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="37" />
+              <caret line="132" column="37" lean-forward="false" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -80,20 +74,20 @@
       <file leaf-file-name="form-create-units.blade.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="396">
-              <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+            <state relative-caret-position="360">
+              <caret line="53" column="21" lean-forward="false" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
               <folding>
                 <element signature="n#style#0;n#input#0;n#span#0;n#p#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#1;n#span#0;n#p#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#span#1;n#p#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#1;n#span#1;n#p#0;n#div#1;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#input#0;n#p#0;n#div#1;n#!!top" expanded="true" />
-                <marker date="1560295292544" expanded="true" signature="45:358" ph="..." />
-                <marker date="1560295292544" expanded="true" signature="70:357" ph="..." />
-                <marker date="1560295292544" expanded="true" signature="3499:3511" ph="..." />
-                <marker date="1560295292544" expanded="true" signature="3742:3754" ph="..." />
-                <marker date="1560295292544" expanded="true" signature="3989:4001" ph="..." />
-                <marker date="1560295292544" expanded="true" signature="4539:4551" ph="..." />
+                <marker date="1560295665671" expanded="true" signature="45:358" ph="..." />
+                <marker date="1560295665671" expanded="true" signature="70:357" ph="..." />
+                <marker date="1560295665671" expanded="true" signature="3482:3494" ph="..." />
+                <marker date="1560295665671" expanded="true" signature="3725:3737" ph="..." />
+                <marker date="1560295665671" expanded="true" signature="3972:3984" ph="..." />
+                <marker date="1560295665671" expanded="true" signature="4522:4534" ph="..." />
               </folding>
             </state>
           </provider>
@@ -103,7 +97,7 @@
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/GridsControlle.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-1052">
-              <caret line="89" column="30" lean-forward="true" selection-start-line="89" selection-start-column="30" selection-end-line="89" selection-end-column="30" />
+              <caret line="89" column="30" lean-forward="false" selection-start-line="89" selection-start-column="30" selection-end-line="89" selection-end-column="30" />
               <folding>
                 <marker date="1560261442375" expanded="true" signature="2131:2222" ph="..." />
                 <marker date="1560261442375" expanded="true" signature="2494:2581" ph="..." />
@@ -155,7 +149,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Interfaces/Admin/ConfigColorPositionInterface.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits-stock.blade.php" />
         <option value="$PROJECT_DIR$/package.json" />
@@ -205,6 +198,7 @@
         <option value="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
         <option value="$PROJECT_DIR$/config/lang_pt-BR.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php" />
       </list>
     </option>
@@ -820,18 +814,18 @@
       <workItem from="1558810299912" duration="73981000" />
       <workItem from="1558953999958" duration="184127000" />
       <workItem from="1559308038199" duration="276749000" />
-      <workItem from="1559747188253" duration="338932000" />
+      <workItem from="1559747188253" duration="339304000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1168737000" />
+    <option name="totallyTimeSpent" value="1169109000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32270917" sideWeight="0.49455675" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32270917" sideWeight="0.49455675" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -864,13 +858,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/resources/views/errors/404.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="40" lean-forward="false" selection-start-line="4" selection-start-column="40" selection-end-line="4" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/positions/form-create.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1265,7 +1252,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="214">
-          <caret line="132" column="37" lean-forward="true" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="37" />
+          <caret line="132" column="37" lean-forward="false" selection-start-line="132" selection-start-column="37" selection-end-line="132" selection-end-column="37" />
           <folding />
         </state>
       </provider>
@@ -1299,7 +1286,7 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/GridsControlle.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1052">
-          <caret line="89" column="30" lean-forward="true" selection-start-line="89" selection-start-column="30" selection-end-line="89" selection-end-column="30" />
+          <caret line="89" column="30" lean-forward="false" selection-start-line="89" selection-start-column="30" selection-end-line="89" selection-end-column="30" />
           <folding>
             <marker date="1560261442375" expanded="true" signature="2131:2222" ph="..." />
             <marker date="1560261442375" expanded="true" signature="2494:2581" ph="..." />
@@ -1377,22 +1364,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="396">
-          <caret line="46" column="19" lean-forward="true" selection-start-line="46" selection-start-column="19" selection-end-line="46" selection-end-column="19" />
+        <state relative-caret-position="360">
+          <caret line="53" column="21" lean-forward="false" selection-start-line="53" selection-start-column="21" selection-end-line="53" selection-end-column="21" />
           <folding>
             <element signature="n#style#0;n#input#0;n#span#0;n#p#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#1;n#span#0;n#p#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#span#1;n#p#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#1;n#span#1;n#p#0;n#div#1;n#!!top" expanded="true" />
             <element signature="n#style#0;n#input#0;n#p#0;n#div#1;n#!!top" expanded="true" />
-            <marker date="1560295292544" expanded="true" signature="45:358" ph="..." />
-            <marker date="1560295292544" expanded="true" signature="70:357" ph="..." />
-            <marker date="1560295292544" expanded="true" signature="3499:3511" ph="..." />
-            <marker date="1560295292544" expanded="true" signature="3742:3754" ph="..." />
-            <marker date="1560295292544" expanded="true" signature="3989:4001" ph="..." />
-            <marker date="1560295292544" expanded="true" signature="4539:4551" ph="..." />
+            <marker date="1560295665671" expanded="true" signature="45:358" ph="..." />
+            <marker date="1560295665671" expanded="true" signature="70:357" ph="..." />
+            <marker date="1560295665671" expanded="true" signature="3482:3494" ph="..." />
+            <marker date="1560295665671" expanded="true" signature="3725:3737" ph="..." />
+            <marker date="1560295665671" expanded="true" signature="3972:3984" ph="..." />
+            <marker date="1560295665671" expanded="true" signature="4522:4534" ph="..." />
           </folding>
         </state>
       </provider>
