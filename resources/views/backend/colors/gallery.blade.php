@@ -37,7 +37,6 @@
 					</div>
 				</li>
 			@empty
-				<li>Não existe foto para este produto</li>
 			@endforelse
 		</ul>
 	</div>

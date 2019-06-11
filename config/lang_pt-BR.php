@@ -93,6 +93,8 @@ return [
     'keywords.required' => 'As tags são obrigatórias',
     'login' => 'Login',
     'login_entry' => 'Fez login no sistema.',
+    'max' => 'Máximo',
+    'min' => 'Mínimo',
     'new' => 'Novo',
     'not' => 'Não',
     'offer' => 'Oferta',
@@ -107,7 +109,9 @@ return [
         'admin' => 'Admin',
         'user' => 'Cliente'
     ],
+    'qty' => 'Qtd',
     'reminder' => 'Lebre-me',
+    'remove' => 'Remover',
     'save' => 'Salvar',
     'section' => 'Seção',
     'status' => 'Status',

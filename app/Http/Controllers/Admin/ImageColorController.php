@@ -141,6 +141,7 @@ class ImageColorController extends Controller
             $configProduct = $this->configProduct->setId(1);
 
             if ($configProduct->grids == 1) {
+                dd($request->all());
                 if ($product->kit == 1) {
                     $grids = $this->interGrid->createKit($request['grids'], $image, $product);
                 } else {

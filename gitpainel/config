@@ -1,0 +1,8 @@
+[core]
+	repositoryformatversion = 0
+	filemode = true
+	bare = false
+	logallrefupdates = true
+[remote "painel"]
+	url = ssh://root@159.65.241.145/repo/painel.git
+	fetch = +refs/heads/*:refs/remotes/painel/*

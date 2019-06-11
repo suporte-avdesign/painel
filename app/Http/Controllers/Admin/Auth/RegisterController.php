@@ -266,7 +266,7 @@ class RegisterController extends Controller
 
         $dataForm = $request->all();
         if (isset($dataForm['reset-password'])) {
-            $dataForm['password'] = bcrypt($dataForm['password']);
+            $dataForm['password'] = $dataForm['password'];
         } else {
             unset($dataForm['password']);
         }
@@ -313,7 +313,6 @@ class RegisterController extends Controller
             if ($dataForm['password'] != $dataForm['password_confirmation']) {
                 return response()->json(["success" => false, "message" => 'As senhas não coincidem.']);
             }
-            $dataForm['password'] = bcrypt($dataForm['password']);
 
         } else {
             unset($dataForm['password']);

@@ -1,77 +1,78 @@
 @foreach ($grids as $value)
-    @php 
-        ($stock == 1 ? $text = '/Estoque' : $text = ''); 
+    @php
+        if($product->stock == 1){
+
+            $text_entry = ': '.constLang('stock').':';
+            $text_qty = constLang('qty');
+            ($product->qty_min == 1 ? $text_min = '/'.constLang('min') : $text_min = '');
+            ($product->qty_max == 1 ? $text_max = '/'.constLang('max') : $text_max = '');
+        }
     @endphp
     <h4 class="green underline">
-        <input type="checkbox" id="check-all" name="check-all" value="1" class="checkbox mid-margin-left">
-        Grade{{$text}}: {{$value->name}}
+        {{$value->name}}{{$text_entry}}{{$text_qty}}{{$text_min}}{{$text_max}}
+        <span class="float-right">
+            <a href="javascript:void(0);" onclick="plusUndProd('{{$product->stock == 1}}', '{{$product->qty_min}}', '{{$product->qty_max}}');" class="button blue-gradient icon-plus" title="{{constLang('add')}}"></a>
+        </span>
     </h4>
-    <div class="columns">        
+    <div class="margin-bottom" id="puls_grid"></div>
+    <div class="columns">
+
         @php
             $label = explode(",", $value->label);
         @endphp
         @foreach ($label as $str)
-            @php  $val = str_replace('/', '_', trim($str));   @endphp
-            <p class="button-height">                    
-                <span>    
-                    <input type="checkbox" id="{{$val}}" name="grids[{{$val}}]" value="1" class="tick checkbox mid-margin-left">
-                </span>
+            @php  $val = str_replace('/', '_', trim($str)); @endphp
+
+            <p class="minus_grid button-height">
                 @if($stock == 1)
                     <span class="input">
-                        <label for="tam-{{$val}}" class="button blue-gradient">{{$str}}</label>
-                        <input type="hidden" id="grid-{{$val}}" name="grid[]" class="input-unstyled" placeholder="Grade" value="" autocomplete="off" style="width: 30px;">
-                        <input type="text" id="qty-{{$val}}" name="input[]" class="input-unstyled" placeholder="Qtd" value="" autocomplete="off" style="width: 30px;">
+                        <label for="size-{{$val}}" class="button blue-gradient">{{$str}}</label>
+                        <input type="hidden" id="grid-{{$val}}" name="grids[grid][]" class="input-unstyled" placeholder="{{constLang('grid')}}" value="{{$val}}" autocomplete="off" style="width: 60px;">
+                        <input type="text" id="input-{{$val}}" name="grids[input][]" class="input-unstyled" placeholder="{{strtolower($text_qty)}}" value="" autocomplete="off" style="width: 30px;">
+                    </span>
+                    <span class="input">
+                        @if($product->qty_min == 1)
+                            <input type="text" id="qty_min-{{$val}}" name="grids[qty_min][]" placeholder="min" class="input-unstyled input-sep"  value="{{$configProduct->qty_min_unit}}" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 30px;">
+                        @endif
+                        @if($product->qty_max == 1)
+                            <input type="text" id="qty_max-{{$val}}" name="grids[qty_max][]" placeholder="max" class="input-unstyled"  value="{{$configProduct->qty_max_unit}}" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 30px;">
+                        @endif
                     </span>
                 @else
-                    <label for="tam-{{$val}}" class="button blue-gradient">{{$str}}</label>
-                    <input type="hidden" id="grid-{{$val}}" name="grid[]" class="input-unstyled" placeholder="Grade" value="" autocomplete="off" style="width: 30px;">
+                    <label for="size-{{$val}}" class="button blue-gradient">{{$str}}</label>
+                    <input type="hidden" id="grid-{{$val}}" name="grids[grid]" class="input-unstyled" placeholder="{{constLang('grid')}}" value="" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 30px;">
                 @endif
-
-                <span id="tick-{{$val}}" style="display:none">&nbsp;&nbsp;<span class="icon-size2 icon-tick icon-green"></span></span>
+                <a href="javascript:void(0);" onclick="removeGridProd(this,'.minus_grid');" class="remove button red-gradient icon-minus" title="Remover"></a>
             </p>
         @endforeach
     </div>
 @endforeach
 
 <script>
-// Altera o display do tick
-$('.tick').on('change', function() {
-    var id = $(this).attr('id');
-    var qty = $("#qty-"+id).val();
-    if (qty >= 1) {
-        $("#tick-"+id).toggle(this.checked);
+    /**
+     * Adiciona um campo input para und
+     */
+     function plusUndProd(stock, qty_min, qty_max) {
+        var stock_qty,stock_qty_min,stock_qty_max,inputs,btn_minus,onclick="removeGridProd(this,'.minus_grid');";
+        if (stock == 1) {
+            var stock_qty = '<input type="text" name="grids[input][]" class="input-unstyled input-sep" placeholder="{{strtolower($text_qty)}}" value="" autocomplete="off" style="width: 30px;">';
+            if (qty_min == 1) {
+                stock_qty_min = '<input type="text" name="grids[qty_min][]" placeholder="min" class="input-unstyled input-sep" value="{{$configProduct->qty_min_unit}}" autocomplete="off" style="width: 30px;">';
+            }
+            if (qty_max == 1) {
+                stock_qty_max = '<input type="text" name="grids[qty_max][]" placeholder="max" class="input-unstyled" value="{{$configProduct->qty_max_unit}}" autocomplete="off" style="width: 30px;">';
+            }
+            inputs = '&nbsp<span class="input">' + stock_qty_min + stock_qty_max + '</span>';
+            btn_minus = '&nbsp<a href="javascript:void(0);" onclick="'+onclick+'" class="remove button red-gradient icon-minus" title="{{constLang('remove')}}"></a>';
+        }
+        $("#puls_grid").append('<p class="minus_grid button-height"><span class="input">'+
+            '<input type="text" name="grids[grid][]" class="input-unstyled input-sep" placeholder="{{constLang('grid')}}" value="" autocomplete="off" style="width: 50px;">'+
+            stock_qty + '</span>'+ inputs + btn_minus+'</p>');
     }
-});
-// Insere a qty no ckeckbox pelo id e mostra o tick
-$('input[name="qty[]"]').keyup(function() {
-    var qty = $( this ).val(),
-        str = $(this).attr('id'),
-        res = str.split("-"),
-        tam = $( "#"+res[1] ).val(qty);
-    // Altera o display do tick
-    if (qty >= 1 && $('#'+res[1]).is(':checked')) {
-        $("#tick-"+res[1]).show();
-    } else {
-        $("#tick-"+res[1]).hide();
+    /**
+     * Remover input Unit
+     */
+    function removeGridProd(_this, id) {
+        $(_this).parents(id).remove();
     }
-
-}).keyup();
-
-$("#check-all").change(function(){
-    if($(this).is(':checked')){
-        $(".tick > input[type=checkbox]").each(function() {            
-            var input = $(this);
-            input.parent().addClass('checked');
-            var id = input.attr('id');
-            $('#'+id).attr('checked', true);
-        });
-    }else{
-        $(".tick > input[type=checkbox]").each(function() {            
-            var input = $(this);
-            input.parent().removeClass('checked');
-            var id = input.attr('id');
-            $('#'+id).attr('checked', false);
-        });
-    } 
-});
 </script>

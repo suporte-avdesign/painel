@@ -96,7 +96,9 @@ class GridsControlle extends Controller
                 'configProduct','product', 'grids','opc','stock')
             );
         } else {
-            return view("{$this->view}.form-create-units", compact('grids','opc','idpro','stock'));
+            return view("{$this->view}.form-create-units", compact(
+                'configProduct','product', 'grids','opc','stock')
+            );
         }
     }
 

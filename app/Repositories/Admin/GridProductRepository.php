@@ -30,7 +30,7 @@ class GridProductRepository implements GridProductInterface
     public function getUnit($id)
     {
         $data  = $this->model->where('image_color_id', $id)->get();
-        return $data;    
+        return $data;
     }
 
     /**
@@ -106,7 +106,7 @@ class GridProductRepository implements GridProductInterface
     public function createUnit($input, $image, $product)
     {
 
-        dd('Em contrução o invetário');
+        dd($input);
 
         foreach ($input as $key => $value) {
             if ($product->stock == 1) {
@@ -319,7 +319,7 @@ class GridProductRepository implements GridProductInterface
                         $create = $this->model->create($update);
                     }
                 }
-            }          
+            }
         }
 
         return $this->model->where('image_color_id', $id)->get();
