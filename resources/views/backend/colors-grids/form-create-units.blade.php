@@ -51,7 +51,7 @@
 <script>
 
     /**
-     * add grid unit 
+     * add grid unit
      */
      function plusUndProd(stock, qty_min, qty_max) {
         var stock_qty,stock_qty_min,stock_qty_max,inputs,btn_minus,onclick="removeGridProd(this,'.minus_grid');";
