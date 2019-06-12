@@ -14,6 +14,7 @@ class ProductColorRequest extends FormRequest
         ConfigProduct $configProduct,
         ConfigImages $configImages,
         InterProduct $interProduct)
+
     {
         $this->interProduct  = $interProduct;
         $this->configImages  = $configImages;
@@ -93,7 +94,7 @@ class ProductColorRequest extends FormRequest
 
         if ($configProduct->grids == 1) {
 
-            $grids = $this->request->get('grids');
+            $grids = collect($this->request->get('grids'));
 
             if ( empty($grids) || is_string($grids) ) {
                 $rules['grids'] = 'required';
@@ -126,10 +127,11 @@ class ProductColorRequest extends FormRequest
                         } else {
 
                             foreach ($grids as $key => $value) {
+
                                 if ($key == 'input') {
                                     $filter_key = array_filter($value);
                                     if (empty($filter_key)) {
-                                        $rules['qty'] = 'required';
+                                        $rules['input'] = 'required';
                                     }
                                 }
                                 if ($product->qty_min == 1) {
@@ -140,21 +142,15 @@ class ProductColorRequest extends FormRequest
                                         }
                                     }
                                 }
-                                if ($product->qty_max == 1) {
-                                    if ($key == 'qty_max') {
-                                        $filter_key = array_filter($value);
-                                        if (empty($filter_key)) {
-                                            $rules['qty_max'] = 'required';
-                                        }
+                                if ($key == 'qty_max') {
+                                    $filter_key = array_filter($value);
+                                    if (empty($filter_key)) {
+                                        $rules['qty_max'] = 'required';
                                     }
                                 }
                             }
 
                         }
-
-
-
-
                     }
                 }
             }
@@ -187,7 +183,7 @@ class ProductColorRequest extends FormRequest
         $messages['img.html.required'] = 'Clique na imagem para criar a miniatura.';
 
         $messages['grids.required'] = 'Selecione uma grade';
-        $messages['grids.grid.required'] = 'Clique no checkbox da grade.';
+        $messages['grids.grid.required'] = 'A grade é obrigatória';
         $messages['grids.input.required'] = 'A entrada de estoque é obrigatória.';
         $messages['grids.qty_min.required'] = 'A quantidade mínima é obrigatória.';
         $messages['grids.qty_max.required'] = 'A quantidade máxima é obrigatória.';

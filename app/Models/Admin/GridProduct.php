@@ -20,4 +20,6 @@ class GridProduct extends Model
     ];
 
     public $timestamps = false;
+
+
 }

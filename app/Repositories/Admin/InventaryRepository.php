@@ -64,12 +64,13 @@ class InventaryRepository implements InventaryInterface
     /**
      * Date: 02/06/2019
      *
+     * @param $configProduct
      * @param $grids
      * @param $image
      * @param $product
      * @return mixed
      */
-    public function createKit($configProduct, $grids, $image, $product, $photo)
+    public function createKit($configProduct, $grids, $image, $product)
     {
         if ($configProduct->grids == 1) {
             $dataForm['product_id'] = $product->id;
@@ -82,7 +83,7 @@ class InventaryRepository implements InventaryInterface
             $dataForm['section'] = $product->section;
             $dataForm['category'] = $product->category;
             $dataForm['product'] = $product->name;
-            $dataForm['image'] = $photo;
+            $dataForm['image'] = $image->image;
             $dataForm['code'] = $image->code;
             $dataForm['color'] = $image->color;
             $dataForm['grid'] = $grids->grid;
@@ -101,17 +102,6 @@ class InventaryRepository implements InventaryInterface
             return $data;
         }
 
-        return false;
-    }
-
-
-    public function createUnit($configProduct, $grids, $image, $product, $photo)
-    {
-        if ($configProduct->grids == 1){
-            dd("Em construção, o inventário");
-        }
-
-
     }
 
     /**
@@ -124,9 +114,8 @@ class InventaryRepository implements InventaryInterface
      * @param $photo
      * @return mixed
      */
-    public function updateKit($configProduct, $grids, $image, $product, $photo)
+    public function updateKit($configProduct, $grids, $image, $product)
     {
-
         if ($configProduct->grids == 1) {
             if($grids) {
 
@@ -140,7 +129,7 @@ class InventaryRepository implements InventaryInterface
                 $dataForm['section'] = $product->section;
                 $dataForm['category'] = $product->category;
                 $dataForm['product'] = $product->name;
-                $dataForm['image'] = $photo;
+                $dataForm['image'] = $image->image;
                 $dataForm['code'] = $image->code;
                 $dataForm['color'] = $image->color;
                 $dataForm['grid'] = $grids->grid;
@@ -163,58 +152,112 @@ class InventaryRepository implements InventaryInterface
         }
     }
 
-
-
-    public function updateUnit($configProduct,$grids, $image, $product, $photo)
-    {
-        if ($configProduct->grids == 1){
-            dd("Em construção, o inventário");
-        }
-    }
-
     /**
+     * Date: 06/12/2019
+     *
      * @param $product
      * @param $image
      * @param $grids
      * @return mixed
      */
-    public function deleteKit($product, $image, $grids)
+    public function deleteKit($configProduct, $product, $image, $grids)
     {
-        $dataForm['product_id'] = $product->id;
-        $dataForm['image_color_id'] = $image->id;
-        $dataForm['grid_id'] = $grids->id;
-        $dataForm['admin_id'] = auth()->user()->id;
-        $dataForm['profile_name'] = constLang('profile_name.admin');
-        $dataForm['type_movement'] = constLang('type_movement.delete');
-        $dataForm['note'] = constLang('messages.products.delete_true').' '.auth()->user()->name;
-        $dataForm['brand'] = $product->brand;
-        $dataForm['section'] = $product->section;
-        $dataForm['category'] = $product->category;
-        $dataForm['product'] = $product->name;
-        $dataForm['image'] = $image->image;
-        $dataForm['code'] = $image->code;
-        $dataForm['color'] = $image->color;
-        $dataForm['grid'] = $grids->grid;
-        $dataForm['amount'] = $grids->stock;
-        $dataForm['kit'] = $product->kit;
-        $dataForm['kit_name'] = $product->kit_name;
-        $dataForm['units'] = $product->unit;
-        $dataForm['offer'] = $product->offer;
-        $dataForm['cost_unit'] = $product->cost->value;
-        $dataForm['cost_total'] = $grids->stock * $product->cost->value;
-        $dataForm['stock'] = 0;
+        if ($configProduct->grids == 1) {
+            $dataForm['product_id'] = $image->product_id;
+            $dataForm['image_color_id'] = $image->id;
+            $dataForm['grid_id'] = $grids->id;
+            $dataForm['admin_id'] = auth()->user()->id;
+            $dataForm['profile_name'] = constLang('profile_name.admin');
+            $dataForm['type_movement'] = constLang('type_movement.delete');
+            $dataForm['note'] = constLang('messages.products.delete_true') . ' ' . auth()->user()->name;
+            $dataForm['brand'] = $product->brand;
+            $dataForm['section'] = $product->section;
+            $dataForm['category'] = $product->category;
+            $dataForm['product'] = $product->name;
+            $dataForm['image'] = $image->image;
+            $dataForm['code'] = $image->code;
+            $dataForm['color'] = $image->color;
+            $dataForm['grid'] = $grids->grid;
+            $dataForm['amount'] = $grids->stock;
+            $dataForm['kit'] = $product->kit;
+            $dataForm['kit_name'] = $product->kit_name;
+            $dataForm['units'] = $product->unit;
+            $dataForm['offer'] = $product->offer;
+            $dataForm['cost_unit'] = $product->cost->value;
+            $dataForm['cost_total'] = $grids->stock * $product->cost->value;
+            $dataForm['stock'] = 0;
 
-        $data = $this->model->create($dataForm);
+            $data = $this->model->create($dataForm);
+            if ($data) {
+                return $data;
+            }
+        }
+    }
+
+
+
+
+
+    public function createUnit($configProduct, $grids, $image, $product)
+    {
+        if ($configProduct->grids == 1) {
+
+            foreach ($grids as $value) {
+
+                $dataForm['product_id'] = $product->id;
+                $dataForm['image_color_id'] = $image->id;
+                $dataForm['grid_id'] = $grids->id;
+                $dataForm['admin_id'] = auth()->user()->id;
+                $dataForm['profile_name'] = constLang('profile_name.admin');
+                $dataForm['type_movement'] = constLang('type_movement.input');
+                $dataForm['brand'] = $product->brand;
+                $dataForm['section'] = $product->section;
+                $dataForm['category'] = $product->category;
+                $dataForm['product'] = $product->name;
+                $dataForm['image'] = $image->image;
+                $dataForm['code'] = $image->code;
+                $dataForm['color'] = $image->color;
+                $dataForm['grid'] = $grids->grid;
+                $dataForm['amount'] = (int)$grids->input;
+                $dataForm['kit'] = $product->kit;
+                $dataForm['kit_name'] = $product->kit_name;
+                $dataForm['units'] = $product->unit;
+                $dataForm['offer'] = $product->offer;
+                $dataForm['cost_unit'] = $product->cost->value;
+                $dataForm['cost_total'] = $grids->input * $product->cost->value;
+                $dataForm['stock'] = (int)$grids->input;
+
+                $data = $this->model->create($dataForm);
+            }
+        }
+
         if ($data) {
             return $data;
         }
 
     }
 
-    public function deleteUnit($product, $image, $grids)
+
+
+
+
+
+
+    public function updateUnit($configProduct,$grids, $image, $product)
+    {
+        if ($configProduct->grids == 1){
+            dd("Em construção, o inventário");
+        }
+    }
+
+
+
+    public function deleteUnit($configProduct, $product, $image, $grids)
     {
         dd("Em construção, o inventário");
     }
+
+
 
 
 

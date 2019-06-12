@@ -71,13 +71,13 @@ class ImageColorController extends Controller
         $path         = 'storage/'.$configImage->path;
 
         (count($colors) >= 1 ? $title_count = constLang('images.count_true') :
-                               $title_count = constLang('images.count_false'));
+            $title_count = constLang('images.count_false'));
 
         return view("{$this->view}.gallery", compact('colors','path','idpro', 'title_count'));
     }
 
     /**
-     * Date: 06/05/2019
+     * Date: 06/12/2019
      *
      * @param $idpro
      * @return View
@@ -91,7 +91,7 @@ class ImageColorController extends Controller
         $pixel = $this->configImage->setName('default','Z');
         $configProduct = $this->configProduct->setId(1);
 
-        $group   = array(); // array vazio 
+        $group   = array(); // array vazio
         $grids   = array(); // array vazio
         $product = $this->interProduct->setId($idpro);
 
@@ -114,7 +114,7 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Date 03/06/2019
+     * Date 06/12/2019
      * uploadImages - create inventory to get the image
      *
      * @param ReqModel $request
@@ -136,38 +136,33 @@ class ImageColorController extends Controller
             $config   = $this->configImage->get();
             $product  = $this->interProduct->setId($dataForm['product_id']);
 
-            $image    = $this->interModel->create($dataForm, $product, $config);
-
             $configProduct = $this->configProduct->setId(1);
 
-            if ($configProduct->grids == 1) {
-                dd($request->all());
-                if ($product->kit == 1) {
-                    $grids = $this->interGrid->createKit($request['grids'], $image, $product);
-                } else {
-                    $grids = $this->interGrid->createUnit($request['grids'], $image, $product);
-                }
-            }
+            $image = $this->interModel->create($dataForm, $product, $config);
+            if ($image) {
 
-            if ($configProduct->group_colors == 1) {
-                $dataGroups = $request['groups'];
-                $groups = $this->interGroup->create($dataGroups, $image->product_id, $image->id);
-            }
+                $photos = $this->interModel->uploadImages($config, $dataForm, $image, $product, $file);
+                if ($photos) {
 
-            $photo = $this->interModel->uploadImages($config, $dataForm, $image, $product, $file);
-            if ($photo) {
-                if ($product->kit == 1) {
-                    $inventary = $this->interInventary->createKit($configProduct, $grids, $image, $product, $photo);
-                } else {
-                    $inventary = $this->interInventary->createUnit($configProduct, $grids, $image, $product, $photo);
-                }
-                if ($inventary) {
+                    if ($configProduct->group_colors == 1) {
+                        $dataGroups = $request['groups'];
+                        $groups = $this->interGroup->create($dataGroups, $image->product_id, $image->id);
+                    }
 
-                    $out = $this->interModel->uploadRender($config, $image, $action);
+                    if ($configProduct->grids == 1) {
+                        if ($product->kit == 1) {
+                            $grids = $this->interGrid->createKit($configProduct, $request['grids'], $image, $product);
+                        } else {
+                            $grids = $this->interGrid->createUnit($configProduct, $request['grids'], $image, $product);
+                        }
+                        if ($grids) {
+                            $out = $this->interModel->uploadRender($config, $image, $action);
 
-                    DB::commit();
+                            DB::commit();
 
-                    return response()->json($out);
+                            return response()->json($out);
+                        }
+                    }
                 }
             }
 
@@ -175,11 +170,12 @@ class ImageColorController extends Controller
             DB::rollback();
             return $e->getMessage();
         }
+
     }
 
 
     /**
-     * Date: 06/02/2019
+     * Date: 06/12/2019
      *
      * @param  int  $idpro
      * @param  int  $id
@@ -189,13 +185,13 @@ class ImageColorController extends Controller
     {
         if( Gate::denies("{$this->ability}-update") ) {
             return view("backend.erros.message-401");
-        }       
+        }
 
         $pixel = $this->configImage->setName('default','Z');
         $group_colors  = $this->interGroup->get('image_color_id', $id);
 
         foreach ($group_colors as $value) {
-           $group[] = $value->config_color_group_id;
+            $group[] = $value->config_color_group_id;
         }
 
         $data           = $this->interModel->setId($id);
@@ -213,23 +209,14 @@ class ImageColorController extends Controller
             $groupColors = $this->interHexa->getAll();
 
             return view("{$this->view}.layout_hexa-edit", compact(
-                'configProduct',
-                'groupColors',
-                'pixel',
-                'product',
-                'idpro',
-                'grids',
-                'stock',
-                'group',
-                'path',
-                'data',
-                'kit'
-            ));
+                'configProduct','groupColors', 'pixel','product',
+                'idpro','grids','stock','group','path','data','kit')
+            );
         }
     }
 
     /**
-     * Date 06/03/2019
+     * Date 06/12/2019
      * @param ReqModel $request
      * @param $idpro
      * @param $id
@@ -253,43 +240,36 @@ class ImageColorController extends Controller
             $update   = $this->interModel->update($input, $config, $product, $image);
             if ($update) {
                 $configProduct = $this->configProduct->setId(1);
-                if ($configProduct->grids == 1) {
-                    if ($product->kit == 1) {
-                        $qty = $request['qty'];
-                        $des = $request['des'];
-                        $grids = $this->interGrid->updateKit($request['grids'], $image, $product, $qty, $des);
-                    } else {
-                        $grids = $this->interGrid->updateUnit($request['grids'], $image, $product);
-                    }
-                }
 
                 if ($configProduct->group_colors == 1) {
                     $groups = $this->interGroup->update($request['groups'], $image->product_id, $image);
                 }
+
+                if ($file) {
+                    $photo = $this->interModel->uploadImages($config, $input, $image, $product, $file);
+                }
+                if ($configProduct->grids == 1) {
+                    if ($product->kit == 1) {
+                        $qty = $request['qty'];
+                        $des = $request['des'];
+                        $grids = $this->interGrid->updateKit($configProduct, $request['grids'], $image, $product, $qty, $des);
+
+                    } else {
+                        $grids = $this->interGrid->updateUnit($configProduct, $request['grids'], $image, $product);
+                    }
+
+                    if ($grids) {
+
+                        $out = $this->interModel->uploadRender($config, $image, $action);
+
+                        DB::commit();
+
+                        return response()->json($out);
+                    }
+                }
+
+
             }
-
-            if ($file) {
-                $photo = $this->interModel->uploadImages($config, $input, $image, $product, $file);
-            } else {
-                $photo = $image->image;
-            }
-
-            if ($product->kit == 1) {
-                $inventary = $this->interInventary->updateKit($configProduct, $grids, $image, $product, $photo);
-            } else {
-                $inventary = $this->interInventary->updateUnit($configProduct, $grids, $image, $product, $photo);
-            }
-
-            if ($inventary) {
-
-                $out = $this->interModel->uploadRender($config, $image, $action);
-
-                DB::commit();
-
-                return response()->json($out);
-            }
-
-
         } catch(\Exception $e){
             DB::rollback();
             return $e->getMessage();
@@ -298,7 +278,7 @@ class ImageColorController extends Controller
     }
 
     /**
-     * Date 06/04/2019
+     * Date 06/12/2019
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
@@ -315,32 +295,36 @@ class ImageColorController extends Controller
             $config  = $this->configImage->get();
             $image   = $this->interModel->setId($id);
             $product = $image->product;
+            $configProduct = $this->configProduct->setId(1);
+            if ($configProduct->grids == 1) {
+                if ($product->kit == 1) {
+                    $grids = $this->interGrid->delete($configProduct, $image, $product);
+                } else {
+                    $grids = $this->interGrid->delete($configProduct, $image, $product);
+                }
 
-            if ($product->kit == 1) {
-                $grids = $this->interGrid->getKit($image->id);
-                $inventary = $this->interInventary->deleteKit($product, $image, $grids);
-            } else {
-                $grids = $this->interGrid->getUnit($image->id);
-                $inventary = $this->interInventary->deleteUnit($product, $image, $grids);
+                if ($grids) {
+                    $total = $product->images->count();
+                    if ($total >= 2) {
+                        $delete = $this->interModel->delete($image, $product, $config, false);
+                    } else {
+                        $delete = $this->interProduct->deleteUnique($config, $product, $image, true);
+                    }
+
+                    if ($delete) {
+                        DB::commit();
+                        return response()->json($delete);
+                    }
+                }
+
             }
 
-            $total = $product->images->count();
-            if ($total >= 2) {
-                $delete = $this->interModel->delete($image, $product, $config, false);
-            } else {
-                $delete  = $this->interProduct->deleteUnique($config, $product, $image, true);
-            }
-
-            if ($delete) {
-                DB::commit();
-                return response()->json($delete);
-            }
 
         } catch(\Exception $e){
 
             DB::rollback();
             return $e->getMessage();
-        }            
+        }
     }
 
     /**
@@ -371,7 +355,7 @@ class ImageColorController extends Controller
 
             DB::rollback();
             return $e->getMessage();
-        }            
+        }
 
     }
 
@@ -391,7 +375,7 @@ class ImageColorController extends Controller
         $title_create  = 'Adicionar:';
         $configProduct = $this->configProduct->setId(1);
 
-        return view("{$this->view}.colors.index", compact('configProduct', 'title', 'title_create', 'confUser'));     
+        return view("{$this->view}.colors.index", compact('configProduct', 'title', 'title_create', 'confUser'));
     }
 
     /**
@@ -408,7 +392,7 @@ class ImageColorController extends Controller
 
         $data = $this->interModel->getAll($request);
 
-        return response()->json($data);     
+        return response()->json($data);
     }
 
 

@@ -12,12 +12,12 @@ interface InventaryInterface
     public function getAll();
     public function setId($id);
 
-    public function createKit($configProduct, $grids, $image, $product, $photo);
-    public function createUnit($configProduct,$grids, $image, $product, $photo);
-    public function updateKit($configProduct, $grids, $image, $product, $photo);
-    public function updateUnit($configProduct,$grids, $image, $product, $photo);
-    public function deleteKit($product, $image, $grids);
-    public function deleteUnit($product, $image, $grids);
+    public function createKit($configProduct, $grids, $image, $product);
+    public function createUnit($configProduct,$grids, $image, $product);
+    public function updateKit($configProduct,$grids, $image, $product);
+    public function updateUnit($configProduct,$grids, $image, $product);
+    public function deleteKit($configProduct, $product, $image, $grids);
+    public function deleteUnit($configProduct, $product, $image, $grids);
 
     public function rules($input, $messages, $id);
 

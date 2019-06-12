@@ -4,48 +4,26 @@ namespace AVDPainel\Repositories\Admin;
 
 use AVDPainel\Models\Admin\GridProduct as Model;
 use AVDPainel\Interfaces\Admin\GridProductInterface;
+use AVDPainel\Interfaces\Admin\InventaryInterface as InterInventary;
+
 
 
 class GridProductRepository implements GridProductInterface
 {
 
     public $model;
+    public $interInventary;
 
     /**
      * Create construct.
      *
      * @return void
      */
-    public function __construct(Model $model)
+    public function __construct(Model $model, InterInventary $interInventary)
     {
         $this->model = $model;
+        $this->interInventary = $interInventary;
     }
-
-    /**
-     * Date: 04/06/2019
-     *
-     * @param $id
-     * @return mixed
-     */
-    public function getUnit($id)
-    {
-        $data  = $this->model->where('image_color_id', $id)->get();
-        return $data;
-    }
-
-    /**
-     * Date: 04/06/2019
-     *
-     * @param $id
-     * @return mixed
-     */
-    public function getKit($id)
-    {
-        $data  = $this->model->where('image_color_id', $id)->first();
-        return $data;
-    }
-
-
 
     /**
      * Display the specified resource.
@@ -61,12 +39,13 @@ class GridProductRepository implements GridProductInterface
     /**
      * Date 02/06/2019
      *
+     * @param $configProduct
      * @param $input
      * @param $image
      * @param $product
      * @return mixed
      */
-    public function createKit($input, $image, $product)
+    public function createKit($configProduct, $input, $image, $product)
     {
         $dataForm['color']          = $image->color;
         $dataForm['kit']            = $product->kit;
@@ -97,69 +76,18 @@ class GridProductRepository implements GridProductInterface
 
         $data = $this->model->create($dataForm);
         if ($data) {
-            generateAccessesTxt($access);
-        }
-        return $data;
-    }
-
-
-    public function createUnit($input, $image, $product)
-    {
-
-        dd($input);
-
-        foreach ($input as $key => $value) {
-            if ($product->stock == 1) {
-                $grid = [
-                    'product_id' => $product->id,
-                    'image_color_id' => $image->id,
-                    'kit' => $product->kit,
-                    'color' => $image->color,
-                    'qty_min' => $qty_min,
-                    'qty_max' => $qty_max,
-                    'grid' => str_replace('_', '/', $key),
-                    'input' => $value,
-                    'output' => 0,
-                    'stock' => $value
-                ];
-
-                $data = $this->model->create($grid);
-                if ($data) {
-                    generateAccessesTxt(utf8_decode(
-                            '- Grade:'.str_replace('_', '/', $key).
-                            '- Entrada:'.$value)
-                    );
-
-                    return $grid;
-                }
-            } else {
-                $grid = [
-                    'product_id' => $product->id,
-                    'image_color_id' => $image->id,
-                    'kit' => $kit,
-                    'color' => $image->color,
-                    'qty_min' => $qty_min,
-                    'qty_max' => $qty_max,
-                    'grid' => str_replace('_', '/', $key),
-                    'input' => 0,
-                    'output' => 0,
-                    'stock' => 0
-                ];
-                $data = $this->model->create($grid);
-                if ($data) {
-                    generateAccessesTxt(utf8_decode(
-                            '- Grade:'.str_replace('_', '/', $key))
-                    );
-                    return $grid;
-                }
+            $inventary = $this->interInventary->createKit($configProduct, $data, $image, $product);
+            if ($inventary) {
+                generateAccessesTxt($access);
+                return $data;
             }
-
         }
-
     }
+
+
 
     /**
-     * Date: 06/02/2019
+     * Date: 06/12/2019
      * Note: return empty -> invetary(empty)
      *
      * @param $input
@@ -168,7 +96,7 @@ class GridProductRepository implements GridProductInterface
      * @param $qty
      * @param $des
      */
-    public function updateKit($input, $image, $product, $qty, $des)
+    public function updateKit($configProduct, $input, $image, $product, $qty, $des)
     {
         $data = $this->setId($input['id']);
 
@@ -205,51 +133,166 @@ class GridProductRepository implements GridProductInterface
             }
 
         }
-
-
         if ($change){
+
             $update = $data->update($dataForm);
             if ($update) {
-                generateAccessesTxt(constLang('updated').''.constLang('grid').$change);
+                generateAccessesTxt(constLang('updated').' '.constLang('grid').$change);
                 if ($product->stock == 1) {
                     $data['entry'] = $input['input'];
                     $data['previous_stock'] = $data->id;
+                    $inventary = $this->interInventary->updateKit($configProduct, $data, $image, $product);
+                    if ($inventary) {
+                        return $inventary;
+                    }
                 }
-                return $data;
             }
         }
         // Note: return empty -> invetary(empty)
     }
 
 
+    public function createUnit($configProduct, $input, $image, $product)
+    {
+        $grid    = collect($input['grid'])->filter()->unique();
+        $total   = count($grid);
+        $success = true;
+
+        if (empty($grid)) {
+            $success = false;
+            $message = constLang('validation.grids.grid');
+        }
+
+        if ($product->stock == 1) {
+            $entry = collect($input['input'])->filter();
+            if ($total != $entry->count()) {
+                $success = false;
+                $message = constLang('validation.grids.input');
+            }
+            if ($product->qty_min == 1) {
+                $qty_min = collect($input['qty_min'])->filter();
+                if ($total != $qty_min->count()) {
+                    $success = false;
+                    $message = constLang('validation.grids.qty_min');
+                }
+            }
+            if ($product->qty_max == 1) {
+                $qty_max = collect($input['qty_max'])->filter();
+                if ($total != $qty_max->count()) {
+                    $success = false;
+                    $message = constLang('validation.grids.qty_max');
+                }
+            }
+        }
+
+        if ($success == true) {
+
+            for($i = 0; $i < count($grid); ++$i) {
+                $array[$i]['grid'] = $input['grid'][$i];
+                if ($product->stock ==1) {
+                    $array[$i]['input'] = $input['input'][$i];
+
+                    if ($product->qty_min == 1) {
+                        $array[$i]['qty_min'] = $input['qty_min'][$i];
+                    }
+
+                    if ($product->qty_max == 1) {
+                        $array[$i]['qty_max'] =  $input['qty_max'][$i];
+                    }
+                }
+            }
+
+            $access = '- '.constLang('grid').':';
+            $grids = collect($array)->sortBy('grid');
+            foreach ($grids as $value) {
+                $dataForm = [
+                    'product_id' => $product->id,
+                    'image_color_id' => $image->id,
+                    'kit' => $product->kit,
+                    'color' => $image->color,
+                    'grid' => $value['grid'],
+                ];
+                $access .= $value['grid'];
+
+                if ($product->stock ==1) {
+
+                    $dataForm['output'] = 0;
+                    $dataForm['input'] = $value['input'];
+                    $dataForm['stock'] = $value['input'];
+
+                    $access .= ', '.constLang('entry').':'.$value['input'];
+                    $access .= ', '.constLang('stock').':'.$value['input'];
+
+                    if ($product->qty_min == 1) {
+                        $dataForm['qty_min'] = $value['qty_min'];
+                        $access .= ', '.constLang('min').':'.$value['qty_min'];
+                    }
+                    if ($product->qty_min == 1) {
+                        $dataForm['qty_max'] = $value['qty_max'];
+                        $access .= ', '.constLang('max').':'.$value['qty_max'];
+                    }
+                }
+                $data = $this->model->create($dataForm);
+                if ($data) {
+                    generateAccessesTxt($access);
+                }
+            }
+            if ($data) {
+                $data['success'] = true;
+                return $data;
+            } else {
+                $error['success'] = false;
+                $error['message'] = constLang('error.server');
+            }
+
+        }
+
+        $error['success'] = $success;
+        $error['message'] = $message;
+        return $error;
+    }
+
+
+
+    public function updateUnit($configProduct, $input, $image, $product, $qty, $des)
+    {
+
+    }
+
     /**
-     * @param $input
+     * Date: 06/12/2019
+     *
+     * @param $configProduct
      * @param $image
      * @param $product
-     * @param $qty
-     * @param $des
+     * @return bool
      */
-    public function updateUnit($input, $image, $product, $qty, $des)
+    public function delete($configProduct, $image, $product)
     {
+        if ($configProduct->grids == 1) {
+            if ($product->kit == 1) {
+                foreach ($image->grids as $value) {
+                    $grids = $value;
+                }
+                $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grids);
+            } else {
+                foreach ($image->grids as $value) {
+                    $grids = $value;
+                }
 
+                $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grids);
+            }
+
+            if ($inventary) {
+                return $inventary;
+            }
+            return true;
+        }
     }
 
 
     /**
-     * Remove
-     *
-     * @param  int $id
-     * @return boolean true or false
-     */
-    public function delete($id)
-    {
-
-        return false;
-    }
-
-
-    /**
-     * Change grids.
+     * Date: 06/12/2019
      *
      * @param  int $id
      * @param  int $stock
@@ -324,9 +367,5 @@ class GridProductRepository implements GridProductInterface
 
         return $this->model->where('image_color_id', $id)->get();
     }
-
-
-
-
 
 }

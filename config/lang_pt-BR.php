@@ -162,6 +162,13 @@ return [
             'email' => 'Digite um endereço de email válido.',
             'required' => 'O email é obrigatório.',
             'unique' => 'Este email já se encontra utilizado.'],
+        'grids' => [
+            'grid' => 'A grade é obrigatória.',
+            'unique' => 'A grade não pode ter duplicidade.',
+            'input' => 'A entrada de estoque é obrigatória.',
+            'qty_min' => 'A quantidade min é obrigatória.',
+            'qty_max' => 'A quantidade max é obrigatória.'
+        ],
         'height_photo' => [
             'required' => "A altura da foto é obrigatória.",
             'numeric' => 'Digite apenas números na largura da foto.'],
