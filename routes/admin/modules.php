@@ -179,5 +179,6 @@ Route::post('produtos/colors/data', 'Admin\ImageColorController@data')->name('co
 Route::put('produtos/{idpro}/colors-status/{id}', 'Admin\ImageColorController@colorsStatus')->name('colors-status');
 
 // Cotroller das Grades
-Route::get('grids/change-grids', 'Admin\GridsControlle@change')->name('change-grids');
-Route::get('grids/load-grids', 'Admin\GridsControlle@load')->name('load-grids');
+Route::resource('grids/grid-color', 'Admin\GridProductController',['except' => ['index', 'edit']]);
+Route::get('grids/change-grids', 'Admin\GridProductController@change')->name('change-grids');
+Route::get('grids/load-grids', 'Admin\GridProductController@load')->name('load-grids');

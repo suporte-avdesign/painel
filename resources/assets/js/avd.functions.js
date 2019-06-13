@@ -288,7 +288,7 @@ function abreModal(tit,url,min,tipo,fundo,width,height)
                 }
             },
             buttons: {},
-            url: base + url
+            url: url
         });
     } else if (tipo == 2) {  
         //console.log('Tipo: 2');

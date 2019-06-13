@@ -48,6 +48,7 @@ return [
     'active_true' => 'Ativo',
     'active_false' => 'Inativo',
     'add' => 'Adicionar',
+    'loader' => 'Aguarde',
     'alert' => [
         'cover_new' => 'O sistema criou uma nova imagem capa.',
         'cover_false' => 'Você não tem nehuma imagem capa com o status ativo!',
@@ -57,6 +58,7 @@ return [
     ],
     'back' => 'Voltar ',
     'black_friday' => 'Black Friday',
+    'cancel' => 'Cancelar',
     'category' => 'Categoria',
     'code' => 'Código',
     'color' => 'Cor',
@@ -127,6 +129,7 @@ return [
         'output' => 'Saida',
         'delete' => 'Exclusão'
     ],
+    'update' => 'Alterar',
     'updated' => 'Alterou',
     'update_false' => 'Não foi possível alterar o registro',
     'update_true' => 'O registro foi alterado',
@@ -164,6 +167,7 @@ return [
             'unique' => 'Este email já se encontra utilizado.'],
         'grids' => [
             'grid' => 'A grade é obrigatória.',
+            'grid_true' => 'A grade foi alterada.',
             'unique' => 'A grade não pode ter duplicidade.',
             'input' => 'A entrada de estoque é obrigatória.',
             'qty_min' => 'A quantidade min é obrigatória.',
@@ -214,5 +218,10 @@ return [
             'delete_false' => 'Não foi possível excuir o produto',
             'total_colors' => 'Total de Cores'
         ],
+        'grids' => [
+            'brand_false' => 'Não existe grade deste fabricante!',
+            'category_false' => 'Não existe grade desta categoria!',
+            'section_false' => 'Não existe grade desta seção!'
+        ]
     ]
 ];

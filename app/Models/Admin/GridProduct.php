@@ -22,4 +22,13 @@ class GridProduct extends Model
     public $timestamps = false;
 
 
+    /**
+     * Product
+     * @return array
+     **/
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
 }

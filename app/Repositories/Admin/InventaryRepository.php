@@ -202,39 +202,34 @@ class InventaryRepository implements InventaryInterface
     {
         if ($configProduct->grids == 1) {
 
-            foreach ($grids as $value) {
+            $dataForm['product_id'] = $product->id;
+            $dataForm['image_color_id'] = $image->id;
+            $dataForm['grid_id'] = $grids->id;
+            $dataForm['admin_id'] = auth()->user()->id;
+            $dataForm['profile_name'] = constLang('profile_name.admin');
+            $dataForm['type_movement'] = constLang('type_movement.input');
+            $dataForm['brand'] = $product->brand;
+            $dataForm['section'] = $product->section;
+            $dataForm['category'] = $product->category;
+            $dataForm['product'] = $product->name;
+            $dataForm['image'] = $image->image;
+            $dataForm['code'] = $image->code;
+            $dataForm['color'] = $image->color;
+            $dataForm['grid'] = $grids->grid;
+            $dataForm['amount'] = (int)$grids->input;
+            $dataForm['kit'] = $product->kit;
+            $dataForm['kit_name'] = $product->kit_name;
+            $dataForm['units'] = $product->unit;
+            $dataForm['offer'] = $product->offer;
+            $dataForm['cost_unit'] = $product->cost->value;
+            $dataForm['cost_total'] = $grids->input * $product->cost->value;
+            $dataForm['stock'] = (int)$grids->input;
 
-                $dataForm['product_id'] = $product->id;
-                $dataForm['image_color_id'] = $image->id;
-                $dataForm['grid_id'] = $grids->id;
-                $dataForm['admin_id'] = auth()->user()->id;
-                $dataForm['profile_name'] = constLang('profile_name.admin');
-                $dataForm['type_movement'] = constLang('type_movement.input');
-                $dataForm['brand'] = $product->brand;
-                $dataForm['section'] = $product->section;
-                $dataForm['category'] = $product->category;
-                $dataForm['product'] = $product->name;
-                $dataForm['image'] = $image->image;
-                $dataForm['code'] = $image->code;
-                $dataForm['color'] = $image->color;
-                $dataForm['grid'] = $grids->grid;
-                $dataForm['amount'] = (int)$grids->input;
-                $dataForm['kit'] = $product->kit;
-                $dataForm['kit_name'] = $product->kit_name;
-                $dataForm['units'] = $product->unit;
-                $dataForm['offer'] = $product->offer;
-                $dataForm['cost_unit'] = $product->cost->value;
-                $dataForm['cost_total'] = $grids->input * $product->cost->value;
-                $dataForm['stock'] = (int)$grids->input;
-
-                $data = $this->model->create($dataForm);
+            $data = $this->model->create($dataForm);
+            if ($data) {
+                return $data;
             }
         }
-
-        if ($data) {
-            return $data;
-        }
-
     }
 
 

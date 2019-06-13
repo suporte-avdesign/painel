@@ -2,21 +2,23 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\BrandInterface as InterBrand;
-use AVDPainel\Interfaces\Admin\SectionInterface as InterSection;
-use AVDPainel\Interfaces\Admin\CategoryInterface as InterCategory;
+use AVDPainel\Http\Requests\Admin\GridProducRequest as ReqModel;
 use AVDPainel\Interfaces\Admin\ProductInterface as InterProduct;
+use AVDPainel\Interfaces\Admin\SectionInterface as InterSection;
+use AVDPainel\Interfaces\Admin\ImageColorInterface as InterImage;
+use AVDPainel\Interfaces\Admin\CategoryInterface as InterCategory;
+use AVDPainel\Interfaces\Admin\GridProductInterface as InterModel;
+use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Gate;
 
-
-class GridsControlle extends Controller
+class GridProductController extends Controller
 {
-
     protected $ability  = 'product';
     protected $view     = 'backend.colors-grids';
     /**
@@ -25,6 +27,8 @@ class GridsControlle extends Controller
      * @return void
      */
     public function __construct(
+        InterModel $model,
+        InterImage $interImage,
         InterBrand $interBrand,
         InterProduct $interProduct,
         InterSection $interSection,
@@ -33,6 +37,8 @@ class GridsControlle extends Controller
     {
         $this->middleware('auth:admin');
 
+        $this->model              = $model;
+        $this->interImage         = $interImage;
         $this->interBrand         = $interBrand;
         $this->interProduct       = $interProduct;
         $this->interSection       = $interSection;
@@ -42,10 +48,97 @@ class GridsControlle extends Controller
 
 
     /**
-     * Loader grids.
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        if( Gate::denies("{$this->ability}-update") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $data = $this->model->setId($id);
+        $product = $data->product;
+
+        return view("{$this->view}.modal.edit", compact('data', 'product'));
+    }
+
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(ReqModel $request, $id)
+    {
+        if( Gate::denies("{$this->ability}-update") ) {
+            return view("backend.erros.message-401");
+        }
+
+        try{
+            DB::beginTransaction();
+
+            $configProduct = $this->configProduct->setId(1);
+            $grid = $this->model->setId($id);
+            $product = $grid->product;
+            $input = $request['grids'];
+            $image = $this->interImage->setId($input['image_color_id']);
+
+            $update = $this->model->updateUnit($configProduct, $input, $image, $product, $grid);
+            if ($update) {
+                DB::commit();
+
+                return response()->json($update);
+            }
+
+        } catch(\Exception $e){
+            DB::rollback();
+            return $e->getMessage();
+        }
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
+    }
+
+    /**
+     * Date: 06/12/2019
+     *
+     * @param Request $request
+     * @return view
      */
     public function load(Request $request)
     {
@@ -69,43 +162,41 @@ class GridsControlle extends Controller
             $set   = $this->interCategory->setId($id);
             $grids = $set->grids->where('type', $type);
             if (count($grids) == 0) {
-                return '<p class="message icon-speech red-gradient">
-                            Não existe grade desta categoria!
-                        </p>';
+                $error = constLang('messages.grids.category_false');
+                return view("{$this->view}.errors",compact('error'));
             }
         } elseif ($opc == 'section') {
             $set   = $this->interSection->setId($id);
             $grids = $set->grids->where('type', $type);
             if (count($grids) == 0) {
-                return '<p class="message icon-speech red-gradient">
-                            Não existe grade desta seção!
-                        </p>';
+                $error = constLang('messages.grids.section_false');
+                return view("{$this->view}.errors",compact('error'));
             }
         } elseif ($opc == 'brand') {
             $set   = $this->interBrand->setId($id);
             $grids = $set->grids->where('type', $type);
             if (count($grids) == 0) {
-                return '<p class="message icon-speech red-gradient">
-                            Não existe grade deste fabricante!
-                        </p>';
+                $error = constLang('messages.grids.brand_false');
+                return view("{$this->view}.errors",compact('error'));
             }
         }
 
         if ($kit == 1) {
             return view("{$this->view}.form-create-kits", compact(
-                'configProduct','product', 'grids','opc','stock')
+                    'configProduct','product', 'grids','opc','stock')
             );
         } else {
             return view("{$this->view}.form-create-units", compact(
-                'configProduct','product', 'grids','opc','stock')
+                    'configProduct','product', 'grids','opc','stock')
             );
         }
     }
 
-
     /**
-     *  Filter action  (create or edit)
+     * Date: 06/12/2019
+     *
      * @param Request $request
+     * @return mix
      */
     public function change(Request $request)
     {
@@ -133,72 +224,6 @@ class GridsControlle extends Controller
 
             $this->create($kit, $stock, $grids);
         }
-    }
-
-
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($kit, $stock, $grids)
-    {
-
-        if( Gate::denies("{$this->ability}-create") ) {
-            return view("backend.erros.message-401");
-        }
-
-        //dd($grids);
-
-        if ($kit == 1) {
-            return view("{$this->view}.create_teste_kit", compact('grids','stock'));
-        } else {
-            return view("{$this->view}.form-create-units", compact('grids','stock'));
-        }
-
-
-
-        /*
-        $data  = $this->interModel->setId($id);
-        $input = [
-            'kit' => $kit,
-            'stock' => $stock
-        ];
-        $change = $this->interModel->changeGrids($input, $id);
-        if ($change) {
-            $grids = $this->interGrid->change($data->id, $stock, $kit);
-            if ($kit == 1) {
-                return view("{$this->view}.modal.forms.grids-update-kits", compact(
-                    'stock',
-                    'grids',
-                    'data',
-                    'kit'
-                ));
-            } else {
-                return view("{$this->view}.modal.forms.grids-update", compact(
-                    'stock',
-                    'grids',
-                    'data',
-                    'kit'
-                ));
-            }
-        }
-
-        */
-    }
-
-
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
 }

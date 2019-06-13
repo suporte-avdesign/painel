@@ -58,21 +58,3 @@
         });
     </script>
 @endisset
-<script>
-    /* Remover as grades */
-    $('.list .button-group a:last-child').data('confirm-options', {
-        onShow: function()
-        {
-            $(this).parent().removeClass('show-on-parent-hover');
-        },
-        onConfirm: function()
-        {
-            $(this).closest('li').fadeAndRemove();
-            return false;
-        },
-        onRemove: function()
-        {
-            $(this).parent().addClass('show-on-parent-hover');
-        }
-    });
-</script>

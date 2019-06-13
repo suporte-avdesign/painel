@@ -140,7 +140,6 @@ class ImageColorController extends Controller
 
             $image = $this->interModel->create($dataForm, $product, $config);
             if ($image) {
-
                 $photos = $this->interModel->uploadImages($config, $dataForm, $image, $product, $file);
                 if ($photos) {
 
@@ -253,11 +252,7 @@ class ImageColorController extends Controller
                         $qty = $request['qty'];
                         $des = $request['des'];
                         $grids = $this->interGrid->updateKit($configProduct, $request['grids'], $image, $product, $qty, $des);
-
-                    } else {
-                        $grids = $this->interGrid->updateUnit($configProduct, $request['grids'], $image, $product);
                     }
-
                     if ($grids) {
 
                         $out = $this->interModel->uploadRender($config, $image, $action);
@@ -267,7 +262,6 @@ class ImageColorController extends Controller
                         return response()->json($out);
                     }
                 }
-
 
             }
         } catch(\Exception $e){
