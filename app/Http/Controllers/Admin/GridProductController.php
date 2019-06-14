@@ -76,13 +76,26 @@ class GridProductController extends Controller
         if( Gate::denies("{$this->ability}-create") ) {
             return view("backend.erros.message-401");
         }
+        try{
+            DB::beginTransaction();
 
         $input = $request['grids'];
         $configProduct = $this->configProduct->setId(1);
         $image = $this->interImage->setId($input['image_color_id']);
         $product = $image->product;
 
-        dd($product);
+        $create = $this->model->addUnit($configProduct, $input, $image, $product, $this->view);
+
+        if ($create) {
+            DB::commit();
+
+            return response()->json($create);
+        }
+
+        } catch(\Exception $e){
+            DB::rollback();
+            return $e->getMessage();
+        }
 
 
     }

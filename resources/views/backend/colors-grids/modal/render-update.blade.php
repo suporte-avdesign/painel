@@ -5,16 +5,16 @@
     @endphp
     <li id="list-grid-{{$grid->id}}">
         <span class="input">
-            <label for="low" class="button compact {{$col}}-gradient">{{$grid->grid}}</label>
+            <label for="low" class="button compact blue-gradient">{{$grid->grid}}</label>
             <label for="low" class="button compact {{$col}}-gradient">{{$grid->stock}}</label>
         </span>
         @if($product->qty_min == 1 || $product->qty_max == 1)
             <span class="input">
                 @if($product->qty_min == 1)
-                    <label for="low" class="button compact {{$col}}-green">{{$grid->qty_min}}</label>
+                    <label for="low" class="button compact silver-gradient">{{$grid->qty_min}}</label>
                 @endif
                 @if($product->qty_max == 1)
-                    <label for="low" class="button compact {{$col}}-green">{{$grid->qty_max}}</label>
+                    <label for="low" class="button compact silver-gradient">{{$grid->qty_max}}</label>
                 @endif
             </span>
         @endif

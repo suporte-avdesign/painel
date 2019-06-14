@@ -189,105 +189,182 @@ class GridProductRepository implements GridProductInterface
         $grid    = collect($input['grid'])->filter()->unique();
         $total   = count($grid);
         $success = true;
+        if (empty($grid)) {
+            $success = false;
+            $message = constLang('validation.grids.grid');
+        }
 
-
-
-            if (empty($grid)) {
+        if ($product->stock == 1) {
+            $entry = collect($input['input'])->filter();
+            if ($total != $entry->count()) {
                 $success = false;
-                $message = constLang('validation.grids.grid');
+                $message = constLang('validation.grids.input');
             }
-
-            if ($product->stock == 1) {
-                $entry = collect($input['input'])->filter();
-                if ($total != $entry->count()) {
+            if ($product->qty_min == 1) {
+                $qty_min = collect($input['qty_min'])->filter();
+                if ($total != $qty_min->count()) {
                     $success = false;
-                    $message = constLang('validation.grids.input');
+                    $message = constLang('validation.grids.qty_min');
                 }
-                if ($product->qty_min == 1) {
-                    $qty_min = collect($input['qty_min'])->filter();
-                    if ($total != $qty_min->count()) {
-                        $success = false;
-                        $message = constLang('validation.grids.qty_min');
+            }
+            if ($product->qty_max == 1) {
+                $qty_max = collect($input['qty_max'])->filter();
+                if ($total != $qty_max->count()) {
+                    $success = false;
+                    $message = constLang('validation.grids.qty_max');
+                }
+            }
+        }
+
+        if ($success == true) {
+
+            for($i = 0; $i < count($grid); ++$i) {
+                $array[$i]['grid'] = $input['grid'][$i];
+                if ($product->stock ==1) {
+                    $array[$i]['input'] = $input['input'][$i];
+
+                    if ($product->qty_min == 1) {
+                        $array[$i]['qty_min'] = $input['qty_min'][$i];
                     }
-                }
-                if ($product->qty_max == 1) {
-                    $qty_max = collect($input['qty_max'])->filter();
-                    if ($total != $qty_max->count()) {
-                        $success = false;
-                        $message = constLang('validation.grids.qty_max');
+
+                    if ($product->qty_max == 1) {
+                        $array[$i]['qty_max'] =  $input['qty_max'][$i];
                     }
                 }
             }
 
-            if ($success == true) {
+            $access = '- '.constLang('grid').':';
+            $grids = collect($array)->sortBy('grid');
+            foreach ($grids as $value) {
+                $dataForm = [
+                    'product_id' => $product->id,
+                    'image_color_id' => $image->id,
+                    'kit' => $product->kit,
+                    'color' => $image->color,
+                    'grid' => $value['grid'],
+                ];
+                $access .= $value['grid'];
 
-                for($i = 0; $i < count($grid); ++$i) {
-                    $array[$i]['grid'] = $input['grid'][$i];
-                    if ($product->stock ==1) {
-                        $array[$i]['input'] = $input['input'][$i];
+                if ($product->stock ==1) {
 
-                        if ($product->qty_min == 1) {
-                            $array[$i]['qty_min'] = $input['qty_min'][$i];
-                        }
+                    $dataForm['output'] = 0;
+                    $dataForm['input'] = $value['input'];
+                    $dataForm['stock'] = $value['input'];
 
-                        if ($product->qty_max == 1) {
-                            $array[$i]['qty_max'] =  $input['qty_max'][$i];
-                        }
+                    $access .= ', '.constLang('entry').':'.$value['input'];
+                    $access .= ', '.constLang('stock').':'.$value['input'];
+
+                    if ($product->qty_min == 1) {
+                        $dataForm['qty_min'] = $value['qty_min'];
+                        $access .= ', '.constLang('min').':'.$value['qty_min'];
+                    }
+                    if ($product->qty_min == 1) {
+                        $dataForm['qty_max'] = $value['qty_max'];
+                        $access .= ', '.constLang('max').':'.$value['qty_max'];
                     }
                 }
 
-                $access = '- '.constLang('grid').':';
-                $grids = collect($array)->sortBy('grid');
-                foreach ($grids as $value) {
-                    $dataForm = [
-                        'product_id' => $product->id,
-                        'image_color_id' => $image->id,
-                        'kit' => $product->kit,
-                        'color' => $image->color,
-                        'grid' => $value['grid'],
-                    ];
-                    $access .= $value['grid'];
-
-                    if ($product->stock ==1) {
-
-                        $dataForm['output'] = 0;
-                        $dataForm['input'] = $value['input'];
-                        $dataForm['stock'] = $value['input'];
-
-                        $access .= ', '.constLang('entry').':'.$value['input'];
-                        $access .= ', '.constLang('stock').':'.$value['input'];
-
-                        if ($product->qty_min == 1) {
-                            $dataForm['qty_min'] = $value['qty_min'];
-                            $access .= ', '.constLang('min').':'.$value['qty_min'];
-                        }
-                        if ($product->qty_min == 1) {
-                            $dataForm['qty_max'] = $value['qty_max'];
-                            $access .= ', '.constLang('max').':'.$value['qty_max'];
-                        }
-                    }
-
-                    $data = $this->model->create($dataForm);
-                    if ($data) {
-                        $inventary = $this->interInventary->createUnit($configProduct, $data, $image, $product);
-                        generateAccessesTxt($access);
-                    }
-                }
-
+                $data = $this->model->create($dataForm);
                 if ($data) {
-                    $data['success'] = true;
-                    return $data;
-                } else {
-                    $error['success'] = false;
-                    $error['message'] = constLang('error.server');
+                    $inventary = $this->interInventary->createUnit($configProduct, $data, $image, $product);
+                    generateAccessesTxt($access);
                 }
-
             }
 
-            $error['success'] = $success;
-            $error['message'] = $message;
-            return $error;
+            if ($data) {
+                $data['success'] = true;
+                return $data;
+            } else {
+                $error['success'] = false;
+                $error['message'] = constLang('error.server');
+            }
+
+        }
+
+        $error['success'] = $success;
+        $error['message'] = $message;
+        return $error;
     }
+
+
+    public function addUnit($configProduct, $input, $image, $product, $view)
+    {
+
+        $dataForm['color']          = $image->color;
+        $dataForm['kit']            = $product->kit;
+        $dataForm['grid']           = $input['grid'];
+        $dataForm['product_id']     = $product->id;
+        $dataForm['image_color_id'] = $image->id;
+
+
+        $access = '- '.$product->kit_name;
+        $access .= ', '.constLang('grid').':'.$input['grid'];
+
+        if ($product->stock == 1) {
+
+            $dataForm['input'] = $input['input'];
+            $dataForm['stock'] = $input['input'];
+            $access .= ', '.constLang('entry').' '.$input['input'];
+            $access .= ', '.constLang('stock').' '.$input['input'];
+
+            if ($product->qty_min == 1) {
+                $dataForm['qty_min'] = $input['qty_min'];
+                $access .= ', qtd-min:'.$input['qty_min'];
+            }
+
+            if ($product->qty_max == 1) {
+                $dataForm['qty_max'] = $input['qty_max'];
+                $access .= ', qtd-max:'.$input['qty_max'];
+            }
+        }
+
+        $unique= [];
+        $dulicate = $image->grids;
+        foreach ($dulicate as $value) {
+            if ($value->grid == $dataForm['grid']) {
+                $unique[] = $value->grid;
+            }
+        }
+        if (empty($unique)) {
+
+            $grid = $this->model->create($dataForm);
+            if ($grid) {
+                if ($product->stock == 1) {
+                    $inventary = $this->interInventary->createKit($configProduct, $grid, $image, $product);
+                }
+
+                generateAccessesTxt($access);
+                $grids = $image->grids;
+
+                $html = view("{$view}.modal.render-create", compact('grids', 'product'))->render();
+
+                $out = array(
+                    'success' => true,
+                    'id' => $image->id,
+                    'load' => true,
+                    'html' => $html,
+                    'message' => constLang('update_true')
+                );
+
+            } else {
+                $out = array(
+                    'success' => false,
+                    'message' => constLang('update_false')
+                );
+            }
+        } else {
+            $out = array(
+                'success' => false,
+                'message' => constLang('validation.grids.unique')
+            );
+        }
+
+        return $out;
+
+    }
+
+
+
 
 
     /**
@@ -352,7 +429,7 @@ class GridProductRepository implements GridProductInterface
                         $inventary = $this->interInventary->updateUnit($configProduct, $grid, $image, $product, $action);
                     }
 
-                    $html = view("{$view}.modal.render", compact('grid', 'product'))->render();
+                    $html = view("{$view}.modal.render-update", compact('grid', 'product'))->render();
                     $out = array(
                         'success' => true,
                         'id' => $grid->id,

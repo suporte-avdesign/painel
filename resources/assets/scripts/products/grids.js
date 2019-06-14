@@ -35,9 +35,13 @@
             },
             success: function(data){
                 if(data.success == true){
-
                     if (data.load == true) {
-                        $("#grid-"+data.id).html(data.html);
+                        if (ac == 'create') {
+                            $("#grids-"+data.id).html(data.html);
+                        }
+                        if (ac == 'update') {
+                            $("#grid-"+data.id).html(data.html);
+                        }
                     }
                     msgNotifica(true, data.message, true, false);
                     fechaModal();
@@ -52,6 +56,8 @@
             }
         });
     }
+
+
 
 
 

@@ -1,3 +1,4 @@
+
 <p class="margin-bottom">
     <a href="javascript:void(0);" onclick="abreModal('{{constLang('add')}} {{constLang('grid')}}', '{{route('grid-color.edit', $data->id)}}', 'grids', 1, 'true', 230, 250);" class="button icon-plus-round blue-gradient">{{constLang('add')}} {{constLang('grid')}}</a>
 </p>
@@ -10,16 +11,16 @@
             @endphp
             <li id="grid-{{$grid->id}}">
                 <span class="input">
-                    <label for="low" class="button compact {{$col}}-gradient">{{$grid->grid}}</label>
+                    <label for="low" class="button compact blue-gradient">{{$grid->grid}}</label>
                     <label for="low" class="button compact {{$col}}-gradient">{{$grid->stock}}</label>
                 </span>
                 @if($product->qty_min == 1 || $product->qty_max == 1)
                     <span class="input">
                         @if($product->qty_min == 1)
-                            <label for="low" class="button compact {{$col}}-green">{{$grid->qty_min}}</label>
+                            <label for="low" class="button compact silver-gradient">{{$grid->qty_min}}</label>
                         @endif
                         @if($product->qty_max == 1)
-                             <label for="low" class="button compact {{$col}}-green">{{$grid->qty_max}}</label>
+                             <label for="low" class="button compact silver-gradient">{{$grid->qty_max}}</label>
                         @endif
                     </span>
                 @endif
@@ -42,10 +43,6 @@
     @endforeach
 </ul>
 <script>
-
-/**
- * Remove Grig
- */
 $('.list .button-group a:first-child').data('confirm-options', {
     onConfirm: function()
     {
