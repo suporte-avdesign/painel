@@ -48,13 +48,21 @@ class GridProductController extends Controller
 
 
     /**
-     * Show the form for creating a new resource.
+     * Date: 06/12/2019
      *
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return View
      */
-    public function create()
+    public function edit($id)
     {
-        //
+        if( Gate::denies("{$this->ability}-create") ) {
+            return view("backend.erros.message-401");
+        }
+        $configProduct = $this->configProduct->setId(1);
+        $image = $this->interImage->setId($id);
+        $product = $image->product;
+
+        return view("{$this->view}.modal.create", compact('configProduct', 'image', 'product'));
     }
 
     /**
@@ -63,16 +71,27 @@ class GridProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ReqModel $request)
     {
-        //
+        if( Gate::denies("{$this->ability}-create") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $input = $request['grids'];
+        $configProduct = $this->configProduct->setId(1);
+        $image = $this->interImage->setId($input['image_color_id']);
+        $product = $image->product;
+
+        dd($product);
+
+
     }
 
     /**
-     * Display the specified resource.
+     * Date: 06/13/2019
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return View
      */
     public function show($id)
     {
@@ -81,9 +100,10 @@ class GridProductController extends Controller
         }
 
         $data = $this->model->setId($id);
+        $image_color_id = $data->image_color_id;
         $product = $data->product;
 
-        return view("{$this->view}.modal.edit", compact('data', 'product'));
+        return view("{$this->view}.modal.edit", compact('image_color_id', 'data', 'product'));
     }
 
 
@@ -105,11 +125,11 @@ class GridProductController extends Controller
 
             $configProduct = $this->configProduct->setId(1);
             $grid = $this->model->setId($id);
+            $image = $grid->image;
             $product = $grid->product;
             $input = $request['grids'];
-            $image = $this->interImage->setId($input['image_color_id']);
 
-            $update = $this->model->updateUnit($configProduct, $input, $image, $product, $grid);
+            $update = $this->model->updateUnit($configProduct, $input, $image, $product, $grid, $this->view);
             if ($update) {
                 DB::commit();
 
@@ -124,14 +144,48 @@ class GridProductController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Date: 06/13/2019
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return json
      */
     public function destroy($id)
     {
-        //
+        if( Gate::denies("{$this->ability}-create") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $grid = $this->model->setId($id);
+        $image = $grid->image;
+        $total = count($image->grids);
+        try{
+            DB::beginTransaction();
+
+            if ($total >= 2) {
+
+                $configProduct = $this->configProduct->setId(1);
+                $product = $grid->product;
+
+                $delete = $this->model->deleteUnit($configProduct, $image, $product, $grid);
+                if ($delete) {
+                    DB::commit();
+
+                    return response()->json($delete);
+                }
+
+            } else {
+                $out = array(
+                    'success' => false,
+                    'message' => constLang('messages.grids.grid_min'),
+                );
+                return response()->json($out);
+            }
+
+        } catch(\Exception $e){
+            DB::rollback();
+            return $e->getMessage();
+        }
+
     }
 
     /**

@@ -292,9 +292,7 @@ class ImageColorController extends Controller
             $configProduct = $this->configProduct->setId(1);
             if ($configProduct->grids == 1) {
                 if ($product->kit == 1) {
-                    $grids = $this->interGrid->delete($configProduct, $image, $product);
-                } else {
-                    $grids = $this->interGrid->delete($configProduct, $image, $product);
+                    $grids = $this->interGrid->deleteKit($configProduct, $image, $product);
                 }
 
                 if ($grids) {
@@ -310,9 +308,7 @@ class ImageColorController extends Controller
                         return response()->json($delete);
                     }
                 }
-
             }
-
 
         } catch(\Exception $e){
 

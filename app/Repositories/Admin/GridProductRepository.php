@@ -149,6 +149,34 @@ class GridProductRepository implements GridProductInterface
         // Note: return empty -> invetary(empty)
     }
 
+
+    /**
+     * Date: 06/12/2019
+     *
+     * @param $configProduct
+     * @param $image
+     * @param $product
+     * @return bool
+     */
+    public function deleteKit($configProduct, $image, $product)
+    {
+        if ($configProduct->grids == 1) {
+
+            foreach ($image->grids as $value) {
+                $grids = $value;
+            }
+            if ($product->stock == 1)
+
+                $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grids);
+
+            if ($inventary) {
+                return $inventary;
+            }
+        }
+        return true;
+    }
+
+
     /**
      * @param $configProduct
      * @param $input
@@ -262,36 +290,50 @@ class GridProductRepository implements GridProductInterface
     }
 
 
-
-    public function updateUnit($configProduct, $input, $image, $product, $grid)
+    /**
+     * Date: 06/13/2019
+     *
+     * @param $configProduct
+     * @param $input
+     * @param $image
+     * @param $product
+     * @param $grid
+     * @param $view
+     * @return array
+     */
+    public function updateUnit($configProduct, $input, $image, $product, $grid, $view)
     {
 
         if ($configProduct->grids == 1) {
 
-            $entry  = null;
-            $change = null;
+            $change = '';
+            $action['name'] = false;
+            $action['entry'] = false;
             if ($grid->grid != $input['grid']) {
-                $dataForm = $input['grid'];
-                $change .= ':'.$input['grid'];
+                $dataForm['grid'] = $input['grid'];
+                $change .= $input['grid'];
+                $action['name'] = 'update';
             }
 
             if ($product->stock == 1) {
 
                 if (!empty($input['input'])) {
-                    $dataForm = $input['input'];
-                    $change .= ', '.constLang('entry').':'.$input['input'];
-                    $entry = true;
+                    $dataForm['input'] = $input['input'];
+                    $dataForm['stock'] = $input['input'] + $grid->stock;
+                    $change .= ', ' . constLang('entry') . ':' . $input['input'];
+                    $change .= ', ' . constLang('stock') . ':' . $dataForm['stock'];
+                    $action['entry'] = 'create';
                 }
                 if ($product->qty_min == 1) {
                     if ($grid->qty_min != $input['qty_min']) {
-                        $dataForm = $input['qty_min'];
-                        $change .= ', '.constLang('stock').' '.constLang('min').':'.$input['qty_min'];
+                        $dataForm['qty_min'] = $input['qty_min'];
+                        $change .= ', ' . constLang('stock') . ' ' . constLang('min') . ':' . $input['qty_min'];
                     }
                 }
                 if ($product->qty_max == 1) {
                     if ($grid->qty_max != $input['qty_max']) {
-                        $dataForm = $input['qty_max'];
-                        $change .= ', '.constLang('stock').' '.constLang('min').':'.$input['qty_max'];
+                        $dataForm['qty_max'] = $input['qty_max'];
+                        $change .= ', ' . constLang('stock') . ' ' . constLang('min') . ':' . $input['qty_max'];
                     }
                 }
             }
@@ -299,27 +341,37 @@ class GridProductRepository implements GridProductInterface
             if ($change) {
                 $data = $grid->update($dataForm);
                 if ($data) {
-
                     generateAccessesTxt(utf8_decode(
-                        '- ' . constLang('updated') . ' ' . constLang('grid').
-                        ', '.$change)
+                            '- ' . constLang('updated') . ' ' . constLang('grid') .
+                            ':' . $change.
+                            ', '.constLang('product').':'.$product->name.
+                            ', '.constLang('code').':'.$image->code)
                     );
 
-                    if ($entry) {
-                        $inventary = $this->interInventary->updateUnit($configProduct, $data, $image, $product);
+                    if ($product->stock == 1) {
+                        $inventary = $this->interInventary->updateUnit($configProduct, $grid, $image, $product, $action);
                     }
 
+                    $html = view("{$view}.modal.render", compact('grid', 'product'))->render();
                     $out = array(
                         'success' => true,
-                        //'message' => con
+                        'id' => $grid->id,
+                        'load' => true,
+                        'html' => $html,
+                        'message' => constLang('update_true')
                     );
                 }
+            } else {
+                $out = array(
+                    'success' => true,
+                    'load' => false,
+                    'message' => constLang('update_true')
+                );
             }
-
-
-
+            return $out;
         }
     }
+
 
     /**
      * Date: 06/12/2019
@@ -329,27 +381,32 @@ class GridProductRepository implements GridProductInterface
      * @param $product
      * @return bool
      */
-    public function delete($configProduct, $image, $product)
+    public function deleteUnit($configProduct, $image, $product, $grid)
     {
         if ($configProduct->grids == 1) {
-            if ($product->kit == 1) {
-                foreach ($image->grids as $value) {
-                    $grids = $value;
-                }
-                $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grids);
+
+            $prev = $grid;
+            if ($product->stock == 1) {
+                $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grid);
+            }
+
+            $delGrid = $grid->delete();
+            if ($delGrid) {
+                $success = true;
+                $message = constLang('delete_true');
             } else {
-                foreach ($image->grids as $value) {
-                    $grids = $value;
-                }
-
-                $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grids);
+                $success = true;
+                $message = constLang('error.server');
             }
-
-            if ($inventary) {
-                return $inventary;
-            }
-            return true;
         }
+
+        $out = array(
+            'success' => $success,
+            'message' => $message
+        );
+
+        return $out;
+
     }
 
 

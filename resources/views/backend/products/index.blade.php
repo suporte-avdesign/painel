@@ -34,6 +34,7 @@
 </table>
 
 <script src="{{ mix('backend/scripts/products/products.min.js') }}"></script>
+<script src="{{ mix('backend/scripts/products/grids.min.js') }}"></script>
 <script src="{{ mix('backend/js/libs/formData/jquery.form.min.js') }}"></script>
 
 <script>   

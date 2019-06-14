@@ -42,7 +42,9 @@ class GridProducRequest extends FormRequest
             $rules['grids.grid'] = 'required';
 
             if ($product->stock == 1) {
-                //$rules['grids.input'] = 'required|numeric|min:1|max:4';
+                if ($this->method() == 'POST') {
+                    $rules['grids.input'] = 'required';
+                }
                 if ($product->qty_min == 1) {
                     $rules['grids.qty_min'] = 'required';
                 }

@@ -31,4 +31,13 @@ class GridProduct extends Model
         return $this->belongsTo(Product::class);
     }
 
+    /**
+     * Image
+     * @return array
+     **/
+    public function image()
+    {
+        return $this->belongsTo(ImageColor::class, 'image_color_id');
+    }
+
 }

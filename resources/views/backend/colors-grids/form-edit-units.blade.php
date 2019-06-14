@@ -1,11 +1,14 @@
+<p class="margin-bottom">
+    <a href="javascript:void(0);" onclick="abreModal('{{constLang('add')}} {{constLang('grid')}}', '{{route('grid-color.edit', $data->id)}}', 'grids', 1, 'true', 230, 250);" class="button icon-plus-round blue-gradient">{{constLang('add')}} {{constLang('grid')}}</a>
+</p>
 <ul id="grids-{{$data->id}}" class="list">
     @foreach($grids as $grid)
-        @if($stock == 1)
+        @if($product->stock == 1)
             @php
                 $text_qty = constLang('qty');
                 ($grid->stock >= 1 ? $col = 'blue' : $col = 'red');
             @endphp
-            <li>
+            <li id="grid-{{$grid->id}}">
                 <span class="input">
                     <label for="low" class="button compact {{$col}}-gradient">{{$grid->grid}}</label>
                     <label for="low" class="button compact {{$col}}-gradient">{{$grid->stock}}</label>
@@ -21,7 +24,7 @@
                     </span>
                 @endif
                 <div class="button-group absolute-right compact">
-                    <a href="javascript:void(0);" class="button icon-trash with-tooltip red-gradient confirm" title="{{constLang('delete')}}"></a>
+                    <a href="javascript:void(0);" data-id="{{$grid->id}}" data-url="{{route('grid-color.destroy', $grid->id)}}" data-token="{{csrf_token()}}" class="button icon-trash with-tooltip red-gradient confirm" title="{{constLang('delete')}}"></a>
                     <a href="javascript:void(0);" onclick="abreModal('{{constLang('edit')}} {{constLang('grid')}}:{{$grid->grid}}', '{{route('grid-color.show', $grid->id)}}', 'grids', 1, 'true', 230, 250);" class="button icon-pencil with-tooltip blue-gradient" title="{{constLang('edit')}}"></a>
                 </div>
             </li>
@@ -31,28 +34,42 @@
                     <label for="low" class="button compact blue-gradient">{{$grid->grid}}</label>
                     <input type="text" name="grids[{{$grid->id}}][grid]" id="grid_{{$grid->id}}" class="input-unstyled" value="{{$grid->grid}}" maxlength="4" style="width: 30px;">
                 </span>
-                <div class="button-group absolute-right compact">
+                <span class="button-group absolute-right compact">
                     <a class="button icon-trash with-tooltip red-gradient confirm" title="{{constLang('delete')}}"></a>
-                </div>
+                </span>
             </li>
         @endif
     @endforeach
 </ul>
 <script>
-    /* Remover as grades */
-    $('.list .button-group a:last-child').data('confirm-options', {
-        onShow: function()
-        {
-            $(this).parent().removeClass('show-on-parent-hover');
-        },
-        onConfirm: function()
-        {
-            $(this).closest('li').fadeAndRemove();
-            alert('ok');
-        },
-        onRemove: function()
-        {
-            $(this).parent().addClass('show-on-parent-hover');
-        }
-    });
+
+/**
+ * Remove Grig
+ */
+$('.list .button-group a:first-child').data('confirm-options', {
+    onConfirm: function()
+    {
+        $(this).parent().removeClass('show-on-parent-hover');
+        var id = $(this).data('id'),
+            url = $(this).data('url'),
+            token = $(this).data('token');
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: url,
+            data: { _method: "DELETE", _token: token },
+            success: function(data){
+                if(data.success == true){
+                     $("#grid-"+id).fadeAndRemove();
+                     msgNotifica(true, data.message, true, false);
+                } else {
+                    msgNotifica(false, data.message, true, false);
+                }
+            },
+            error: function(xhr){
+                ajaxFormError(xhr);
+            }
+        });
+    }
+});
 </script>
