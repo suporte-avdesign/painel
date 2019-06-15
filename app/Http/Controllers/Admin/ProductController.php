@@ -195,6 +195,7 @@ class ProductController extends Controller
             $brand    = $this->interBrand->setId($dataForm['prod']['brand_id']);
 
             $dataForm['prod']['brand'] = $brand->name;
+            $dataForm['prod']['active'] = 0;
 
             $data = $this->interModel->create($dataForm['prod']);
 
@@ -364,10 +365,11 @@ class ProductController extends Controller
         try{
             DB::beginTransaction();
 
+            $configProduct = $this->configProduct->setId(1);
             $config  = $this->configImageProduct->get();
             $product = $this->interModel->setId($id);
 
-            $delete = $this->interModel->delete($config, $product);
+            $delete = $this->interModel->delete($configProduct, $config, $product);
             if ($delete) {
                 $success = true;
                 $message = constLang('messages.products.delete_true');

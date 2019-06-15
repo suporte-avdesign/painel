@@ -48,7 +48,6 @@ return [
     'active_true' => 'Ativo',
     'active_false' => 'Inativo',
     'add' => 'Adicionar',
-    'loader' => 'Aguarde',
     'alert' => [
         'cover_new' => 'O sistema criou uma nova imagem capa.',
         'cover_false' => 'Você não tem nehuma imagem capa com o status ativo!',
@@ -56,6 +55,7 @@ return [
         'cover_product_false' => 'Como não existe nenhuma imagem ativa o produto foi desativado.',
         'cover_product_true' => 'O status do produto também já esta ativo, Boas vendas!'
     ],
+    'attributes' => 'Atributos',
     'back' => 'Voltar ',
     'black_friday' => 'Black Friday',
     'cancel' => 'Cancelar',
@@ -93,10 +93,12 @@ return [
         'deleted_false' => 'Não foi possível excluir a imagem'
     ],
     'keywords.required' => 'As tags são obrigatórias',
+    'loader' => 'Aguarde',
     'login' => 'Login',
     'login_entry' => 'Fez login no sistema.',
     'max' => 'Máximo',
     'min' => 'Mínimo',
+    'name' => 'Nome',
     'new' => 'Novo',
     'not' => 'Não',
     'offer' => 'Oferta',
@@ -134,6 +136,7 @@ return [
     'update_false' => 'Não foi possível alterar o registro',
     'update_true' => 'O registro foi alterado',
     'upload_true' => [
+        'upload' => 'Upload',
         'file' => 'O arquivo foi salvo',
         'image' => 'A imagem foi salva',
         'pdf' => 'O PDF foi salvo',

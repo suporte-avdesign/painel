@@ -5,17 +5,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-create.blade.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-update.blade.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render.blade.php" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/GridProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/GridProductController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/ConfigKitInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/ConfigKitInterface.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/GroupColorInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/GroupColorInterface.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Interfaces/Admin/ProductInterface.php" afterPath="$PROJECT_DIR$/app/Interfaces/Admin/ProductInterface.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" afterPath="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/lang_pt-BR.php" afterPath="$PROJECT_DIR$/config/lang_pt-BR.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/backend/scripts/products/grids.min.js" afterPath="$PROJECT_DIR$/public/backend/scripts/products/grids.min.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/mix-manifest.json" afterPath="$PROJECT_DIR$/public/mix-manifest.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/assets/scripts/products/grids.js" afterPath="$PROJECT_DIR$/resources/assets/scripts/products/grids.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-create.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-create.blade.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-update.blade.php" afterPath="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-update.blade.php" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -27,53 +34,59 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="GridProductRepository.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php">
+      <file leaf-file-name="ImageColorController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="393">
-              <caret line="336" column="39" lean-forward="false" selection-start-line="336" selection-start-column="39" selection-end-line="336" selection-end-column="39" />
+            <state relative-caret-position="288">
+              <caret line="147" column="97" lean-forward="false" selection-start-line="147" selection-start-column="97" selection-end-line="147" selection-end-column="97" />
               <folding>
-                <element signature="e#926#2257#0#PHP" expanded="false" />
-                <element signature="e#2460#4703#0#PHP" expanded="false" />
-                <element signature="e#2725#4053#0#PHP" expanded="false" />
-                <element signature="e#4062#4648#0#PHP" expanded="false" />
-                <element signature="e#5785#6632#0#PHP" expanded="false" />
-                <element signature="e#6642#9018#0#PHP" expanded="false" />
-                <element signature="e#6679#7201#0#PHP" expanded="false" />
-                <element signature="e#13783#13954#0#PHP" expanded="false" />
-                <element signature="e#14407#14565#0#PHP" expanded="false" />
-                <element signature="e#15616#17999#0#PHP" expanded="false" />
+                <element signature="e#52#118#0#PHP" expanded="true" />
+                <element signature="e#2031#2608#0#PHP" expanded="false" />
+                <element signature="e#9131#10422#0#PHP" expanded="false" />
+                <element signature="e#10613#11220#0#PHP" expanded="false" />
+                <element signature="e#11309#11775#0#PHP" expanded="false" />
+                <element signature="e#11878#12132#0#PHP" expanded="false" />
+                <element signature="e#12340#12747#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="lang_pt-BR.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
+      <file leaf-file-name="GroupColorInterface.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/GroupColorInterface.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="158" column="15" lean-forward="false" selection-start-line="158" selection-start-column="5" selection-end-line="158" selection-end-column="15" />
+            <state relative-caret-position="216">
+              <caret line="12" column="51" lean-forward="true" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="create.blade.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/create.blade.php">
+      <file leaf-file-name="GroupColorRepository.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="414">
-              <caret line="56" column="102" lean-forward="false" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="102" />
+            <state relative-caret-position="1378">
+              <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="grids.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/resources/assets/scripts/products/grids.js">
+      <file leaf-file-name="ImageColorRepository.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="198">
-              <caret line="35" column="36" lean-forward="true" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
-              <folding />
+            <state relative-caret-position="306">
+              <caret line="344" column="58" lean-forward="true" selection-start-line="344" selection-start-column="58" selection-end-line="344" selection-end-column="58" />
+              <folding>
+                <element signature="e#48#84#0#PHP" expanded="true" />
+                <element signature="e#545#608#0#PHP" expanded="false" />
+                <element signature="e#613#970#0#PHP" expanded="false" />
+                <element signature="e#1038#5354#0#PHP" expanded="false" />
+                <element signature="e#5442#9495#0#PHP" expanded="false" />
+                <element signature="e#14502#16542#0#PHP" expanded="false" />
+                <element signature="e#20008#21559#0#PHP" expanded="false" />
+                <element signature="e#26550#28273#0#PHP" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -82,9 +95,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>a</find>
-      <find>acc</find>
-      <find>acce</find>
       <find>access</find>
       <find>accesses</find>
       <find>accesses.c</find>
@@ -112,6 +122,9 @@
       <find>grid</find>
       <find>products</find>
       <find>Adi</find>
+      <find>generateAccessesTxt</find>
+      <find>delete</find>
+      <find>fo</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -120,24 +133,18 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/database/seeds/AdminsTableSeeder.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_05_31_111154_create_inventaries_table.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Admin/ImagePositionRepository.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/positions/gallery.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/status-render.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/gallery-render.blade.php" />
         <option value="$PROJECT_DIR$/app/Interfaces/Admin/ImageColorInterface.php" />
-        <option value="$PROJECT_DIR$/app/Interfaces/Admin/ProductInterface.php" />
-        <option value="$PROJECT_DIR$/app/Interfaces/Admin/GroupColorInterface.php" />
         <option value="$PROJECT_DIR$/app/Models/Admin/ImageColor.php" />
         <option value="$PROJECT_DIR$/app/Exceptions/Handler.php" />
         <option value="$PROJECT_DIR$/app/Helpers/avdHerper.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-groups/group_hexa.blade.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" />
         <option value="$PROJECT_DIR$/resources/assets/scripts/products/products.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits.blade.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
         <option value="$PROJECT_DIR$/app/Providers/Admin/AuthServiceProvider.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/Auth/RegisterController.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors/gallery.blade.php" />
@@ -146,7 +153,6 @@
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Admin/ProductColorRequest.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/messages/grids/errors.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/load-script.blade.php" />
@@ -156,21 +162,28 @@
         <option value="$PROJECT_DIR$/app/Interfaces/Admin/InventaryInterface.php" />
         <option value="$PROJECT_DIR$/webpack.mix.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/products/index.blade.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
-        <option value="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" />
-        <option value="$PROJECT_DIR$/config/lang_pt-BR.php" />
         <option value="$PROJECT_DIR$/routes/admin/modules.php" />
         <option value="$PROJECT_DIR$/app/Http/Requests/Admin/GridProducRequest.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/GridProductController.php" />
-        <option value="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-update.blade.php" />
-        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-create.blade.php" />
-        <option value="$PROJECT_DIR$/resources/assets/scripts/products/grids.js" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/edit.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/assets/scripts/products/grids.js" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-create.blade.php" />
+        <option value="$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-update.blade.php" />
+        <option value="$PROJECT_DIR$/app/Interfaces/Admin/ProductInterface.php" />
+        <option value="$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php" />
+        <option value="$PROJECT_DIR$/app/Interfaces/Admin/ConfigKitInterface.php" />
+        <option value="$PROJECT_DIR$/config/lang_pt-BR.php" />
         <option value="$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php" />
+        <option value="$PROJECT_DIR$/app/Interfaces/Admin/GroupColorInterface.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php" />
+        <option value="$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php" />
       </list>
     </option>
   </component>
@@ -557,6 +570,10 @@
               <option name="myItemId" value="Repositories" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Admin" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -656,7 +673,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../saoroque/painelsrc" />
+    <property name="last_opened_file_path" value="/var/www/developer/doc/content/reference/confirmation.html" />
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="" />
@@ -783,18 +800,18 @@
       <workItem from="1558810299912" duration="73981000" />
       <workItem from="1558953999958" duration="184127000" />
       <workItem from="1559308038199" duration="276749000" />
-      <workItem from="1559747188253" duration="465052000" />
+      <workItem from="1559747188253" duration="498030000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1294857000" />
+    <option name="totallyTimeSpent" value="1327835000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35059762" sideWeight="0.4821151" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23585658" sideWeight="0.4821151" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -822,100 +839,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="87" />
+      <option name="time" value="90" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="182">
-          <caret line="420" column="37" lean-forward="true" selection-start-line="420" selection-start-column="37" selection-end-line="420" selection-end-column="37" />
-          <folding>
-            <element signature="e#48#84#0#PHP" expanded="true" />
-            <element signature="e#545#608#0#PHP" expanded="false" />
-            <element signature="e#613#970#0#PHP" expanded="false" />
-            <element signature="e#1038#5354#0#PHP" expanded="false" />
-            <element signature="e#5442#9495#0#PHP" expanded="false" />
-            <element signature="e#10035#11483#0#PHP" expanded="false" />
-            <element signature="e#11614#13983#0#PHP" expanded="false" />
-            <element signature="e#16350#18047#0#PHP" expanded="false" />
-            <element signature="e#18165#19265#0#PHP" expanded="false" />
-            <element signature="e#21883#26847#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/storage/app/Accesses/43629571/12-06-2019.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/messages/grids/errors.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/GridsControlle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="41" column="0" lean-forward="true" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/errors.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="4" lean-forward="true" selection-start-line="2" selection-start-column="4" selection-end-line="2" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-kits-stock.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="522">
-          <caret line="29" column="40" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <marker date="1559619650068" expanded="true" signature="48:114" ph="..." />
-            <marker date="1559619650068" expanded="true" signature="181:365" ph="..." />
-            <marker date="1559619650068" expanded="true" signature="505:596" ph="..." />
-            <marker date="1559619650068" expanded="true" signature="772:930" ph="..." />
-            <marker date="1559619650068" expanded="true" signature="799:929" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa-edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="32" lean-forward="false" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1188">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/form_hexa.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="7" column="62" lean-forward="true" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Models/Admin/Product.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="406">
@@ -1140,31 +1068,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/admin/modules.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="424">
-          <caret line="181" column="33" lean-forward="true" selection-start-line="181" selection-start-column="23" selection-end-line="181" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1560">
-          <caret line="310" column="0" lean-forward="false" selection-start-line="310" selection-start-column="0" selection-end-line="310" selection-end-column="0" />
-          <folding>
-            <element signature="e#2031#2608#0#PHP" expanded="false" />
-            <element signature="e#2702#3696#0#PHP" expanded="false" />
-            <element signature="e#3878#5744#0#PHP" expanded="false" />
-            <element signature="e#7278#9019#0#PHP" expanded="false" />
-            <element signature="e#10618#11225#0#PHP" expanded="false" />
-            <element signature="e#11314#11780#0#PHP" expanded="false" />
-            <element signature="e#11883#12137#0#PHP" expanded="false" />
-            <element signature="e#12345#12752#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Requests/Admin/AdminRequest.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -1181,76 +1084,12 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="65" column="5" lean-forward="true" selection-start-line="65" selection-start-column="5" selection-end-line="65" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="108">
-          <caret line="6" column="7" lean-forward="true" selection-start-line="6" selection-start-column="7" selection-end-line="6" selection-end-column="7" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="81">
-          <caret line="213" column="5" lean-forward="true" selection-start-line="213" selection-start-column="5" selection-end-line="213" selection-end-column="5" />
-          <folding>
-            <element signature="e#1368#2810#0#PHP" expanded="false" />
-            <element signature="e#2999#4650#0#PHP" expanded="false" />
-            <element signature="e#4789#6334#0#PHP" expanded="false" />
-            <element signature="e#8150#10170#0#PHP" expanded="false" />
-            <element signature="e#10178#11717#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="30" column="0" lean-forward="true" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-create.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="716">
-          <caret line="65" column="9" lean-forward="false" selection-start-line="65" selection-start-column="9" selection-end-line="65" selection-end-column="9" />
-          <folding>
-            <marker date="1560519495269" expanded="true" signature="81:174" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/GridProductController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
           <caret line="86" column="93" lean-forward="false" selection-start-line="86" selection-start-column="93" selection-end-line="86" selection-end-column="93" />
           <folding>
-            <element signature="e#52#112#0#PHP" expanded="true" />
+            <element signature="e#52#112#0#PHP" expanded="false" />
             <element signature="e#3109#3489#0#PHP" expanded="false" />
             <element signature="e#4572#5619#0#PHP" expanded="false" />
             <element signature="e#5723#7639#0#PHP" expanded="false" />
@@ -1259,45 +1098,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-update.blade.php">
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ConfigFormPaymentRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="464">
-          <caret line="34" column="6" lean-forward="false" selection-start-line="34" selection-start-column="6" selection-end-line="34" selection-end-column="6" />
-          <folding>
-            <marker date="1560519343711" expanded="true" signature="43:132" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="60" column="59" lean-forward="false" selection-start-line="60" selection-start-column="59" selection-end-line="60" selection-end-column="59" />
-          <folding>
-            <marker date="1560519343663" expanded="true" signature="438:535" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/edit.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="419">
-          <caret line="57" column="85" lean-forward="false" selection-start-line="57" selection-start-column="70" selection-end-line="57" selection-end-column="85" />
+        <state relative-caret-position="270">
+          <caret line="84" column="16" lean-forward="true" selection-start-line="84" selection-start-column="16" selection-end-line="84" selection-end-column="30" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-edit.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="158" column="15" lean-forward="false" selection-start-line="158" selection-start-column="5" selection-end-line="158" selection-end-column="15" />
+        <state relative-caret-position="-94">
+          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-create-units.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
+        <state relative-caret-position="-274">
           <caret line="37" column="176" lean-forward="false" selection-start-line="37" selection-start-column="176" selection-end-line="37" selection-end-column="250" />
           <folding>
             <marker date="1560295763017" expanded="true" signature="45:358" ph="..." />
@@ -1310,37 +1129,243 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/create.blade.php">
+    <entry file="file://$PROJECT_DIR$/routes/admin/modules.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="414">
-          <caret line="56" column="102" lean-forward="false" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="102" />
+        <state relative-caret-position="437">
+          <caret line="181" column="33" lean-forward="false" selection-start-line="181" selection-start-column="23" selection-end-line="181" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors/layout_hexa-edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="5" column="9" lean-forward="true" selection-start-line="5" selection-start-column="5" selection-end-line="5" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/layout-create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///var/www/developer/doc/content/reference/confirmation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="324">
+          <caret line="18" column="61" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/edit.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="57" column="85" lean-forward="false" selection-start-line="57" selection-start-column="70" selection-end-line="57" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/assets/scripts/products/grids.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="35" column="36" lean-forward="true" selection-start-line="35" selection-start-column="36" selection-end-line="35" selection-end-column="36" />
+        <state relative-caret-position="91">
+          <caret line="52" column="33" lean-forward="false" selection-start-line="52" selection-start-column="33" selection-end-line="52" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="419">
+          <caret line="56" column="102" lean-forward="false" selection-start-line="56" selection-start-column="96" selection-end-line="56" selection-end-column="102" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-create.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="424">
+          <caret line="32" column="11" lean-forward="false" selection-start-line="32" selection-start-column="11" selection-end-line="32" selection-end-column="11" />
+          <folding>
+            <marker date="1560554903118" expanded="true" signature="43:132" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/modal/render-update.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="347">
+          <caret line="26" column="8" lean-forward="true" selection-start-line="26" selection-start-column="8" selection-end-line="26" selection-end-column="8" />
+          <folding>
+            <marker date="1560554903086" expanded="true" signature="43:132" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/backend/colors-grids/form-edit-units.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="316">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
+          <folding>
+            <marker date="1560554903050" expanded="true" signature="438:535" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/InventaryRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="307" column="71" lean-forward="false" selection-start-line="307" selection-start-column="71" selection-end-line="307" selection-end-column="71" />
+          <folding>
+            <element signature="e#1368#2810#0#PHP" expanded="false" />
+            <element signature="e#2999#4650#0#PHP" expanded="false" />
+            <element signature="e#6503#7960#0#PHP" expanded="false" />
+            <element signature="e#8150#10170#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/GridProductInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="54" lean-forward="true" selection-start-line="9" selection-start-column="54" selection-end-line="9" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="617" column="5" lean-forward="true" selection-start-line="617" selection-start-column="5" selection-end-line="617" selection-end-column="5" />
+          <folding>
+            <element signature="e#27206#29375#0#PHP" expanded="false" />
+            <marker date="1560559426434" expanded="true" signature="7442:7448" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7448:7454" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7519:7525" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7525:7531" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7534:7540" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7540:7546" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7889:7895" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7895:7901" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7970:7976" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7976:7982" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7985:7991" ph=" " />
+            <marker date="1560559426434" expanded="true" signature="7991:7997" ph=" " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/ProductInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="270">
+          <caret line="15" column="42" lean-forward="false" selection-start-line="15" selection-start-column="42" selection-end-line="15" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/ConfigKitInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="9" column="56" lean-forward="true" selection-start-line="9" selection-start-column="56" selection-end-line="9" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ConfigKitRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-630">
+          <caret line="11" column="6" lean-forward="false" selection-start-line="11" selection-start-column="6" selection-end-line="11" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ProductController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="215">
+          <caret line="196" column="54" lean-forward="false" selection-start-line="196" selection-start-column="54" selection-end-line="196" selection-end-column="54" />
+          <folding>
+            <element signature="e#8342#9936#0#PHP" expanded="false" />
+            <element signature="e#10094#12037#0#PHP" expanded="false" />
+            <element signature="e#12182#13351#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/lang_pt-BR.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1584">
+          <caret line="134" column="12" lean-forward="false" selection-start-line="134" selection-start-column="5" selection-end-line="134" selection-end-column="12" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GridProductRepository.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="393">
-          <caret line="336" column="39" lean-forward="false" selection-start-line="336" selection-start-column="39" selection-end-line="336" selection-end-column="39" />
+        <state relative-caret-position="237">
+          <caret line="82" column="57" lean-forward="false" selection-start-line="82" selection-start-column="57" selection-end-line="82" selection-end-column="57" />
           <folding>
-            <element signature="e#926#2257#0#PHP" expanded="false" />
-            <element signature="e#2460#4703#0#PHP" expanded="false" />
-            <element signature="e#2725#4053#0#PHP" expanded="false" />
-            <element signature="e#4062#4648#0#PHP" expanded="false" />
-            <element signature="e#5785#6632#0#PHP" expanded="false" />
-            <element signature="e#6642#9018#0#PHP" expanded="false" />
-            <element signature="e#6679#7201#0#PHP" expanded="false" />
-            <element signature="e#13783#13954#0#PHP" expanded="false" />
-            <element signature="e#14407#14565#0#PHP" expanded="false" />
-            <element signature="e#15616#17999#0#PHP" expanded="false" />
+            <element signature="e#3066#4394#0#PHP" expanded="false" />
+            <element signature="e#5389#5788#0#PHP" expanded="false" />
+            <element signature="e#5926#9625#0#PHP" expanded="false" />
+            <element signature="e#6259#7106#0#PHP" expanded="false" />
+            <element signature="e#7153#7675#0#PHP" expanded="false" />
+            <element signature="e#9813#12410#0#PHP" expanded="false" />
+            <element signature="e#12619#15566#0#PHP" expanded="false" />
+            <element signature="e#14728#14899#0#PHP" expanded="false" />
+            <element signature="e#15352#15510#0#PHP" expanded="false" />
+            <element signature="e#15733#16944#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Interfaces/Admin/GroupColorInterface.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="12" column="51" lean-forward="true" selection-start-line="12" selection-start-column="51" selection-end-line="12" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/Admin/ImageColorController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="147" column="97" lean-forward="false" selection-start-line="147" selection-start-column="97" selection-end-line="147" selection-end-column="97" />
+          <folding>
+            <element signature="e#52#118#0#PHP" expanded="true" />
+            <element signature="e#2031#2608#0#PHP" expanded="false" />
+            <element signature="e#9131#10422#0#PHP" expanded="false" />
+            <element signature="e#10613#11220#0#PHP" expanded="false" />
+            <element signature="e#11309#11775#0#PHP" expanded="false" />
+            <element signature="e#11878#12132#0#PHP" expanded="false" />
+            <element signature="e#12340#12747#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/GroupColorRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1378">
+          <caret line="166" column="0" lean-forward="true" selection-start-line="166" selection-start-column="0" selection-end-line="166" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Repositories/Admin/ImageColorRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="344" column="58" lean-forward="true" selection-start-line="344" selection-start-column="58" selection-end-line="344" selection-end-column="58" />
+          <folding>
+            <element signature="e#48#84#0#PHP" expanded="true" />
+            <element signature="e#545#608#0#PHP" expanded="false" />
+            <element signature="e#613#970#0#PHP" expanded="false" />
+            <element signature="e#1038#5354#0#PHP" expanded="false" />
+            <element signature="e#5442#9495#0#PHP" expanded="false" />
+            <element signature="e#14502#16542#0#PHP" expanded="false" />
+            <element signature="e#20008#21559#0#PHP" expanded="false" />
+            <element signature="e#26550#28273#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>

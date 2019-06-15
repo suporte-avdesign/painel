@@ -7,7 +7,7 @@ interface ConfigKitInterface
     /**
      * Interface model ConfigKit 
      *
-     * @return \AVDPainel\Repositories\Admin\ConfigKitInterface
+     * @return \AVDPainel\Repositories\Admin\ConfigKitRepository
      */
     public function get();
     public function getAll($input);

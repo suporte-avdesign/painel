@@ -578,31 +578,60 @@ class ProductRepository implements ProductInterface
      * @param $product
      * @return bool
      */
-    public function delete($config, $product)
+    public function delete($configProduct, $config, $product)
     {
         $images = $product->images;
-        $total  =  count($images);
+        $total  = count($images);
 
-        $deleteGrids = $this->deleteKits($images, $product);
-        if ($deleteGrids) {
+        if ($configProduct->grids == 1) {
+            $deleteGrids = $this->deleteGrids($configProduct, $images, $product);
+        }
 
+        if ($total >= 1) {
             $deleteImages = $this->deleteImages($config, $images, $total);
-            if ($deleteImages) {
-                $delete = $product->delete();
-                if ($delete) {
-                    generateAccessesTxt(date('H:i:s').utf8_decode(
-                            constLang('deleted').
-                            constLang('product').':'.Str::slug($product->name.
-                                '/'.$product->category.'/'.$product->section.'/'.$product->brand).
-                            ', '.constLang('messages.products.total_colors').$total)
-                    );
-                    $product['total_colors'] = $total;
+        }
 
-                    return true;
+        $delete = $product->delete();
+        if ($delete) {
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ' '.constLang('deleted').
+                    ' '.constLang('product').':'.Str::slug($product->name.
+                        '/'.$product->category.'/'.$product->section.'/'.$product->brand).
+                    ', '.constLang('messages.products.total_colors').':'.$total)
+            );
+            $product['total_colors'] = $total;
+
+            return true;
+        }
+
+    }
+
+
+    /**
+     * Date: 06/10/2019
+     *
+     * @param $images
+     * @param $product
+     * @return mixed
+     */
+    protected function deleteGrids($configProduct, $images, $product)
+    {
+        if ($product->stock == 1) {
+            foreach ($images as $image) {
+                $grids = $this->interGrid->getGrids($image->id);
+                foreach ($grids as $grid) {
+                    if ($product->kit == 1) {
+                        $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grids);
+                    } else {
+                        $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grid);
+                    }
                 }
             }
+        } else {
+            return true;
         }
     }
+
 
     /**
      * Date 06/04/2019
@@ -712,24 +741,7 @@ class ProductRepository implements ProductInterface
         return $out;
     }
 
-    /**
-     * Date: 06/10/2019
-     *
-     * @param $images
-     * @param $product
-     * @return mixed
-     */
-    protected function deleteKits($images, $product)
-    {
-        if ($product->kit == 1) {
-            foreach ($images as $image) {
-                $grids = $this->interGrid->getKit($image->id);
-                $inventary = $this->interInventary->deleteKit($product, $image, $grids);
-            }
-            return true;
-        }
 
-    }
 
 
     /**

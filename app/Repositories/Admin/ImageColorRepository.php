@@ -291,6 +291,7 @@ class ImageColorRepository implements ImageColorInterface
         return $this->model->find($id);
     }
 
+
     /**
      * Date 06/02/2019
      * Falta definir $input['html'] hexa,crop,thumb
@@ -319,13 +320,28 @@ class ImageColorRepository implements ImageColorInterface
         $dataForm['image']       = url('backend/img/default/no_image.png');
 
         if ($dataForm['cover'] == 1 && $dataForm['active'] == constLang('active_true')) {
-            $cover = $this->changeCover($product, false, 'create');
+
+            $cover_active = $this->countCoverActive($product);
+            if ($cover_active) {
+                $cover_active->update(['cover' => 0]);
+            }
+            if ($product->active == 0){
+                $active = $product->update(['active' => 1]);
+            }
+        } else {
+            $exist = $this->existCover($product);
+            if (!$exist) {
+                $dataForm['cover'] == 1;
+            }
         }
+
         $data = $this->model->create($dataForm);
-        //dd($data);
         if ($data) {
+
             ($data->cover == 1 ? $cover = constLang('active_true') : $cover = constLang('active_false'));
-            generateAccessesTxt(utf8_decode('- Upload Foto:'.
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ' '.constLang('created').
+                    ' '.constLang('product').
                     ' '.constLang('code').':'.$data->code.
                     ', '.constLang('color').':'.$data->color.
                     ', '.constLang('status').':'.$data->active.
@@ -374,18 +390,24 @@ class ImageColorRepository implements ImageColorInterface
         }
 
         if ($image->cover != $input['cover'] && $input['active'] == constLang('active_true')) {
-            $dataForm['cover'] = $input['cover'];
-            $access .= ' '.constLang('cover').':'.$image->cover.'/'.$input['cover'];
-        }
-        if ($input['cover'] == 1 && $input['active'] == constLang('active_true')){
-            foreach ($product->images as $img) {
-                $id = $img->id;
-                if ($img->cover == 1) {
-                    $up = $this->model->find($id)->update(['cover' => 0]);
+
+            $cover_active = $this->countCoverActive($product);
+            if ($cover_active) {
+                if ($cover_active->id != $image->id) {
+                    $cover_active->update(['cover' => 0]);
                 }
             }
             if ($product->active == 0){
-                $data = $product->update(['active' => 1]);
+                $active = $product->update(['active' => 1]);
+            }
+
+            $dataForm['cover'] = $input['cover'];
+            $access .= ' '.constLang('cover').':'.$image->cover.'/'.$input['cover'];
+
+        } else {
+            $cover_active = $this->countCoverActive($product);
+            if (!$cover_active) {
+                $dataForm['cover'] = 1;
             }
         }
 
@@ -394,8 +416,7 @@ class ImageColorRepository implements ImageColorInterface
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(' '.$access)
             );
-            // important get active_cover
-            $cover = $this->changeCover($product, $image, 'update_'.$input['active'].'_'.$input['cover']);
+
 
             return $update;
         }
@@ -526,6 +547,12 @@ class ImageColorRepository implements ImageColorInterface
         }
         $update = $image->update($dataForm);
         if($update) {
+
+            generateAccessesTxt(date('H:i:s').utf8_decode(
+                ' '.constLang('upload_true.upload').
+                ' '.constLang('image').
+                ':'.$dataForm['image'])
+            );
             return $dataForm['image'];
         }
 
@@ -632,6 +659,31 @@ class ImageColorRepository implements ImageColorInterface
     }
 
     /**
+     * Date: 06/15/2019
+     *
+     * @param $product
+     * @return mixed
+     */
+    protected function countCoverActive($product)
+    {
+        return $this->model
+            ->where(['product_id' => $product->id,'cover' => 1, 'active' => constLang('active_true')])
+            ->first();
+    }
+
+    /**
+     * Date: 06/15/2019
+     *
+     * @param $product
+     * @return mixed
+     */
+    protected function existCover($product)
+    {
+        return $this->model->where(['product_id' => $product->id,'cover' => 1])->count();
+    }
+
+
+    /**
      * Date: 06/05/2019
      * Create cover=1 - active=true
      * Status cover=1 - active=true
@@ -656,43 +708,7 @@ class ImageColorRepository implements ImageColorInterface
         $first_inactive = collect($collection)->where('active', $false)->first();
         $cover_active = collect($collection)->where('cover', 1)->first();
 
-        if ($action == 'create') {
-            if ($count >= 1) {
-                if ($count_active >= 1) {
-                    if ($cover_active) {
-                        $data = $cover_active->update($output);
-                    }
-                }
-            }
-        } else if ($action == 'update_'.constLang('active_false').'_0') {
-            if ($count_active >= 1) {
-                if ($product->active == 0) {
-                    $upd = $product->update(['active' => 1]);
-                }
-                $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
-                $last_active = collect($collection)->where('active', $true)->last();
-                if ($first_active) {
-                    if ($first_active->id != $image->id) {
-                        $data = $first_active->update($input);
-                    }
-                } else if ($last_active) {
-                    if ($last_active->id != $image->id) {
-                        $data = $last_active->update($input);
-                    }
-                } else if ($first_inactive) {
-                    if ($first_inactive->id != $image->id) {
-                        $data = $first_inactive->update($input);
-                    }
-                } else if ($first_inactive) {
-                    if ($first_inactive->id != $image->id) {
-                        $data = $first_inactive->update($input);
-                    }
-                }
-            } else {
-                $upd = $product->update(['active' => 0]);
-            }
-
-        } else if ($action == 'delete') {
+        if ($action == 'delete') {
                 $image_diff = collect($collection)->where('id', '!=', $image->id)->first();
                 $last_active = collect($collection)->where('active', $true)->last();
                 if ($count == 2) {

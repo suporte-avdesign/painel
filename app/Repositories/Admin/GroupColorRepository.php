@@ -42,27 +42,29 @@ class GroupColorRepository implements GroupColorInterface
      * @param  int $id
      * @return boolean true or false
      */
-    public function create($input, $idpro, $id)
+    public function create($input, $idpro, $idimg)
     {
+        $i=0;
+        $_label='';
         foreach ($input as $key => $value) {
             $exePinker = explode("#", $key);
-            $pinker    = $exePinker[1];
-            $exeLabel  = explode(":", $value);
-            $idgro     = $exeLabel[0];
-            $label     = $exeLabel[1];
-            $group = [
-                "config_color_group_id" => $idgro,
-                "product_id" => $idpro,
-                "image_color_id" => $id,
-                "pinker" => $pinker,
-                "label" => $label
-            ];
-            $data = $this->model->create($group);
-            if($data) {
-                generateAccessesTxt(utf8_decode('- Grupo:'.$label));
-                return $data;
-            }
+            $exeLabel = explode(":", $value);
+            $grs[$i]['config_color_group_id'] = (int) $exeLabel[0];
+            $grs[$i]['product_id'] =  $idpro;
+            $grs[$i]['image_color_id'] = $idimg;
+            $grs[$i]['pinker'] = $exePinker[1];
+            $grs[$i]['label'] = $exeLabel[1];
+            $_label .= "{$grs[$i]['label']},";
+            $data = $this->model->create($grs[$i]);
+            $i++;
         }
+
+        $label = substr($_label, 0, -1);
+        generateAccessesTxt(date('H:i:s').utf8_decode(
+                ' '.constLang('created').
+                ' '.constLang('group').
+                ' '.constLang('colors').':'.$label)
+        );
     }
 
 
@@ -81,6 +83,7 @@ class GroupColorRepository implements GroupColorInterface
         $count_groups = collect($groups)->where('image_color_id', $image->id)->count();
         $count_inputs = collect($input)->count();
         $i=0;
+        $_label='';
         foreach ($input as $key => $value) {
             $exePinker = explode("#", $key);
             $exeLabel = explode(":", $value);
@@ -89,19 +92,17 @@ class GroupColorRepository implements GroupColorInterface
             $inputs[$i]['image_color_id'] = $image->id;
             $inputs[$i]['pinker'] = $exePinker[1];
             $inputs[$i]['label'] = $exeLabel[1];
+            $_label .= "{$inputs[$i]['label']},";
+
             $i++;
         }
+
+        $label = substr($_label, 0, -1);
 
         if ($count_groups != $count_inputs) {
 
             $delete = $this->model->where('image_color_id', $image->id)->delete();
             if ($delete) {
-
-                $title_change = constLang('updated').
-                    ' '.constLang('group').
-                    ' '.constLang('colors');
-                generateAccessesTxt(utf8_decode($title_change));
-
                 foreach ($inputs as $value) {
                     $dataForm = [
                         "config_color_group_id" => $value['config_color_group_id'],
@@ -110,14 +111,13 @@ class GroupColorRepository implements GroupColorInterface
                         "pinker" => $value['pinker'],
                         "label" => $value['label']
                     ];
-
-                    $change = '- '.constLang('color').':'.$value['label'];
-
                     $upd = $this->model->create($dataForm);
-                    if($upd) {
-                        generateAccessesTxt(utf8_decode($change));
-                    }
                 }
+                generateAccessesTxt(date('H:i:s').utf8_decode(
+                        ' '.constLang('updated').
+                        ' '.constLang('group').
+                        ' '.constLang('colors').':'.$label)
+                );
             }
 
         } else {
@@ -127,26 +127,19 @@ class GroupColorRepository implements GroupColorInterface
                 $result = ary_diff($inputs, $groups);
                 if (!empty($result)) {
                     $dataForm = $result[0];
-                    $previous = $result[1]['label'];
                     $group = $this->model->find($id);
                     $upd = $group->update($dataForm);
                     if ($upd) {
-                        $change = constLang('updated').' '.
-                            constLang('group').' '.
-                            constLang('colors').
-                            ':'.$previous.'/'.$dataForm['label'];
-                        generateAccessesTxt(utf8_decode($change));
+                        generateAccessesTxt(date('H:i:s').utf8_decode(
+                                ' '.constLang('updated').
+                                ' '.constLang('group').
+                                ' '.constLang('colors').':'.$label)
+                        );
                     } else {
                         return false;
                     }
                 }
             } else {
-
-                $title_change = constLang('updated').
-                    ' '.constLang('group').
-                    ' '.constLang('colors');
-                generateAccessesTxt(utf8_decode($title_change));
-
                 foreach ($colors as $key => $color) {
                     if ($inputs[$key]['pinker'] != $color->pinker) {
                         $group = $this->model->find($color->id);
@@ -157,50 +150,17 @@ class GroupColorRepository implements GroupColorInterface
                         ];
                         $upd = $group->update($dataForm);
                         if ($upd) {
-                            $change = constLang('color').':'.$dataForm['label'];
-                            generateAccessesTxt(utf8_decode($change));
+                            generateAccessesTxt(date('H:i:s').utf8_decode(
+                                    ' '.constLang('updated').
+                                    ' '.constLang('group').
+                                    ' '.constLang('colors').':'.$label)
+                            );
                         }
                     }
                 }
 
             }
 
-        }
-
-    }
-
-
-    protected function get_duplicates( $array ) {
-        return array_unique( array_diff_assoc( $array, array_unique( $array ) ) );
-    }
-
-
-
-
-
-    protected function addInput($inputs, $idpro, $image, $colors)
-    {
-        foreach ($inputs as $value) {
-            $dataForm = [
-                'config_color_group_id' => $value['config_color_group_id'],
-                'product_id' => $idpro,
-                'image_color_id' => $image->id,
-                'pinker' => $value['pinker'],
-                'label' => $value['label']
-            ];
-
-
-
-            $group = $this->model->create($dataForm);
-            if ($group) {
-                $change = constLang('updated') . ' ' .
-                    constLang('group') . ' ' .
-                    constLang('colors') .
-                    ':' . $dataForm['label'];
-                generateAccessesTxt(utf8_decode($change));
-            } else {
-                return false;
-            }
         }
 
     }

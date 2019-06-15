@@ -24,7 +24,7 @@ class GridProductRepository implements GridProductInterface
     }
 
     /**
-     * Display the specified resource.
+     * Date: 06/14/2019
      *
      * @param  int  $id
      * @return array
@@ -33,6 +33,18 @@ class GridProductRepository implements GridProductInterface
     {
         return $this->model->find($id);
     }
+
+    /**
+     * Date: 06/12/2019
+     *
+     * @param $idmg
+     * @return mixed
+     */
+    public function getGrids($idmg)
+    {
+        return $this->model->where('image_color_id', $idmg)->get();
+    }
+
 
     /**
      * Date 02/06/2019
@@ -52,12 +64,13 @@ class GridProductRepository implements GridProductInterface
         $dataForm['image_color_id'] = $image->id;
 
 
-        $access = '- '.$product->kit_name;
+        $access = $product->kit_name;
         $access .= ', '.constLang('grid').':'.$input['grid'];
 
         if ($product->stock == 1) {
 
             $dataForm['input'] = $input['input'];
+            $dataForm['stock'] = $input['input'];
             $access .= ', '.constLang('entry').' '.$input['input'];
             $access .= ', '.constLang('stock').' '.$input['input'];
 
@@ -74,9 +87,12 @@ class GridProductRepository implements GridProductInterface
 
         $data = $this->model->create($dataForm);
         if ($data) {
-            $inventary = $this->interInventary->createKit($configProduct, $data, $image, $product);
-            if ($inventary) {
-                generateAccessesTxt($access);
+            if ($product->stock == 1) {
+                $inventary = $this->interInventary->createKit($configProduct, $data, $image, $product);
+            }
+            if ($data) {
+                generateAccessesTxt(date('H:i:s').
+                    utf8_decode(' '.$access));
                 return $data;
             }
         }
@@ -132,10 +148,12 @@ class GridProductRepository implements GridProductInterface
 
         }
         if ($change){
-
             $update = $data->update($dataForm);
             if ($update) {
-                generateAccessesTxt(constLang('updated').' '.constLang('grid').$change);
+                generateAccessesTxt(date('H:i:s').utf8_decode(
+                        ' '.constLang('updated').
+                        ' '.constLang('grid').$change)
+                );
                 if ($product->stock == 1) {
                     $data['entry'] = $input['input'];
                     $data['previous_stock'] = $data->id;
@@ -143,9 +161,14 @@ class GridProductRepository implements GridProductInterface
                     if ($inventary) {
                         return $inventary;
                     }
+                } else {
+                    return true;
                 }
             }
+        } else {
+            return true;
         }
+
         // Note: return empty -> invetary(empty)
     }
 
@@ -165,12 +188,8 @@ class GridProductRepository implements GridProductInterface
             foreach ($image->grids as $value) {
                 $grids = $value;
             }
-            if ($product->stock == 1)
-
+            if ($product->stock == 1) {
                 $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grids);
-
-            if ($inventary) {
-                return $inventary;
             }
         }
         return true;
@@ -267,7 +286,7 @@ class GridProductRepository implements GridProductInterface
                 $data = $this->model->create($dataForm);
                 if ($data) {
                     $inventary = $this->interInventary->createUnit($configProduct, $data, $image, $product);
-                    generateAccessesTxt($access);
+                    generateAccessesTxt(date('H:i:s').utf8_decode($access));
                 }
             }
 
@@ -286,7 +305,16 @@ class GridProductRepository implements GridProductInterface
         return $error;
     }
 
-
+    /**
+     * Date: 06/14/2019
+     *
+     * @param $configProduct
+     * @param $input
+     * @param $image
+     * @param $product
+     * @param $view
+     * @return array
+     */
     public function addUnit($configProduct, $input, $image, $product, $view)
     {
 
@@ -297,8 +325,7 @@ class GridProductRepository implements GridProductInterface
         $dataForm['image_color_id'] = $image->id;
 
 
-        $access = '- '.$product->kit_name;
-        $access .= ', '.constLang('grid').':'.$input['grid'];
+        $access = ' '.constLang('grid').':'.$input['grid'];
 
         if ($product->stock == 1) {
 
@@ -333,10 +360,14 @@ class GridProductRepository implements GridProductInterface
                     $inventary = $this->interInventary->createKit($configProduct, $grid, $image, $product);
                 }
 
-                generateAccessesTxt($access);
-                $grids = $image->grids;
+                generateAccessesTxt(date('H:i:s').utf8_decode(
+                    ' '.constLang('created').$access.
+                    ' '.constLang('product').':'.$product->name.
+                    ' '.constLang('code').':'.$image->code.
+                    ' '.constLang('color').':'.$image->color)
+                );
 
-                $html = view("{$view}.modal.render-create", compact('grids', 'product'))->render();
+                $html = view("{$view}.modal.render-create", compact('grid', 'product'))->render();
 
                 $out = array(
                     'success' => true,
@@ -362,9 +393,6 @@ class GridProductRepository implements GridProductInterface
         return $out;
 
     }
-
-
-
 
 
     /**
@@ -418,11 +446,12 @@ class GridProductRepository implements GridProductInterface
             if ($change) {
                 $data = $grid->update($dataForm);
                 if ($data) {
-                    generateAccessesTxt(utf8_decode(
-                            '- ' . constLang('updated') . ' ' . constLang('grid') .
-                            ':' . $change.
+                    generateAccessesTxt(date('H:i:s').utf8_decode(
+                            ' '. constLang('updated').
+                            ' '.constLang('grid').':'.$change.
                             ', '.constLang('product').':'.$product->name.
-                            ', '.constLang('code').':'.$image->code)
+                            ', '.constLang('code').':'.$image->code.
+                            ', '.constLang('code').':'.$image->color)
                     );
 
                     if ($product->stock == 1) {
@@ -456,7 +485,8 @@ class GridProductRepository implements GridProductInterface
      * @param $configProduct
      * @param $image
      * @param $product
-     * @return bool
+     * @param $grid
+     * @return json
      */
     public function deleteUnit($configProduct, $image, $product, $grid)
     {
@@ -469,6 +499,17 @@ class GridProductRepository implements GridProductInterface
 
             $delGrid = $grid->delete();
             if ($delGrid) {
+
+                generateAccessesTxt(date('H:i:s').utf8_decode(
+                        ' '.constLang('deleted').
+                        ' '.constLang('grid').
+                        ':'.$prev->grid.
+                        ', '.constLang('stock').':'.$prev->stock.
+                        ', '.constLang('product').':'.$product->name.
+                        ', '.constLang('code').':'.$image->code.
+                        ', '.constLang('color').':'.$image->color)
+                );
+
                 $success = true;
                 $message = constLang('delete_true');
             } else {

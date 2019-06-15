@@ -36,11 +36,11 @@
             success: function(data){
                 if(data.success == true){
                     if (data.load == true) {
-                        if (ac == 'create') {
-                            $("#grids-"+data.id).html(data.html);
-                        }
                         if (ac == 'update') {
                             $("#grid-"+data.id).html(data.html);
+                        }
+                        if (ac == 'create') {
+                            $("#grids-"+data.id).prepend(data.html);
                         }
                     }
                     msgNotifica(true, data.message, true, false);
@@ -56,6 +56,28 @@
             }
         });
     }
+
+
+    deleleGridProduct = function(id, url, token) {
+        $.ajax({
+            type: 'POST',
+            dataType: "json",
+            url: url,
+            data: { _method: "DELETE", _token: token },
+            success: function(data){
+                if(data.success == true){
+                    $("#grid-"+id).fadeAndRemove();
+                    msgNotifica(true, data.message, true, false);
+                } else {
+                    msgNotifica(false, data.message, true, false);
+                }
+            },
+            error: function(xhr){
+                ajaxFormError(xhr);
+            }
+        });
+    }
+
 
 
 

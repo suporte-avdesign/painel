@@ -19,7 +19,7 @@
             </span>
         @endif
         <div class="button-group absolute-right compact">
-            <a href="javascript:void(0);" class="button icon-trash with-tooltip red-gradient confirm" title="{{constLang('delete')}}"></a>
+            <a href="javascript:deleleGridProduct('{{$grid->id}}', '{{route('grid-color.destroy', $grid->id)}}', '{{csrf_token()}}')" class="button icon-trash with-tooltip red-gradient confirm" title="{{constLang('delete')}}"></a>
             <a href="javascript:void(0);" onclick="abreModal('{{constLang('edit')}} {{constLang('grid')}}:{{$grid->grid}}', '{{route('grid-color.show', $grid->id)}}', 'grids', 1, 'true', 230, 250);" class="button icon-pencil with-tooltip blue-gradient" title="{{constLang('edit')}}"></a>
         </div>
     </li>
@@ -29,7 +29,7 @@
             <label for="low" class="button compact {{$col}}-gradient">{{$grid->grid}}</label>
         </span>
         <div class="button-group absolute-right compact">
-            <a class="button icon-trash with-tooltip red-gradient confirm" title="{{constLang('delete')}}"></a>
+            <a href="javascript:deleleGridProduct('{{$grid->id}}', '{{route('grid-color.destroy', $grid->id)}}', '{{csrf_token()}}')" class="button icon-trash with-tooltip red-gradient confirm" title="{{constLang('delete')}}"></a>
         </div>
     </li>
 @endif

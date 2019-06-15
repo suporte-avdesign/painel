@@ -145,7 +145,7 @@ class ImageColorController extends Controller
 
                     if ($configProduct->group_colors == 1) {
                         $dataGroups = $request['groups'];
-                        $groups = $this->interGroup->create($dataGroups, $image->product_id, $image->id);
+                        $groups = $this->interGroup->create($dataGroups, $product->id, $image->id);
                     }
 
                     if ($configProduct->grids == 1) {
@@ -247,6 +247,7 @@ class ImageColorController extends Controller
                 if ($file) {
                     $photo = $this->interModel->uploadImages($config, $input, $image, $product, $file);
                 }
+
                 if ($configProduct->grids == 1) {
                     if ($product->kit == 1) {
                         $qty = $request['qty'];
