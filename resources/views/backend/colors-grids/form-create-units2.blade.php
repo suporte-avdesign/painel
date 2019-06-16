@@ -2,31 +2,27 @@
     @php
         if($product->stock == 1){
 
-            $text_entry = constLang('stock').':';
+            $text_entry = ': '.constLang('stock').':';
             $text_qty = constLang('qty');
             ($product->qty_min == 1 ? $text_min = '/'.constLang('min') : $text_min = '');
             ($product->qty_max == 1 ? $text_max = '/'.constLang('max') : $text_max = '');
         }
     @endphp
     <h4 class="green underline">
-       {{$text_entry}}{{$text_qty}}{{$text_min}}{{$text_max}}
-    </h4>
-    <p class="margin-bottom">
-        <span class="button-group">
-            <a class="button compact"> {{$value->name}}</a>
-            <a href="javascript:plusUndProd('{{$product->stock}}', '{{$product->qty_min}}', '{{$product->qty_max}}');" class="button compact" title="{{constLang('add')}}">
-                {{constLang('add')}} {{constLang('grid')}}
-                <span class="button-icon  blue-gradient right-side"><span class="icon-plus"></span></span>
-            </a>
+        {{$value->name}}{{$text_entry}}{{$text_qty}}{{$text_min}}{{$text_max}}
+        <span class="float-right">
+            <a href="javascript:void(0);" onclick="plusUndProd('{{$product->stock == 1}}', '{{$product->qty_min}}', '{{$product->qty_max}}');" class="button blue-gradient icon-plus" title="{{constLang('add')}}"></a>
         </span>
-    </p>
+    </h4>
     <div class="margin-bottom" id="puls_grid"></div>
     <div class="columns">
+
         @php
             $label = explode(",", $value->label);
         @endphp
         @foreach ($label as $str)
             @php  $val = str_replace('/', '_', trim($str)); @endphp
+
             <p class="minus_grid button-height">
                 @if($stock == 1)
                     <span class="input">
@@ -46,7 +42,7 @@
                     <label for="size-{{$val}}" class="button blue-gradient">{{$str}}</label>
                     <input type="hidden" id="grid-{{$val}}" name="grids[grid]" class="input-unstyled" placeholder="{{constLang('grid')}}" value="" autocomplete="off" onKeyDown="javascript: return maskValor(this,event,4);" style="width: 30px;">
                 @endif
-                <a href="javascript:void(0);" onclick="removeGridProd(this,'.minus_grid');" class="remove compact button red-gradient icon-minus" title="{{constLang('deleted')}}"></a>
+                <a href="javascript:void(0);" onclick="removeGridProd(this,'.minus_grid');" class="remove button red-gradient icon-minus" title="Remover"></a>
             </p>
         @endforeach
     </div>
@@ -57,7 +53,7 @@
     /**
      * add grid unit
      */
-    function plusUndProd(stock, qty_min, qty_max) {
+     function plusUndProd(stock, qty_min, qty_max) {
         var stock_qty,stock_qty_min,stock_qty_max,inputs,btn_minus,onclick="removeGridProd(this,'.minus_grid');";
         if (stock == 1) {
             var stock_qty = '<input type="text" name="grids[input][]" class="input-unstyled input-sep" placeholder="{{strtolower($text_qty)}}" value="" autocomplete="off" style="width: 30px;">';
@@ -68,7 +64,7 @@
                 stock_qty_max = '<input type="text" name="grids[qty_max][]" placeholder="max" class="input-unstyled" value="{{$configProduct->qty_max_unit}}" autocomplete="off" style="width: 30px;">';
             }
             inputs = '&nbsp<span class="input">' + stock_qty_min + stock_qty_max + '</span>';
-            btn_minus = '&nbsp<a href="javascript:void(0);" onclick="'+onclick+'" class="remove button compact red-gradient icon-minus" title="{{constLang('remove')}}"></a>';
+            btn_minus = '&nbsp<a href="javascript:void(0);" onclick="'+onclick+'" class="remove button red-gradient icon-minus" title="{{constLang('remove')}}"></a>';
         }
         $("#puls_grid").append('<p class="minus_grid button-height"><span class="input">'+
             '<input type="text" name="grids[grid][]" class="input-unstyled input-sep" placeholder="{{constLang('grid')}}" value="" autocomplete="off" style="width: 50px;">'+
