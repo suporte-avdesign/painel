@@ -362,7 +362,7 @@ class ImageColorRepository implements ImageColorInterface
     public function update($input, $config, $product, $image)
     {
         $access   = constLang('updated').' '.constLang('product');
-        $dataForm = [];
+        $dataForm = null;
         $count = strlen($input['order']);
         if ($count == 1) {
             $input['order'] = '0' .$input['order'];
@@ -390,9 +390,7 @@ class ImageColorRepository implements ImageColorInterface
         }
 
         if ($image->cover != $input['cover'] && $input['active'] == constLang('active_true')) {
-
             $cover  = $this->changeCover($product, $image, 'update_cover_1_active_true');
-
             $dataForm['cover'] = $input['cover'];
             $access .= ' '.constLang('cover').':'.$image->cover.'/'.$input['cover'];
         }
@@ -403,7 +401,7 @@ class ImageColorRepository implements ImageColorInterface
         }
 
 
-        if(!empty($dataForm)){
+        if($dataForm){
             $update = $image->update($dataForm);
             generateAccessesTxt(
                 date('H:i:s').utf8_decode(' '.$access)

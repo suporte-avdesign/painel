@@ -183,15 +183,14 @@ class GridProductRepository implements GridProductInterface
      */
     public function deleteKit($configProduct, $image, $product)
     {
-        if ($configProduct->grids == 1) {
 
-            foreach ($image->grids as $value) {
-                $grids = $value;
+        if ($product->stock == 1) {
+            foreach ($image->grids as $grid) {
+                $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grid);
             }
-            if ($product->stock == 1) {
-                $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grids);
-            }
+            return $inventary;
         }
+
         return true;
     }
 

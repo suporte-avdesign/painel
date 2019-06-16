@@ -227,7 +227,11 @@ class ProductRepository implements ProductInterface
                 // Visits
                 $visits  = '<p><button type="button" class="button compact blue-gradient">Visitas '.$val->visits.'</button></p>';
                 $visits .= "<p>{$val->name}</p>";
-                $visits .= "<p>{$val->kit_name}</p>";
+                if ($val->kit == 1) {
+                    $visits .= "<p> {$val->kit_name} ({$val->unit})</p>";
+                } else {
+                    $visits .= "<p>{$val->unit} {$val->measure}</p>";
+                }
 
                 // New
                 $new = $val->new;
@@ -584,6 +588,7 @@ class ProductRepository implements ProductInterface
         $images = $product->images;
         $total  = count($images);
 
+
         if ($configProduct->grids == 1) {
             $deleteGrids = $this->deleteGrids($configProduct, $images, $product);
         }
@@ -618,21 +623,20 @@ class ProductRepository implements ProductInterface
     protected function deleteGrids($configProduct, $images, $product)
     {
         if ($product->stock == 1) {
-            foreach ($images as $image) {
-                $grids = $this->interGrid->getGrids($image->id);
-                foreach ($grids as $grid) {
-                    if ($product->kit == 1) {
-                        $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grids);
-                    } else {
-                        $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grid);
+            if ($product->kit == 0) {
+                foreach ($images as $image) {
+                    $grids = $this->interGrid->getGrids($image->id);
+                    foreach ($grids as $grid) {
+                        if ($product->kit == 1) {
+                            $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grid);
+                        } else {
+                            $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grid);
+                        }
                     }
                 }
             }
-        } else {
-            return true;
         }
     }
-
 
     /**
      * Date 06/04/2019
@@ -643,9 +647,9 @@ class ProductRepository implements ProductInterface
      * @param $image
      * @return bool
      */
-    public function deleteUnique($config, $product, $image, $reload)
+    public function deleteUnique($configProduct, $config, $product, $reload)
     {
-        $delete = $product->delete();
+        $delete = $this->delete($configProduct, $config, $product);
         if ($delete) {
             $success = true;
             $message = constLang('messages.products.delete_true');

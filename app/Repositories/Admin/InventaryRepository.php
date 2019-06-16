@@ -166,12 +166,12 @@ class InventaryRepository implements InventaryInterface
      * @param $grids
      * @return mixed
      */
-    public function deleteKit($configProduct, $product, $image, $grids)
+    public function deleteKit($configProduct, $product, $image, $grid)
     {
         if ($configProduct->grids == 1) {
             $dataForm['product_id'] = $image->product_id;
             $dataForm['image_color_id'] = $image->id;
-            $dataForm['grid_id'] = $grids->id;
+            $dataForm['grid_id'] = $grid->id;
             $dataForm['admin_id'] = auth()->user()->id;
             $dataForm['profile_name'] = constLang('profile_name.admin');
             $dataForm['type_movement'] = constLang('type_movement.delete');
@@ -183,14 +183,14 @@ class InventaryRepository implements InventaryInterface
             $dataForm['image'] = $image->image;
             $dataForm['code'] = $image->code;
             $dataForm['color'] = $image->color;
-            $dataForm['grid'] = $grids->grid;
-            $dataForm['amount'] = $grids->stock;
+            $dataForm['grid'] = $grid->grid;
+            $dataForm['amount'] = $grid->stock;
             $dataForm['kit'] = $product->kit;
             $dataForm['kit_name'] = $product->kit_name;
             $dataForm['units'] = $product->unit;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
-            $dataForm['cost_total'] = $grids->stock * $product->cost->value;
+            $dataForm['cost_total'] = $grid->stock * $product->cost->value;
             $dataForm['stock'] = 0;
 
             $data = $this->model->create($dataForm);

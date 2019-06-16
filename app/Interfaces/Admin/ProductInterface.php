@@ -14,7 +14,7 @@ interface ProductInterface
     public function create($input);
     public function update($input, $data, $id);
     public function delete($configProduct,$config, $product);
-    public function deleteUnique($config, $product, $image, $reload);
+    public function deleteUnique($configProduct, $config, $product, $reload);
     public function status($input, $id);
 
 }

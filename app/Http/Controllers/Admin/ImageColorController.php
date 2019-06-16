@@ -235,8 +235,8 @@ class ImageColorController extends Controller
             $image   = $this->interModel->setId($id);
             $product = $image->product;
             $input   = $request['img'];
-            $action   = $input['ac'];
-            $update   = $this->interModel->update($input, $config, $product, $image);
+            $action  = $input['ac'];
+            $update  = $this->interModel->update($input, $config, $product, $image);
             if ($update) {
                 $configProduct = $this->configProduct->setId(1);
 
@@ -253,6 +253,8 @@ class ImageColorController extends Controller
                         $qty = $request['qty'];
                         $des = $request['des'];
                         $grids = $this->interGrid->updateKit($configProduct, $request['grids'], $image, $product, $qty, $des);
+                    } else {
+                        $grids = true;
                     }
                     if ($grids) {
 
@@ -294,14 +296,15 @@ class ImageColorController extends Controller
             if ($configProduct->grids == 1) {
                 if ($product->kit == 1) {
                     $grids = $this->interGrid->deleteKit($configProduct, $image, $product);
+                } else {
+                    $grids = true;
                 }
-
                 if ($grids) {
                     $total = $product->images->count();
                     if ($total >= 2) {
                         $delete = $this->interModel->delete($image, $product, $config, false);
                     } else {
-                        $delete = $this->interProduct->deleteUnique($config, $product, $image, true);
+                        $delete = $this->interProduct->deleteUnique($configProduct, $config, $product, true);
                     }
 
                     if ($delete) {
