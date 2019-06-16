@@ -227,6 +227,7 @@ class ProductRepository implements ProductInterface
                 // Visits
                 $visits  = '<p><button type="button" class="button compact blue-gradient">Visitas '.$val->visits.'</button></p>';
                 $visits .= "<p>{$val->name}</p>";
+                $visits .= "<p>{$val->kit_name}</p>";
 
                 // New
                 $new = $val->new;
