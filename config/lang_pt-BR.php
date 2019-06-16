@@ -176,12 +176,14 @@ return [
             'required' => 'O email é obrigatório.',
             'unique' => 'Este email já se encontra utilizado.'],
         'grids' => [
+            'grids' => 'Selecione uma grade',
             'grid' => 'A grade é obrigatória.',
             'grid_true' => 'A grade foi alterada.',
             'unique' => 'A grade não pode ter duplicidade.',
-            'input' => 'A entrada de estoque é obrigatória.',
-            'qty_min' => 'A quantidade min é obrigatória.',
-            'qty_max' => 'A quantidade max é obrigatória.'
+            'input' => 'A entrada no estoque é obrigatória em todas as grades.',
+            'qty' => 'A quantidade é obrigatória.',
+            'qty_min' => 'A quantidade min é obrigatória em todas as grades.',
+            'qty_max' => 'A quantidade max é obrigatória em todas as grades.'
         ],
         'height_photo' => [
             'required' => "A altura da foto é obrigatória.",

@@ -41,10 +41,9 @@ class ProductColorRequest extends FormRequest
     public function rules()
     {
 
-        $configProduct = $this->configProduct->setId(1);
         $img           = $this->request->get('img');
         $product       = $this->interProduct->setId($img['product_id']);
-
+        $configProduct = $this->configProduct->setId(1);
         /*
         Multiplo uplod
         foreach(range(0, $file) as $index) {
@@ -52,148 +51,104 @@ class ProductColorRequest extends FormRequest
         }
         */
 
-        if ($this->method() == 'PUT')
-        {
-            $file = $this->request->has('file');
-            if ($file == 0) {
-                $rules['file'] = 'image|mimes:jpeg,gif,png|dimensions:min_width='.$this->size->img_width;
-            }
-            /*
-            if ($product->stock == 1) {
-                if ($product->kit == 1) {
 
-                    $filter_qty = array_filter($this->request->get('qty'));
-                    $unique_des = array_unique($this->request->get('des'));
-                    $filter_des = array_filter($unique_des);
-
-                    $count_qty = count($filter_qty);
-                    $count_des = count($filter_des);
-
-                    if ($count_qty != $count_des) {
-
-                        $rules['grids.grid'] = 'required';
-                    }
-
-                }
-            }
-            */
-
-        } else {
-            $rules['img.product_id'] = 'required';
-            $rules['file'] = 'required|image|mimes:jpeg,gif,png|dimensions:min_width='.$this->size->img_width;
-        }
-
-        $rules['img.code']  = 'required';
-        $rules['img.color'] = 'required';
-        $rules['img.order'] = 'required';
-        $rules['img.order'] = 'required|min:0';
+        /*************************  $img ******************************/
+        $rules['img.code']       = 'required';
+        $rules['img.color']      = 'required';
+        $rules['img.order']      = 'required';
+        $rules['img.order']      = 'required|min:0';
+        $rules['img.product_id'] = 'required';
 
         if ($configProduct->mini_colors == 'hexa') {
             $rules['img.html'] = 'required';
         }
 
-        if ($configProduct->grids == 1) {
 
-            $grids = collect($this->request->get('grids'));
-
-            if ( empty($grids) || is_string($grids) ) {
-                $rules['grids'] = 'required';
-            }
-
-            if ($this->method() == 'POST') {
-                if ($configProduct->stock == 1) {
-
-                    if ( !empty($grids) ){
-
-                        if ($configProduct->kit == 1) {
-                            foreach ($grids as $key => $value) {
-                                if($key == 'grid' && $value == "") {
-                                    $rules['grids.grid'] = 'required';
-                                }
-                                if($key == 'input' && $value == "") {
-                                    $rules['grids.input'] = 'required';
-                                }
-                                if ($product->qty_min == 1) {
-                                    if($key == 'qty_min' && $value == "") {
-                                        $rules['grids.qty_min'] = 'required';
-                                    }
-                                }
-                                if ($product->qty_max == 1) {
-                                    if($key == 'qty_max' && $value == "") {
-                                        $rules['grids.qty_max'] = 'required';
-                                    }
-                                }
-                            }
-                        } else {
-
-                            foreach ($grids as $key => $value) {
-
-                                if ($key == 'input') {
-                                    $filter_key = array_filter($value);
-                                    if (empty($filter_key)) {
-                                        $rules['input'] = 'required';
-                                    }
-                                }
-                                if ($product->qty_min == 1) {
-                                    if ($key == 'qty_min') {
-                                        $filter_key = array_filter($value);
-                                        if (empty($filter_key)) {
-                                            $rules['qty_min'] = 'required';
-                                        }
-                                    }
-                                }
-                                if ($key == 'qty_max') {
-                                    $filter_key = array_filter($value);
-                                    if (empty($filter_key)) {
-                                        $rules['qty_max'] = 'required';
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                }
-            }
-
-        }
-
+        /*************************  $groups ***************************/
         if ($configProduct->group_colors == 1) {
             if ( empty($this->request->get('groups')) ) {
-                //dd($this->request->get('groups'));
                 $rules['groups'] = 'required';
             }
         }
 
+        /*************************  method POST ******************************/
+        if ($this->method() == 'POST') {
+            /************************* $file *****************************/
+            $rules['file'] = 'required|image|mimes:jpeg,gif,png|dimensions:min_width=' . $this->size->img_width;
+
+            /************************* $grids ****************************/
+            $grids = $this->request->get('grids');
+            //dd($grids['grid']);
+            if (empty($grids)) {
+                $rules['grids'] = 'required';
+            } else {
+                foreach ($grids as $key => $values) {
+                    foreach ($values as $index => $item) {
+                        ($key == 'grid' && $item == null ? $rules['desc'] = 'required' : '');
+                        if ($product->stock == 1) {
+                            ($key == 'input' && $item == null ? $rules['input'] = 'required' : '');
+                            if ($product->qty_min == 1) {
+                                ($key == 'qty_min' && $item == null ? $rules['qty_min'] = 'required' : '');
+                            }
+                            if ($product->qty_max == 1) {
+                                ($key == 'qty_max' && $item == null ? $rules['qty_max'] = 'required' : '');
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        /*************************  method PUT ******************************/
+        if ($this->method() == 'PUT') {
+
+            $file = $this->request->has('file');
+            if ($file == 0) {
+                $rules['file'] = 'image|mimes:jpeg,gif,png|dimensions:min_width='.$this->size->img_width;
+            }
+        }
+       //dd($rules);
         return $rules;
-     
     }
 
 
     public function messages()
     {
-        $msg = '';
         $messages = [];
-        $messages['qty.required'] = 'A quantidade é obrigatória.';
-        $messages['qty_min.required'] = 'A quantidade mínima é obrigatória.';
-        $messages['qty_max.required'] = 'A quantidade máxima é obrigatória.';
+        /****************************  GRIDS *********************************/
+        $messages['grids.required'] = constLang('validation.grids.grids');
+        $messages['grids.qty.required'] = constLang('validation.grids.qty');
+        /*************************  method POST ******************************/
+        if ($this->method() == 'POST') {
+
+            if ( !empty($this->request->get('grids')) ) {
+                $message_grid = constLang('validation.grids.grid');
+                $message_input = constLang('validation.grids.input');
+                $message_qty_min = constLang('validation.grids.qty_min');
+                $message_qty_max = constLang('validation.grids.qty_max');
+
+                foreach ($this->request->get('grids') as $key => $values) {
+                    foreach ($values as $index => $item) {
+                        ($key == 'grid' && $item == null ? $messages['desc.required'] = $message_grid : '');
+                        ($key == 'input' && $item == null ? $messages['input.required'] = $message_input : '');
+                        ($key == 'qty_min' && $item == null ? $messages['qty_min.required'] = $message_qty_min : '');
+                        ($key == 'qty_max' && $item == null ? $messages['qty_max.required'] = $message_qty_max : '');
+                    }
+                }
+            }
+        }
+
         $messages['img.product_id.required'] = 'Adicione um produto.';
         $messages['img.code.required'] = 'O código é obrigatório.';
         $messages['img.color.required'] = 'A cor é obrigatória.';
         $messages['img.order.required'] = 'A ordem é obrigatória.';
         $messages['img.html.required'] = 'Clique na imagem para criar a miniatura.';
-
-        $messages['grids.required'] = 'Selecione uma grade';
-        $messages['grids.grid.required'] = 'A grade é obrigatória';
-        $messages['grids.input.required'] = 'A entrada de estoque é obrigatória.';
-        $messages['grids.qty_min.required'] = 'A quantidade mínima é obrigatória.';
-        $messages['grids.qty_max.required'] = 'A quantidade máxima é obrigatória.';
         $messages['groups.required'] = 'Selecione no mínimo um grupo de cores.';
-
         $messages['file.required'] = 'A imagem é obrigatória.';
         $messages['file.image'] = 'Este arquivo é inválido, ';
         $messages['file.mimes'] = 'deverá conter uma imagem do tipo:(jpg,png,gif)';
         $messages['file.dimensions'] = 'largura mínima: '.$this->size->width.' pixels)';
-
+        //dd($messages);
         return $messages;
     }   
 }
