@@ -159,7 +159,7 @@ Route::put('brand/status/{id}/banner', 'Admin\BannerBrandController@status')->na
 
 
 // Products / Categories
-Route::resource('products/{slug}/menu', 'Admin\ProductController',['except' => ['show']]);
+Route::resource('products/{slug}/catalog', 'Admin\ProductController',['except' => ['show']]);
 Route::post('products/{id}/data', 'Admin\ProductController@data')->name('products.data');
 Route::put('product/{id}/status', 'Admin\ProductController@status')->name('product.status');
 Route::get('product/{id}/details', 'Admin\ProductController@details');
@@ -173,10 +173,6 @@ Route::put('colors/{idpro}/status-color/{id}', 'Admin\ImageColorController@statu
 Route::resource('position/{idpro}/positions-product', 'Admin\ImagePositionController',['except' => ['show']]);
 Route::put('position/{idpro}/status-position', 'Admin\ImagePositionController@status')->name('status-position');
 
-// Todas as Cores
-Route::get('produtos/cores', 'Admin\ImageColorController@products');
-Route::post('produtos/colors/data', 'Admin\ImageColorController@data')->name('colors.data');
-Route::put('produtos/{idpro}/colors-status/{id}', 'Admin\ImageColorController@colorsStatus')->name('colors-status');
 
 // Cotroller das Grades
 Route::resource('grids/grid-color', 'Admin\GridProductController',['except' => ['index', 'create']]);

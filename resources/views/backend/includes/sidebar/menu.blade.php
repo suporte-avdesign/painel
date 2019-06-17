@@ -5,7 +5,7 @@
             <ul class="big-menu">
                 @forelse($sec->categories as $cat)
                     <li id="menu-category-{{$cat->id}}">
-                        <a id="catalog" href="products/{{$cat->slug}}/menu" title="{{$cat->name}}">{{$cat->name}}
+                        <a id="catalog" href="products/{{$cat->slug}}/catalog" title="{{$cat->name}}">{{$cat->name}}
                             <span><span id="count-category-{{$cat->id}}" class="list-count">{{count($cat->products)}}</span></span>
                         </a>
                     </li>

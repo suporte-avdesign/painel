@@ -1,11 +1,10 @@
 <div class="block-title">
     <h3><span class="icon-read"> </span><strong> {{$title}} {{$data->name}} / {{$data->section}}</strong></h3>
-    <div class="button-group absolute-right">            
-            @can('product-create')                        
-                <a href="javascript:void(0)" onclick="abreModal('{{$title_create}} {{$data->name}} / {{$data->section}}', '{{route('catalog.create', $data->id)}}', 'products', 2, 'true', 820, 780);" class="button margin-right with-tooltip" data-tooltip-options='{"classes":["anthracite-gradient"],"position":"bottom"}' title="{{$title_create}}">Adicionar
-                <span class="button-icon right-side"><span class="icon-plus-round"></span></span></a>
-            @endcan
-
+    <div class="button-group absolute-right">
+        @can('product-create')
+            <a href="javascript:void(0)" onclick="abreModal('{{$title_create}} {{$data->name}} / {{$data->section}}', '{{route('catalog.create', $data->id)}}', 'products', 2, 'true', 820, 780);" class="button margin-right with-tooltip" data-tooltip-options='{"classes":["anthracite-gradient"],"position":"bottom"}' title="{{$title_create}}">Adicionar
+            <span class="button-icon right-side"><span class="icon-plus-round"></span></span></a>
+        @endcan
     </div>
 </div>
 
@@ -34,6 +33,8 @@
 </table>
 
 <script src="{{ mix('backend/scripts/products/products.min.js') }}"></script>
+<script src="{{ mix('backend/scripts/products/colors.min.js') }}"></script>
+<script src="{{ mix('backend/scripts/products/positions.min.js') }}"></script>
 <script src="{{ mix('backend/scripts/products/grids.min.js') }}"></script>
 <script src="{{ mix('backend/js/libs/formData/jquery.form.min.js') }}"></script>
 
@@ -56,6 +57,8 @@
         "txtKit" => "Caixa",
         "txtUnit" => "Unidade",
         "txtLoader" => "Aguarde",
+        "txtYes" => "Sim",
+        "txtNot" => "Não",
         "avtive_true" => "Ativo",
         "avtive_false" => "Inativo",
         "token" => csrf_token(),

@@ -97,6 +97,12 @@
             }
         });
 
+        tableAjaxReload = function()
+        {
+            table.ajax.reload();
+        }
+
+
 
 
 
@@ -263,6 +269,8 @@
 
         /**
          * Update status fields.
+         * (new,offer,status,fatured,black_friday,trend)
+         *
          * @param string field 
          * @param int id - product.
          * @param is status - (1,0)
@@ -346,9 +354,8 @@
          * @param int id  config_prices
          * @param string opc - (price, offer, update)
          */
-        calculateCash = function(id, opc) 
+        calculateCash = function(id, opc)
         {
-
             if (opc == 'offer') {
                 var percent    = $("input[name='price["+id+"][offer_percent]']").val()/100;
                 var price_card = $("input[name='price["+id+"][offer_card]']").val();
@@ -444,20 +451,6 @@
         }
 
 
-        /**
-         * Peview Image
-         * @param int id
-         * @param int width
-         */
-        preview_image = function(arq,prev,width)
-        {
-            $('#'+prev).html("");
-            var total_file=document.getElementById(arq).files.length;
-            for(var i=0;i<total_file;i++)
-            {
-                $('#'+prev).append('<img src="'+URL.createObjectURL(event.target.files[i])+'" width="'+width+'">');
-            }
-        };
 
 
         /**
@@ -477,33 +470,6 @@
             $( ".grid_colors" ).children( ".select-value" ).text("Selecione Uma");
             $( "#box-grids-colors" ).html( '' );
 
-            /*
-
-            if (ac == 'create') {
-                var id,
-                    stock = $("input[name='prod[stock]']:checked").val(),
-                    opc = $('#grid_colors option:selected').val();
-            }
-
-            if (ac == 'edit') {
-                var id,
-                    stock = $("input[name='prod[stock]']:checked").val(),
-                    opc = $('#grid_colors option:selected').val();
-            }
-
-            if (opc == 'brand') {
-                id  = $( "#brand_id option:selected" ).val();
-            } else if (opc == 'section') {
-                id = $( 'input[name="prod[section_id]"]' ).val();
-            } else if (opc == 'category') {
-                id = $( 'input[name="prod[category_id]"]' ).val();
-            }
-            $.get( url, { ac: ac, opc: opc, stock: stock, kit: kit, id: id } )
-                .done(function( data ) {
-                    $( "#box-grids-colors" ).html( data );
-                });
-
-                */
         }
 
 
@@ -519,348 +485,8 @@
             $("#grid_stock").val(stock);
             $( ".grid_colors" ).children( ".select-value" ).text("Selecione Uma");
             $( "#box-grids-colors" ).html( '' );
-            /*
-            if (ac == 'create') {
-                var id,
-                    kit = $("input[name='prod[kit]']:checked").val(),
-                    opc = $('#grid_colors option:selected').val();
-            }
-
-            if (ac == 'edit') {
-                var id,
-                    kit = $("input[name='prod[kit]']:checked").val(),
-                    opc = $('#grid_colors option:selected').val();
-            }
-
-            if (opc == 'brand') {
-                id  = $( "#brand_id option:selected" ).val();
-            } else if (opc == 'section') {
-                id = $( 'input[name="prod[section_id]"]' ).val();
-            } else if (opc == 'category') {
-                id = $( 'input[name="prod[category_id]"]' ).val();
-            }
-
-            $.get( url, { ac: ac,  opc: opc, stock: stock, kit: kit, id: id } )
-                .done(function( data ) {
-                    $( "#box-grids-colors" ).html( data );
-                });
-
-            */
         };
 
-
-        createGrid = function(id, stock, kit) {
-            if (stock == 1) {
-
-                if (kit == 1) {
-                    /**
-                     *  stock=1 type grid=kit
-                     */
-                    $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
-                        '<span class="input">'+
-                        '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
-                        '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
-                        '</span>'+
-                        '<div class="button-group absolute-right compact">'+
-                        '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
-                        '</div></li>');
-                } else {
-                    /**
-                     *  stock=1 type grid=unit
-                     */
-                    $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
-                        '<span class="input">'+
-                        '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled input-sep" style="width: 50px;">'+
-                        '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Entrada" maxlength="4" class="input-unstyled" style="width: 50px;">'+
-                        '</span>'+
-                        '<div class="button-group absolute-right compact">'+
-                        '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
-                        '</div></li>');
-                }
-            } else {
-
-                if (kit == 1) {
-                    /**
-                     *  stock=0 type grid=unit
-                     */
-                    $("#grids-"+id).prepend('<li id="new-grid-'+id+'">'+
-                        '<span class="input">'+
-                        '<input type="text" name="grids['+id+'][qty]"  id="qty_'+id+'" value="" autocomplete="off" placeholder="Qtd" maxlength="4" class="input-unstyled input-sep" style="width: 60px;">'+
-                        '<input type="text" name="grids['+id+'][grid]" id="grid_'+id+'" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled" style="width: 60px;">'+
-                        '</span>'+
-                        '<div class="button-group absolute-right compact">'+
-                        '<button onclick="destroyGrid('+id+')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>'+
-                        '</div></li>');
-
-                } else {
-                    /**
-                     *  stock=0 type grid=unit
-                     */
-                    $("#grids-" + id).prepend('<li id="new-grid-' + id + '">' +
-                        '<span class="input">' +
-                        '<input type="text" name="grids[' + id + '][grid]" id="grid_' + id + '" value="" autocomplete="off" placeholder="Grade" maxlength="6" class="input-unstyled input-sep" style="width: 50px;">' +
-                        '</span>' +
-                        '<div class="button-group absolute-right compact">' +
-                        '<button onclick="destroyGrid(' + id + ')" class="button icon-trash with-tooltip red-gradient" title="Excluir"></button>' +
-                        '</div></li>');
-                }
-            }
-
-        }
-
-        destroyGrid = function(id) {
-            $("#new-grid-"+id).remove();
-        }
-
-
-        /**
-         * Date: 06/06/2019
-         *
-         * @param int id
-         * @param string url
-         * @param int sta
-         * @param int cover
-         * @param string token
-         */
-        statusColor = function(id, url, sta, cover, token)
-        {
-            $.ajax({
-                type: 'POST',
-                headers: {'X-CSRF-TOKEN':token},
-                dataType: "json",
-                url: url,
-                data: {_method:'put', 'active':sta},
-                success: function(data){
-                    if(data.success == true){
-                        if ( typeof data.alert !== "undefined" && data.alert ) {
-                            $.modal.alert(data.alert);
-                        };
-                        $("#btns-"+id).html(data.html);
-                        msgNotifica(true, data.message, true, false);
-                    } else {
-                        msgNotifica(false, data.message, true, false);
-                    }
-                },
-                error: function(xhr){
-                    ajaxFormError(xhr);
-                }
-            });
-        };
-
-        /**
-         * Remove image color.
-         * @param int id
-         * @param string url
-         */
-
-        deleteColor = function(id, url)
-        {
-
-            $.modal.confirm(tableProduct.txtConfirm+' '+name+'?', function() {
-                $.ajax({
-                    type: 'DELETE',
-                    dataType: "json",
-                    url: url,
-                    headers: {'X-CSRF-TOKEN': tableProduct.token},
-                    success: function (data) {
-                        if (data.success == true) {
-                            if ( typeof data.alert !== "undefined" && data.alert ) {
-                                $.modal.alert(data.alert);
-                            };
-                            if (data.reload == true) {
-                                table.ajax.reload();
-                            } else {
-                                $("#img-colors-" + id).remove();
-                            }
-                            msgNotifica(true, data.message, true, false);
-                        } else {
-                            msgNotifica(false, data.message, true, false);
-                        }
-                    },
-                    error: function (xhr) {
-                        ajaxFormError(xhr);
-                    }
-                });
-            }, function(){
-                $.modal.alert(tableProduct.txtCancel);
-            });
-
-
-        };
-
-        /**
-         * Update status posição.
-         * @param int id
-         * @param int url
-         * @param int status
-         * @param string token
-         */
-        statusPosition = function(id, url, sta, token)
-        {
-            var status;
-            $.ajax({
-                type: 'POST',
-                headers: {'X-CSRF-TOKEN':token},
-                dataType: "json",
-                url: url,
-                data: {_method:'put','active':sta},
-                success: function(data){
-                    if(data.success == true){
-                        $("#btns-"+id).html(data.html);
-                        msgNotifica(true, data.message, true, false);
-                    } else {
-                        msgNotifica(false, data.message, true, false);
-                    }
-                },
-                error: function(xhr){
-                    ajaxFormError(xhr);
-                }
-            });
-        };
-
-        /**
-         * Remove image position.
-         * @param int id
-         * @param string url
-         */
-
-        deletePosition = function(id, url)
-        {
-            $.ajax({
-                type: 'DELETE',
-                dataType: "json",
-                url: url,
-                headers: {'X-CSRF-TOKEN':tableProduct.token},
-                success: function(data){
-                    if(data.success == true){
-                        $("#img-positions-"+id).hide();                        
-                        msgNotifica(true, data.message, true, false);
-                    } else {
-                        msgNotifica(false, data.message, true, false);
-                    }
-                },
-                error: function(xhr){
-                    ajaxFormError(xhr);
-                }
-            });
-        };
-
-        $("body").on("click","#btn-colors",function(e){
-            $(this).parents("#form-colors").ajaxForm(opc_colors);
-        });
-        var opc_colors = { 
-            beforeSend: function() {
-                setBtn(1,tableProduct.txtLoader,false,'loader disbeled','submit-colors','btn-colors');
-            },
-            success: function(data) {
-                if (data.success == true) {
-                    if (data.ac == 'create') {
-                        $('input[name="img[code]"]').val('');
-                        $('input[name="img[color]"]').val('');
-                        $('input[name="img[html]"]').val('');
-                        $('#barvadiv' ).attr('style', 'margin-top:2px;width:100px;height:100px;');
-                        $("#uploadCanvas").val('');
-
-                        // change radio cover
-                        var idpro = $("#cover_id").val();
-                        $("#load_cover_"+idpro).html('<label for="img_cover_'+idpro+'_1" class="button green-active">'+
-                                                        '<input type="radio" name="img[cover]" id="img_cover_'+idpro+'_1" value="1" checked>'+
-                                                        'Sim'+
-                                                     '</label>'+
-                                                        '<label for="img_cover_'+idpro+'_2" class="button red-active active">'+
-                                                        '<input type="radio" name="img[cover]" id="img_cover_'+idpro+'_2" value="0">'+
-                                                        'Não'+
-                                                      '</label>');
-
-                        // reset group clors
-                        $(".color").removeAttr('data-selected');
-                        $("#group-colors-"+idpro).html('<span class="groups"></span>'); 
-
-                        var order = $('input[name="img[order]"]').val(),
-                            sum_order = parseFloat(order)+1;
-                        $('input[name="img[order]"]').val(sum_order);
-
-                        $('input[name="pos[order]"]').val('1');
-
-                        var count_colors = $("#count_colors").html(),
-                        total_colors = parseFloat(count_colors)+1;
-                        $("#count_colors").html(total_colors);
-
-                        // ability tab #tab-positions
-                        nextTabs('new-product','show-positions', true);
-                        $("#insert_color").html('<input name="pos[image_color_id]" type="hidden" value="'+data.id+'">'+
-                                                '<input name="pos[name]" type="hidden" value="'+data.name+'">'+
-                                                '<input name="pos[color]" type="hidden" value="'+data.color+'">'+
-                                                '<input name="pos[code]" type="hidden" value="'+data.code+'">');
-
-                        setBtn(1,tableProduct.txtNext,true,'icon-forward','submit-colors','btn-colors');
-                        table.ajax.reload();
-                    };
-
-                    if (data.ac == 'add') {
-                        var count_colors = $("#count_colors").html(),
-                        total_colors = parseFloat(count_colors)+1;
-                        $("#count_colors").html(total_colors);
-                        
-                        $("#gallery-colors-"+data.product_id).prepend(data.html);
-                        fechaModal();
-                    }
-
-                    if (data.ac == 'update') {
-                        $("#img-colors-"+data.id).html(data.html);
-                        fechaModal();
-                    }
-
-                    msgNotifica(true, data.message, true, false);
-                } else {
-                    msgNotifica(false, data.message, true, false);
-                    setBtn(1,tableProduct.txtSave,true,'icon-tick','submit-colors','btn-colors');                    
-                }
-            },
-            error: function(xhr)
-            {
-                ajaxFormError(xhr);
-                setBtn(1,tableProduct.txtSave,true,'icon-tick','submit-colors','btn-colors');
-            }
-        };
-
-
-        // Adiciona e alterar Posições
-        $("body").on("click","#btn-position",function(e){
-            $(this).parents("#form-positions").ajaxForm(opc_positions);
-        });     
-        var opc_positions = { 
-            beforeSend: function() {
-                setBtn(1,tableProduct.txtLoader,false,'loader','submit-position','btn-position');
-            },
-            success: function(data) {
-                if (data.success == true) {
-                    if (data.ac == 'add') {
-                        $("#gallery-positions-"+data.color_id).prepend(data.html);
-                        fechaModal();
-                    }else if (data.ac == 'update') {
-                        $("#img-positions-"+data.id).html(data.html);
-                        fechaModal();
-                    } else {
-                        setBtn(1,tableProduct.txtNext,true,'icon-forward','submit-position','btn-position');
-                        var order = $('input[name="pos[order]"]').val(),
-                            sum_order = parseFloat(order)+1;
-                        $('input[name="pos[order]"]').val(sum_order);
-                        $( "#upload_position" ).val('');
-                    }
-                    msgNotifica(true, data.message, true, false);
-                };
-            },
-            complete: function(data) {
-                setBtn(1,tableProduct.txtNext,true,'icon-forward','submit-position','btn-position');
-
-            },
-            error: function(xhr)
-            {
-                ajaxFormError(xhr);
-                setBtn(1,tableProduct.txtNext,true,'icon-forward','submit-position','btn-position');
-            }
-        }; 
 
     }
 

@@ -8,10 +8,10 @@
  * ------------ By Anselmo Velame ---------------
  *
  * Sistma Administrativo
- * Products
+ * Grids Products
  *
  */
-;(function($, undefined)
+;(function($)
 {
     /**
      * Date 06/13/2019

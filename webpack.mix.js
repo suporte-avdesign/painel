@@ -189,6 +189,8 @@ mix.scripts('resources/assets/scripts/orders/notes.js', 'public/backend/scripts/
 mix.scripts('resources/assets/scripts/orders/shippings.js', 'public/backend/scripts/orders/shippings.min.js');
 
 mix.scripts('resources/assets/scripts/products/products.js', 'public/backend/scripts/products/products.min.js');
+mix.scripts('resources/assets/scripts/products/colors.js', 'public/backend/scripts/products/colors.min.js');
+mix.scripts('resources/assets/scripts/products/positions.js', 'public/backend/scripts/products/positions.min.js');
 mix.scripts('resources/assets/scripts/products/grids.js', 'public/backend/scripts/products/grids.min.js');
 mix.scripts('resources/assets/scripts/products/catalog.js', 'public/backend/scripts/products/catalog.min.js');
 
