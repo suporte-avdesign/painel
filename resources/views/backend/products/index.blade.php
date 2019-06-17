@@ -40,7 +40,7 @@
 <script>   
     var tableProduct = {!! json_encode([
         "id" => 'products',
-        "url" => route('catalogo.data', $data->id),
+        "url" => route('products.data', $data->id),
         "txtUpdateGrids" => 'Você confirma a alteração da grade para ',
         "txtUpdateGridsStock" => '<small class="tag red-bg">O Estoque será zerado</small><br> Você confirma a alteração da grade para ',
         "txtUpdateStock" => '<small class="tag red-bg">O Estoque será zerado</small><br> Você confirma?',

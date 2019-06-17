@@ -159,8 +159,8 @@ Route::put('brand/status/{id}/banner', 'Admin\BannerBrandController@status')->na
 
 
 // Products / Categories
-Route::resource('products/{slug}/catalog', 'Admin\ProductController',['except' => ['show']]);
-Route::post('product/{id}/catalog/data', 'Admin\ProductController@data')->name('catalogo.data');
+Route::resource('products/{slug}/menu', 'Admin\ProductController',['except' => ['show']]);
+Route::post('products/{id}/data', 'Admin\ProductController@data')->name('products.data');
 Route::put('product/{id}/status', 'Admin\ProductController@status')->name('product.status');
 Route::get('product/{id}/details', 'Admin\ProductController@details');
 Route::post('product/change/categories', 'Admin\ProductController@change')->name('change.product');
@@ -182,3 +182,9 @@ Route::put('produtos/{idpro}/colors-status/{id}', 'Admin\ImageColorController@co
 Route::resource('grids/grid-color', 'Admin\GridProductController',['except' => ['index', 'create']]);
 Route::get('grids/change-grids', 'Admin\GridProductController@change')->name('change-grids');
 Route::get('grids/load-grids', 'Admin\GridProductController@load')->name('load-grids');
+
+// Catalogo das Cores
+Route::get('catalog', 'Admin\CatalogController@index');
+Route::post('catalog/data', 'Admin\CatalogController@data')->name('catalog.data');
+Route::put('catalog/status/{id}', 'Admin\CatalogController@status')->name('status.catalog');
+

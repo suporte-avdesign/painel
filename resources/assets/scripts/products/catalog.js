@@ -17,28 +17,28 @@
      * Init table
      * @var array 
      */
-    $.fn.loadTableColors = function()
+    $.fn.loadTableCatalog = function()
     {  
-        var table = $("#"+tableColor.id).DataTable({
+        var table = $("#"+tableCatalog.id).DataTable({
             processing: true,
             serverSide: true,
             ajax: {
-                url: tableColor.url,
+                url: tableCatalog.url,
                 type: "POST",
                 dataType: "json",
-                headers: {'X-CSRF-TOKEN': tableColor.token}
+                headers: {'X-CSRF-TOKEN': tableCatalog.token}
             },
             sScrollX: true,
             sScrollXInner: "100%",
             buttons: ['reset'],
             sPaginationType: "full_numbers",
-            iDisplayLength: tableColor.limit,
+            iDisplayLength: tableCatalog.limit,
             sDom: 'CB<"clear"><"dataTables_header"lfr>t<"dataTables_footer"ip>',
             fnDrawCallback: function( oSettings ){
-                if (!tableColor.tableStyled){
-                    $("#"+tableColor.id).closest(".dataTables_wrapper").find(".dataTables_length select").addClass("select "+tableColor.color+" glossy").styleSelect();
-                    $("#btn-reset").addClass(tableColor.color+" glossy");
-                    tableColor.tableStyled = true;
+                if (!tableCatalog.tableStyled){
+                    $("#"+tableCatalog.id).closest(".dataTables_wrapper").find(".dataTables_length select").addClass("select "+tableCatalog.color+" glossy").styleSelect();
+                    $("#btn-reset").addClass(tableCatalog.color+" glossy");
+                    tableCatalog.tableStyled = true;
                 }
             },
             columns:[
@@ -76,10 +76,8 @@
          * @param int cover
          * @param string token
          */
-        statusColors = function(id, url, sta, cover, token)
+        statusCatalog = function(id, url, status, token)
         {
-            var status;
-            (sta == 1 ? status = 0 : status = 1);            
             $.ajax({
                 type: 'POST',
                 headers: {'X-CSRF-TOKEN':token},
@@ -88,8 +86,8 @@
                 data: {_method:'put', 'active':status},
                 success: function(data){
                     if(data.success == true){
-                        if (cover == 1 && status == 0) {
-                            $.modal.alert('<span class="red">'+data.alert+'</span>');
+                        if ( typeof data.alert !== "undefined" && data.alert ) {
+                            $.modal.alert(data.alert);
                         };
                         $("#status-"+id).html(data.html);
                         msgNotifica(true, data.message, true, false);
@@ -121,50 +119,6 @@
         };
 
 
-        /**
-         * Add grid Image
-         * @param int id
-        */
-        addGrid = function(id, stock)
-        {
-            //Number Random
-            var num = Math.random(),
-                html;
-            if (stock == 1) {
-                html = '<li class="new_grid">';
-                    html += '<span class="input">';
-                        html += '<input type="text" name="grids['+num+'][grid]" id="grid_'+id+'" class="input-unstyled input-sep" value="" maxlength="4" style="width: 30px;">';
-                        html += '<input type="text" name="grids['+num+'][entry]" id="entry_'+id+'" class="input-unstyled input-sep" value="" maxlength="4" style="width: 30px;">';
-                        html += '<input type="text" name="grids['+num+'][low]" id="exit_'+id+'" class="input-unstyled input-sep" value="0" style="width: 30px;">';
-                    html += '</span>';
-                    html += '<div class="button-group absolute-right compact">';
-                        html += '<button onclick="removeThis(this,\'.new_grid\');" class="button icon-trash with-tooltip" title="Excluir"></button>';
-                    html += '</div>';
-                html += '</li>';
-            } else {
-                html = '<li class="new_grid">';
-                    html += '<span class="input">';
-                        html += '<input type="text" name="grids['+num+'][grid]" id="grid_'+id+'" class="input-unstyled input-sep" value="" maxlength="4" style="width: 30px;">';
-                    html += '</span>';
-                    html += '<div class="button-group absolute-right compact">';
-                        html += '<button onclick="removeThis(this,\'.new_grid\');" class="button icon-trash with-tooltip" title="Excluir"></button>';
-                    html += '</div>';
-                html += '</li>';
-            }   
-
-            $("#grids-"+id).append(html);
-        }
-
-
-        /**
-         * Remove this grid
-         * @param object _this
-         * @param int id
-        */
-        removeThis = function(_this, id)
-        {
-            $(_this).parents(id).remove();
-        }
 
         /**
          * Excluir imagem cor.
@@ -177,7 +131,7 @@
                 type: 'DELETE',
                 dataType: "json",
                 url: url,
-                headers: {'X-CSRF-TOKEN':tableColor.token},
+                headers: {'X-CSRF-TOKEN':tableCatalog.token},
                 success: function(data){
                     if(data.success == true){
                         table.ajax.reload();

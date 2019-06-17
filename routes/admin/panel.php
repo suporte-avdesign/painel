@@ -12,4 +12,4 @@ Route::group(['prefix' => 'admin'], function () {
 });
 Route::get('error{code}', 'Admin\PainelController@error')->name('error');
 
-Route::get('catalog', 'Admin\PainelController@catalog');
+Route::get('menu', 'Admin\PainelController@menu');

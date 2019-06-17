@@ -16,10 +16,10 @@ use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
 
 
-use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use AVDPainel\Http\Controllers\Controller;
+use DB;
 
 class ImageColorController extends Controller
 {
@@ -200,7 +200,6 @@ class ImageColorController extends Controller
         $stock          = $product->stock;
         $kit            = $product->kit;
         $configProduct  = $this->configProduct->setId(1);
-
         $conf           = $this->configImage->setName('default','N');
         $path           = 'storage/'.$conf->path;
 
@@ -353,62 +352,5 @@ class ImageColorController extends Controller
 
     }
 
-    /**
-     * All Colors.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function products()
-    {
-        if( Gate::denies("product-view") ) {
-            return view("backend.erros.message-401");
-        }
-
-        $title         = 'Relação de produtos por cores';
-        $confUser      = $this->confUser->get();
-        $title_create  = 'Adicionar:';
-        $configProduct = $this->configProduct->setId(1);
-
-        return view("{$this->view}.colors.index", compact('configProduct', 'title', 'title_create', 'confUser'));
-    }
-
-    /**
-     * Colors getAll()
-     *
-     * @param  array  $request
-     * @return json
-     */
-    public function data(Request $request)
-    {
-        if( Gate::denies("product-view") ) {
-            return view("backend.erros.message-401");
-        }
-
-        $data = $this->interModel->getAll($request);
-
-        return response()->json($data);
-    }
-
-
-    /**
-     * Status Image - Module:colors
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $idpro
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function colorsStatus(Request $request, $idpro, $id)
-    {
-        if( Gate::denies("{$this->ability}-update") ) {
-            return view("backend.erros.message-401");
-        }
-
-        $dataForm = $request->all();
-        $product  = $this->interProduct->setId($idpro);
-        $status   = $this->interModel->colorsStatus($dataForm, $product, $id);
-
-        return response()->json($status);
-    }
 
 }

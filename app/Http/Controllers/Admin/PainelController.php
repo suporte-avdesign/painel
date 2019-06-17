@@ -111,13 +111,11 @@ class PainelController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function catalog(Section $section)
+    public function menu(Section $section)
     {
+        $sections = $section->get();
 
-        $catalog = $section->get();
-
-
-        return view('backend.includes.sidebar.menu', compact('catalog'));
+        return view('backend.includes.sidebar.menu', compact('sections'));
     }
 
 

@@ -235,6 +235,9 @@ return [
             'category_false' => 'Não existe grade desta categoria!',
             'grid_min' => 'O produto deve ter no mínimo 1 grade.',
             'section_false' => 'Não existe grade desta seção!'
+        ],
+        'catalog' => [
+            'title' => 'Catalogo dos Produtos'
         ]
     ]
 ];

@@ -32,8 +32,8 @@
 		<section class="navigable" id="doc-menu">
 			<ul class="big-menu">
 				<li class="with-right-arrow">
-					<span id="catalog" data-navigable-url="catalog" class="navigable-ajax">
-						<span id="count_product" class="list-count">{{$sidebar['total_products']}}</span>Catalogo
+					<span id="catalog" data-navigable-url="menu" class="navigable-ajax">
+						<span id="count_product" class="list-count">{{$sidebar['total_products']}}</span>Produtos
 					</span>
 				</li>
 
@@ -53,7 +53,7 @@
 					</a>					
 				</li>
 				<li>
-					<a href="produtos/cores" title="Produtos">Produtos 
+					<a href="catalog" title="Catalogo">Catalogo
 						<span><span id="count_colors" class="list-count">{{$sidebar['total_colors']}}</span></span>
 					</a>					
 				</li>
