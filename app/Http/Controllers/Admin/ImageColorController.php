@@ -9,7 +9,7 @@ use AVDPainel\Interfaces\Admin\ProductInterface as InterProduct;
 use AVDPainel\Interfaces\Admin\GridProductInterface as InterGrid;
 use AVDPainel\Interfaces\Admin\GroupColorInterface as InterGroup;
 use AVDPainel\Interfaces\Admin\ImageColorInterface as InterModel;
-use AVDPainel\Interfaces\Admin\InventaryInterface as InterInventary;
+use AVDPainel\Interfaces\Admin\InventoryInterface as InterInventory;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
 use AVDPainel\Interfaces\Admin\ConfigColorGroupInterface as InterHexa;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
@@ -37,7 +37,7 @@ class ImageColorController extends Controller
         ConfigImage $configImage,
         InterProduct $interProduct,
         ConfigProduct $configProduct,
-        InterInventary $interInventary)
+        InterInventory $interInventory)
     {
         $this->middleware('auth:admin');
 
@@ -50,7 +50,7 @@ class ImageColorController extends Controller
         $this->configImage    = $configImage;
         $this->interProduct   = $interProduct;
         $this->configProduct  = $configProduct;
-        $this->interInventary = $interInventary;
+        $this->interInventory = $interInventory;
 
     }
 

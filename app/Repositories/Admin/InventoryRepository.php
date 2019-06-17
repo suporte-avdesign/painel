@@ -3,12 +3,12 @@
 namespace AVDPainel\Repositories\Admin;
 
 
-use AVDPainel\Models\Admin\Inventary as Model;
-use AVDPainel\Interfaces\Admin\InventaryInterface;
+use AVDPainel\Models\Admin\Inventory as Model;
+use AVDPainel\Interfaces\Admin\InventoryInterface;
 
 use Illuminate\Foundation\Validation\ValidatesRequests;
 
-class InventaryRepository implements InventaryInterface
+class InventoryRepository implements InventoryInterface
 {
     use ValidatesRequests;
 

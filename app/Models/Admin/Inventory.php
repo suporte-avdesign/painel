@@ -4,7 +4,7 @@ namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Inventary extends Model
+class Inventory extends Model
 {
     protected $fillable = [
         'product_id',

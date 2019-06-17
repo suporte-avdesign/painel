@@ -95,6 +95,7 @@ return [
         'deleted_true' => 'A imagem foi excluida',
         'deleted_false' => 'Não foi possível excluir a imagem'
     ],
+    'inventory' => 'Inventário',
     'keywords.required' => 'As tags são obrigatórias',
     'loader' => 'Aguarde',
     'login' => 'Login',
@@ -120,6 +121,7 @@ return [
         'user' => 'Cliente'
     ],
     'qty' => 'Qtd',
+    'reports' => 'Relatórios',
     'reminder' => 'Lebre-me',
     'remove' => 'Remover',
     'save' => 'Salvar',

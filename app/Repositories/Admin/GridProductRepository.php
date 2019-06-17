@@ -4,23 +4,23 @@ namespace AVDPainel\Repositories\Admin;
 
 use AVDPainel\Models\Admin\GridProduct as Model;
 use AVDPainel\Interfaces\Admin\GridProductInterface;
-use AVDPainel\Interfaces\Admin\InventaryInterface as InterInventary;
+use AVDPainel\Interfaces\Admin\InventoryInterface as InterInventory;
 
 class GridProductRepository implements GridProductInterface
 {
 
     public $model;
-    public $interInventary;
+    public $interInventory;
 
     /**
      * Create construct.
      *
      * @return void
      */
-    public function __construct(Model $model, InterInventary $interInventary)
+    public function __construct(Model $model, InterInventory $interInventory)
     {
         $this->model = $model;
-        $this->interInventary = $interInventary;
+        $this->interInventory = $interInventory;
     }
 
     /**
@@ -88,7 +88,7 @@ class GridProductRepository implements GridProductInterface
         $data = $this->model->create($dataForm);
         if ($data) {
             if ($product->stock == 1) {
-                $inventary = $this->interInventary->createKit($configProduct, $data, $image, $product);
+                $inventory = $this->interInventory->createKit($configProduct, $data, $image, $product);
             }
             if ($data) {
                 generateAccessesTxt(date('H:i:s').
@@ -124,10 +124,10 @@ class GridProductRepository implements GridProductInterface
             if (!empty($entry)) {
 
                 if ($data->input != $entry) {
-                    $dataForm['entry'] = $entry; // inventary -> ammount
-                    $dataForm['grid'] = $data->grid; // inventary -> grid
-                    $dataForm['grid_id'] = $data->id; // inventary -> grid_id
-                    $dataForm['previous_stock'] = $data->stock; // inventary -> grid
+                    $dataForm['entry'] = $entry; // inventory -> ammount
+                    $dataForm['grid'] = $data->grid; // inventory -> grid
+                    $dataForm['grid_id'] = $data->id; // inventory -> grid_id
+                    $dataForm['previous_stock'] = $data->stock; // inventory -> grid
                     $previousInput = $data->input;
                     $currentInput = $previousInput + $entry;
                     $previousStock = $data->stock;
@@ -157,9 +157,9 @@ class GridProductRepository implements GridProductInterface
                 if ($product->stock == 1) {
                     $data['entry'] = $input['input'];
                     $data['previous_stock'] = $data->id;
-                    $inventary = $this->interInventary->updateKit($configProduct, $data, $image, $product);
-                    if ($inventary) {
-                        return $inventary;
+                    $inventory = $this->interInventory->updateKit($configProduct, $data, $image, $product);
+                    if ($inventory) {
+                        return $inventory;
                     }
                 } else {
                     return true;
@@ -186,9 +186,9 @@ class GridProductRepository implements GridProductInterface
 
         if ($product->stock == 1) {
             foreach ($image->grids as $grid) {
-                $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grid);
+                $inventory = $this->interInventory->deleteKit($configProduct, $product, $image, $grid);
             }
-            return $inventary;
+            return $inventory;
         }
 
         return true;
@@ -284,7 +284,7 @@ class GridProductRepository implements GridProductInterface
 
                 $data = $this->model->create($dataForm);
                 if ($data) {
-                    $inventary = $this->interInventary->createUnit($configProduct, $data, $image, $product);
+                    $inventory = $this->interInventory->createUnit($configProduct, $data, $image, $product);
                     generateAccessesTxt(date('H:i:s').utf8_decode($access));
                 }
             }
@@ -356,7 +356,7 @@ class GridProductRepository implements GridProductInterface
             $grid = $this->model->create($dataForm);
             if ($grid) {
                 if ($product->stock == 1) {
-                    $inventary = $this->interInventary->createKit($configProduct, $grid, $image, $product);
+                    $inventory = $this->interInventory->createKit($configProduct, $grid, $image, $product);
                 }
 
                 generateAccessesTxt(date('H:i:s').utf8_decode(
@@ -454,7 +454,7 @@ class GridProductRepository implements GridProductInterface
                     );
 
                     if ($product->stock == 1) {
-                        $inventary = $this->interInventary->updateUnit($configProduct, $grid, $image, $product, $action);
+                        $inventory = $this->interInventory->updateUnit($configProduct, $grid, $image, $product, $action);
                     }
 
                     $html = view("{$view}.modal.render-update", compact('grid', 'product'))->render();
@@ -493,7 +493,7 @@ class GridProductRepository implements GridProductInterface
 
             $prev = $grid;
             if ($product->stock == 1) {
-                $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grid);
+                $inventory = $this->interInventory->deleteUnit($configProduct, $product, $image, $grid);
             }
 
             $delGrid = $grid->delete();

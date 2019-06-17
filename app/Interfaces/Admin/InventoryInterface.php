@@ -2,12 +2,12 @@
 
 namespace AVDPainel\Interfaces\Admin;
 
-interface InventaryInterface
+interface InventoryInterface
 {
     /**
-     * Interface model Inventary
+     * Interface model Inventory
      *
-     * @return \AVDPainel\Repositories\Admin\InventaryRepository
+     * @return \AVDPainel\Repositories\Admin\InventoryRepository
      */
     public function getAll();
     public function setId($id);

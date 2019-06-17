@@ -7,7 +7,7 @@ use AVDPainel\Models\Admin\Product as Model;
 use AVDPainel\Interfaces\Admin\ProductInterface;
 use AVDPainel\Interfaces\Admin\GridProductInterface as InterGrid;
 use AVDPainel\Interfaces\Admin\ConfigKeywordInterface as Keywords;
-use AVDPainel\Interfaces\Admin\InventaryInterface as InterInventary;
+use AVDPainel\Interfaces\Admin\InventoryInterface as InterInventory;
 use AVDPainel\Interfaces\Admin\ConfigProductInterface as ConfigProduct;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as ConfigFreight;
 use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
@@ -39,7 +39,7 @@ class ProductRepository implements ProductInterface
         ConfigImage $configImage,
         ConfigProduct $configProduct,
         ConfigFreight $configFreight,
-        InterInventary $interInventary)
+        InterInventory $interInventory)
     {
 
         $this->disk           = storage_path('app/public/');
@@ -49,7 +49,7 @@ class ProductRepository implements ProductInterface
         $this->configImage    = $configImage;
         $this->configProduct  = $configProduct;
         $this->configFreight  = $configFreight;
-        $this->interInventary = $interInventary;
+        $this->interInventory = $interInventory;
     }
 
 
@@ -628,9 +628,9 @@ class ProductRepository implements ProductInterface
                     $grids = $this->interGrid->getGrids($image->id);
                     foreach ($grids as $grid) {
                         if ($product->kit == 1) {
-                            $inventary = $this->interInventary->deleteKit($configProduct, $product, $image, $grid);
+                            $inventory = $this->interInventory->deleteKit($configProduct, $product, $image, $grid);
                         } else {
-                            $inventary = $this->interInventary->deleteUnit($configProduct, $product, $image, $grid);
+                            $inventory = $this->interInventory->deleteUnit($configProduct, $product, $image, $grid);
                         }
                     }
                 }

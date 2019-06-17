@@ -2,11 +2,11 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Interfaces\Admin\InventaryInterface as InterModel;
+use AVDPainel\Interfaces\Admin\InventoryInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class InventaryController extends Controller
+class InventoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class InventaryController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\Inventary  $inventary
+     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
      * @return \Illuminate\Http\Response
      */
-    public function show(Inventary $inventary)
+    public function show(Inventory $inventory)
     {
         //
     }
@@ -53,10 +53,10 @@ class InventaryController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\Inventary  $inventary
+     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
      * @return \Illuminate\Http\Response
      */
-    public function edit(Inventary $inventary)
+    public function edit(Inventory $inventory)
     {
         //
     }
@@ -65,10 +65,10 @@ class InventaryController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\Inventary  $inventary
+     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Inventary $inventary)
+    public function update(Request $request, Inventory $inventory)
     {
         //
     }
@@ -76,10 +76,10 @@ class InventaryController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \AVDPainel\Models\Admin\Inventary  $inventary
+     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Inventary $inventary)
+    public function destroy(Inventory $inventory)
     {
         //
     }
