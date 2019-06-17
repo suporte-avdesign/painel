@@ -5,7 +5,7 @@
 /vendor
 /gitpainel
 /github
-
+/.idea
 .env
 .phpunit.result.cache
 Homestead.json

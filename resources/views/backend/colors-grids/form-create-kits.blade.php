@@ -1,15 +1,15 @@
 @foreach ($grids as $value)
     <h4 class="green underline">{{$value->name}}</h4>
-    <div class="columns">        
+    <div class="columns">
         @php
             $label = explode(",", $value->label);
         @endphp
-        <span>    
+        <span>
             <input type="radio" id="opc-{{$value->id}}" name="opc[]" value="{{$value->label}}" class="tick checkbox mid-margin-left">
         </span>
 
         @foreach ($label as $val)
-            <label class="button blue-gradient">{{$val}}</label>
+            <label class="button compact blue-gradient small-margin-top small-margin-left ">{{$val}}</label>
         @endforeach
         <span id="tick-{{$value->id}}" style="display:none">&nbsp;&nbsp;<span class="icon-size2 icon-tick icon-green"></span></span>
     </div>
@@ -44,11 +44,11 @@
 @endif
 
 <script>
-$('.tick').on('change', function() {
-    var str   = $(this).attr('id'),
-        res   = str.split("-"),
-        id    = res[1],
-        opc   = $("#opc-"+id).val(),
-        grid  = $('#grid').val(opc);
-});
+    $('.tick').on('change', function() {
+        var str   = $(this).attr('id'),
+            res   = str.split("-"),
+            id    = res[1],
+            opc   = $("#opc-"+id).val(),
+            grid  = $('#grid').val(opc);
+    });
 </script>

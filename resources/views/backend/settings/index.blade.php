@@ -179,77 +179,78 @@
 							</li>
 						</ul>
 					</li>
-					
-					<li class="with-right-arrow grey-arrow">
-						<span class="icon folder-image"></span>
-						<b>Imagens</b>
-						<ul class="files-list mini">
-							@can('config-manufacturer-view')
-								<li>
-									<a href="config/images/brands" class="file-link">
-										<span class="icon folder-image"></span>
-										Fabricantes
-									</a>
-								</li>
-							@endif
-							@can('config-section-view')
-								<li>
-									<a href="config/images/sections" class="file-link">
-										<span class="icon folder-image"></span>
-										Seções
-									</a>
-								</li>
-							@endcan
-							@can('config-category-update')			
-								<li>
-									<a href="config/images/categories" class="file-link">
-										<span class="icon folder-image"></span>
-										Categorias
-									</a>
-								</li>
-							@endcan
-							@can('config-image-product-view')
-								<li>
-									<a href="config/colors-positions" class="file-link">
-										<span class="icon folder-image"></span>
-										Produtos
-									</a>
-								</li>
-							@endcan
-							@can('config-admin-view')
-								<li>
-									<a href="config/images/admins" class="file-link">
-										<span class="icon folder-image"></span>
-										Usuários
-									</a>
-								</li>
-							@endcan
-							@can('config-slider-view')
-								<li>
-									<a href="config/images/slider" class="file-link">
-										<span class="icon folder-image"></span>
-										Silder Home
-									</a>
-								</li>
-							@endcan
-								@can('config-banners-view')
+					@can('webmaster-view')
+						<li class="with-right-arrow grey-arrow">
+							<span class="icon folder-image"></span>
+							<b>Imagens</b>
+							<ul class="files-list mini">
+								@can('config-manufacturer-view')
 									<li>
-										<a href="config/images/banners" class="file-link">
+										<a href="config/images/brands" class="file-link">
 											<span class="icon folder-image"></span>
-											Banners do site
+											Fabricantes
+										</a>
+									</li>
+								@endif
+								@can('config-section-view')
+									<li>
+										<a href="config/images/sections" class="file-link">
+											<span class="icon folder-image"></span>
+											Seções
 										</a>
 									</li>
 								@endcan
-							@can('config-color-group-view')
-								<li>
-									<a href="config/grupo-colors" class="file-link">
-										<span class="icon folder-piker"></span>
-										Grupo de Cores
-									</a>
-								</li>
-							@endcan
-						</ul>
-					</li>
+								@can('config-category-update')
+									<li>
+										<a href="config/images/categories" class="file-link">
+											<span class="icon folder-image"></span>
+											Categorias
+										</a>
+									</li>
+								@endcan
+								@can('config-image-product-view')
+									<li>
+										<a href="config/colors-positions" class="file-link">
+											<span class="icon folder-image"></span>
+											Produtos
+										</a>
+									</li>
+								@endcan
+								@can('config-admin-view')
+									<li>
+										<a href="config/images/admins" class="file-link">
+											<span class="icon folder-image"></span>
+											Usuários
+										</a>
+									</li>
+								@endcan
+								@can('config-slider-view')
+									<li>
+										<a href="config/images/slider" class="file-link">
+											<span class="icon folder-image"></span>
+											Silder Home
+										</a>
+									</li>
+								@endcan
+									@can('config-banners-view')
+										<li>
+											<a href="config/images/banners" class="file-link">
+												<span class="icon folder-image"></span>
+												Banners do site
+											</a>
+										</li>
+									@endcan
+								@can('config-color-group-view')
+									<li>
+										<a href="config/grupo-colors" class="file-link">
+											<span class="icon folder-piker"></span>
+											Grupo de Cores
+										</a>
+									</li>
+								@endcan
+							</ul>
+						</li>
+					@endcan
 					@can('config-percent-view')
 						<li>
 							<a href="config/percents" class="file-link">

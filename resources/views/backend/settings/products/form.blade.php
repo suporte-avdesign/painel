@@ -146,19 +146,21 @@
 								</label>
 							</span>
 						</p>
-						<p class="button-height inline-label">
-							<label for="grids" class="label">Grades</label>
-							<span class="button-group">
-								<label for="grids-1" class="button green-active">
-									<input type="radio" name="grids" id="grids-1" value="1" @if($data->grids == 1) checked @endif>
-									Sim
-								</label>
-								<label for="grids-0" class="button red-active" >
-									<input type="radio" name="grids" id="grids-0" value="0" @if($data->grids == 0) checked @endif>
-									Não
-								</label>
-							</span>
-						</p>
+						@can('webmaster-view')
+							<p class="button-height inline-label">
+								<label for="grids" class="label">Grades</label>
+								<span class="button-group">
+									<label for="grids-1" class="button green-active">
+										<input type="radio" name="grids" id="grids-1" value="1" @if($data->grids == 1) checked @endif>
+										Sim
+									</label>
+									<label for="grids-0" class="button red-active" >
+										<input type="radio" name="grids" id="grids-0" value="0" @if($data->grids == 0) checked @endif>
+										Não
+									</label>
+								</span>
+							</p>
+						@endcan
 						<p class="button-height inline-label">
 							<label for="colors" class="label">Fotos: Cores</label>
 							<span class="button-group">

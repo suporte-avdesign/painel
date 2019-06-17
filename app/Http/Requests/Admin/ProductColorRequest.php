@@ -20,6 +20,7 @@ class ProductColorRequest extends FormRequest
         $this->configImages  = $configImages;
         $this->configProduct = $configProduct;
         $this->size          = $this->configImages->setName('default', 'Z');
+
     }
 
 
@@ -78,20 +79,34 @@ class ProductColorRequest extends FormRequest
 
             /************************* $grids ****************************/
             $grids = $this->request->get('grids');
-            //dd($grids['grid']);
             if (empty($grids)) {
                 $rules['grids'] = 'required';
             } else {
-                foreach ($grids as $key => $values) {
-                    foreach ($values as $index => $item) {
-                        ($key == 'grid' && $item == null ? $rules['desc'] = 'required' : '');
-                        if ($product->stock == 1) {
-                            ($key == 'input' && $item == null ? $rules['input'] = 'required' : '');
-                            if ($product->qty_min == 1) {
-                                ($key == 'qty_min' && $item == null ? $rules['qty_min'] = 'required' : '');
-                            }
-                            if ($product->qty_max == 1) {
-                                ($key == 'qty_max' && $item == null ? $rules['qty_max'] = 'required' : '');
+
+                if ($product->kit == 1) {
+                    $rules['grids.grid'] = 'required';
+                    if ($product->stock == 1) {
+                        $rules['grids.input'] = 'required';
+                        if ($product->qty_min == 1) {
+                            $rules['grids.qty_min'] = 'required';
+                        }
+                        if ($product->qty_max == 1) {
+                            $rules['grids.qty_max'] = 'required';
+                        }
+                    }
+
+                } else {
+                    foreach ($grids as $key => $values) {
+                        foreach ($values as $index => $item) {
+                            ($key == 'grid' && $item == null ? $rules['desc'] = 'required' : '');
+                            if ($product->stock == 1) {
+                                ($key == 'input' && $item == null ? $rules['input'] = 'required' : '');
+                                if ($product->qty_min == 1) {
+                                    ($key == 'qty_min' && $item == null ? $rules['qty_min'] = 'required' : '');
+                                }
+                                if ($product->qty_max == 1) {
+                                    ($key == 'qty_max' && $item == null ? $rules['qty_max'] = 'required' : '');
+                                }
                             }
                         }
                     }
@@ -117,9 +132,13 @@ class ProductColorRequest extends FormRequest
         $messages = [];
         /****************************  GRIDS *********************************/
         $messages['grids.required'] = constLang('validation.grids.grids');
+        $messages['grids.grid.required'] = constLang('validation.grids.grids');
         $messages['grids.qty.required'] = constLang('validation.grids.qty');
         /*************************  method POST ******************************/
         if ($this->method() == 'POST') {
+
+            $img     = $this->request->get('img');
+            $product = $this->interProduct->setId($img['product_id']);
 
             if ( !empty($this->request->get('grids')) ) {
                 $message_grid = constLang('validation.grids.grid');
@@ -127,14 +146,21 @@ class ProductColorRequest extends FormRequest
                 $message_qty_min = constLang('validation.grids.qty_min');
                 $message_qty_max = constLang('validation.grids.qty_max');
 
-                foreach ($this->request->get('grids') as $key => $values) {
-                    foreach ($values as $index => $item) {
-                        ($key == 'grid' && $item == null ? $messages['desc.required'] = $message_grid : '');
-                        ($key == 'input' && $item == null ? $messages['input.required'] = $message_input : '');
-                        ($key == 'qty_min' && $item == null ? $messages['qty_min.required'] = $message_qty_min : '');
-                        ($key == 'qty_max' && $item == null ? $messages['qty_max.required'] = $message_qty_max : '');
+                if ($product->kit == 1) {
+                    $messages['grids.input.required'] = $message_input;
+                    $messages['grids.qty_min.required'] = $message_qty_min;
+                    $messages['grids.qty_max.required'] = $message_qty_max;
+                } else {
+                    foreach ($this->request->get('grids') as $key => $values) {
+                        foreach ($values as $index => $item) {
+                            ($key == 'grid' && $item == null ? $messages['desc.required'] = $message_grid : '');
+                            ($key == 'input' && $item == null ? $messages['input.required'] = $message_input : '');
+                            ($key == 'qty_min' && $item == null ? $messages['qty_min.required'] = $message_qty_min : '');
+                            ($key == 'qty_max' && $item == null ? $messages['qty_max.required'] = $message_qty_max : '');
+                        }
                     }
                 }
+
             }
         }
 

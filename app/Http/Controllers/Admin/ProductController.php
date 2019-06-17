@@ -171,8 +171,7 @@ class ProductController extends Controller
             'category',
             'percentage',
             'unit_measure',
-            'configProduct',
-            'profileClient')
+            'configProduct')
         );
     }
 
