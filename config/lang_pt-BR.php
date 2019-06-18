@@ -134,12 +134,14 @@ return [
     'tables_preference' => 'a configuração das cores das tabelas por uma de sua preferência',
     'ticket' => 'Boleto',
     'title_update' => 'Alterar',
+    'total' => 'Total',
     'trend' => 'Têndencia',
     'type_movement' => [
         'input' => 'Entrada',
         'output' => 'Saida',
         'delete' => 'Exclusão'
     ],
+    'units' => 'Unidades',
     'update' => 'Alterar',
     'updated' => 'Alterou',
     'update_false' => 'Não foi possível alterar o registro',
@@ -159,6 +161,7 @@ return [
         'photo' => 'Não foi possível fazer o upload da foto'
     ],
     'value' => 'Valor',
+    'values' => 'Valores',
     'yes' => 'Sim',
 
 

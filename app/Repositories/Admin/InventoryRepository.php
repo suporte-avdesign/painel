@@ -48,8 +48,8 @@ class InventoryRepository implements InventoryInterface
             0 => 'id',
             1 => 'code',
             2 => 'kit_name',
-            3 => 'amount',
             4 => 'stock',
+            3 => 'amount',
             5 => 'updated_at'
         );
 
@@ -102,14 +102,15 @@ class InventoryRepository implements InventoryInterface
                     $image = '<img src="'.url('backend/img/default/no_image.png').'" />';
                 }
 
-                $info_product = view("{$this->view}.info_product_render", compact('val'))->render();
-
+                $info_product = view("{$this->view}.render.info_product", compact('val'))->render();
+                $values_product = view("{$this->view}.render.values_product", compact('val'))->render();
+                $attributes_product = view("{$this->view}.render.attributes_product", compact('val'))->render();
 
                 $nData['image']   = $image;
                 $nData['code']    = $info_product;
-                $nData['kit_name']= $val->kit_name;
-                $nData['amount']  = $val->amount;
+                $nData['kit_name']= $attributes_product;
                 $nData['stock']   = $val->stock;
+                $nData['amount']  = $values_product;
                 $nData['updated_at'] = date('d/m/Y H:i:s', strtotime($val->updated_at));;
 
                 $data[] = $nData;

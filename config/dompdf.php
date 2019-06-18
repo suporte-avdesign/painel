@@ -83,7 +83,7 @@ return array(
          *
          * Valid settings are 'PDFLib', 'CPDF' (the bundled R&OS PDF class), 'GD' and
          * 'auto'. 'auto' will look for PDFLib and use it if found, or if not it will
-         * fall back on CPDF. 'GD' renders PDFs to graphic files. {@link
+         * fall back on CPDF. 'GD' render PDFs to graphic files. {@link
          * Canvas_Factory} ultimately determines which rendering class to instantiate
          * based on this setting.
          *

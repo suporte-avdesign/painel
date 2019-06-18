@@ -7625,7 +7625,7 @@
 				settings.ajax = url;
 			}
 			// No need to consider sAjaxSource here since DataTables gives priority
-			// to `ajax` over `sAjaxSource`. So setting `ajax` here, renders any
+			// to `ajax` over `sAjaxSource`. So setting `ajax` here, render any
 			// value of `sAjaxSource` redundant.
 		} );
 	} );

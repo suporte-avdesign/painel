@@ -8,12 +8,12 @@
 <table class="table responsive-table" id="inventory">
     <thead>
     <tr>
-        <th scope="col" width="7%" class="align-center">Foto</th>
-        <th scope="col" width="33%">Código</th>
-        <th scope="col" width="20%" class="align-center">Unidade</th>
-        <th scope="col" width="10%" class="align-center">Qtd</th>
-        <th scope="col" width="10%" class="align-center">Estoque</th>
-        <th scope="col" width="20%" class="align-center">Data</th>
+        <th scope="col" width="7%" class="align-center"></th>
+        <th scope="col" width="23%">{{constLang('product')}}</th>
+        <th scope="col" width="20%" class="align-center">{{constLang('attributes')}}</th>
+        <th scope="col" width="20%" class="align-center">{{constLang('stock')}}</th>
+        <th scope="col" width="20%" class="align-center">{{constLang('values')}}</th>
+        <th scope="col" width="10%" class="align-center">Data</th>
         <th width="2%"></th>
     </tr>
     </thead>

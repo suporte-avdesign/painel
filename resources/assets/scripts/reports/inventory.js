@@ -50,8 +50,8 @@
                 },
                 {data: 'code'},
                 {data: 'kit_name'},
-                {data: 'amount'},
                 {data: 'stock'},
+                {data: 'amount'},
                 {data: "updated_at", className:'align-center'},
                 {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''}
             ],
