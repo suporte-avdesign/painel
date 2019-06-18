@@ -184,3 +184,6 @@ Route::get('catalog', 'Admin\CatalogController@index');
 Route::post('catalog/data', 'Admin\CatalogController@data')->name('catalog.data');
 Route::put('catalog/status/{id}', 'Admin\CatalogController@status')->name('status.catalog');
 
+// Controle de Estoque
+Route::resource('inventory', 'Admin\InventoryController');
+Route::post('inventory/data', 'Admin\InventoryController@data')->name('inventory.data');

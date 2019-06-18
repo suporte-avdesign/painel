@@ -11,7 +11,7 @@
  * Colors
  *
  */
-;(function($, undefined)
+;(function($)
 {
     /**
      * Init table

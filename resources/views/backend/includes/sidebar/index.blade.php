@@ -57,12 +57,16 @@
 						<span><span id="count_colors" class="list-count">{{$sidebar['total_colors']}}</span></span>
 					</a>					
 				</li>
+
 				<li class="with-right-arrow">
-					<span><span class="list-count">3</span>{{constLang('reports')}}</span>
+					<span><span class="list-count">1</span>{{constLang('reports')}}</span>
 					<ul class="big-menu">
-						<li><a href="#">{{constLang('inventory')}}</a></li>
+						@can('inventory.view')
+							<li><a href="inventory">{{constLang('inventory')}}</a></li>
+						@endif
 					</ul>
 				</li>
+
 
 
 				<li>

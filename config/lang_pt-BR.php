@@ -240,6 +240,11 @@ return [
         ],
         'catalog' => [
             'title' => 'Catalogo dos Produtos'
+        ],
+        'inventory' => [
+            'title' => 'Inventário de Estoque'
         ]
+
+
     ]
 ];

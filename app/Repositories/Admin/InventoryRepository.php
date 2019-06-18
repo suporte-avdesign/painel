@@ -5,54 +5,134 @@ namespace AVDPainel\Repositories\Admin;
 
 use AVDPainel\Models\Admin\Inventory as Model;
 use AVDPainel\Interfaces\Admin\InventoryInterface;
+use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
 
-use Illuminate\Foundation\Validation\ValidatesRequests;
+
 
 class InventoryRepository implements InventoryInterface
 {
-    use ValidatesRequests;
 
+    private $disk;
+    private $view;
     public $model;
+    private $photoUrl;
+
+
 
     /**
      * Create construct.
      *
      * @return void
      */
-    public function __construct(Model $model)
+    public function __construct(Model $model, ConfigImage $configImage)
     {
         $this->model = $model;
+        $this->configImage = $configImage;
+        $this->view = 'backend.reports.inventory';
+
+        $this->photoUrl = 'storage/';
+        $this->disk = storage_path('app/public/');
+
     }
 
+
     /**
-     * ValidatesRequests
+     * Date: 15/06/2019
      *
-     * @param  array $input
-     * @param  array $messages
-     * @return array
+     * @param $request
+     * @return json
      */
-    public function rules($input, $messages, $id='')
+    public function getAll($request)
     {
-        $this->validate($input, $this->model->rules($id), $messages);
+        $columns = array(
+            0 => 'id',
+            1 => 'code',
+            2 => 'kit_name',
+            3 => 'amount',
+            4 => 'stock',
+            5 => 'updated_at'
+        );
+
+        $totalData = $this->model->count();
+
+        $totalFiltered = $totalData;
+
+        $limit = $request->input('length');
+        $start = $request->input('start');
+        $order = $columns[$request->input('order.0.column')];
+        $dir   = $request->input('order.0.dir');
+
+        if (empty($request->input('search.value'))) {
+
+            $query = $this->model->offset($start)
+                ->limit($limit)
+                ->orderBy($order,$dir)
+                ->get();
+
+        } else {
+            $search = $request->input('search.value');
+
+            $query =  $this->model->where('code','LIKE',"%{$search}%")
+                ->orWhere('image', 'LIKE',"%{$search}%")
+                ->orWhere('grid', 'LIKE',"%{$search}%")
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order,$dir)
+                ->get();
+
+            $totalFiltered = $this->model->where('code','LIKE',"%{$search}%")
+                ->orWhere('image', 'LIKE',"%{$search}%")
+                ->orWhere('grid', 'LIKE',"%{$search}%")
+                ->count();
+        }
+
+        // Configurações
+        $configImage   = $this->configImage->setName('default', 'T');
+
+        $path    = $configImage->path;
+        $data    = array();
+
+        if(!empty($query))
+        {
+            foreach ($query as $val){
+
+                if ($val->image != '') {
+                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->photoUrl.$path.$val->image).'" width="80" /></a>';
+                } else {
+                    $image = '<img src="'.url('backend/img/default/no_image.png').'" />';
+                }
+
+                $info_product = view("{$this->view}.info_product_render", compact('val'))->render();
+
+
+                $nData['image']   = $image;
+                $nData['code']    = $info_product;
+                $nData['kit_name']= $val->kit_name;
+                $nData['amount']  = $val->amount;
+                $nData['stock']   = $val->stock;
+                $nData['updated_at'] = date('d/m/Y H:i:s', strtotime($val->updated_at));;
+
+                $data[] = $nData;
+            }
+
+        }
+
+        $out = array(
+            "draw" => intval($request->input('draw')),
+            "recordsTotal" => intval($totalData),
+            "recordsFiltered" => intval($totalFiltered),
+            "data" => $data
+        );
+
+        return $out;
+
     }
 
     /**
-     * Init Model
+     * Date: 06/15/2019
      *
-     * @return array
-     */
-    public function getAll()
-    {
-        $data  = $this->model->get();
-        return $data;    
-    }
-
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return array
+     * @param $id
+     * @return mixed
      */
     public function setId($id)
     {
@@ -60,6 +140,12 @@ class InventoryRepository implements InventoryInterface
     }
 
 
+    /**
+     * Date: 06/15/2019
+     *
+     * @param $id
+     * @return mixed
+     */
     public function getGrids($id)
     {
         return $this->model->where('grid_id', $id)->get();
@@ -95,7 +181,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['grid'] = $grids->grid;
             $dataForm['amount'] = (int) $grids->input;
             $dataForm['kit'] = $product->kit;
-            $dataForm['kit_name'] = $product->kit_name;
+            $dataForm['kit_name'] = $product->kit_name. '('.$product->unit.' '.$product->measure.')';
             $dataForm['units'] = $product->unit;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
@@ -141,7 +227,7 @@ class InventoryRepository implements InventoryInterface
                 $dataForm['grid'] = $grids->grid;
                 $dataForm['amount'] = (int) $grids->entry;
                 $dataForm['kit'] = $product->kit;
-                $dataForm['kit_name'] = $product->kit_name;
+                $dataForm['kit_name'] = $product->kit_name. '('.$product->unit.' '.$product->measure.')';
                 $dataForm['units'] = $product->unit;
                 $dataForm['offer'] = $product->offer;
                 $dataForm['cost_unit'] = $product->cost->value;
@@ -186,7 +272,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['grid'] = $grid->grid;
             $dataForm['amount'] = $grid->stock;
             $dataForm['kit'] = $product->kit;
-            $dataForm['kit_name'] = $product->kit_name;
+            $dataForm['kit_name'] = $product->kit_name. '('.$product->unit.' '.$product->measure.')';
             $dataForm['units'] = $product->unit;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
@@ -230,7 +316,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['grid'] = $grids->grid;
             $dataForm['amount'] = (int)$grids->input;
             $dataForm['kit'] = $product->kit;
-            $dataForm['kit_name'] = $product->kit_name;
+            $dataForm['kit_name'] = $product->unit. ' '.$product->measure;
             $dataForm['units'] = $product->unit;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
@@ -288,7 +374,7 @@ class InventoryRepository implements InventoryInterface
                 $dataForm['grid'] = $grid->grid;
                 $dataForm['amount'] = (int)$grid->input;
                 $dataForm['kit'] = $product->kit;
-                $dataForm['kit_name'] = $product->kit_name;
+                $dataForm['kit_name'] = $product->unit. ' '.$product->measure;
                 $dataForm['units'] = $product->unit;
                 $dataForm['offer'] = $product->offer;
                 $dataForm['cost_unit'] = $product->cost->value;
@@ -326,7 +412,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['grid'] = $grid->grid;
             $dataForm['amount'] = $grid->stock;
             $dataForm['kit'] = $product->kit;
-            $dataForm['kit_name'] = $product->kit_name;
+            $dataForm['kit_name'] = $product->unit. ' '.$product->measure;
             $dataForm['units'] = $product->unit;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;

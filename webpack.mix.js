@@ -194,6 +194,8 @@ mix.scripts('resources/assets/scripts/products/positions.js', 'public/backend/sc
 mix.scripts('resources/assets/scripts/products/grids.js', 'public/backend/scripts/products/grids.min.js');
 mix.scripts('resources/assets/scripts/products/catalog.js', 'public/backend/scripts/products/catalog.min.js');
 
+mix.scripts('resources/assets/scripts/reports/inventory.js', 'public/backend/scripts/reports/inventory.min.js');
+
 mix.scripts('resources/assets/scripts/sections.js', 'public/backend/scripts/sections.min.js');
 mix.scripts('resources/assets/scripts/sliders.js', 'public/backend/scripts/sliders.min.js');
 mix.scripts('resources/assets/scripts/wishlist.js', 'public/backend/scripts/wishlist.min.js');
