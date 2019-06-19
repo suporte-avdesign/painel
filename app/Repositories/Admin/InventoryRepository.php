@@ -6,7 +6,7 @@ namespace AVDPainel\Repositories\Admin;
 use AVDPainel\Models\Admin\Inventory as Model;
 use AVDPainel\Interfaces\Admin\InventoryInterface;
 use AVDPainel\Interfaces\Admin\ConfigColorPositionInterface as ConfigImage;
-
+use Illuminate\Support\Str;
 
 
 class InventoryRepository implements InventoryInterface
@@ -37,7 +37,7 @@ class InventoryRepository implements InventoryInterface
 
 
     /**
-     * Date: 15/06/2019
+     * Date: 06/18/2019
      *
      * @param $request
      * @return json
@@ -54,7 +54,6 @@ class InventoryRepository implements InventoryInterface
         );
 
         $totalData = $this->model->count();
-
         $totalFiltered = $totalData;
 
         $limit = $request->input('length');
@@ -89,29 +88,34 @@ class InventoryRepository implements InventoryInterface
         // Configurações
         $configImage   = $this->configImage->setName('default', 'T');
 
-        $path    = $configImage->path;
-        $data    = array();
+        $path  = $configImage->path;
+        $data  = array();
+        $collection = collect($query)->all();
 
-        if(!empty($query))
+        if(!empty($collection))
         {
-            foreach ($query as $val){
+            foreach ($collection as $collect){
+                /** param */
+                $photoUrl = $this->photoUrl.$path.$collect->image;
+                $previous_stock = $this->previousStock($collection, $collect->grid_id);
 
-                if ($val->image != '') {
-                    $image = '<a href="javascript:void(0)"><img id="img-'.$val->id.'" src="'.url($this->photoUrl.$path.$val->image).'" width="80" /></a>';
-                } else {
-                    $image = '<img src="'.url('backend/img/default/no_image.png').'" />';
-                }
-
-                $info_product = view("{$this->view}.render.info_product", compact('val'))->render();
-                $values_product = view("{$this->view}.render.values_product", compact('val'))->render();
-                $attributes_product = view("{$this->view}.render.attributes_product", compact('val'))->render();
+                /** Renders */
+                $image = view("{$this->view}.render.image", compact('collect', 'photoUrl'))->render();
+                $users = view("{$this->view}.render.users", compact('collect'))->render();
+                $values = view("{$this->view}.render.values", compact('collect'))->render();
+                $product = view("{$this->view}.render.product", compact('collect'))->render();
+                $details = view("{$this->view}.render.details", compact('collect'))->render();
+                $movement = view("{$this->view}.render.movement", compact('collect', 'previous_stock'))->render();
+                $attributes = view("{$this->view}.render.attributes", compact('collect'))->render();
 
                 $nData['image']   = $image;
-                $nData['code']    = $info_product;
-                $nData['kit_name']= $attributes_product;
-                $nData['stock']   = $val->stock;
-                $nData['amount']  = $values_product;
-                $nData['updated_at'] = date('d/m/Y H:i:s', strtotime($val->updated_at));;
+                $nData['code']    = $product;
+                $nData['kit_name']= $attributes;
+                $nData['stock']   = $movement;
+                $nData['amount']  = $values;
+                $nData['updated_at'] = $users;
+                $nData['details'] = $details;
+                $nData['id'] = $collect->id;
 
                 $data[] = $nData;
             }
@@ -126,6 +130,33 @@ class InventoryRepository implements InventoryInterface
         );
 
         return $out;
+    }
+
+    protected function previousStock($collection, $grid_id)
+    {
+        $desiredKey = $grid_id;
+        $stock_all  = '';
+
+        foreach ($collection as $values) {
+            $mArray[] = array(array($values->grid_id => $values->stock));
+        }
+
+        foreach ($mArray as $aValue) {
+            foreach ($aValue as $bValue) {
+                foreach ($bValue as $key => $value)
+                if ($key == $desiredKey) {
+                    $stock_all .= $value.',';
+                }
+            }
+        }
+
+        $array = explode(',', $stock_all);
+        $total = count($array);
+        if ($total == 1) {
+            return 0;
+        } else {
+            return $array[1];
+        }
 
     }
 
@@ -262,7 +293,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['admin_id'] = auth()->user()->id;
             $dataForm['profile_name'] = constLang('profile_name.admin');
             $dataForm['type_movement'] = constLang('type_movement.delete');
-            $dataForm['note'] = constLang('messages.products.delete_true') . ' ' . auth()->user()->name;
+            $dataForm['note'] = auth()->user()->name. ' '.constLang('messages.products.delete_true');
             $dataForm['brand'] = $product->brand;
             $dataForm['section'] = $product->section;
             $dataForm['category'] = $product->category;
@@ -402,7 +433,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['admin_id'] = auth()->user()->id;
             $dataForm['profile_name'] = constLang('profile_name.admin');
             $dataForm['type_movement'] = constLang('type_movement.delete');
-            $dataForm['note'] = constLang('messages.products.delete_true').' '. auth()->user()->name;
+            $dataForm['note'] = auth()->user()->name. ' '.constLang('messages.products.delete_true');
             $dataForm['brand'] = $product->brand;
             $dataForm['section'] = $product->section;
             $dataForm['category'] = $product->category;

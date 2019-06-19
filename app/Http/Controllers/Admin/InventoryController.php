@@ -2,8 +2,9 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
+use AVDPainel\Interfaces\Admin\AdminInterface as InterAdmin;
+use AVDPainel\Interfaces\Admin\UserInterface as InterUser;
 use AVDPainel\Interfaces\Admin\InventoryInterface as InterModel;
-
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigSystemInterface as ConfigSystem;
 
@@ -17,8 +18,9 @@ class InventoryController extends Controller
     protected $ability  = 'inventory';
     protected $view     = 'backend.reports.inventory';
 
-
     public function __construct(
+        InterUser $interUser,
+        InterAdmin $interAdmin,
         InterAccess $access,
         InterModel $interModel,
         ConfigSystem $confUser)
@@ -26,10 +28,13 @@ class InventoryController extends Controller
 
         $this->middleware('auth:admin');
 
-        $this->access       = $access;
-        $this->confUser     = $confUser;
-        $this->interModel   = $interModel;
-        $this->last_url     = array('last_url' => 'inventory');
+        $this->access     = $access;
+        $this->confUser   = $confUser;
+        $this->interUser  = $interUser;
+        $this->interModel = $interModel;
+        $this->interAdmin = $interAdmin;
+
+        $this->last_url   = array('last_url' => 'inventory');
     }
 
      /**
@@ -44,9 +49,7 @@ class InventoryController extends Controller
         }
 
         $this->access->update($this->last_url);
-
-        $confUser      = $this->confUser->get();
-
+        $confUser = $this->confUser->get();
 
         return view("$this->view.index", compact('confUser'));
     }
@@ -69,69 +72,26 @@ class InventoryController extends Controller
         return response()->json($data);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function admin($id)
     {
-        //
+        if( Gate::denies("{$this->ability}-view") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $data = $this->interAdmin->setId(numLetter($id));
+
+        return view("{$this->view}.modal.admin", compact('data'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+    public function user($id)
     {
-        //
+        if( Gate::denies("{$this->ability}-view") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $data = $this->interUser->setId($id);
+
+        return view("{$this->view}.modal.user", compact('data'));
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Inventory $inventory)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Inventory $inventory)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Inventory $inventory)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \AVDPainel\Models\Admin\Inventory  $inventory
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Inventory $inventory)
-    {
-        //
-    }
 }

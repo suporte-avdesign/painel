@@ -11,7 +11,7 @@
  * Inventary
  *
  */
-;(function($, undefined)
+;(function($)
 {
     /**
      * Init table
@@ -77,9 +77,6 @@
                 tr.children().addClass(tableInventary.colorSel);
             }
         });
-
-
-
     }
 
 })(jQuery);

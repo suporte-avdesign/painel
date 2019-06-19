@@ -27,6 +27,26 @@ if (! function_exists('setReal')) {
 }
 
 /**
+ * Limitar o texto de uma string
+ *
+ * @param  string $numero
+ */
+if (! function_exists('limitText')) {
+    function limitText($str, $limit=100, $clear=true, $point=false){
+        if($clear = true){
+            $str = strip_tags($str);
+        }
+        if(strlen($str) <= $limit){
+            return $str;
+        }
+        $limit_str = substr($str, 0, $limit);
+        $last = strrpos($limit_str, ' ');
+        return substr($limit_str, 0, $last).'...';
+    }
+}
+
+
+/**
  * Trocar números por letras e vice versa.
  *
  * @param  string $str

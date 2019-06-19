@@ -49,6 +49,7 @@ return [
     'active_false' => 'Inativo',
     'add' => 'Adicionar',
     'added' => 'Adicionou',
+    'added' => 'Adicionou',
     'alert' => [
         'cover_new' => 'O sistema criou uma nova imagem capa.',
         'cover_false' => 'Você não tem nehuma imagem capa com o status ativo!',
@@ -63,12 +64,16 @@ return [
     'category' => 'Categoria',
     'card' => 'Cartão',
     'cash' => 'À Vista',
+    'cell' => 'Celular',
+    'close' => 'Fechar',
     'code' => 'Código',
     'color' => 'Cor',
     'colors' => 'Cores',
     'cost' => 'Custo',
     'cover' => 'capa',
     'created' => 'Criado',
+    'current' => 'Atual',
+    'date' => 'Data',
     'delete' => 'Excluir ',
     'delete_false' => 'Não foi possível excluir o registro',
     'delete_true' => 'O registro foi excluido',
@@ -82,6 +87,7 @@ return [
         '404'  => 'Página não encontrada',
     ],
     'featured' => 'Destaque',
+    'phone' => 'Telefone',
     'grid'  => 'Grade',
     'group'  => 'Grupo',
     'genders.required' => 'Os gêneros são obrigatórios',
@@ -100,11 +106,14 @@ return [
     'loader' => 'Aguarde',
     'login' => 'Login',
     'login_entry' => 'Fez login no sistema.',
+    'mail' => 'Email',
     'max' => 'Máximo',
     'min' => 'Mínimo',
+    'movement' => 'Movimento',
     'name' => 'Nome',
     'new' => 'Novo',
     'not' => 'Não',
+    'note' => 'Observação',
     'offer' => 'Oferta',
     'order' => 'Ordem',
     'order_false' => 'Não foi possível alterar a ordem',
@@ -114,6 +123,7 @@ return [
     'payment_cash' => 'Pagamento à Vista',
     'photo' => 'Foto',
     'position' => 'Posição',
+    'previous' => 'Anterior',
     'product' => 'Produto',
     'profile' => 'Perfil',
     'profile_name' => [
@@ -121,6 +131,7 @@ return [
         'user' => 'Cliente'
     ],
     'qty' => 'Qtd',
+    'quantity' => 'Quantidade',
     'reports' => 'Relatórios',
     'reminder' => 'Lebre-me',
     'remove' => 'Remover',
@@ -245,7 +256,8 @@ return [
             'title' => 'Catalogo dos Produtos'
         ],
         'inventory' => [
-            'title' => 'Inventário de Estoque'
+            'title' => 'Inventário de Estoque',
+            'title_note' => 'Observação do movimento'
         ]
 
 

@@ -2815,7 +2815,31 @@ class ConfigPermissionsTableSeeder extends Seeder
             'config_profile_id' => 4
         ]);
 
-
+        /*
+        ----------------------------------------
+         33- Inventário do Estoque
+        ----------------------------------------
+        */
+        /************* View ************/
+        DB::table('config_permissions')->insert([
+            'module_id' => 32,
+            'name' => 'inventory-view',
+            'label' => 'Visualizar',
+            'created_at' => $date
+        ]);
+        /************* Permissions ************/
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 154,
+            'config_profile_id' => 2
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 154,
+            'config_profile_id' => 3
+        ]);
+        DB::table('config_permission_config_profile')->insert([
+            'config_permission_id' => $id + 154,
+            'config_profile_id' => 4
+        ]);
 
 
     }
@@ -3020,8 +3044,8 @@ class ConfigPermissionsTableSeeder extends Seeder
     |     - contents-site-create
     |     - contents-site-update
     |     - contents-site-delete
-    |
-    |
+    | 33- Inventário do Estoque
+    |     - inventory-view
     |
     |
     */
