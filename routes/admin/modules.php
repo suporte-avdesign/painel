@@ -187,5 +187,6 @@ Route::put('catalog/status/{id}', 'Admin\CatalogController@status')->name('statu
 // Controle de Estoque
 Route::get('inventory', 'Admin\InventoryController@index');
 Route::post('inventory/data', 'Admin\InventoryController@data')->name('inventory.data');
-Route::get('inventory/admin/{id}', 'Admin\InventoryController@admin')->name('inventory.admin');
-Route::get('inventory/user/{id}', 'Admin\InventoryController@user')->name('inventory.user');
+Route::get('inventory/{id}/details', 'Admin\InventoryController@details');
+Route::get('inventory/modal/{id}/admin', 'Admin\InventoryController@admin')->name('inventory.admin');
+Route::get('inventory/modal/{id}/user', 'Admin\InventoryController@user')->name('inventory.user');

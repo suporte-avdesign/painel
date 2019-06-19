@@ -44,7 +44,18 @@
         <div class="panel-navigation silver-gradient">
             <div class="panel-control"></div>
             <div class="panel-load-target scrollable" style="height:490px">
-                <div class="navigable"></div>
+                <div class="navigable">
+                    <ul class="files-list mini open-on-panel-content">
+                        @can('inventory-view')
+                            <li>
+                                <a href="inventory/@{{{id}}}/details" class="file-link">
+                                    <span class="icon file-css"></span>
+                                    {{constLang('messages.inventory.title_note')}}
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
             </div>
         </div>
         <div class="panel-content linen navigable">

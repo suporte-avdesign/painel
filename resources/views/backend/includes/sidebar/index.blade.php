@@ -63,17 +63,12 @@
 					<ul class="big-menu">
 						@can('inventory.view')
 							<li><a href="inventory">{{constLang('inventory')}}</a></li>
-						@endif
+						@endcan
 					</ul>
 				</li>
-
-
-
 				<li>
 					<a href="https://mail.zoho.com/zm/#mail/folder/inbox" target="_blank" title="Zoho Mail">Zoho Mail</a>
 				</li>
-
-
 			</ul>
 		</section>
 		<!--

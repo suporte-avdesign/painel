@@ -2822,7 +2822,7 @@ class ConfigPermissionsTableSeeder extends Seeder
         */
         /************* View ************/
         DB::table('config_permissions')->insert([
-            'module_id' => 32,
+            'module_id' => 33,
             'name' => 'inventory-view',
             'label' => 'Visualizar',
             'created_at' => $date

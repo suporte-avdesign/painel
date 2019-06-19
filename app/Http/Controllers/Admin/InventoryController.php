@@ -72,6 +72,17 @@ class InventoryController extends Controller
         return response()->json($data);
     }
 
+    public function details($id)
+    {
+        if( Gate::denies("{$this->ability}-view") ) {
+            return view("backend.erros.message-401");
+        }
+
+        $data = $this->interModel->setId($id);
+
+        return view("{$this->view}.details", compact('data'));
+    }
+
     public function admin($id)
     {
         if( Gate::denies("{$this->ability}-view") ) {
