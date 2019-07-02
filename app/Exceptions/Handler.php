@@ -59,7 +59,7 @@ class Handler extends ExceptionHandler
 
         foreach ($traces as $trace) {
             if ($trace['function'] == 'authenticate') {
-                return "<script>var url = '{$redirect}'; $('#main').load(url); window.location.href = {$redirect}</script>";
+                return redirect()->route('login');
             }
         }
 

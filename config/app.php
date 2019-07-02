@@ -234,7 +234,6 @@ return [
 
         /*
          * Package Image ... Manipulação de Imagem
-         * Package PDF ... Manipulação de PDF
          */
         'Image' => Intervention\Image\Facades\Image::class,
 

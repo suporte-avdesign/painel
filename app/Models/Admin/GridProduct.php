@@ -11,6 +11,7 @@ class GridProduct extends Model
         'image_color_id',
         'color',
         'kit',
+        'units',
         'qty_min',
         'qty_max',
         'grid',

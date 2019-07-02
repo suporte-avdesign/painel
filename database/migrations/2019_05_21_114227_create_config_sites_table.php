@@ -25,7 +25,8 @@ class CreateConfigSitesTable extends Migration
             $table->smallInteger('page_categories')->default(1);
             $table->smallInteger('page_sections')->default(1);
             $table->smallInteger('page_brands')->default(1);
-            $table->smallInteger('limit_products')->default(50);
+            $table->smallInteger('limit_products')->default(30);
+            $table->smallInteger('list')->default(1);
             $table->smallInteger('detail_products')->default(1);
             $table->smallInteger('tabs_products')->default(1);
             $table->smallInteger('long_description')->default(1);

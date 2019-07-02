@@ -43,6 +43,7 @@ class ProductRequest extends FormRequest
         $inputPrice    = $this->request->get('price');
         $inputCost     = $this->request->get('cost');
         $offer         = $inputProduct['offer'];
+        $id            = $this->get('has');
 
         //dd($price_default);
 
@@ -58,7 +59,7 @@ class ProductRequest extends FormRequest
                $rules['prod.category_id'] = 'required';
             }
             if($key == 'name'){
-               $rules['prod.name'] = 'required';
+               $rules['prod.name'] = "required|unique:products,name,{$id},id";
             }
 
 
@@ -223,7 +224,10 @@ class ProductRequest extends FormRequest
             }
 
             $messages['prod.'.$key.'.required'] = $msg;
+
         }
+
+        $messages['prod.name.unique'] = 'O nome do produto já se encontra utilizado.';
 
 
         foreach ($inputPrice as $key => $value) {
@@ -255,6 +259,8 @@ class ProductRequest extends FormRequest
                 }
             }
         }
+
+
 
         return $messages;
     }   

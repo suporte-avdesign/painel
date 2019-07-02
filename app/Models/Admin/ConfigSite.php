@@ -19,6 +19,7 @@ class ConfigSite extends Model
         'page_categories',
         'page_sections',
         'page_brands',
+        'list',
         'limit_products',
         'detail_products',
         'tabs_products',

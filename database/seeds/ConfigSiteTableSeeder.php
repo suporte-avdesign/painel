@@ -26,6 +26,7 @@ class ConfigSiteTableSeeder extends Seeder
             'page_sections' => 1,
             'page_brands' => 1,
             'limit_products' => 1,
+            'list' => 1,
             'detail_products' => 1,
             'tabs_products' => 1,
             'long_description' => 1,

@@ -12,7 +12,7 @@
 					<fieldset class="fieldset">
 						@method("PUT")
 						@csrf
-					    <legend class="legend">Padrão do Sie</legend>
+					    <legend class="legend">Padrão do Site</legend>
 						<p class="button-height inline-medium-label">
 							<label for="header" class="label">Design Topo</label>
 							<select name="header" class="select check-list">
@@ -66,6 +66,14 @@
 							</select>
 						</p>
 						<p class="button-height inline-medium-label">
+							<label for="list" class="label">Listar por:</label>
+							<select name="list" class="select check-list">
+								<option value="1" {{{ $data->list == 1 ? 'selected="selected"' : '' }}}>Produtos</option>
+								<option value="2" {{{ $data->list == 2 ? 'selected="selected"' : '' }}}>Cores</option>
+							</select>
+						</p>
+
+						<p class="button-height inline-medium-label">
 							<label for="order_products" class="label">Ordem dos Produtos</label>
 							<select name="order_products" class="select check-list">
 								<option value="asc" {{{ $data->order_products == 'asc' ? 'selected="selected"' : '' }}}>Crescente</option>
@@ -78,7 +86,7 @@
 							<label for="order" class="label">Registrar Ordem</label>
 							<select name="order" class="select check-list">
 								<option value="wishlist" {{{ $data->order == 'wishlist' ? 'selected="selected"' : '' }}}>Lista de Desejo</option>
-								<!--<option value="cart" {{{ $data->order == 'cart' ? 'selected="selected"' : '' }}}>Carrinho</option> -->
+								<option value="cart" {{{ $data->order == 'cart' ? 'selected="selected"' : '' }}}>Carrinho</option>
 							</select>
 						</p>
 

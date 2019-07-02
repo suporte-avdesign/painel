@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentDeliveryReturnTableSeeder::class);
         $this->call(ContentPrivacyPoliciesTableSeeder::class);
         $this->call(ContentTermsConditionsTableSeeder::class);
+        $this->call(SocialShareTableSeeder::class);
         $this->call(StateTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(ContactTableSeeder::class);

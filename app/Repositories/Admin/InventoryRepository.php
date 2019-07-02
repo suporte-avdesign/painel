@@ -214,7 +214,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['amount'] = (int) $grids->input;
             $dataForm['kit'] = $product->kit;
             $dataForm['kit_name'] = $product->kit_name. '('.$product->unit.' '.$product->measure.')';
-            $dataForm['units'] = $product->unit;
+            $dataForm['units'] = $grids->units;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
             $dataForm['cost_total'] = $grids->input * $product->cost->value;
@@ -260,7 +260,7 @@ class InventoryRepository implements InventoryInterface
                 $dataForm['amount'] = (int) $grids->entry;
                 $dataForm['kit'] = $product->kit;
                 $dataForm['kit_name'] = $product->kit_name. '('.$product->unit.' '.$product->measure.')';
-                $dataForm['units'] = $product->unit;
+                $dataForm['units'] = $grids->units;
                 $dataForm['offer'] = $product->offer;
                 $dataForm['cost_unit'] = $product->cost->value;
                 $dataForm['cost_total'] = $grids->entry * $product->cost->value;
@@ -305,7 +305,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['amount'] = $grid->stock;
             $dataForm['kit'] = $product->kit;
             $dataForm['kit_name'] = $product->kit_name. '('.$product->unit.' '.$product->measure.')';
-            $dataForm['units'] = $product->unit;
+            $dataForm['units'] = $grid->units;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
             $dataForm['cost_total'] = $grid->stock * $product->cost->value;
@@ -349,7 +349,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['amount'] = (int)$grids->input;
             $dataForm['kit'] = $product->kit;
             $dataForm['kit_name'] = $product->unit. ' '.$product->measure;
-            $dataForm['units'] = $product->unit;
+            $dataForm['units'] = $grids->units;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
             $dataForm['cost_total'] = $grids->input * $product->cost->value;
@@ -407,7 +407,7 @@ class InventoryRepository implements InventoryInterface
                 $dataForm['amount'] = (int)$grid->input;
                 $dataForm['kit'] = $product->kit;
                 $dataForm['kit_name'] = $product->unit. ' '.$product->measure;
-                $dataForm['units'] = $product->unit;
+                $dataForm['units'] = $grid->units;
                 $dataForm['offer'] = $product->offer;
                 $dataForm['cost_unit'] = $product->cost->value;
                 $dataForm['cost_total'] = $grid->input * $product->cost->value;
@@ -445,7 +445,7 @@ class InventoryRepository implements InventoryInterface
             $dataForm['amount'] = $grid->stock;
             $dataForm['kit'] = $product->kit;
             $dataForm['kit_name'] = $product->unit. ' '.$product->measure;
-            $dataForm['units'] = $product->unit;
+            $dataForm['units'] = $grid->units;
             $dataForm['offer'] = $product->offer;
             $dataForm['cost_unit'] = $product->cost->value;
             $dataForm['cost_total'] = $grid->stock * $product->cost->value;

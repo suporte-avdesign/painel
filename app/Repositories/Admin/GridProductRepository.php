@@ -59,6 +59,7 @@ class GridProductRepository implements GridProductInterface
     {
         $dataForm['color']          = $image->color;
         $dataForm['kit']            = $product->kit;
+        $dataForm['units']          = $this->countKit($input['grid']);
         $dataForm['grid']           = $input['grid'];
         $dataForm['product_id']     = $product->id;
         $dataForm['image_color_id'] = $image->id;
@@ -258,6 +259,7 @@ class GridProductRepository implements GridProductInterface
                     'product_id' => $product->id,
                     'image_color_id' => $image->id,
                     'kit' => $product->kit,
+                    'units' => 1,
                     'color' => $image->color,
                     'grid' => $value['grid'],
                 ];
@@ -319,6 +321,7 @@ class GridProductRepository implements GridProductInterface
 
         $dataForm['color']          = $image->color;
         $dataForm['kit']            = $product->kit;
+        $dataForm['units']          = 1;
         $dataForm['grid']           = $input['grid'];
         $dataForm['product_id']     = $product->id;
         $dataForm['image_color_id'] = $image->id;
@@ -603,5 +606,32 @@ class GridProductRepository implements GridProductInterface
 
         return $this->model->where('image_color_id', $id)->get();
     }
+
+
+    /**
+     * Date 06/28/2019
+     *
+     * @param $kit
+     * @return int|mixed
+     */
+    public function countKit($kit)
+    {
+        $units = 0;
+        $grids = explode(',', $kit);
+
+        foreach ($grids as $grid) {
+            $key = explode('/', $grid);
+            $values[] = $key[0];
+        }
+
+        foreach ($values as $value)
+        {
+            $units  += $value;
+        }
+
+
+        return $units;
+    }
+
 
 }
