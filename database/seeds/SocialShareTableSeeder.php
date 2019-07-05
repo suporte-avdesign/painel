@@ -6,7 +6,7 @@ use AVDPainel\Models\Admin\SocialShare;
 class SocialShareTableSeeder extends Seeder
 {
     /**
-     * Run the database seeds.
+     * Config social share.
      *
      * @return void
      */

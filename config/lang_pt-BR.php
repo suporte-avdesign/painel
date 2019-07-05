@@ -36,7 +36,7 @@ return [
     |--------------------------------------------------------------------------
     */
     'ConfigAdmin' => [
-       'title' => 'Configuração dos Usuários'
+        'title' => 'Configuração dos Usuários'
     ],
 
 
@@ -49,7 +49,7 @@ return [
     'active_false' => 'Inativo',
     'add' => 'Adicionar',
     'added' => 'Adicionou',
-    'added' => 'Adicionou',
+    'all' => 'Todos',
     'alert' => [
         'cover_new' => 'O sistema criou uma nova imagem capa.',
         'cover_false' => 'Você não tem nehuma imagem capa com o status ativo!',
@@ -57,21 +57,28 @@ return [
         'cover_product_false' => 'Como não existe nenhuma imagem ativa o produto foi desativado.',
         'cover_product_true' => 'O status do produto também já esta ativo, Boas vendas!'
     ],
+    'attacked' => 'Atacado',
     'attributes' => 'Atributos',
     'back' => 'Voltar ',
     'black_friday' => 'Black Friday',
     'cancel' => 'Cancelar',
     'category' => 'Categoria',
+    'categories' => 'Categorias',
     'card' => 'Cartão',
+    'cart' => 'Carrinho',
     'cash' => 'À Vista',
     'cell' => 'Celular',
     'close' => 'Fechar',
+    'checkout' => 'Finalizar',
     'code' => 'Código',
     'color' => 'Cor',
     'colors' => 'Cores',
+    'comment' => 'Comentário',
+    'compare' => 'Compare',
     'cost' => 'Custo',
     'cover' => 'capa',
     'created' => 'Criado',
+    'currency' => 'R$',
     'current' => 'Atual',
     'date' => 'Data',
     'delete' => 'Excluir ',
@@ -80,6 +87,8 @@ return [
     'deleted' => 'Excluiu',
     'description' => 'Descrição',
     'description_painel' => 'Painel Administrativo',
+    'detail' => 'Detalhe',
+    'details_view' => 'Ver Detalhes',
     'edit' => 'Editar',
     'entry' => 'Entrada',
     'error' => [
@@ -87,10 +96,13 @@ return [
         '404'  => 'Página não encontrada',
     ],
     'featured' => 'Destaque',
-    'phone' => 'Telefone',
+    'filter' => 'Filtrar',
+    'phone' => 'Preço',
+    'price' => 'Telefone',
     'grid'  => 'Grade',
     'group'  => 'Grupo',
     'genders.required' => 'Os gêneros são obrigatórios',
+    'home' => 'Home',
     'image' => 'Imagem',
     'images' => [
         'add' => 'Adicionar Imagem',
@@ -101,6 +113,7 @@ return [
         'deleted_true' => 'A imagem foi excluida',
         'deleted_false' => 'Não foi possível excluir a imagem'
     ],
+    'in' => 'de',
     'inventory' => 'Inventário',
     'keywords.required' => 'As tags são obrigatórias',
     'loader' => 'Aguarde',
@@ -114,16 +127,31 @@ return [
     'new' => 'Novo',
     'not' => 'Não',
     'note' => 'Observação',
+    'of' => 'de',
     'offer' => 'Oferta',
+    'on_offer' => 'Em Oferta',
     'order' => 'Ordem',
+    'orderby' => 'Ordenar por',
     'order_false' => 'Não foi possível alterar a ordem',
     'order_true' => 'A ordem foi alterada',
+    'page' => 'Página',
     'parcel' => 'Parcelado',
     'payment_card' => 'Cartão de Crédito',
     'payment_cash' => 'Pagamento à Vista',
+    'person_legal' => [
+        'name' => 'Pessoa Jurídica',
+        'document1' => 'CNPJ',
+        'document2' => 'Inscrição Estadual'
+    ],
+    'person_physical' => [
+        'name' => 'Pessoa Física',
+        'document1' => 'CPF',
+        'document2' => 'RG'
+    ],
     'photo' => 'Foto',
     'position' => 'Posição',
     'previous' => 'Anterior',
+    'price' => 'Preço',
     'product' => 'Produto',
     'profile' => 'Perfil',
     'profile_name' => [
@@ -132,16 +160,28 @@ return [
     ],
     'qty' => 'Qtd',
     'quantity' => 'Quantidade',
-    'reports' => 'Relatórios',
+    'quick_view' => 'Vusualização Rapida',
+    'rated' => 'Avaliado',
     'reminder' => 'Lebre-me',
     'remove' => 'Remover',
+    'reports' => 'Relatórios',
+    'reset' => 'Limpar',
+    'results' => 'Resultados',
+    'retail' => 'Varejo',
     'save' => 'Salvar',
     'section' => 'Seção',
+    'select_state' => 'Selecione o Estado',
+    'select_options' => 'Selecione as opções',
+    'share' => 'Compartilhar',
+    'show' => 'Ver',
+    'sidebar' => 'Barra Lateral',
+    'sizes' => 'Tamanhos',
     'status' => 'Status',
     'status_change' => 'Alterar Status',
     'status_true' => 'O status foi alterado',
     'status_false' => 'Não foi possível alterar o status',
     'stock' => 'Estoque',
+    'subtotal' => 'Subtotal',
     'tables_preference' => 'a configuração das cores das tabelas por uma de sua preferência',
     'ticket' => 'Boleto',
     'title_update' => 'Alterar',
@@ -241,10 +281,12 @@ return [
 
     ],
     'messages' => [
+        'qty_min' => 'A quantidade mínima são 6 pares podendo variar modelos, cores e tamanhos.',
         'products' => [
             'delete_true' => 'Excluiu o Produto',
             'delete_false' => 'Não foi possível excuir o produto',
-            'total_colors' => 'Total de Cores'
+            'name' => 'Nome do produto',
+            'total_colors' => 'Total de Cores',
         ],
         'grids' => [
             'brand_false' => 'Não existe grade deste fabricante!',
@@ -258,7 +300,41 @@ return [
         'inventory' => [
             'title' => 'Inventário de Estoque',
             'title_note' => 'Observação do movimento'
+        ],
+        'wishlist' => [
+            'add' => 'Adicionar a lista de desejos',
+            'added' => 'O produto já está na lista de desejos!',
+            'view' => 'Ver lista de desejos'
+        ],
+        'colors' => [
+            'btn_zoom' => 'Clique para Ampliar',
+        ],
+        'cart' => [
+            'empty' => 'Seu carrinho está vazio.',
+            'empty_text1' => 'Antes de prosseguir para o checkout, você deve adicionar alguns produtos ao seu carrinho de compras.',
+            'empty_text2' => 'Você encontrará muitos produtos interessantes em nossa página "Loja".',
+            'product_added' => 'foi adicionado ao seu carrinho.',
+            'remove_item' => 'Remover este item',
+            'total' => 'Total do carrinho',
+            'title' => 'Seu Carrinho',
+            'update' => 'Atualizar Carrinho',
+            'view' => 'Ver Carrinho'
+        ],
+        'checkouts' => [
+            'btn_checkout' => 'Finalizar Pedido',
+            'checkout' => 'Finalizar',
+
+        ],
+        'coupons' => [
+            'coupon' => 'Cupom',
+            'apply' => 'Aplicar Cupom',
+            'code' => 'Código do Cupom',
+            'discount' => 'Cupom de desconto',
+        ],
+        'shipping' => [
+            'freight' => 'Frete'
         ]
+
 
 
     ]
