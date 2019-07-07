@@ -22,6 +22,7 @@ class UsersTableSeeder extends Seeder
         User::create([
             'id' => $id_user,
             'profile_id' => 2,
+            'type_id' => 2,
             'first_name' => 'Anselmo',
             'last_name' => 'Velame',
             'email' => 'design@anselmovelame.com.br',

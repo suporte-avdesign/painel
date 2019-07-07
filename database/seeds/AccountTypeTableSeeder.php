@@ -13,7 +13,7 @@ class AccountTypeTableSeeder extends Seeder
      */
     public function run()
     {
-        $id   = mt_rand(1, '123456789');
+        $id   = 1;
         $date = date('Y-m-d H:i:s');
 
         AccountType::create([

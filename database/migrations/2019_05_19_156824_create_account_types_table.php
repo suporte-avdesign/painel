@@ -14,7 +14,7 @@ class CreateAccountTypesTable extends Migration
     public function up()
     {
         Schema::create('account_types', function (Blueprint $table) {
-            $table->integer('id');
+            $table->integerIncrements('id');
             $table->string('name');
             $table->enum('active', [
                 constLang('active_true'),

@@ -16,13 +16,14 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('profile_id');
+            $table->unsignedInteger('type_id');
             $table->string('first_name', 50);
             $table->string('last_name', 50);
             $table->string('email', 50)->unique();
             $table->string('document1', 50);
             $table->string('document2', 50);
-            $table->string('phone', 30);
-            $table->string('cell', 30)->nullable();
+            $table->string('phone', 30)->nullable();
+            $table->string('cell', 30);
             $table->string('admin', 30)->nullable();
             $table->string('token')->nullable();
             $table->string('password');
@@ -39,7 +40,10 @@ class CreateUsersTable extends Migration
             $table->softDeletes();
 
             $table->foreign('profile_id')->references('id')
-                ->on('config_profile_clients')->onDelete('cascade');
+                ->on('config_profile_clients');
+
+            $table->foreign('type_id')->references('id')
+                ->on('account_types');
 
         });
     }
