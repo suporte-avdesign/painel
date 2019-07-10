@@ -19,6 +19,9 @@ class CreateConfigShippingsTable extends Migration
             $table->text('description');
             $table->char('order', 2);
             $table->enum('active', [constLang('active_true'), constLang('active_false')]);
+            $table->smallInteger('tax')->default(1);
+            $table->decimal('tax_unique', 8, 2)->default(0);
+            $table->decimal('tax_condition', 8, 2)->default(0);
             $table->timestamps();
         });
     }

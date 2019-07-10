@@ -10,7 +10,11 @@ class ConfigShipping extends Model
         'name',
         'description',
         'order',
-        'active'
+        'active',
+        'tax',
+        'tax_unique',
+        'tax_condition'
+
     ];
 
     /**
@@ -20,9 +24,12 @@ class ConfigShipping extends Model
     public function rules($id = '')
     {
         return [
-            "name"         => "required|unique:config_shippings,name,{$id},id",
-            "description"  => "required",
-            "order"        => "required|unique:config_shippings,order,{$id},id"
+            "name"          => "required|unique:config_shippings,name,{$id},id",
+            "description"   => "required",
+            "order"         => "required|unique:config_shippings,order,{$id},id",
+            'tax'           => 'required',
+            'tax_unique'    => 'required',
+            'tax_condition' => 'required'
         ];
     }
 }
