@@ -28,10 +28,11 @@ class CreateProductsTable extends Migration
             $table->string('video', 190)->nullable();
             $table->float('unit');
             $table->string('measure', 30);
-            $table->float('weight', 8, 3)->nullable();
-            $table->float('width', 8, 3)->nullable();
-            $table->float('height', 8, 3)->nullable();
-            $table->float('length', 8, 3)->nullable();
+            $table->tinyInteger('declare')->default(0);
+            $table->float('declare', 6, 3)->nullable();
+            $table->integer('width')->nullable();
+            $table->integer('height')->nullable();
+            $table->integer('length')->nullable();
             $table->string('kit_name', 30)->nullable();
             $table->tinyInteger('kit')->default(0);
             $table->tinyInteger('stock')->default(0);

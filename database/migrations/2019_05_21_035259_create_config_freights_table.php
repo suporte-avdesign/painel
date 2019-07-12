@@ -15,6 +15,7 @@ class CreateConfigFreightsTable extends Migration
     {
         Schema::create('config_freights', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->smallInteger('declare');
             $table->smallInteger('default');
             $table->smallInteger('weight');
             $table->smallInteger('width');

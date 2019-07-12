@@ -20,6 +20,7 @@ class Product extends Model
         'video',
         'unit',
         'measure',
+        'declare',
         'weight',
         'width',
         'height',

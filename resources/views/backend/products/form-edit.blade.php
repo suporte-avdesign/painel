@@ -1,5 +1,6 @@
 <!-- Form: Product Edit -->
 <form id="form-products" method="post" action="{{route('catalog.update', ['cat' => $data->category_id,'id' => $data->id])}}" onsubmit="return false">
+    <input name="id" type="hidden" value="{{$data->id}}">
     <input name="prod[brand]" type="hidden" value="{{$data->brand}}">
     <input name="prod[section]" type="hidden" value="{{$data->section}}">
     <input name="prod[category]" type="hidden" value="{{$data->category}}">

@@ -13,6 +13,7 @@
 					@csrf
 					<fieldset class="fieldset">
 					    <legend class="legend">Padrão dos correios</legend>
+
 						<p class="button-height inline-label">
 							<label for="default" class="label">Padrão <span class="red">*</span></label>
 							<select name="default" id="default" class="select">
@@ -20,14 +21,17 @@
 								<option value="0" @if($data->default == 0) selected @endif> {{constLang('active_false')}} </option>
 							</select>
 						</p>
+
 						<p class="button-height inline-label">
 							<label for="weight" class="label">Peso <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-0" class="button green-active">
-									<input type="radio" name="weight" id="radio-0" value="1" @if($data->weight == 1) checked @endif>									Sim
+									<input type="radio" name="weight" id="radio-0" value="1" @if($data->weight == 1) checked @endif>
+									Sim
 								</label>
 								<label for="radio-1" class="button red-active" >
-									<input type="radio" name="weight" id="radio-1" value="0" @if($data->weight == 0) checked @endif>									Não
+									<input type="radio" name="weight" id="radio-1" value="0" @if($data->weight == 0) checked @endif>
+									Não
 								</label>
 							</span>
 						</p>
@@ -35,10 +39,12 @@
 							<label for="width" class="label">Largura <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-2" class="button green-active">
-									<input type="radio" name="width" id="radio-2" value="1" @if($data->width == 1) checked @endif>									Sim
+									<input type="radio" name="width" id="radio-2" value="1" @if($data->width == 1) checked @endif>
+									Sim
 								</label>
 								<label for="radio-3" class="button red-active" >
-									<input type="radio" name="width" id="radio-3" value="0" @if($data->width == 0) checked @endif>									Não
+									<input type="radio" name="width" id="radio-3" value="0" @if($data->width == 0) checked @endif>
+									Não
 								</label>
 							</span>
 						</p>
@@ -46,7 +52,8 @@
 							<label for="altura" class="label">Altura <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-4" class="button green-active">
-									<input type="radio" name="height" id="radio-4" value="1" @if($data->height == 1) checked @endif>									Sim
+									<input type="radio" name="height" id="radio-4" value="1" @if($data->height == 1) checked @endif>
+									Sim
 								</label>
 								<label for="radio-5" class="button red-active" >
 									<input type="radio" name="height" id="radio-5" value="0" @if($data->height == 0) checked @endif>
@@ -67,7 +74,21 @@
 								</label>
 							</span>
 						</p>
-						@can('config-freight-update')
+						<p class="button-height inline-label">
+							<label for="width" class="label">Declarar Valor <span class="red">*</span></label>
+							<span class="button-group">
+								<label for="radio-8" class="button green-active">
+									<input type="radio" name="declare" id="radio-8" value="1" @if($data->declare == 1) checked @endif>
+									Sim
+								</label>
+								<label for="radio-9" class="button red-active" >
+									<input type="radio" name="declare" id="radio-9" value="0" @if($data->declare == 0) checked @endif>
+									Não
+								</label>
+							</span>
+						</p>
+
+					@can('config-freight-update')
 							<p class="button-height inline-label">
 								<button onclick="postFormJson($(this.form).attr('id'));" class="button icon-publish blue-gradient"> Salvar </button>
 							</p>

@@ -43,9 +43,8 @@ class ProductRequest extends FormRequest
         $inputPrice    = $this->request->get('price');
         $inputCost     = $this->request->get('cost');
         $offer         = $inputProduct['offer'];
-        $id            = $this->get('has');
+        $id            = $this->request->get('id');
 
-        //dd($price_default);
 
         foreach($inputProduct as $key => $val) {
 
@@ -154,16 +153,16 @@ class ProductRequest extends FormRequest
         if (isset($inputProduct['freight'])) {
             if ($inputProduct['freight'] == 1) {
                 if ($configFreight->weight == 1) {
-                    $rules['prod.weight'] = 'required';
+                    $rules['prod.weight'] = 'required|numeric|between:0,99.999';
                 }
                 if ($configFreight->width == 1) {
-                    $rules['prod.width'] = 'required';
+                    $rules['prod.width'] = 'required|max:3';
                 }
                 if ($configFreight->height == 1) {
-                    $rules['prod.height'] = 'required';
+                    $rules['prod.height'] = 'required|max:3';
                 }
                 if ($configFreight->length == 1) {
-                    $rules['prod.length'] = 'required';
+                    $rules['prod.length'] = 'required|max:3';
                 }                 
             }
         }

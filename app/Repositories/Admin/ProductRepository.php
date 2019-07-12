@@ -365,6 +365,7 @@ class ProductRepository implements ProductInterface
     {
 
         if (isset($input['freight']) && $input['freight'] == 0) {
+            unset($input['declare']);
             unset($input['weight']);
             unset($input['width']);
             unset($input['height']);
@@ -407,10 +408,11 @@ class ProductRepository implements ProductInterface
             if ($update) {
 
                 ($data->stock != 0 ? $stock = ", Estoque:$data->stock" : $stock = "");
-                ($data->weight != NULL ? $weight = ", Peso:{$data->weight}"   : $weight = "");
-                ($data->width  != NULL ? $width  = ", Largura:{$data->width}" : $width  = "");
-                ($data->height != NULL ? $height = ", Altura:{$data->height}" : $height = "");
-                ($data->length != NULL ? $length = ", Compr:{$data->length}"  : $length = "");
+                ($data->declare != 1 ? $declare = ", Declarar Valor:{$data->declare}" : $declare = "");
+                ($data->weight  != NULL ? $weight = ", Peso:{$data->weight}"   : $weight = "");
+                ($data->width   != NULL ? $width  = ", Largura:{$data->width}" : $width  = "");
+                ($data->height  != NULL ? $height = ", Altura:{$data->height}" : $height = "");
+                ($data->length  != NULL ? $length = ", Compr:{$data->length}"  : $length = "");
 
                 ($data->new == 1 ? $new = ", Novo:Ativo"  : $new = "");
                 ($data->offer == 1 ? $offer = ", Oferta:Ativo, Dias:".$offer_days  : $offer = "");
@@ -456,6 +458,7 @@ class ProductRepository implements ProductInterface
         $input['measure'] = $exp[1];
 
         if (isset($input['freight']) && $input['freight'] == 0) {
+            unset($input['declare']);
             unset($input['weight']);
             unset($input['width']);
             unset($input['height']);
@@ -486,12 +489,14 @@ class ProductRepository implements ProductInterface
         $current_name        = $data->name;
         $current_tags        = $data->tags;
         $current_description = $data->description;
+        $current_declare     = $data->declare;
         $current_measure     = $data->measure;
         $current_unit        = $data->unit;
         $current_section_id  = $data->section_id;
         $current_category_id = $data->category_id;
 
         ($data->stock != 0 ? $current_stock = ", Estoque:$data->stock" : $current_stock = "");
+        ($data->declare != 1 ? $current_declare = ", Declrar Valor :{$data->declare}"   : $current_declare = "");
         ($data->weight != NULL ? $current_weight = ", Peso:{$data->weight}"   : $current_weight = "");
         ($data->width  != NULL ? $current_width  = ", Largura:{$data->width}" : $current_width  = "");
         ($data->height != NULL ? $current_height = ", Altura:{$data->height}" : $current_height = "");
