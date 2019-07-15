@@ -177,6 +177,12 @@
 									Personalizar as Cores
 								</a>
 							</li>
+							<li>
+								<a href="config/calculate/cubage" class="file-link">
+									<span class="icon file-reg"></span>
+									Calcular Cubagem
+								</a>
+							</li>
 						</ul>
 					</li>
 					@can('webmaster-view')

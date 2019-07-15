@@ -121,3 +121,6 @@ Route::post('config/customers-perfil/data', 'Admin\ConfigProfileClientController
 // Porcentagens sobre os produtos.
 Route::post('config/percents/data', 'Admin\ConfigPercentController@data')->name('percents.data');
 Route::resource('config/percents', 'Admin\ConfigPercentController');
+
+//Calcular Cubagem
+Route::get('config/calculate/cubage', 'Admin\ConfigCubage@calculate');
