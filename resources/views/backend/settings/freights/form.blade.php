@@ -115,7 +115,23 @@
 						<li>Não: Os campos não serão obrigatórios.</li>
 						<li>Declarar Valor: (Individual) Declara o valor do produto para receber o reembolso no caso de extravio.</li>
 					</ol>
+
+					<h4 class="green underline">Largura / Altura / Comprimento (cm)</h4>
+					<p>Correio: A soma Largura + Altura + Comprimento não pode ultrapassar de 200 cm </p>
+					@foreach($boxes as $boxe)
+						<p class="button-height">
+							<span class="input">
+								<input type="text" name="box[{{$boxe->id}}][width]" class="input-unstyled input-sep" placeholder="Largura" value="{{$boxe->width}}" onKeyDown="javascript: return maskValor(this,event,3);" maxlength="3" style="width: 50px;">
+								<input type="text" name="box[{{$boxe->id}}][height]" class="input-unstyled input-sep" placeholder="Altura" value="{{$boxe->height}}" onKeyDown="javascript: return maskValor(this,event,3);" maxlength="3" style="width: 50px;">
+								<input type="text" name="box[{{$boxe->id}}][length]" class="input-unstyled" placeholder="Comprimento" onKeyDown="javascript: return maskValor(this,event,3);" value="{{$boxe->length}}" style="width: 50px;">
+								<label for="pseudo-input-2" class="button blue-gradient">
+									<span class="small-margin-left">{{$boxe->width + $boxe->height + $boxe->length}} cm</span>
+								</label>
+							</span>
+						</p>
+					@endforeach
 				</div>
+
 			</div>
 		</form>
 	</div>

@@ -4,6 +4,7 @@ namespace AVDPainel\Http\Controllers\Admin;
 
 use AVDPainel\Interfaces\Admin\AdminAccessInterface as InterAccess;
 use AVDPainel\Interfaces\Admin\ConfigFreightInterface as InterModel;
+use AVDPainel\Models\Admin\ConfigBox;
 use AVDPainel\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
@@ -44,8 +45,10 @@ class ConfigFreightController extends Controller
         $this->access->update($this->last_url);
 
         $data  = $this->interModel->setId($id);
+        $boxes = ConfigBox::all();
+
         $title = 'Configuração do Frete';
-        return view("{$this->view}.form", compact('data', 'title'));    
+        return view("{$this->view}.form", compact('data', 'boxes', 'title'));
     }
 
     /**
@@ -63,15 +66,31 @@ class ConfigFreightController extends Controller
         }
 
         $dataForm = $request->all();
-        $update   = $this->interModel->update($dataForm, $id);
-        if( $update ) {
-            $success = true;
-            $message = 'A configuração foi alterada.';
-        } else {
-            $success = false;
-            $message = 'Não foi possível alterar.';
+        $boxes = $dataForm['box'];
+
+        for ($i = 1; $i <= 3; $i++) {
+            $limit = 200;
+            $total =  (int) $boxes[$i]['width'] + $boxes[$i]['height'] + $boxes[$i]['length'];
+            if ($total <= $limit) {
+                $box = ConfigBox::find($i);
+                $box->width = $boxes[$i]['width'];
+                $box->height = $boxes[$i]['height'];
+                $box->length = $boxes[$i]['length'];
+                $box->save();
+                $success = true;
+            }
         }
 
+        if ($success == true) {
+            $update   = $this->interModel->update($dataForm, $id);
+            if( $update ) {
+                $success = true;
+                $message = 'A configuração foi alterada.';
+            } else {
+                $success = false;
+                $message = 'Não foi possível alterar.';
+            }
+        }
         $out = array(
             'success' => $success,
             'message' => $message
