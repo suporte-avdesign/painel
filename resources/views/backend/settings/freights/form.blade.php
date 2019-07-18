@@ -23,6 +23,15 @@
 						</p>
 
 						<p class="button-height inline-label">
+							<label for="distribute_box" class="label">Distribuição <span class="red">*</span></label>
+							<select name="distribute_box" id="distribute_box" class="select">
+								<option value="1" @if($data->distribute_box == 1) selected @endif> {{constLang('active_true')}} </option>
+								<option value="0" @if($data->distribute_box == 0) selected @endif> {{constLang('active_false')}} </option>
+							</select>
+						</p>
+
+
+						<p class="button-height inline-label">
 							<label for="weight" class="label">Peso <span class="red">*</span></label>
 							<span class="button-group">
 								<label for="radio-0" class="button green-active">
@@ -100,8 +109,11 @@
 					<ol>
 						<li>Padrão Ativo: Os campos serão obrigatórios.</li>
 						<li>Padrão Inativo: O frete não sera obrigatório.</li>
+						<li>Distribuição: Ativo: Distribui os produtos de uma embalagem para outras padrão.</li>
+						<li>Distribuição: Inativo: Mantêm os produtos na mesma embalagem. </li>
 						<li>Sim: Os campos serão obrigatórios.</li>
 						<li>Não: Os campos não serão obrigatórios.</li>
+						<li>Declarar Valor: (Individual) Declara o valor do produto para receber o reembolso no caso de extravio.</li>
 					</ol>
 				</div>
 			</div>

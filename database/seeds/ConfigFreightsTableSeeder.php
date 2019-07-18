@@ -15,12 +15,13 @@ class ConfigFreightsTableSeeder extends Seeder
     {
         $date = date('Y-m-d H:i:s');
         ConfigFreight::create([
-            'declare' => 1,
             'default' => 1,
+            'distribute_box' => 1,
             'weight' => 1,
-            'width' => 0,
-            'height' => 0,
-            'length' => 0,
+            'width' => 1,
+            'height' => 1,
+            'length' => 1,
+            'declare' => 1,
             'created_at' => $date
         ]);
     }

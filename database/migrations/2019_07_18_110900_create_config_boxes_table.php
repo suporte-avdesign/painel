@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConfigFreightsTable extends Migration
+class CreateConfigBoxesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,15 +13,11 @@ class CreateConfigFreightsTable extends Migration
      */
     public function up()
     {
-        Schema::create('config_freights', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->smallInteger('default');
-            $table->smallInteger('distribute_box');
-            $table->smallInteger('weight');
+        Schema::create('config_boxes', function (Blueprint $table) {
+            $table->integerIncrements('id');
             $table->smallInteger('width');
             $table->smallInteger('height');
             $table->smallInteger('length');
-            $table->smallInteger('declare');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ class CreateConfigFreightsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('config_freights');
+        Schema::dropIfExists('config_boxes');
     }
 }
