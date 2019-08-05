@@ -18,7 +18,7 @@ class CreateCompanyPaymentsTable extends Migration
             $table->string('billet',30)->default('pagseguro');
             $table->string('cash',30)->default('bradesco');
             $table->string('credit_card',30)->default('pagseguro');;
-            $table->string('debit_account',30)->default('pagseguro');
+            $table->string('debit_card',30)->default('pagseguro');
             $table->timestamps();
         });
     }
