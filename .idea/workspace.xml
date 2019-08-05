@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="" />
+    <list default="true" id="7cf46cd1-c5ac-452d-bda9-491f55d9a24e" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/database/migrations/2019_08_05_035920_create_companies_table.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/database/migrations/2019_08_05_035931_create_company_payments_table.php" afterPath="$PROJECT_DIR$/database/migrations/2019_08_05_035931_create_company_payments_table.php" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,18 +59,8 @@
       <file leaf-file-name="2019_08_05_035931_create_company_payments_table.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_05_035931_create_company_payments_table.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="397">
-              <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="2019_08_05_035920_create_companies_table.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_05_035920_create_companies_table.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="241">
-              <caret line="23" column="47" lean-forward="false" selection-start-line="23" selection-start-column="47" selection-end-line="23" selection-end-column="47" />
+            <state relative-caret-position="163">
+              <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -203,8 +197,8 @@
         <option value="$PROJECT_DIR$/database/migrations/2019_08_05_005754_create_pagseguro_payments_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_05_005754_create_payments_pagseguro_table.php" />
         <option value="$PROJECT_DIR$/app/Models/Admin/PagSeguroPayment.php" />
-        <option value="$PROJECT_DIR$/database/migrations/2019_08_05_035931_create_company_payments_table.php" />
         <option value="$PROJECT_DIR$/database/migrations/2019_08_05_035920_create_companies_table.php" />
+        <option value="$PROJECT_DIR$/database/migrations/2019_08_05_035931_create_company_payments_table.php" />
       </list>
     </option>
   </component>
@@ -598,12 +592,12 @@
       <workItem from="1564580909434" duration="1851000" />
       <workItem from="1564669760733" duration="753000" />
       <workItem from="1564797711730" duration="1241000" />
-      <workItem from="1564974984880" duration="6996000" />
+      <workItem from="1564974984880" duration="7598000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1633644000" />
+    <option name="totallyTimeSpent" value="1634246000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1301" height="772" extended-state="6" />
@@ -1020,8 +1014,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/database/migrations/2019_08_05_035931_create_company_payments_table.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="397">
-          <caret line="25" column="7" lean-forward="true" selection-start-line="25" selection-start-column="7" selection-end-line="25" selection-end-column="7" />
+        <state relative-caret-position="163">
+          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
           <folding />
         </state>
       </provider>

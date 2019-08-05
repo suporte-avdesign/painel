@@ -14,11 +14,11 @@ class CreateCompanyPaymentsTable extends Migration
     public function up()
     {
         Schema::create('company_payments', function (Blueprint $table) {
-            $table->integer('id');
-            $table->string('billet',30)->nullable();
-            $table->string('cash',30)->nullable();
-            $table->string('credit_card',30)->nullable();
-            $table->string('debit_account',30)->nullable();
+            $table->increments('id');
+            $table->string('billet',30)->default('pagseguro');
+            $table->string('cash',30)->default('bradesco');
+            $table->string('credit_card',30)->default('pagseguro');;
+            $table->string('debit_account',30)->default('pagseguro');
             $table->timestamps();
         });
     }
