@@ -21,12 +21,8 @@ class Order extends Model
         'discount',
         'freight',
         'tax',
-        'weight',
-        'width',
-        'height',
-        'length',
         'ip',
-        'token'
+        'code'
     ];
 
 

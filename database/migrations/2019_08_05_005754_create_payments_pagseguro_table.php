@@ -17,6 +17,10 @@ class CreatePaymentsPagseguroTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
+            $table->smallInteger('status');
+            $table->string('status_label', 50);
+            $table->text('status_descriprion');
+            $table->smallInteger('method_payment');
             $table->string('brand')->nullable();
             $table->integer('card_number')->nullable();
             $table->smallInteger('date_month')->nullable();
@@ -25,8 +29,6 @@ class CreatePaymentsPagseguroTable extends Migration
             $table->smallInteger('parcels')->nullable();
             $table->string('reference')->unique();
             $table->string('code')->unique();
-            $table->enum('status',[1,2,3,4,5,6,7,8,9,10]);
-            $table->enum('method_payment',[1,2,3,4,5,6,7]);
             $table->decimal('value',8, 2);
             $table->date('date');
             $table->date('date_refersh_status')->nullable();
