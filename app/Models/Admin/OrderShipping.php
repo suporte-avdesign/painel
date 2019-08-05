@@ -11,6 +11,7 @@ class OrderShipping extends Model
         'order_id',
         'user_id',
         'config_shipping_id',
+        'indicate',
         'code',
         'url',
         'phone',

@@ -18,6 +18,7 @@ class CreateOrderShippingsTable extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('config_shipping_id');
+            $table->smallInteger('indicate')->default(0);
             $table->string('code', 100)->nullable();
             $table->string('url', 255)->nullable();
             $table->string('phone', 20)->nullable();
