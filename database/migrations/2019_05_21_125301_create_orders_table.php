@@ -25,6 +25,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('price_cash',8, 2)->default(0);
             $table->decimal('price_card',8, 2)->default(0);
             $table->decimal('subtotal',8, 2)->default(0);
+            $table->decimal('total',8, 2)->default(0);
             $table->string('coupon')->nullable();
             $table->decimal('discount',8, 2)->default(0);
             $table->decimal('freight',8, 2)->default(0);

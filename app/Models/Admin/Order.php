@@ -20,6 +20,7 @@ class Order extends Model
         'price_card',
         'price_cash',
         'subtotal',
+        'total',
         'coupon',
         'discount',
         'freight',
