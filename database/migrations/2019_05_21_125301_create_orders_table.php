@@ -18,20 +18,19 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('config_form_payment_id');
             $table->unsignedBigInteger('config_status_payment_id');
+            $table->string('company', 50)->nullable();
+            $table->string('status_label', 50)->nullable();
             $table->smallInteger('qty')->default(0);
             $table->decimal('percent',8, 2)->nullable();
             $table->decimal('price_cash',8, 2)->default(0);
             $table->decimal('price_card',8, 2)->default(0);
             $table->decimal('subtotal',8, 2)->default(0);
+            $table->string('coupon')->nullable();
             $table->decimal('discount',8, 2)->default(0);
             $table->decimal('freight',8, 2)->default(0);
             $table->decimal('tax',8, 2)->default(0);
-            $table->float('weight', 8, 3)->nullable();
-            $table->float('width', 8, 3)->nullable();
-            $table->float('height', 8, 3)->nullable();
-            $table->float('length', 8, 3)->nullable();
             $table->string('ip', 50);
-            $table->string('token', 255);
+            $table->string('code', 255);
             $table->timestamps();
             $table->softDeletes();
 
