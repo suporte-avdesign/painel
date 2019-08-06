@@ -11,6 +11,7 @@ class ConfigFormPayment extends Model
 
     protected $fillable = [
         'order',
+        'method',
         'label',
         'description',
         'active'
@@ -31,6 +32,7 @@ class ConfigFormPayment extends Model
         return [
             "label"       => "required|unique:config_form_payments,label,{$id},id",
             "description" => "required",
+            "method"       => "required",
             "order"       => "required",
             "active"      => "required"
         ];

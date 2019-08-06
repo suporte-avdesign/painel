@@ -15,7 +15,8 @@ class ConfigFormPaymentTableSeeder extends Seeder
         $date = date('Y-m-d H:i:s');
 
         ConfigFormPayment::create([
-            'order' => 1,
+            'method' => 'cash',
+            'order' => '01',
             'label' => 'Depósito em Conta',
             'description' => '
                 -Banco: '.env('DEP_BANK').
@@ -27,20 +28,28 @@ class ConfigFormPaymentTableSeeder extends Seeder
         ]);
 
         ConfigFormPayment::create([
-            'order' => 1,
+            'method' => 'billet',
+            'order' => '02',
             'label' => 'Boleto Bancário',
-            'description' => 'Emita o boleto bancário e pague em qualquer agência.',
+            'description' => 'Pagamento com boleto.',
             'active' => constLang('active_true'),
             'created_at' => $date
         ]);
 
         ConfigFormPayment::create([
-            'order' => 3,
+            'method' => 'credit',
+            'order' => '03',
             'label' => 'Cartão de Crédito',
-            'description' => '
-                -Acima de R$300,00 - 3x sem juros
-                -Acima de R$500,00 - 4x sem juros
-                -Acima de R$1000,00 - 5x sem juros',
+            'description' => 'Pagamento com cartão de crédito',
+            'active' => constLang('active_true'),
+            'created_at' => $date
+        ]);
+
+        ConfigFormPayment::create([
+            'method' => 'debit',
+            'order' => '04',
+            'label' => 'Cartão de Débito',
+            'description' => 'Pagamento com cartão de débito.',
             'active' => constLang('active_true'),
             'created_at' => $date
         ]);

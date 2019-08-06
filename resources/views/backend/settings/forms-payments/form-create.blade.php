@@ -3,6 +3,10 @@
 		@csrf
 		<fieldset class="fieldset">
 			<p class="button-height inline-label">
+				<label for="method" class="label">Método (inglês)<span class="red">*</span></label>
+				<input type="text" name="method" class="input full-width" value="" >
+			</p>
+			<p class="button-height inline-label">
 				<label for="label" class="label">Forma <span class="red">*</span></label>
 				<input type="text" name="label" class="input full-width" value="" >
 			</p>

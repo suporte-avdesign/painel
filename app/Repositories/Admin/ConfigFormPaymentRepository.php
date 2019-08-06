@@ -78,6 +78,10 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
      */
     public function create($input)
     {
+        $count = strlen($input['order']);
+        if ($count == 1) {
+            $input['order'] = '0'.$input['order'];
+        }
         $data = $this->model->create($input);
         if ($data) {
 
@@ -106,12 +110,17 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
      * @return boolean true or false
      */
     public function update($input, $id)
-    {        
+    {
 
+        $count = strlen($input['order']);
+        if ($count == 1) {
+            $input['order'] = '0'.$input['order'];
+        }
         $data        = $this->model->find($id);
         $type        = $data->type;
         $label       = $data->label;
         $order       = $data->order;
+        $method      = $data->method;
         $status      = $data->active;
         $gateway     = $data->gateway;
         $description = $data->description;
@@ -123,7 +132,8 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
                 date('H:i:s').utf8_decode(
                 ' Alterou o status do pagamento: '.$label.
                 ', Descrição:'.$description.
-                ', Ordem:'.$order.
+                ', Método:'.$order.
+                ', Ordem:'.$method.
                 ', Status:'.$status.
                 ', Gateway:'.$gateway.
                 ', Tipo:'.$type.
@@ -156,6 +166,7 @@ class ConfigFormPaymentRepository implements ConfigFormPaymentInterface
                 date('H:i:s').utf8_decode(
                 ' Excluiu o status do pagamento: '.$data->label.
                 ', Descrição: '.$data->description.
+                ', Método:'.$data->method.
                 ', Ordem:'.$data->order.
                 ', Status: '.$data->actve.
                 ', Gateway:'.$data->gateway.
