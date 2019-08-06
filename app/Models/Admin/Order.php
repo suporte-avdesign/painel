@@ -26,7 +26,8 @@ class Order extends Model
         'freight',
         'tax',
         'ip',
-        'code'
+        'code',
+        'token'
     ];
 
 

@@ -22,7 +22,6 @@ class CreateOrderItemsTable extends Migration
             $table->string('image', 200);
             $table->string('color', 50);
             $table->string('code', 50);
-            $table->string('profile', 50);
             $table->tinyInteger('offer');
             $table->decimal('percent',8, 2);
             $table->decimal('price_card',8, 2);

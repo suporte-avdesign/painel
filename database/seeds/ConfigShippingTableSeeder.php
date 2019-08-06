@@ -69,5 +69,16 @@ class ConfigShippingTableSeeder extends Seeder
             'tax_condition' => 1000,
             'created_at' => $date
         ]);
+
+        ConfigShipping::create([
+            'name' => 'INDICAR TRANSPORTE',
+            'description' => 'Por favor! Digite o nome e o telefone com DDD do contato do transporte, frete por conta do cliente.',
+            'order' => '06',
+            'active' => constLang('active_false'),
+            'tax' => 0,
+            'tax_unique' => 0,
+            'tax_condition' => 0,
+            'created_at' => $date
+        ]);
     }
 }
