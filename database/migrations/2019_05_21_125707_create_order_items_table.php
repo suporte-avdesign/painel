@@ -17,12 +17,12 @@ class CreateOrderItemsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
-            $table->integer('image_color_id');
             $table->string('grid', 30);
             $table->tinyInteger('quantity');
             $table->string('image', 200);
             $table->string('color', 50);
             $table->string('code', 50);
+            $table->string('profile', 50);
             $table->tinyInteger('offer');
             $table->decimal('percent',8, 2);
             $table->decimal('price_card',8, 2);
@@ -36,10 +36,11 @@ class CreateOrderItemsTable extends Migration
             $table->string('brand', 50);
             $table->float('unit');
             $table->string('measure', 30);
-            $table->float('weight', 8, 3)->nullable();
-            $table->float('width', 8, 3)->nullable();
-            $table->float('height', 8, 3)->nullable();
-            $table->float('length', 8, 3)->nullable();
+            $table->tinyInteger('declare')->nullable();
+            $table->float('weight', 5, 3)->nullable();
+            $table->tinyInteger('width')->nullable();
+            $table->tinyInteger('height')->nullable();
+            $table->tinyInteger('length')->nullable();
             $table->decimal('cost', 8, 2)->nullable();
             $table->timestamps();
 
