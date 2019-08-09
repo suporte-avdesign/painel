@@ -4,13 +4,17 @@ namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PagSeguroPayment extends Model
+class PaymentCard extends Model
 {
-    protected $table = 'payments_pagseguro';
+    protected $table = 'payment_card';
 
     protected $fillable = [
+        'payment_company_id',
         'order_id',
         'user_id',
+        'method_payment',
+        'status',
+        'status_label',
         'brand',
         'card_number',
         'date_month',
@@ -20,15 +24,11 @@ class PagSeguroPayment extends Model
         'parcels_value',
         'reference',
         'code',
-        'status',
-        'status_label',
-        'method_payment',
         'value',
         'date',
         'date_refersh_status'
     ];
 }
-
 
 
 

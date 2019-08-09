@@ -2,7 +2,7 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Models\Admin\Billet;
+use AVDPainel\Models\Admin\PaymentBillet;
 
 use Illuminate\Http\Request;
 use AVDPainel\Http\Controllers\Controller;
@@ -43,10 +43,10 @@ class BilletController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\Billet  $billet
+     * @param  \AVDPainel\Models\Admin\PaymentBillet  $billet
      * @return \Illuminate\Http\Response
      */
-    public function show(Billet $billet)
+    public function show(PaymentBillet $billet)
     {
         //
     }
@@ -54,10 +54,10 @@ class BilletController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\Billet  $billet
+     * @param  \AVDPainel\Models\Admin\PaymentBillet  $billet
      * @return \Illuminate\Http\Response
      */
-    public function edit(Billet $billet)
+    public function edit(PaymentBillet $billet)
     {
         //
     }
@@ -66,10 +66,10 @@ class BilletController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\Billet  $billet
+     * @param  \AVDPainel\Models\Admin\PaymentBillet  $billet
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Billet $billet)
+    public function update(Request $request, PaymentBillet $billet)
     {
         //
     }
@@ -77,10 +77,10 @@ class BilletController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \AVDPainel\Models\Admin\Billet  $billet
+     * @param  \AVDPainel\Models\Admin\PaymentBillet  $billet
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Billet $billet)
+    public function destroy(PaymentBillet $billet)
     {
         //
     }

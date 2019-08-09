@@ -1,11 +1,11 @@
 <?php
 
-namespace AVDPainel\Http\Controllers;
+namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Models\Admin\PaymentsPagSeguro;
+use AVDPainel\Models\Admin\PaymentCompany;
 use Illuminate\Http\Request;
 
-class PaymentsPagSeguroController extends Controller
+class PaymentCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PaymentsPagSeguroController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\PaymentsPagSeguro  $paymentsPagSeguro
+     * @param  \AVDPainel\Models\Admin\PaymentCompany  $paymentCompany
      * @return \Illuminate\Http\Response
      */
-    public function show(PaymentsPagSeguro $paymentsPagSeguro)
+    public function show(PaymentCompany $paymentCompany)
     {
         //
     }
@@ -52,10 +52,10 @@ class PaymentsPagSeguroController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\PaymentsPagSeguro  $paymentsPagSeguro
+     * @param  \AVDPainel\Models\Admin\PaymentCompany  $paymentCompany
      * @return \Illuminate\Http\Response
      */
-    public function edit(PaymentsPagSeguro $paymentsPagSeguro)
+    public function edit(PaymentCompany $paymentCompany)
     {
         //
     }
@@ -64,10 +64,10 @@ class PaymentsPagSeguroController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\PaymentsPagSeguro  $paymentsPagSeguro
+     * @param  \AVDPainel\Models\Admin\PaymentCompany  $paymentCompany
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PaymentsPagSeguro $paymentsPagSeguro)
+    public function update(Request $request, PaymentCompany $paymentCompany)
     {
         //
     }
@@ -75,10 +75,10 @@ class PaymentsPagSeguroController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \AVDPainel\Models\Admin\PaymentsPagSeguro  $paymentsPagSeguro
+     * @param  \AVDPainel\Models\Admin\PaymentCompany  $paymentCompany
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PaymentsPagSeguro $paymentsPagSeguro)
+    public function destroy(PaymentCompany $paymentCompany)
     {
         //
     }

@@ -1,11 +1,11 @@
 <?php
 
-namespace AVDPainel\Http\Controllers;
+namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Models\Admin\PagSeguroPayment;
+use AVDPainel\Models\Admin\PaymentCash;
 use Illuminate\Http\Request;
 
-class PagseguroPaymentController extends Controller
+class PaymentCashController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class PagseguroPaymentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\PagSeguroPayment  $pagseguroPayment
+     * @param  \AVDPainel\Models\Admin\PaymentCash  $paymentCash
      * @return \Illuminate\Http\Response
      */
-    public function show(PagSeguroPayment $pagseguroPayment)
+    public function show(PaymentCash $paymentCash)
     {
         //
     }
@@ -52,10 +52,10 @@ class PagseguroPaymentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \AVDPainel\Models\Admin\PagSeguroPayment  $pagseguroPayment
+     * @param  \AVDPainel\Models\Admin\PaymentCash  $paymentCash
      * @return \Illuminate\Http\Response
      */
-    public function edit(PagSeguroPayment $pagseguroPayment)
+    public function edit(PaymentCash $paymentCash)
     {
         //
     }
@@ -64,10 +64,10 @@ class PagseguroPaymentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \AVDPainel\Models\Admin\PagSeguroPayment  $pagseguroPayment
+     * @param  \AVDPainel\Models\Admin\PaymentCash  $paymentCash
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, PagSeguroPayment $pagseguroPayment)
+    public function update(Request $request, PaymentCash $paymentCash)
     {
         //
     }
@@ -75,10 +75,10 @@ class PagseguroPaymentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \AVDPainel\Models\Admin\PagSeguroPayment  $pagseguroPayment
+     * @param  \AVDPainel\Models\Admin\PaymentCash  $paymentCash
      * @return \Illuminate\Http\Response
      */
-    public function destroy(PagSeguroPayment $pagseguroPayment)
+    public function destroy(PaymentCash $paymentCash)
     {
         //
     }
