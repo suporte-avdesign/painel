@@ -4,31 +4,23 @@ namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class PagSeguroPayment extends Model
+class Billet extends Model
 {
-    protected $table = 'payments_pagseguro';
-
     protected $fillable = [
         'order_id',
         'user_id',
+        'status',
+        'status_label',
+        'method_payment',
         'brand',
         'card_number',
-        'date_month',
-        'date_year',
-        'card_cvv',
         'parcels',
         'parcels_value',
         'reference',
         'code',
-        'status',
-        'status_label',
-        'method_payment',
         'value',
+        'link',
         'date',
-        'date_refersh_status'
+        'date_refersh_status',
     ];
 }
-
-
-
-

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePaymentsPagseguroTable extends Migration
+class CreateBilletsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreatePaymentsPagseguroTable extends Migration
      */
     public function up()
     {
-        Schema::create('payments_pagseguro', function (Blueprint $table) {
+        Schema::create('billets', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
@@ -22,14 +22,12 @@ class CreatePaymentsPagseguroTable extends Migration
             $table->smallInteger('method_payment');
             $table->string('brand')->nullable();
             $table->integer('card_number')->nullable();
-            $table->smallInteger('date_month')->nullable();
-            $table->smallInteger('date_year')->nullable();
-            $table->smallInteger('card_cvv')->nullable();
             $table->smallInteger('parcels')->nullable();
             $table->decimal('parcels_value', 8, 2)->default(0);
             $table->string('reference')->unique();
             $table->string('code')->unique();
             $table->decimal('value',8, 2);
+            $table->text('link');
             $table->date('date');
             $table->date('date_refersh_status')->nullable();
             $table->timestamps();
@@ -49,6 +47,6 @@ class CreatePaymentsPagseguroTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('payments_pagseguro');
+        Schema::dropIfExists('billets');
     }
 }
