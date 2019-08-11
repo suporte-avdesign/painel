@@ -21,9 +21,6 @@ class OrderShipping extends Model
         'date_send'
     ];
 
-
-
-
     /**
      *  Data de exclusão do registro
      */

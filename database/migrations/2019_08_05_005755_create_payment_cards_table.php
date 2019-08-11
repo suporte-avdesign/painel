@@ -15,13 +15,14 @@ class CreatePaymentCardsTable extends Migration
     {
         Schema::create('payment_cards', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('payment_company_id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
+            $table->string('company_name',30);
             $table->smallInteger('method_payment');
             $table->smallInteger('status');
             $table->string('status_label', 50);
             $table->string('brand')->nullable();
+            $table->string('card_name')->nullable();
             $table->integer('card_number')->nullable();
             $table->smallInteger('date_month')->nullable();
             $table->smallInteger('date_year')->nullable();
@@ -34,9 +35,6 @@ class CreatePaymentCardsTable extends Migration
             $table->date('date');
             $table->date('date_refersh_status')->nullable();
             $table->timestamps();
-
-            $table->foreign('payment_company_id')->references('id')
-                ->on('payment_companies')->onDelete('cascade');
 
             $table->foreign('order_id')->references('id')
                 ->on('orders')->onDelete('cascade');

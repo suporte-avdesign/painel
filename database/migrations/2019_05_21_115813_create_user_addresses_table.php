@@ -24,6 +24,7 @@ class CreateUserAddressesTable extends Migration
             $table->string('district', 50);
             $table->string('city', 50);
             $table->string('state', 30);
+            $table->string('country', 30)->default('BRA');
             $table->string('zip_code', 20);
             $table->timestamps();
 

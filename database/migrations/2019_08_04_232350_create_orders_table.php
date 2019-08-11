@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('config_form_payment_id');
             $table->unsignedBigInteger('config_status_payment_id');
+            $table->unsignedBigInteger('config_shipping_id');
             $table->string('company', 50)->nullable();
             $table->string('status_label', 50)->nullable();
             $table->smallInteger('qty')->default(0);
@@ -42,6 +43,8 @@ class CreateOrdersTable extends Migration
                 ->on('config_form_payments')->onDelete('cascade');
             $table->foreign('config_status_payment_id')->references('id')
                 ->on('config_status_payments')->onDelete('cascade');
+            $table->foreign('config_shipping_id')->references('id')
+                ->on('config_shippings')->onDelete('cascade');
         });
     }
 

@@ -15,9 +15,9 @@ class CreatePaymentCashesTable extends Migration
     {
         Schema::create('payment_cashes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('payment_company_id');
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('user_id');
+            $table->string('company_name',30);
             $table->smallInteger('method_payment');
             $table->smallInteger('status');
             $table->string('status_label', 50);
@@ -27,9 +27,6 @@ class CreatePaymentCashesTable extends Migration
             $table->date('date');
             $table->date('date_refersh_status')->nullable();
             $table->timestamps();
-
-            $table->foreign('payment_company_id')->references('id')
-                ->on('payment_companies')->onDelete('cascade');
 
             $table->foreign('order_id')->references('id')
                 ->on('orders')->onDelete('cascade');

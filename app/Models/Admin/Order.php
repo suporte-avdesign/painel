@@ -13,6 +13,7 @@ class Order extends Model
         'user_id',
         'config_form_payment_id',
         'config_status_payment_id',
+        'config_shipping_id',
         'company',
         'status_label',
         'qty',

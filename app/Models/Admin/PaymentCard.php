@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class PaymentCard extends Model
 {
-    protected $table = 'payment_card';
-
     protected $fillable = [
-        'payment_company_id',
         'order_id',
         'user_id',
+        'company_name',
         'method_payment',
         'status',
         'status_label',
         'brand',
+        'card_name',
         'card_number',
         'date_month',
         'date_year',

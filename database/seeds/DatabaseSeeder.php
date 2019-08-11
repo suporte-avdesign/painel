@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AccountTypeTableSeeder::class);
         $this->call(AdminsTableSeeder::class);
-        $this->call(CompanyPaymentsTableSeeder::class);
         $this->call(ConfigSiteTableSeeder::class);
         $this->call(ConfigPagesTableSeeder::class);
         $this->call(ConfigModulesTableSeeder::class);
@@ -45,6 +44,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ContentTermsConditionsTableSeeder::class);
         $this->call(SocialShareTableSeeder::class);
         $this->call(StateTableSeeder::class);
+        $this->call(PaymentCompanyTableSeeder::class);
         $this->call(ProductTableSeeder::class);
         $this->call(ContactTableSeeder::class);
         $this->call(UsersTableSeeder::class);

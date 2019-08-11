@@ -1,9 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use AVDPainel\Models\Admin\CompanyPayments;
+use AVDPainel\Models\Admin\PaymentCompany;
 
-class CompanyPaymentsTableSeeder extends Seeder
+class PaymentCompanyTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,22 +12,22 @@ class CompanyPaymentsTableSeeder extends Seeder
      */
     public function run()
     {
-        CompanyPayments::create([
+        PaymentCompany::create([
             'name' => 'PagSeguro',
             'slug' => 'pagseguro',
             'billet' => 1,
             'cash' => 0,
-            'credit_card' => 1,
-            'debit_card' => 1
+            'credit' => 1,
+            'debit' => 1
         ]);
 
-        CompanyPayments::create([
+        PaymentCompany::create([
             'name' => 'Bradesco',
             'slug' => 'bradesco',
             'billet' => 0,
             'cash' => 1,
-            'credit_card' => 0,
-            'debit_card' => 0
+            'credit' => 0,
+            'debit' => 0
         ]);
     }
 }

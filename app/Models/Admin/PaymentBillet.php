@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentBillet extends Model
 {
     protected $fillable = [
-        'payment_company_id',
         'order_id',
         'user_id',
+        'company_name',
         'method_payment',
         'status',
         'status_label',
