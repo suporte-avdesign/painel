@@ -33,6 +33,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('tax',8, 2)->default(0);
             $table->string('ip', 50);
             $table->string('code', 255);
+            $table->string('reference', 255);
             $table->string('token', 255);
             $table->timestamps();
             $table->softDeletes();

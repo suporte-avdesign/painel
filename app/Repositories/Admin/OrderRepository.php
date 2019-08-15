@@ -57,12 +57,8 @@ class OrderRepository implements OrderInterface
             9   => 'discount',
             10  => 'freight',
             11  => 'tax',
-            12  => 'weight',
-            13  => 'width',
-            14  => 'height',
-            15  => 'length',
-            16  => 'admin',
-            17  => 'ip'
+            12  => 'admin',
+            13  => 'ip'
         );
 
         $totalData = $this->model->count();
@@ -242,10 +238,6 @@ class OrderRepository implements OrderInterface
                 $nData['discount']                 = $val->discount;
                 $nData['freight']                  = $val->freight;
                 $nData['tax']                      = $val->tax;
-                $nData['weight']                   = $val->weight;
-                $nData['width']                    = $val->width;
-                $nData['height']                   = $val->height;
-                $nData['length']                   = $val->length;
                 $nData['admin']                    = $admin;
                 $nData['ip']                       = $val->ip;
 
@@ -267,12 +259,6 @@ class OrderRepository implements OrderInterface
                 $nData['tax']                      = setReal($val->tax);
                 $nData['number']                   = $val->id;
 
-
-
-                ($configFreight->weight == 1 ? $nData['weight'] = "<p>Peso: <strong> {$val->weight} </strong></p>" : $nData['weight'] ='');
-                ($configFreight->width == 1 ? $nData['width'] = "<p>Largura: <strong> {$val->width} </strong></p>" : $nData['width'] ='');
-                ($configFreight->height == 1 ? $nData['height'] = "<p>Altura: <strong> {$val->height} </strong></p>" : $nData['height'] ='');
-                ($configFreight->length == 1 ? $nData['length'] = "<p>Comprimento: <strong> {$val->length} </strong></p>" : $nData['length'] ='');
 
                 if ($val->delivery == 1) {
                     $nData['delivery']             = '<h4 class="blue underline">Endereço de Entrega</h4>';

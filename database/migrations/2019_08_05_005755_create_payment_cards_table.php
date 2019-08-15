@@ -21,12 +21,12 @@ class CreatePaymentCardsTable extends Migration
             $table->smallInteger('method_payment');
             $table->smallInteger('status');
             $table->string('status_label', 50);
-            $table->string('brand');
-            $table->string('card_name');
-            $table->string('card_document');
-            $table->string('card_phone');
-            $table->date('card_birth_date');
-            $table->integer('card_number');
+            $table->string('brand', 30);
+            $table->string('card_name', 30);
+            $table->string('card_document', 30);
+            $table->string('card_phone', 30);
+            $table->string('card_birth_date', 30);
+            $table->string('card_number', 30);
             $table->smallInteger('date_month');
             $table->smallInteger('date_year');
             $table->smallInteger('card_cvv');
