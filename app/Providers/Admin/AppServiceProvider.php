@@ -52,6 +52,7 @@ class AppServiceProvider extends ServiceProvider
             'Contact',
             'ContactSpam',
             'ConfigUnitMeasure',
+            'ContentContract',
             'ContentDeliveryReturn',
             'ContentFormPayment',
             'ContentPrivacyPolicy',

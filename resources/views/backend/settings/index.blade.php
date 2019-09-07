@@ -57,6 +57,11 @@
 										<b>Informações ao Cliente</b>
 										<ul class="files-list mini">
 											<li>
+												<a href="content/contract" class="file-link">
+													<span class="icon file-ttf"></span> Contrato Compra e Venda
+												</a>
+											</li>
+											<li>
 												<a href="content/privacy-policy" class="file-link">
 													<span class="icon file-ttf"></span> Política de Privacidade
 												</a>

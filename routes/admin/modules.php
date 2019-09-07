@@ -18,6 +18,12 @@ Route::post('perfil-cliente/offers', 'Admin\ConfigProfileClientController@offers
 
 
 // Conteudo do site
+// Contrato de Compra Venda
+Route::resource('content/contract', 'Admin\ContentContractController', ['except' => ['edit']]);
+Route::get('content/contract-load', 'Admin\ContentContractController@loadContent')->name('contract.load');
+Route::get('content/contract-order/{id}', 'Admin\ContentContractController@order')->name('contract.order');
+Route::put('content/contract-order/{id}', 'Admin\ContentContractController@updateOrder')->name('contract.order');
+Route::put('content/contract-status/{id}', 'Admin\ContentContractController@status')->name('contract.status');
 // Política e Privacidade
 Route::resource('content/privacy-policy', 'Admin\ContentPrivacyPolicyController', ['except' => ['edit']]);
 Route::get('content/privacy-policy-load', 'Admin\ContentPrivacyPolicyController@loadContent')->name('privacy-policy.load');
@@ -42,6 +48,8 @@ Route::get('content/delivery-return-load', 'Admin\ContentDeliveryReturnControlle
 Route::get('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@order')->name('delivery-return.order');
 Route::put('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@updateOrder')->name('delivery-return.order');
 Route::put('content/delivery-return-status/{id}', 'Admin\ContentDeliveryReturnController@status')->name('delivery-return.status');
+
+
 
 
 // Slider Home

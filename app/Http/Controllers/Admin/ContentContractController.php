@@ -2,16 +2,17 @@
 
 namespace AVDPainel\Http\Controllers\Admin;
 
-use AVDPainel\Interfaces\Admin\ContentTermsConditionsInterface as InterModel;
+use AVDPainel\Interfaces\Admin\ContentContractInterface as InterModel;
 use AVDPainel\Http\Controllers\Controller;
+
 use Illuminate\Http\Request;
 use Gate;
 
-class ContentTermsConditionsController extends Controller
+class ContentContractController extends Controller
 {
-    protected $content = 'Conteúdo: Termos e Condições';
+    protected $content = 'Conteúdo: Contrato compra e venda';
     protected $ability = 'contents-site';
-    protected $view    = 'backend.contents.terms-conditions';
+    protected $view    = 'backend.contents.contracts';
     protected $model;
 
 
@@ -58,6 +59,7 @@ class ContentTermsConditionsController extends Controller
             'order_false' => 'Não foi possível alterar a ordem'
         );
     }
+
 
 
     public function index()
