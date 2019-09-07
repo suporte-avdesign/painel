@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ConfigBannerTableSeeder::class);
         $this->call(ConfigBoxTableSeeder::class);
         $this->call(ConfigSliderTableSeeder::class);
-        $this->call(ContentFormPaymentTableSeeder::class);
+        //$this->call(ContentFormPaymentTableSeeder::class);
         $this->call(ContentDeliveryReturnTableSeeder::class);
         $this->call(ContentPrivacyPoliciesTableSeeder::class);
         $this->call(ContentTermsConditionsTableSeeder::class);

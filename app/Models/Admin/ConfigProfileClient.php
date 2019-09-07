@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ConfigProfileClient extends Model
 {
     protected $fillable = [
-        'default',
+        //'default',
         'order',
         'name',
         'percent_cash',
@@ -23,7 +23,7 @@ class ConfigProfileClient extends Model
     public function rules($id = '')
     {
         return [
-            "default" => "required",
+            //"default" => "required",
             "order" => "required",
             "name" => "required|unique:config_profile_clients,name,{$id},id",
             "percent_cash" => "required",

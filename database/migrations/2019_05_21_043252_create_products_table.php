@@ -29,7 +29,7 @@ class CreateProductsTable extends Migration
             $table->float('unit');
             $table->string('measure', 30);
             $table->tinyInteger('declare')->default(0);
-            $table->float('declare', 6, 3)->nullable();
+            $table->float('weight', 6, 3)->nullable();
             $table->integer('width')->nullable();
             $table->integer('height')->nullable();
             $table->integer('length')->nullable();

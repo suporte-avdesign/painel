@@ -11,7 +11,7 @@
             </p>
             <p class="button-height block-label">
                 <label for="description" class="label"> Descrição <span class="red">*</span></label>
-                <textarea id="delivery-create" rows="2" name="description" class="input full-width"></textarea>
+                <textarea id="delivery-create" rows="15" name="description" class="input full-width"></textarea>
             </p>
 
             <p class="button-height inline-label">
@@ -46,12 +46,3 @@
         </fieldset>
     </form>
 </div>
-<!-- CKEditor-->
-<script src="{{url('backend/js/libs/ckeditor/ckeditor.js')}}"></script>
-<script>
-    CKEDITOR.replace( 'delivery-create', {
-        height: 150,
-        language: 'pt-br'
-    });
-</script>
-

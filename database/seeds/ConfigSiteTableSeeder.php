@@ -38,7 +38,7 @@ class ConfigSiteTableSeeder extends Seeder
             'image_positions' => 1,
             'change_images' => 1,
             'order_products' => 'random',
-            'order' => 'wishlist',
+            'order' => 'cart',
             'created_at' => $date
         ]);
 

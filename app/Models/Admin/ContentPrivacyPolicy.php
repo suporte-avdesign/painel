@@ -19,7 +19,7 @@ class ContentPrivacyPolicy extends Model
         return [
             "type" => "required",
             "title" => "required",
-            "description" => "required",
+            //"description" => "required",
             "order" => "required|numeric",
             "active" => "required"
         ];

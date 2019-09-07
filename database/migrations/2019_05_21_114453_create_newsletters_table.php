@@ -26,6 +26,7 @@ class CreateNewslettersTable extends Migration
             $table->string('longitude', 50)->nullable();
             $table->char('day', 2)->nullable();
             $table->char('month', 2)->nullable();
+            $table->tinyInteger('active')->default(1);
             $table->string('token', 254)->nullable();
             $table->boolean('confirmed')->default(0);
             $table->timestamps();

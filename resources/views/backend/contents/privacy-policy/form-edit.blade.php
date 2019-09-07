@@ -14,7 +14,7 @@
             </p>
             <p class="button-height block-label">
                 <label for="description" class="label"> Descrição <span class="red">*</span></label>
-                <textarea id="description" name="description" class="input full-width">{{$data->description}}</textarea>
+                <textarea id="description" rows="15" name="description" class="input full-width">{{$data->description}}</textarea>
             </p>
 
             <p class="button-height align-center">
@@ -30,12 +30,5 @@
         </fieldset>
     </form>
 </div>
-<!-- CKEditor -->
-<script src="{{url('backend/js/libs/ckeditor/ckeditor.js')}}"></script>
-<script>
-    CKEDITOR.replace( 'description', {
-        height: 150,
-        language: 'pt-br'
-    });
-</script>
+
 
