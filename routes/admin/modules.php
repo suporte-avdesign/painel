@@ -54,6 +54,12 @@ Route::get('content/delivery-load', 'Admin\ContentDeliveryController@loadContent
 Route::get('content/delivery-order/{id}', 'Admin\ContentDeliveryController@order')->name('delivery.order');
 Route::put('content/delivery-order/{id}', 'Admin\ContentDeliveryController@updateOrder')->name('delivery.order');
 Route::put('content/delivery-status/{id}', 'Admin\ContentDeliveryController@status')->name('delivery-return.status');
+// Perguntas Frequentes
+Route::resource('content/faqs', 'Admin\ContentFaqController', ['except' => ['edit']]);
+Route::get('content/faqs-load', 'Admin\ContentFaqController@loadContent')->name('faqs.load');
+Route::get('content/faqs-order/{id}', 'Admin\ContentFaqController@order')->name('faqs.order');
+Route::put('content/faqs-order/{id}', 'Admin\ContentFaqController@updateOrder')->name('faqs.order');
+Route::put('content/faqs-status/{id}', 'Admin\ContentFaqController@status')->name('faqs.status');
 
 
 

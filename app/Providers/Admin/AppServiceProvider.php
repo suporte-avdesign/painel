@@ -55,6 +55,7 @@ class AppServiceProvider extends ServiceProvider
             'ContentContract',
             'ContentDelivery',
             'ContentDeliveryReturn',
+            'ContentFaq',
             'ContentFormPayment',
             'ContentPrivacyPolicy',
             'ContentTermsConditions',

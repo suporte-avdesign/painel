@@ -62,6 +62,11 @@
 												</a>
 											</li>
 											<li>
+												<a href="content/faqs" class="file-link">
+													<span class="icon file-ttf"></span> Perguntas Frequentes
+												</a>
+											</li>
+											<li>
 												<a href="content/privacy-policy" class="file-link">
 													<span class="icon file-ttf"></span> Política de Privacidade
 												</a>

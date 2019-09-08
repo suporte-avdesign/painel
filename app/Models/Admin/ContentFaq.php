@@ -4,12 +4,11 @@ namespace AVDPainel\Models\Admin;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ContentDelivery extends Model
+class ContentFaq extends Model
 {
     protected $fillable = [
-        'type',
-        'title',
-        'description',
+        'question',
+        'response',
         'order',
         'active'
     ];
@@ -17,9 +16,8 @@ class ContentDelivery extends Model
     public function rules()
     {
         return [
-            "type" => "required",
-            "title" => "required",
-            //"description" => "required",
+            "question" => "required",
+            "response" => "required",
             "order" => "required|numeric",
             "active" => "required"
         ];
