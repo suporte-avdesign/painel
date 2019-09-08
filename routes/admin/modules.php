@@ -48,6 +48,12 @@ Route::get('content/delivery-return-load', 'Admin\ContentDeliveryReturnControlle
 Route::get('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@order')->name('delivery-return.order');
 Route::put('content/delivery-return-order/{id}', 'Admin\ContentDeliveryReturnController@updateOrder')->name('delivery-return.order');
 Route::put('content/delivery-return-status/{id}', 'Admin\ContentDeliveryReturnController@status')->name('delivery-return.status');
+// Política de Entrega
+Route::resource('content/delivery', 'Admin\ContentDeliveryController', ['except' => ['edit']]);
+Route::get('content/delivery-load', 'Admin\ContentDeliveryController@loadContent')->name('delivery.load');
+Route::get('content/delivery-order/{id}', 'Admin\ContentDeliveryController@order')->name('delivery.order');
+Route::put('content/delivery-order/{id}', 'Admin\ContentDeliveryController@updateOrder')->name('delivery.order');
+Route::put('content/delivery-status/{id}', 'Admin\ContentDeliveryController@status')->name('delivery-return.status');
 
 
 

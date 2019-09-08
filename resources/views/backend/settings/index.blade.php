@@ -78,8 +78,13 @@
 												</a>
 											</li>
 											<li>
+												<a href="content/delivery" class="file-link">
+													<span class="icon file-ttf"></span> Sobre Entregas
+												</a>
+											</li>
+											<li>
 												<a href="content/delivery-return" class="file-link">
-													<span class="icon file-ttf"></span> Entrega e Devoluções
+													<span class="icon file-ttf"></span> Sobre Devoluções
 												</a>
 											</li>
 										</ul>
