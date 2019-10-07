@@ -58,7 +58,7 @@ class UserNoteController extends Controller
         }
 
         $user    = $this->interUser->setId($id);
-        $notes   = $user->notes;
+        $notes   = $user->notes()->orderBy('id', 'desc')->get();
         $title   = $this->messages['title_index'];
         $tcreate = $this->messages['title_create'];
 

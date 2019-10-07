@@ -101,7 +101,7 @@ class ProductRepository implements ProductInterface
 
             $query = $this->model->where('category_id',$id)->with(array(
                 'prices' => function ($query) {
-                    $query->orderBy('id', 'asc');
+                    $query->orderBy('id', 'asc')->get();
                 }
             ))
                 ->with(array(
@@ -163,8 +163,6 @@ class ProductRepository implements ProductInterface
         $video   = $configProduct->video;
         $stock   = $configProduct->stock;
         ($stock == 1 ? $sum_stock = '<p>Estoque: <strong> 0 </strong></p>' : $sum_stock = '');
-        $freight = '';
-        $prices  = '';
         $confCost= $configProduct->cost;
         $path    = 'storage/'. $configImage->path;
         $kit     = $configProduct->kit;
@@ -202,12 +200,27 @@ class ProductRepository implements ProductInterface
                     }
                 }
 
+
+                //dd($val->prices);
+
                 // Prices
                 foreach ($val->prices as $price) {
-                    ($price->profile == $price_default ? $price_card_percent = '' : $price_card_percent = $price->sum_card.round($price->price_card_percent, 2).'%&nbsp;&nbsp;');
-                    $prices .= '<p><small class="tag">'.$price->profile.'</small> À Vista: '.$price->sum_cash.round($price->price_cash_percent, 2).'%<strong>&nbsp;&nbsp;'.
-                        setReal($price->price_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: '.$price_card_percent.'<strong>'.
-                        setReal($price->price_card).'</strong></p>';
+
+                    if ($price->config_profile_client_id == 1) {
+                        ($price->profile == $price_default ? $price_card_percent = '' : $price_card_percent = $price->sum_card.round($price->price_card_percent, 2).'%&nbsp;&nbsp;');
+                        $prices = '<p><small class="tag">'.$price->profile.'</small> À Vista: '.$price->sum_cash.round($price->price_cash_percent, 2).'%<strong>&nbsp;&nbsp;'.
+                            setReal($price->price_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: '.$price_card_percent.'<strong>'.
+                            setReal($price->price_card).'</strong></p>';
+                    }
+
+                    if ($price->config_profile_client_id == 2) {
+                        ($price->profile == $price_default ? $price_card_percent = '' : $price_card_percent = $price->sum_card.round($price->price_card_percent, 2).'%&nbsp;&nbsp;');
+                        $prices .= '<p><small class="tag">'.$price->profile.'</small> À Vista: '.$price->sum_cash.round($price->price_cash_percent, 2).'%<strong>&nbsp;&nbsp;'.
+                            setReal($price->price_cash).'</strong>&nbsp;&nbsp; - &nbsp;&nbsp;Parcelado: '.$price_card_percent.'<strong>'.
+                            setReal($price->price_card).'</strong></p>';
+                    }
+
+
 
                     if ($val->offer == 1) {
                         $prices .= '<p><small class="tag green-bg">'.
@@ -273,7 +286,7 @@ class ProductRepository implements ProductInterface
                 $black_friday  = '<p id="black_friday-'.$val->id.'"><button type="button" onclick="'.$clickBlackfriday.'" class="button compact '.$color_black_friday.'</button></p>';
                 // Freight.
                 if ($default == 1) {
-                    $freight  .= '<p>Peso: <strong> '.$val->weight.' gr </strong></p>';
+                    $freight  = '<p>Peso: <strong> '.$val->weight.' gr </strong></p>';
                     ($height == 1 && $val->height != '' ? $freight .= '<p>Altura: <strong> '.$val->height.' cm </strong></p>' : '');
                     ($width == 1 && $val->width != '' ? $freight .= '<p>Largura: <strong> '.$val->width.' cm </strong></p>' : '');
                     ($length == 1 && $val->length != '' ? $freight .= '<p>Comprimento: <strong> '.$val->length.' cm </strong></p>' : '');

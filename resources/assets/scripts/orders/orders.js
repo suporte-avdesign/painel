@@ -43,17 +43,16 @@
                 }
             },
             columns:[
-                {data: 'id', className:'align-center'},
-                {data: 'state', className:'align-center'},
-                {data: 'name'},
-                {data: 'profile'},
-                {data: 'payment'},
-                {data: 'subtotal'},
-                {data: 'status'},
-                {data: 'created_at', className:'align-center'},
+                {data: 'id', className:'align-center', orderable:false, searchable:false},
+                {data: 'state', className:'align-center', orderable:false, searchable:false},
+                {data: 'name', orderable:false, searchable:false},
+                {data: 'profile', orderable:false, searchable:false},
+                {data: 'payment', orderable:false, searchable:false},
+                {data: 'subtotal', orderable:false, searchable:false},
+                {data: 'status_label', orderable:false, searchable:false},
+                {data: 'created_at', className:'align-center', orderable:false, searchable:false},
                 {data:null, className:'details-control', orderable:false, searchable:false, defaultContent: ''}
-            ],
-            order: [[0, 'desc']]
+            ]
 
         });
         $('#'+tableOrders.id).on('click', tableOrders.openDetails, function() {
@@ -207,11 +206,6 @@
                 }
             });
         }
-
-
-
-
-
 
     }
 

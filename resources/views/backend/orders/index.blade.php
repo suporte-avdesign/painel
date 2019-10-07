@@ -158,20 +158,17 @@
                             <p>IP: <strong> @{{{ip}}}</strong></p>
                         </div>
                         <div class="six-columns">
-                            <h4 class="blue underline">Pedido N&deg;:@{{{number}}}</h4>
-                            <p>Status: <strong> @{{{status}}} </strong></p>
+                            <h4 class="blue underline">Pedido N&deg;:@{{{reference}}}</h4>
+                            <p>Status: <strong> @{{{status_label}}} </strong></p>
                             <p>Pagamento: <strong> @{{{payment}}} </strong></p>
                             <p>À Vista: <strong> @{{{price_cash}}} </strong></p>
                             <p>No Cartão: <strong> @{{{price_card}}} </strong></p>
                             <p>Desconto: <strong> @{{{discount}}} </strong></p>
                             <p>Taxa: <strong> @{{{tax}}} </strong></p>
                             <h4 class="blue underline">Dados do Frete</h4>
-                            <p>Taxa: <strong> @{{{freight}}} </strong></p>
+                            <p>Valor: <strong> @{{{freight}}} </strong></p>
+                            @{{{shipping}}}
 
-                            @{{{weight}}}
-                            @{{{width}}}
-                            @{{{height}}}
-                            @{{{length}}}
                         </div>
                     </div>
                 </div>

@@ -51,17 +51,20 @@ class OrderRepository implements OrderInterface
             3   => 'profile',
             4   => 'payment',
             5   => 'subtotal',
-            6   => 'status',
+            6   => 'status_label',
             7   => 'created_at',
             8   => 'price_cash',
             9   => 'discount',
             10  => 'freight',
             11  => 'tax',
-            12  => 'admin',
-            13  => 'ip'
+            12  => 'ip',
+            13  => 'reference',
+            14  => 'created_at'
+
         );
 
         $totalData = $this->model->count();
+
 
         $totalFiltered = $totalData;
 
@@ -71,6 +74,33 @@ class OrderRepository implements OrderInterface
         $dir   = $request->input('order.0.dir');
 
         if (empty($request->input('search.value'))) {
+
+            $query = $this->model->orderBy('id', 'desc')->with(array(
+                'user' => function ($query) {
+                    $query->with([
+                        'profile' => function ($query) {
+                            $query->get();
+                        },
+                        'adresses' => function ($query) {
+                            $query->orderBy('id', 'desc')->get();
+                        }
+                    ]);
+                },
+                'configFormPayment' => function ($query) {
+                },
+                'configStatusPayment' => function ($query) {
+                },
+                'shippings' => function ($query) {
+                }
+
+            ))
+                ->whereNull('orders.deleted_at')
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order,$dir)
+                ->get();
+
+            /*
 
             $query = DB::table('orders')
                 ->join('users', 'users.id', '=', 'orders.user_id')
@@ -106,11 +136,77 @@ class OrderRepository implements OrderInterface
                 ->orderBy($order,$dir)
                 ->get();
 
+            */
+
+
 
         } else {
 
             $search = $request->input('search.value');
 
+
+            $query = $this->model->orderBy('id', 'desc')->with(array(
+                'user' => function ($query) {
+                    $query->with([
+                        'profile' => function ($query) {
+                            $query->get();
+                        },
+                        'adresses' => function ($query) {
+                            $query->orderBy('id', 'desc')->get();
+                        }
+                    ])->get();
+                },
+                'configFormPayment' => function ($query) {
+                },
+                'configStatusPayment' => function ($query) {
+                },
+                'shippings' => function ($query) {
+                }
+
+            ))
+                ->where('user_id','LIKE',"%{$search}%")
+                ->orWhere('company','LIKE',"%{$search}%")
+                ->orWhere('total','LIKE',"%{$search}%")
+                ->orWhere('coupon','LIKE',"%{$search}%")
+                ->orWhere('reference','LIKE',"%{$search}%")
+                ->orWhere('code','LIKE',"%{$search}%")
+                ->whereNull('deleted_at')
+                ->offset($start)
+                ->limit($limit)
+                ->orderBy($order,$dir)
+                ->get();
+
+
+            $totalFiltered = $this->model->orderBy('id', 'desc')->with(array(
+                'user' => function ($query) {
+                    $query->with([
+                        'profile' => function ($query) {
+                            $query->get();
+                        },
+                        'adresses' => function ($query) {
+                            $query->orderBy('id', 'desc')->get();
+                        }
+                    ])->get();
+                },
+                'configFormPayment' => function ($query) {
+                },
+                'configStatusPayment' => function ($query) {
+                },
+                'shippings' => function ($query) {
+                }
+
+            ))
+                ->where('user_id','LIKE',"%{$search}%")
+                ->orWhere('company','LIKE',"%{$search}%")
+                ->orWhere('total','LIKE',"%{$search}%")
+                ->orWhere('coupon','LIKE',"%{$search}%")
+                ->orWhere('reference','LIKE',"%{$search}%")
+                ->orWhere('code','LIKE',"%{$search}%")
+                ->whereNull('deleted_at')
+                ->count();
+
+
+            /*
             $query = DB::table('orders')
                 ->join('users', 'users.id', '=', 'orders.user_id')
                 ->join('config_form_payments', 'config_form_payments.id', '=', 'orders.config_form_payment_id')
@@ -139,7 +235,7 @@ class OrderRepository implements OrderInterface
                     'user_addresses.city',
                     'user_addresses.state',
                     'user_addresses.zip_code')
-                ->where('orders.id','LIKE',"%{$search}%")
+                ->where('orders.reference','LIKE',"%{$search}%")
                 ->orWhere('orders.user_id','LIKE',"%{$search}%")
                 ->orWhere('users.first_name','LIKE',"%{$search}%")
                 ->orWhere('users.last_name','LIKE',"%{$search}%")
@@ -182,7 +278,7 @@ class OrderRepository implements OrderInterface
                     'user_addresses.city',
                     'user_addresses.state',
                     'user_addresses.zip_code')
-                ->where('orders.id','LIKE',"%{$search}%")
+                ->where('orders.reference','LIKE',"%{$search}%")
                 ->orWhere('orders.user_id','LIKE',"%{$search}%")
                 ->orWhere('users.first_name','LIKE',"%{$search}%")
                 ->orWhere('users.email','LIKE',"%{$search}%")
@@ -193,90 +289,100 @@ class OrderRepository implements OrderInterface
                 ->orWhere('user_addresses.city','LIKE',"%{$search}%")
                 ->whereNull('orders.deleted_at')
                 ->count();
+            */
+
 
         }
 
 
         $data  = array();
+
+        //dd($query);
         $configFreight = $this->configFreight->setId(1);
         if(!empty($query))
         {
             foreach ($query as $val){
 
-                if ($val->profile_id == 3){
-                    $name = $val->first_name.'<br>'.$val->last_name.'<br>Código: '.$val->user_id;
-                    $document_html  = "<p>CNPJ: <strong> {$val->document1} </strong></p>";
-                    $document_html .= "<p>Inscrição Estadual: <strong> {$val->document2} </strong></p>";
-                    $name_html  = "<p>Nome Fantasia: <strong> {$val->first_name} </strong></p>";
-                    $name_html .= "<p>Razão Social: <strong> {$val->last_name} </strong></p>";
+                $quantity = $val->qty;
+
+                /*********************************** DATA USER *************************************************/
+
+                $user = $val->user;
+                $profile  = $user->profile;
+                $adresses = $user->adresses;
+
+
+
+                if ($user->type_id == 1){
+                    $name = $user->first_name.'<br>'.$user->last_name.'<br>Código Cliente: '.$val->user_id.'<br>Código Pedido: '.$val->reference;
+                    $document_html  = "<p>CNPJ: <strong> {$user->document1} </strong></p>";
+                    $document_html .= "<p>Inscrição Estadual: <strong> {$user->document2} </strong></p>";
+                    $name_html  = "<p>Nome Fantasia: <strong> {$user->first_name} </strong></p>";
+                    $name_html .= "<p>Razão Social: <strong> {$user->last_name} </strong></p>";
                 } else {
-                    $name = $val->first_name.' '.$val->last_name.'<br>Código: '.$val->user_id;
-                    $name_html  = "<p>Nome: <strong> {$val->first_name} {$val->last_name} </strong></p>";
-                    $document_html  = "<p>CPF: <strong> {$val->document1} </strong></p>";
-                    $document_html .= "<p>RG: <strong> {$val->document2} </strong></p>";
+                    $name = $user->first_name.' '.$user->last_name.'<br>Código Cliente: '.$val->user_id.'<br>Código Pedido: '.$val->reference;
+                    $name_html  = "<p>Nome: <strong> {$user->first_name} {$user->last_name} </strong></p>";
+                    $document_html  = "<p>CPF: <strong> {$user->document1} </strong></p>";
+                    $document_html .= "<p>RG: <strong> {$user->document2} </strong></p>";
                 }
 
-                $strA  = $val->admin;
-                $strA  = explode(" ", $strA);
-                $admN = $strA[0];
-                ($val->admin != null ? $admin = '<p><strong>'.$admN.'</strong></p>' : $admin = '');
+                if (!empty($adresses[0])) {
 
-
-
-                $state_html = $val->state.'<br><button class="button disabled anthracite-gradient compact">'.$val->qty.'</button>';
-
-                $nData['id']                       = $val->id;
-                $nData['state']                    = $state_html;
-                $nData['name']                     = $name;
-                $nData['profile']                  = $val->profile;
-                $nData['config_form_payment_id']   = $val->payment;
-                $nData['config_status_payment_id'] = $val->status;
-                $nData['subtotal']                 = setReal($val->subtotal);
-                $nData['created_at']               = date('d/m/Y H:i:s', strtotime($val->created_at));
-                $nData['price_cash']               = $val->price_cash;
-                $nData['percent']                  = $val->percent;
-                $nData['discount']                 = $val->discount;
-                $nData['freight']                  = $val->freight;
-                $nData['tax']                      = $val->tax;
-                $nData['admin']                    = $admin;
-                $nData['ip']                       = $val->ip;
-
-                $nData['profile_html']             = "<h4 class=\"blue underline\">Perfil: {$val->profile} </h4>";
-                $nData['name_html']                = $name_html;
-                $nData['document_html']            = $document_html;
-                $nData['email']                    = $val->email;
-                $nData['cell']                     = $val->cell;
-                $nData['phone']                    = $val->phone;
-
-                $nData['user_id']                  = $val->user_id;
-                $nData['admin']                    = $val->admin;
-                $nData['status']                   = $val->status;
-                $nData['payment']                  = $val->payment;
-                $nData['price_cash']               = setReal($val->price_cash);
-                $nData['price_card']               = setReal($val->payment);
-                $nData['freight']                  = setReal($val->freight);
-                $nData['discount']                 = setReal($val->discount);
-                $nData['tax']                      = setReal($val->tax);
-                $nData['number']                   = $val->id;
-
-
-                if ($val->delivery == 1) {
-                    $nData['delivery']             = '<h4 class="blue underline">Endereço de Entrega</h4>';
-                    $nData['address']              = $val->address;
-                    $nData['number']               = $val->number;
-                    $nData['complement']           = $val->complement;
-                    $nData['district']             = $val->district;
-                    $nData['city']                 = $val->city;
-                    $nData['state2']               = $val->state;
-                    $nData['zip_code']             = $val->district;
-                } else {
-                    $nData['delivery']             = '<h4 class="red underline">Não há endereço de entrega</h4>';
+                    $nData['delivery'] = '<h4 class="blue underline">Endereço de Entrega</h4>';
+                    $nData['address'] = $adresses[0]->address;
+                    $nData['number'] = $adresses[0]->number;
+                    $nData['complement'] = $adresses[0]->complement;
+                    $nData['district'] = $adresses[0]->district;
+                    $nData['city'] = $adresses[0]->city;
+                    $nData['state2'] = $adresses[0]->state;
+                    $nData['zip_code'] = $adresses[0]->zip_code;
+                    $state_html = $adresses[0]->state . '<br><button class="button disabled anthracite-gradient compact">' .$quantity. '</button>';
                 }
+
+                /*********************************** FORM|PAYMENT *************************************************/
+                $formPayment  = $val->configFormPayment;
+                $form         = "{$formPayment->label}<p>{$val->company}</p>";
+
+                /*********************************** SHIPPINGS ****************************************************/
+                $shippings = $val->shippings;
+                $shipping = '';
+                if ($shippings[0]->indicate == 1) {
+                    $shipping .= "<h4 class=\"blue underline\">Indicou Transportadora:</h4>";
+                    $shipping .= "<p>Transportadora: {$shippings[0]->name}</p>";
+                    $shipping .= "<p>Telefone: {$shippings[0]->phone}</p>";
+                }
+
+                $nData['id']                 = $val->id;
+                $nData['state']              = $state_html;
+                $nData['name']               = $name;
+                $nData['profile']            = $profile->name;
+                $nData['payment']            = $form;
+                $nData['subtotal']           = setReal(($val->subtotal+$val->freight+$val->tax)-$val->discount);
+                $nData['status_label']       = config("pagseguro.status.".$val->config_status_payment_id.".label");
+                $nData['created_at']         = date('d/m/Y H:i:s', strtotime($val->created_at));
+                $nData['price_cash']         = $val->price_cash;
+                $nData['percent']            = $val->percent;
+                $nData['discount']           = $val->discount;
+                $nData['freight']            = $val->freight;
+                $nData['tax']                = $val->tax;
+                $nData['ip']                 = $val->ip;
+                $nData['profile_html']       = "<h4 class=\"blue underline\">Perfil: {$profile->name} </h4>";
+                $nData['name_html']          = $name_html;
+                $nData['document_html']      = $document_html;
+                $nData['email']              = $user->email;
+                $nData['cell']               = $user->cell;
+                $nData['phone']              = $user->phone;
+                $nData['user_id']            = $val->user_id;
+                $nData['price_cash']         = setReal($val->price_cash);
+                $nData['price_card']         = setReal($val->payment);
+                $nData['freight']            = setReal($val->freight);
+                $nData['discount']           = setReal($val->discount);
+                $nData['tax']                = setReal($val->tax);
+                $nData['reference']          = $val->reference;
+                $nData['shipping']           = $shipping;
 
                 $nData['notes']  =  $this->interNotes->countNotes($val->id);
                 $data[] = $nData;
-
-
             }
         }
 
