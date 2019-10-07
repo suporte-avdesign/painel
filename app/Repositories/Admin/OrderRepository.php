@@ -346,10 +346,13 @@ class OrderRepository implements OrderInterface
                 /*********************************** SHIPPINGS ****************************************************/
                 $shippings = $val->shippings;
                 $shipping = '';
-                if ($shippings[0]->indicate == 1) {
-                    $shipping .= "<h4 class=\"blue underline\">Indicou Transportadora:</h4>";
-                    $shipping .= "<p>Transportadora: {$shippings[0]->name}</p>";
-                    $shipping .= "<p>Telefone: {$shippings[0]->phone}</p>";
+
+                foreach ($shippings as $transport) {
+                    if ($transport->indicate == 1) {
+                        $shipping .= "<h4 class=\"blue underline\">Indicou Transportadora:</h4>";
+                        $shipping .= "<p>Transportadora: {$shippings[0]->name}</p>";
+                        $shipping .= "<p>Telefone: {$shippings[0]->phone}</p>";
+                    }
                 }
 
                 $nData['id']                 = $val->id;
